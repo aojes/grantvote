@@ -1,0 +1,17 @@
+body {
+  background: url('/images/body_bg.png') 0 0 repeat-x;
+  background-color: #ededed; }
+
+#header {
+  position: relative;
+  background: url('/images/header_bg.png') 0 0 repeat-x;
+  height: 117px;
+  color: #ededed; }
+  #header h1, #header h2, #header h3, #header h4, #header h5, #header h6 {
+    color: #ededed; }
+  #header a {
+    color: #ededed; }
+
+#content {
+  background: white;
+  margin-bottom: 120px; }

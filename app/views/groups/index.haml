@@ -1,0 +1,11 @@
+%h1 Listing groups
+- @groups.each do |group|
+  %h2= "Name: " + group.name
+  %h2= "Purpose: " + group.purpose
+  %h2= "Members: " + group.users.count.to_s
+  %h2= "Dues: $" + group.dues.to_s
+  %h3= link_to "Join Group (blank)", root_path
+  %p= link_to 'Show', group
+  %p= link_to 'Edit', edit_group_path(group)
+  %p= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
+= link_to 'New group', new_group_path 
