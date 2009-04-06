@@ -43,15 +43,18 @@ class GroupsController < ApplicationController
   # POST /groups.xml
   def create
     @group = Group.new(params[:group])
-
+    @group.memberships << Membership.new(:user => current_user, 
+                                             :principal => true)
     respond_to do |format|
       if @group.save
         flash[:notice] = 'Groups was successfully created.'
         format.html { redirect_to(@group) }
-        format.xml  { render :xml => @group, :status => :created, :location => @group }
+        format.xml  { render :xml => @group, :status => :created, 
+                                                    :location => @group }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @Group.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @Group.errors, 
+                                  :status => :unprocessable_entity }
       end
     end
   end
@@ -68,7 +71,8 @@ class GroupsController < ApplicationController
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @group.errors, 
+                                :status => :unprocessable_entity }
       end
     end
   end
