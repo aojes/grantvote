@@ -1,5 +1,23 @@
-%h3=h @group.name
-%h3=h @group.purpose
-%h3= link_to "Join Group", :action => :join, :id => @group unless member
-= link_to 'Edit', edit_group_path(@group)
-= link_to 'Back', groups_path
+%p= image_tag @group.photo.url :medium
+- form_for @group, :html => { :multipart => true } do |f|
+  %p
+    = f.file_field :photo
+    = f.submit "Change Photo"
+%h3
+  Name:
+  =h @group.name
+%h3
+  Purpose:
+  =h @group.purpose
+%h3= pluralize @group.memberships.count, "Member"
+%h3= pluralize principals.count, "Principal"
+%h6#comments Comments
+%hr
+- for comment in @group.comments
+  .comment
+    =simple_format comment.content
+    %hr
+%h5= link_to "Add Comment", new_group_comment_path(@group)
+%h3= link_to "Join Group", new_group_membership_path(@group) unless member?
+%h5= link_to 'Edit', edit_group_path(@group)
+%h5= link_to 'Back', groups_path

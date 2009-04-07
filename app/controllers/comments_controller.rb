@@ -5,7 +5,11 @@ class CommentsController < ApplicationController
     @commentable = find_commentable
     @comments = @commentable.comments
   end
-
+  
+  def new
+    @commentable = find_commentable
+  end
+  
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.build(params[:comment])

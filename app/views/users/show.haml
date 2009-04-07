@@ -1,0 +1,8 @@
+%p
+  %h3=h @user.login
+%p= image_tag @user.photo.url :medium
+%p
+  - form_for @user, :html => { :multipart => true } do |f|
+    = f.file_field :photo
+    = f.submit "Change Photo"
+%h3= link_to 'Edit', edit_account_path

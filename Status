@@ -1,8 +1,14 @@
 Tue Apr 7
 
-  added photo attachments to User, Group, and Grant
+  Confused by joining groups.  Don't know what to ask.
   
-  = Do I need to remove the ignored files before adding the .gitignore file?
+  Confused about adding comments.  Don't know how to set comment path.
+    
+    maybe solved
+      
+  Why does it say "[paperclip] saving attachments." on every request?
+  
+  Do I need to remove the ignored files before adding the .gitignore file?
 
   Joining groups..  where to put Membership.create ?
   

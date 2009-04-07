@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(:version => 8) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.text     "proposal"
-    t.boolean  "awarded",            :default => false
-    t.decimal  "amount"
+    t.boolean  "awarded",                                          :default => false
+    t.decimal  "amount",             :precision => 9, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -40,13 +40,13 @@ ActiveRecord::Schema.define(:version => 8) do
     t.string   "purpose"
     t.integer  "principals"
     t.integer  "members"
-    t.integer  "dues",               :default => 2, :null => false
-    t.decimal  "dues_collected"
+    t.integer  "dues",                                             :default => 2, :null => false
+    t.decimal  "dues_collected",     :precision => 9, :scale => 2
     t.integer  "grants_written"
     t.integer  "votes_held"
-    t.decimal  "yield_average"
-    t.integer  "wait",               :default => 7
-    t.decimal  "withdrawals"
+    t.decimal  "yield_average",      :precision => 9, :scale => 2
+    t.integer  "wait",                                             :default => 7
+    t.decimal  "withdrawals",        :precision => 9, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
