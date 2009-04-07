@@ -3,6 +3,8 @@ class CreateGrants < ActiveRecord::Migration
     create_table :grants do |t|
       t.integer :user_id
       t.integer :group_id
+      t.text :proposal
+      t.boolean :awarded, :default => false
       t.decimal :amount, :precision => 9, :scale => 2
       t.timestamps
     end

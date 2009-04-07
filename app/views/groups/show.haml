@@ -1,4 +1,5 @@
-%p=h @group.name
-%p=h @group.purpose
+%h3=h @group.name
+%h3=h @group.purpose
+%h3= link_to "Join Group", :action => :join, :id => @group unless member
 = link_to 'Edit', edit_group_path(@group)
 = link_to 'Back', groups_path

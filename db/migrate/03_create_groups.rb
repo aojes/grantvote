@@ -5,7 +5,7 @@ class CreateGroups < ActiveRecord::Migration
       t.string :purpose
       t.integer :principals
       t.integer :members
-      t.integer :dues,           :default => 1, :null => false
+      t.integer :dues,           :default => 2, :null => false
       t.decimal :dues_collected, :precision => 9, :scale => 2
       t.integer :grants_written
       t.integer :votes_held

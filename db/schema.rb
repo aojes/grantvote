@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 7) do
+ActiveRecord::Schema.define(:version => 8) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -22,9 +22,14 @@ ActiveRecord::Schema.define(:version => 7) do
   create_table "grants", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.decimal  "amount",     :precision => 9, :scale => 2
+    t.text     "proposal"
+    t.boolean  "awarded",            :default => false
+    t.decimal  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
   add_index "grants", ["group_id"], :name => "index_grants_on_group_id"
@@ -35,22 +40,25 @@ ActiveRecord::Schema.define(:version => 7) do
     t.string   "purpose"
     t.integer  "principals"
     t.integer  "members"
-    t.integer  "dues",                                         :default => 1, :null => false
-    t.decimal  "dues_collected", :precision => 9, :scale => 2
+    t.integer  "dues",               :default => 2, :null => false
+    t.decimal  "dues_collected"
     t.integer  "grants_written"
     t.integer  "votes_held"
-    t.decimal  "yield_average",  :precision => 9, :scale => 2
-    t.integer  "wait",                                         :default => 7
-    t.decimal  "withdrawals",    :precision => 9, :scale => 2
+    t.decimal  "yield_average"
+    t.integer  "wait",               :default => 7
+    t.decimal  "withdrawals"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.boolean  "principal",  :default => false, :null => false
-    t.decimal  "authority",  :default => 0.0
+    t.boolean  "principal",                                :default => false
+    t.decimal  "authority",  :precision => 4, :scale => 3, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,8 +79,11 @@ ActiveRecord::Schema.define(:version => 7) do
     t.string   "current_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "perishable_token",  :default => "", :null => false
-    t.string   "email",             :default => "", :null => false
+    t.string   "perishable_token",   :default => "", :null => false
+    t.string   "email",              :default => "", :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
@@ -82,9 +93,9 @@ ActiveRecord::Schema.define(:version => 7) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.boolean  "administrative"
-    t.decimal  "authority",          :precision => 10, :scale => 1, :default => 1.0, :null => false
-    t.decimal  "specific_authority", :precision => 10, :scale => 1, :default => 1.0, :null => false
-    t.decimal  "statistic",          :precision => 5,  :scale => 5
+    t.decimal  "authority",          :precision => 4, :scale => 3, :default => 0.0
+    t.decimal  "specific_authority", :precision => 4, :scale => 3, :default => 0.0
+    t.decimal  "statistic",          :precision => 4, :scale => 3, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

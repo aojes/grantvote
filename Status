@@ -1,13 +1,21 @@
 Tue Apr 7
 
+  added photo attachments to User, Group, and Grant
+  
+  = Do I need to remove the ignored files before adding the .gitignore file?
+
   Joining groups..  where to put Membership.create ?
+  
+     added controller and helper methods for Group
+      
+  ** Please comment on questions marked "# Q." with "# A."
 
 Mon Apr 6
     
   How to destroy memberships on Group#destroy?
   
-    * Group: has_many :memberships, :dependent => :destroy
+    Group: has_many :memberships, :dependent => :destroy
 
   How to build associations on create Group?
     
-    * see Group#create
+    see Group#create
