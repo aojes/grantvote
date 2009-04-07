@@ -1,1 +1,13 @@
+Tue Apr 7
 
+  Joining groups..  where to put Membership.create ?
+
+Mon Apr 6
+    
+  How to destroy memberships on Group#destroy?
+  
+    * Group: has_many :memberships, :dependent => :destroy
+
+  How to build associations on create Group?
+    
+    * see Group#create
