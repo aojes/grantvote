@@ -5,7 +5,7 @@ class CreateGrants < ActiveRecord::Migration
       t.integer :group_id
       t.text :proposal
       t.boolean :awarded, :default => false
-      t.decimal :amount, :precision => 9, :scale => 2
+      t.decimal :amount, :precision => 9, :scale => 2, :default => 0, :null => false
       t.timestamps
     end
     add_index :grants, :user_id

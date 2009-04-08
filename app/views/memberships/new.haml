@@ -1,7 +1,8 @@
-%h2 Standard Portal
-%p (standard form)
+%h2 Standard Membership Portal
+%p People can join groups w/o paying dues (0 authority) / assign other roles to membership
 %p
-  -# very confused here
-  - form_for ... do |f|
-    = f.submit
+  - form_for @membership, :url => { :action => :create } do |f|
+    = f.hidden_field :user_id, :value => current_user.id
+    = f.hidden_field :group_id, :value => params[:group_id]
+    = f.submit "Join Group"
 

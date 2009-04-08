@@ -10,7 +10,8 @@ class MembershipsController < ApplicationController
     respond_to do |format|
       if @membership.save
         flash[:notice] = 'Membership was successfully created.'
-        format.html { redirect_back_or_default :back }
+        format.html { redirect_to :controller => "groups", :action => "show",
+                                                      :id => params[:group_id] }
       else
         format.html { redirect_back_or_default :back }
       end

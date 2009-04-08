@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 8) do
     t.integer  "group_id"
     t.text     "proposal"
     t.boolean  "awarded",                                          :default => false
-    t.decimal  "amount",             :precision => 9, :scale => 2
+    t.decimal  "amount",             :precision => 9, :scale => 2, :default => 0.0,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -40,13 +40,13 @@ ActiveRecord::Schema.define(:version => 8) do
     t.string   "purpose"
     t.integer  "principals"
     t.integer  "members"
-    t.integer  "dues",                                             :default => 2, :null => false
-    t.decimal  "dues_collected",     :precision => 9, :scale => 2
-    t.integer  "grants_written"
-    t.integer  "votes_held"
-    t.decimal  "yield_average",      :precision => 9, :scale => 2
-    t.integer  "wait",                                             :default => 7
-    t.decimal  "withdrawals",        :precision => 9, :scale => 2
+    t.integer  "dues",                                             :default => 2,   :null => false
+    t.decimal  "dues_collected",     :precision => 9, :scale => 2, :default => 0.0, :null => false
+    t.integer  "grants_written",                                   :default => 0,   :null => false
+    t.integer  "votes_held",                                       :default => 0,   :null => false
+    t.decimal  "yield_average",      :precision => 9, :scale => 2, :default => 0.0, :null => false
+    t.integer  "wait",                                             :default => 7,   :null => false
+    t.decimal  "withdrawals",        :precision => 9, :scale => 2, :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 8) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.boolean  "principal",                                :default => false
-    t.decimal  "authority",  :precision => 4, :scale => 3, :default => 0.0
+    t.decimal  "authority",  :precision => 4, :scale => 3, :default => 0.0,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,9 +93,9 @@ ActiveRecord::Schema.define(:version => 8) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.boolean  "administrative"
-    t.decimal  "authority",          :precision => 4, :scale => 3, :default => 0.0
-    t.decimal  "specific_authority", :precision => 4, :scale => 3, :default => 0.0
-    t.decimal  "statistic",          :precision => 4, :scale => 3, :default => 0.0
+    t.decimal  "authority",          :precision => 4, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "specific_authority", :precision => 4, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "statistic",          :precision => 4, :scale => 3, :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

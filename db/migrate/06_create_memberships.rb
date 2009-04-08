@@ -4,7 +4,7 @@ class CreateMemberships < ActiveRecord::Migration
       t.integer :user_id
       t.integer :group_id
       t.boolean :principal, :default => false
-      t.decimal :authority, :precision => 4, :scale => 3, :default => 0
+      t.decimal :authority, :precision => 4, :scale => 3, :default => 0, :null => false
       t.timestamps
     end
     add_index :memberships, :user_id

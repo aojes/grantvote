@@ -4,10 +4,10 @@ class CreateVotes < ActiveRecord::Migration
       t.integer :user_id
       t.integer :group_id
       t.boolean :administrative
-      t.decimal :authority, :precision => 4, :scale => 3, :default => 0
+      t.decimal :authority, :precision => 4, :scale => 3, :default => 0, :null => false
       t.decimal :specific_authority, 
-                            :precision => 4, :scale => 3, :default => 0
-      t.decimal :statistic, :precision => 4, :scale => 3, :default => 0
+                            :precision => 4, :scale => 3, :default => 0, :null => false
+      t.decimal :statistic, :precision => 4, :scale => 3, :default => 0, :null => false
       t.timestamps
     end
     add_index :votes, :user_id

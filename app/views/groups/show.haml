@@ -10,7 +10,15 @@
   Purpose:
   =h @group.purpose
 %h3= pluralize @group.memberships.count, "Member"
-%h3= pluralize principals.count, "Principal"
+-# %h3= pluralize principals.count, "Principal"
+- for member in @group.users
+  = image_tag member.photo.url :small
+%h3
+  == Dues $#{@group.dues}, Collected $#{@group.dues_collected.to_s}, 
+  == Grants Written: #{@group.grants_written}, Votes Held: #{@group.votes_held}
+%h3
+  == Grants Awarded: #{@group.grants.count}, 
+  == Yield Average: $#{@group.yield_average}  
 %h6#comments Comments
 %hr
 - for comment in @group.comments

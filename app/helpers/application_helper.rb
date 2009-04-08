@@ -17,5 +17,9 @@ module ApplicationHelper
     end
     messages
   end
+  
+  def group_dues(group_id)
+    Group.find(group_id).dues
+  end
     
 end

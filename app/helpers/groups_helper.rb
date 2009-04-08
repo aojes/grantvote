@@ -5,7 +5,8 @@ module GroupsHelper
   end
   
   def principals
-    User.find(Membership.find_all_by_group_id_and_principal(params[:id], true))
+    User.find(Membership.find_all_by_group_id_and_principal(params[:id], true).
+                         collect { |u| u.user_id })
   end
   
 end
