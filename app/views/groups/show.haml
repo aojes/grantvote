@@ -14,7 +14,7 @@
 - for member in @group.users
   = image_tag member.photo.url :small
 %h3
-  == Dues $#{@group.dues}, Collected $#{@group.dues_collected.to_s}, 
+  == Dues $#{@group.dues}, Collected $#{@group.dues_collected}, 
   == Grants Written: #{@group.grants_written}, Votes Held: #{@group.votes_held}
 %h3
   == Grants Awarded: #{@group.grants.count}, 
