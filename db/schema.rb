@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -22,16 +22,17 @@ ActiveRecord::Schema.define(:version => 8) do
   create_table "grants", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.text     "proposal"
-    t.boolean  "awarded",                                          :default => false
-    t.decimal  "amount",             :precision => 9, :scale => 2, :default => 0.0,   :null => false
+    t.string   "name",                                     :default => "",    :null => false
+    t.text     "proposal",                                 :default => "",    :null => false
+    t.datetime "expiry"
+    t.boolean  "final",                                    :default => false, :null => false
+    t.boolean  "awarded",                                  :default => false, :null => false
+    t.decimal  "amount",     :precision => 9, :scale => 2, :default => 0.0,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
   end
 
+  add_index "grants", ["final"], :name => "index_grants_on_final"
   add_index "grants", ["group_id"], :name => "index_grants_on_group_id"
   add_index "grants", ["user_id"], :name => "index_grants_on_user_id"
 
@@ -79,11 +80,13 @@ ActiveRecord::Schema.define(:version => 8) do
     t.string   "current_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "perishable_token",   :default => "", :null => false
-    t.string   "email",              :default => "", :null => false
+    t.string   "perishable_token",                                 :default => "",  :null => false
+    t.string   "email",                                            :default => "",  :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.decimal  "authority",          :precision => 4, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "statistic",          :precision => 4, :scale => 3, :default => 0.0, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
@@ -92,14 +95,13 @@ ActiveRecord::Schema.define(:version => 8) do
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.boolean  "administrative"
-    t.decimal  "authority",          :precision => 4, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "specific_authority", :precision => 4, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "statistic",          :precision => 4, :scale => 3, :default => 0.0, :null => false
+    t.integer  "grant_id"
+    t.boolean  "cast",       :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "votes", ["grant_id"], :name => "index_votes_on_grant_id"
   add_index "votes", ["group_id"], :name => "index_votes_on_group_id"
   add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
 

@@ -1,3 +1,4 @@
+-# Q. I will set up default images for Group, User, etc., if I can.
 %p= image_tag @group.photo.url :medium
 - form_for @group, :html => { :multipart => true } do |f|
   %p
@@ -12,20 +13,27 @@
 %h3= pluralize @group.memberships.count, "Member"
 -# %h3= pluralize principals.count, "Principal"
 - for member in @group.users
-  = image_tag member.photo.url :small
+  = image_tag member.photo.url :ref
 %h3
-  == Dues $#{@group.dues}, Collected $#{@group.dues_collected}, 
+  == Dues $#{@group.dues}, Funds $#{@group.dues_collected}, 
   == Grants Written: #{@group.grants_written}, Votes Held: #{@group.votes_held}
 %h3
   == Grants Awarded: #{@group.grants.count}, 
-  == Yield Average: $#{@group.yield_average}  
-%h6#comments Comments
-%hr
-- for comment in @group.comments
-  .comment
-    =simple_format comment.content
-    %hr
-%h5= link_to "Add Comment", new_group_comment_path(@group)
+  == Yield Average: $#{@group.yield_average} 
+- for grant in grants_awarded
+  %h3=h grant.name
+  %h5== $#{grant.amount}
+  %p= simple_format grant.proposal 
+  %hr
 %h3= link_to "Join Group", new_group_membership_path(@group) unless member?
-%h5= link_to 'Edit', edit_group_path(@group)
-%h5= link_to 'Back', groups_path
+%h3= link_to "Write Grant", new_group_grant_path(@group) if member?
+#comments
+  %h6 Comments
+  %hr
+  - for comment in @group.comments
+    .comment
+      =simple_format comment.content
+      %hr
+%h5= link_to "Add Comment", new_group_comment_path(@group)
+-# %h5= link_to 'Edit', edit_group_path(@group)
+-# %h5= link_to 'Back', groups_path

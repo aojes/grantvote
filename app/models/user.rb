@@ -3,9 +3,13 @@ class User < ActiveRecord::Base
   
   has_many :memberships
   has_many :groups, :through => :memberships
+  has_many :votes
+  has_many :grants
   has_many :comments, :as => :commentable
 
-  has_attached_file :photo, :styles => { 
+  has_attached_file :photo, :styles => {
+                               # ref should be perfect square
+                               :ref    => "75x75", 
                                :small  => "75x75>", 
                                :medium => "150x150>",
                                :large  => "256x256>" 

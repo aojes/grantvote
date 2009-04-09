@@ -1,3 +1,7 @@
+public/system/**/*
+doc/*
 log/*
 tmp/*
+config/database.yml
+db/*3
 .DS_Store

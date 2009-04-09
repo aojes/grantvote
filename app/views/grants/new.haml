@@ -1,0 +1,21 @@
+%h2 Standard (New) Grant Page
+%p Only for members of a group
+%p
+  - form_for @grant, :url => { :action => :create } do |f|
+    = f.error_messages
+    = f.hidden_field :user_id, :value => current_user.id
+    = f.hidden_field :group_id, :value => params[:group_id]
+    = f.label :name
+    %br
+    = f.text_field :name
+    %br
+    = f.label "Request Amount"
+    %br
+    = f.text_field :amount
+    %br
+    = f.label :proposal
+    %br
+    = f.text_area :proposal
+    %br
+    = f.submit "Submit Proposal"
+    

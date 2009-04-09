@@ -1,0 +1,22 @@
+find the best place to check membership for sup-path resources
+
+add preview page for grants and comments; require for grants
+
+prevent people from accessing sub-path resources
+
+make small, square thumbnail images, like flickr
+
+put group comments in a partial and add column for opt. administrative approval
+
+don't destroy grants or votes(?) on Group#destroy
+
+# Q. how to populate Users with lib/tasks/populate.rake  
+      L: foo /E: foo@grantvote.com /P: foobar
+         bar /   bar@grantvote.com /   foobar
+
+add some type of expiry so people aren't forced to act for unfavorable grants
+__
+
+defer: 
+
+  give users control over their own comments

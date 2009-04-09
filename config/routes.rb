@@ -5,10 +5,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
   map.resource :account, :controller => "users"
   
-  map.resources :users, :has_many => :comments
+  # Q. Is this accurate?  
+  map.resources :users, :has_many => [:comments, :grants]
   map.resources :password_resets
-  map.resources :groups, :has_many => [:comments, :memberships]
-  map.resources :grants, :has_many => :comments
+  map.resources :groups, :has_many => [:comments, :memberships, :grants]
+  map.resources :grants, :has_many => [:comments, :votes]
   map.resources :votes, :has_many => :comments
 
   map.connect ':controller/:action/:id'
