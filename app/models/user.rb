@@ -8,10 +8,9 @@ class User < ActiveRecord::Base
   has_many :comments, :as => :commentable
 
   has_attached_file :photo, :styles => {
-                               # ref should be perfect square
-                               :ref    => "75x75", 
-                               :small  => "75x75>", 
-                               :medium => "150x150>",
+                               :thumb  => "32x32#", 
+                               :small  => "48x48#",
+                               :medium => "75x75#", 
                                :large  => "256x256>" 
                              }
   validates_attachment_size :photo, :less_than => 3.megabytes

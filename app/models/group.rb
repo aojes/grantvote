@@ -8,9 +8,10 @@ class Group < ActiveRecord::Base
   
   validates_presence_of :name, :purpose
 
-  has_attached_file :photo, :styles => { 
-                               :small  => "75x75>", 
-                               :medium => "150x150>",
+  has_attached_file :photo, :styles => {
+                               :thumb  => "32x32#", 
+                               :small  => "48x48#",
+                               :medium => "75x75#", 
                                :large  => "256x256>" 
                              }
   validates_attachment_size :photo, :less_than => 5.megabytes

@@ -3,9 +3,11 @@ class CreateGrants < ActiveRecord::Migration
     create_table :grants do |t|
       t.integer :user_id
       t.integer :group_id
+      # Q. Would it work better to parameterize the grant name?
+      # t.integer :group_index (?)
       t.string :name, :default => "", :null => false
       t.text :proposal, :default => "", :null => false
-      t.datetime :expiry, :null => true
+      t.datetime :expires, :null => true
       t.boolean :final, :default => false, :null => false
       t.boolean :awarded, :default => false, :null => false
       t.decimal :amount, :precision => 9, :scale => 2, :default => 0, :null => false

@@ -44,7 +44,7 @@
       %h3== Funds $#{@group.dues_collected} 
       %h3== Grants Written: #{@group.grants_written} 
       %h3== Votes Held: #{@group.votes_held}
-      %h3== Grants Awarded: #{@group.grants.count}, 
+      %h3== Grants Awarded: #{@group.grants.count}
       %h3== Yield Average: $#{@group.yield_average}
       %h3= link_to "Join Group", new_group_membership_path(@group) unless member?
       %h3= link_to "Write Grant", new_group_grant_path(@group) if member?
@@ -53,4 +53,4 @@
       %h3= pluralize @group.memberships.count, "Member"
       -# %h3= pluralize principals.count, "Principal"
       - for member in @group.users
-        = image_tag member.photo.url :ref       
+        = image_tag member.photo.url :thumb      
