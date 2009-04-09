@@ -1,8 +1,13 @@
 %p
   %h3=h @user.login
-%p= image_tag @user.photo.url :medium
-%p
-  - form_for @user, :html => { :multipart => true } do |f|
-    = f.file_field :photo
-    = f.submit "Change Photo"
+-# TODO write helper method for default User & Group images
+-# change default naming for additional clarity
+- if @user.photo.url =~ /\/missing.png$/
+  -# TODO add change photo to #edit
+  %p
+    - form_for @user, :html => { :multipart => true } do |f|
+      = f.file_field :photo
+      = f.submit "Change Photo"  
+- else
+  %p= image_tag @user.photo.url :medium
 %h3= link_to 'Edit', edit_account_path

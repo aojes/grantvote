@@ -1,39 +1,56 @@
 -# Q. I will set up default images for Group, User, etc., if I can.
-%p= image_tag @group.photo.url :medium
-- form_for @group, :html => { :multipart => true } do |f|
-  %p
-    = f.file_field :photo
-    = f.submit "Change Photo"
-%h3
-  Name:
-  =h @group.name
-%h3
-  Purpose:
-  =h @group.purpose
-%h3= pluralize @group.memberships.count, "Member"
--# %h3= pluralize principals.count, "Principal"
-- for member in @group.users
-  = image_tag member.photo.url :ref
-%h3
-  == Dues $#{@group.dues}, Funds $#{@group.dues_collected}, 
-  == Grants Written: #{@group.grants_written}, Votes Held: #{@group.votes_held}
-%h3
-  == Grants Awarded: #{@group.grants.count}, 
-  == Yield Average: $#{@group.yield_average} 
-- for grant in grants_awarded
-  %h3=h grant.name
-  %h5== $#{grant.amount}
-  %p= simple_format grant.proposal 
-  %hr
-%h3= link_to "Join Group", new_group_membership_path(@group) unless member?
-%h3= link_to "Write Grant", new_group_grant_path(@group) if member?
-#comments
-  %h6 Comments
-  %hr
-  - for comment in @group.comments
-    .comment
-      =simple_format comment.content
+-# TODO write helper method for default User & Group images
+-# TODO use partials
+-# change default naming for additional clarity
+.span-24
+  .prepend-top
+    .span-8.prepend-1
+      - if @group.photo.url =~ /\/missing.png$/
+        -# TODO add change photo to #edit
+        %p
+          - form_for @group, :html => { :multipart => true } do |f|
+            = f.file_field :photo
+            = f.submit "Add Photo" 
+            %br 
+            %br 
+            %br 
+      - else
+        %p= image_tag @group.photo.url :large
+    .span-14.append-1.last
+      %h2=h @group.name
+      %h3=h @group.purpose
+.span-24.last
+  .span-14.prepend-1.append-1
+    %h2 Recent Awards
+    .prepend-1
+      - for grant in grants_awarded
+        %h3=h grant.name
+        %h5== $#{grant.amount}
+        %p= simple_format grant.proposal 
+        %hr
+    #comments
+      %h6 Comments
       %hr
-%h5= link_to "Add Comment", new_group_comment_path(@group)
--# %h5= link_to 'Edit', edit_group_path(@group)
--# %h5= link_to 'Back', groups_path
+      - for comment in @group.comments
+        .comment
+          =simple_format comment.content
+          %hr
+    %h5= link_to "Add Comment", new_group_comment_path(@group)
+    -# %h5= link_to 'Edit', edit_group_path(@group)
+    -# %h5= link_to 'Back', groups_path
+  .span-6
+    .success
+      %h3== Dues $#{@group.dues} 
+      %h3== Funds $#{@group.dues_collected} 
+      %h3== Grants Written: #{@group.grants_written} 
+      %h3== Votes Held: #{@group.votes_held}
+      %h3== Grants Awarded: #{@group.grants.count}, 
+      %h3== Yield Average: $#{@group.yield_average}
+      %h3= link_to "Join Group", new_group_membership_path(@group) unless member?
+      %h3= link_to "Write Grant", new_group_grant_path(@group) if member?
+  .span-6.prepend-top.last
+    .success
+      %h3= pluralize @group.memberships.count, "Member"
+      -# %h3= pluralize principals.count, "Principal"
+      - for member in @group.users
+        = image_tag member.photo.url :ref       

@@ -96,7 +96,8 @@ ActiveRecord::Schema.define(:version => 9) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.integer  "grant_id"
-    t.boolean  "cast",       :default => false, :null => false
+    t.boolean  "cast",                                     :default => false, :null => false
+    t.decimal  "authority",  :precision => 4, :scale => 3, :default => 0.0,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

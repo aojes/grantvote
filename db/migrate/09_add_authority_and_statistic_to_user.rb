@@ -1,6 +1,6 @@
 class AddAuthorityAndStatisticToUser < ActiveRecord::Migration
   def self.up
-   # based on dues paid
+   # based on dues paid minus dues withdrawn
    add_column :users,  :authority, :decimal, :precision => 4, :scale => 3, :default => 0, :null => false
 
    # based on grants awarded

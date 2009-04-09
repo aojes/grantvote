@@ -5,7 +5,7 @@ class CreateVotes < ActiveRecord::Migration
       t.integer :group_id
       t.integer :grant_id
       t.boolean :cast, :default => false, :null => false
-    # t.decimal :authority, :precision => 4, :scale => 3, :default => 0, :null => false
+      t.decimal :authority, :precision => 4, :scale => 3, :default => 0, :null => false
       t.timestamps
     end
     add_index :votes, :user_id
