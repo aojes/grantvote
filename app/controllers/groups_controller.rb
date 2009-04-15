@@ -43,7 +43,8 @@ class GroupsController < ApplicationController
   # POST /groups.xml
   def create
     @group = Group.new(params[:group])
-    @group.memberships << Membership.new(:user => current_user, 
+    @group.memberships << Membership.new(:user => current_user,
+                                            # TODO fixme 
                         :principal => true, :authority => params[:group][:dues])
     respond_to do |format|
       if @group.save

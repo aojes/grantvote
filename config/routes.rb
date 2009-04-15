@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :account, :controller => "users"
   
   # Q. Is this accurate?  
-  map.resources :users, :has_many => [:comments, :grants]
+  map.resources :users, :has_many => [:comments, :grants, :votes]
   map.resources :password_resets
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
   map.resources :grants, :has_many => [:comments, :votes]

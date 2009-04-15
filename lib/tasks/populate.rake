@@ -25,7 +25,7 @@ namespace :db do
       g.name = Faker::Company.name
       g.proposal = Populator.sentences(2..10)
       g.amount = 20..50
-      g.final = [true, false]
+      g.current = [true, false]
       g.awarded = [true, false]
       g.created_at = 1.month.ago..2.days.ago      
     end

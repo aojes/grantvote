@@ -9,4 +9,5 @@
       = f.submit "Change Photo"  
 - else
   %p= image_tag @user.photo.url :medium
+%h3= link_to 'My Grants', user_grants_path(current_user)
 %h3= link_to 'Edit', edit_account_path

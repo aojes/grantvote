@@ -24,15 +24,16 @@ ActiveRecord::Schema.define(:version => 9) do
     t.integer  "group_id"
     t.string   "name",                                     :default => "",    :null => false
     t.text     "proposal",                                 :default => "",    :null => false
-    t.datetime "expiry"
-    t.boolean  "final",                                    :default => false, :null => false
+    t.datetime "expires"
+    t.boolean  "current",                                  :default => true,  :null => false
     t.boolean  "awarded",                                  :default => false, :null => false
     t.decimal  "amount",     :precision => 9, :scale => 2, :default => 0.0,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "grants", ["final"], :name => "index_grants_on_final"
+  add_index "grants", ["awarded"], :name => "index_grants_on_awarded"
+  add_index "grants", ["current"], :name => "index_grants_on_current"
   add_index "grants", ["group_id"], :name => "index_grants_on_group_id"
   add_index "grants", ["user_id"], :name => "index_grants_on_user_id"
 
@@ -93,11 +94,11 @@ ActiveRecord::Schema.define(:version => 9) do
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
 
   create_table "votes", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.integer  "grant_id"
-    t.boolean  "cast",                                     :default => false, :null => false
-    t.decimal  "authority",  :precision => 4, :scale => 3, :default => 0.0,   :null => false
+    t.integer  "user_id",                                                   :null => false
+    t.integer  "group_id",                                                  :null => false
+    t.integer  "grant_id",                                                  :null => false
+    t.string   "cast",                                                      :null => false
+    t.decimal  "authority",  :precision => 4, :scale => 3, :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

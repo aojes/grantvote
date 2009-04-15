@@ -1,4 +1,10 @@
-%h2=h @grant.name
-%h3= sprintf "$%.0f", @grant.amount
-%p= simple_format @grant.proposal
--# use partial on routing conditions
+.prepend-1.append-1
+  %h6=h @grant.group.name
+  %h4=h @grant.group.purpose
+  %h2=h @grant.name
+  %h3= sprintf "$%.0f", @grant.amount
+  %p= simple_format @grant.proposal, :class => "large"
+  %h3
+    == #{pluralize @grant.votes.count, "vote"} 
+    == #{percent_authorized(grant_authority(@grant))}% authorized
+

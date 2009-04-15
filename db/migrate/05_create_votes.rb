@@ -1,10 +1,10 @@
 class CreateVotes < ActiveRecord::Migration
   def self.up
     create_table :votes do |t|
-      t.integer :user_id
-      t.integer :group_id
-      t.integer :grant_id
-      t.boolean :cast, :default => false, :null => false
+      t.integer :user_id, :null => false
+      t.integer :group_id, :null => false
+      t.integer :grant_id, :null => false
+      t.string :cast, :null => false
       t.decimal :authority, :precision => 4, :scale => 3, :default => 0, :null => false
       t.timestamps
     end

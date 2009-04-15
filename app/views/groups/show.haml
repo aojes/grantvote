@@ -1,26 +1,9 @@
--# Q. I will set up default images for Group, User, etc., if I can.
 -# TODO write helper method for default User & Group images
 -# TODO use partials
--# change default naming for additional clarity
-.span-24
-  .prepend-top
-    .span-8.prepend-1
-      - if @group.photo.url =~ /\/missing.png$/
-        -# TODO add change photo to #edit
-        %p
-          - form_for @group, :html => { :multipart => true } do |f|
-            = f.file_field :photo
-            = f.submit "Add Photo" 
-            %br 
-            %br 
-            %br 
-      - else
-        %p= image_tag @group.photo.url :large
-    .span-14.append-1.last
-      %h2=h @group.name
-      %h3=h @group.purpose
+-# change default naming (of images) for additional clarity
+= render 'shared/groups_header'
 .span-24.last
-  .span-14.prepend-1.append-1
+  .span-14.prepend-1.append-1.last
     %h2 Recent Awards
     .prepend-1
       - for grant in grants_awarded
@@ -29,7 +12,7 @@
         %p= simple_format grant.proposal 
         %hr
     #comments
-      %h6 Comments
+      %h6 {count} Comments
       %hr
       - for comment in @group.comments
         .comment
@@ -46,11 +29,11 @@
       %h3== Votes Held: #{@group.votes_held}
       %h3== Grants Awarded: #{@group.grants.count}
       %h3== Yield Average: $#{@group.yield_average}
-      %h3= link_to "Join Group", new_group_membership_path(@group) unless member?
+      %h3= link_to "Join Group", new_group_membership_path(@group) if not member?
       %h3= link_to "Write Grant", new_group_grant_path(@group) if member?
-  .span-6.prepend-top.last
-    .success
+      %h3= link_to "View Forum", group_grants_path(@group) if member?
+    .success.prepend-top.last
       %h3= pluralize @group.memberships.count, "Member"
       -# %h3= pluralize principals.count, "Principal"
       - for member in @group.users
-        = image_tag member.photo.url :thumb      
+        = image_tag member.photo.url(:thumb)

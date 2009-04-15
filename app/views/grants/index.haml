@@ -1,0 +1,5 @@
+- if params[:group_id]
+  = render 'shared/groups_header' 
+  = render 'groups/forum'
+- elsif params[:user_id]
+  = render 'account' if params[:user_id]

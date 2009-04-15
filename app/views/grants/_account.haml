@@ -1,0 +1,2 @@
+- for grant in current_user.grants
+  %h2=link_to(h(grant.name), user_grant_path( current_user, grant ) )

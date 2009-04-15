@@ -1,7 +1,6 @@
 class Group < ActiveRecord::Base
 
   has_many :grants
-  has_many :votes
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
   has_many :comments, :as => :commentable  
@@ -16,6 +15,8 @@ class Group < ActiveRecord::Base
                              }
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, 
-                                    :content_type => ['image/jpeg', 'image/png']    
+                                    :content_type => ['image/jpeg', 'image/png']
+                                    
+  AWARD_THRESHOLD = 0.5 # OF GROUP AUTHORITY
   
 end

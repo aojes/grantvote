@@ -1,10 +1,20 @@
+people CAN vote on their own grants: yea vote created on grant creation
+
+set model constant on create group: how much 'yea' authority to win a grant?
+
+figure out how to use redirect_back_or_default
+
+write helper method for default User & Group images
+
+look into groups_grants_id pattern
+
 find the best place to check membership for sup-path resources
 
 add preview page for grants and comments; require for grants
 
 prevent people from accessing sub-path resources
 
-make small, square thumbnail images, like flickr
+/ make small, square thumbnail images, like flickr
 
 put group comments in a partial and add column for opt. administrative approval
 
@@ -20,3 +30,5 @@ __
 defer: 
 
   give users control over their own comments
+  
+  change default naming (of images) for additional clarity
