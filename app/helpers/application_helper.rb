@@ -18,8 +18,25 @@ module ApplicationHelper
     messages
   end
   
-  def group_dues(group_id)
-    Group.find(group_id).dues
+
+  def member?(group_id)
+    Membership.exists?(:user_id => current_user, :group_id => group_id)
   end
-    
+  
+  def members(group_id)
+    User.find(Membership.find_all_by_group_id(group_id).
+                collect { |m| m.user_id })
+  end
+  
+  def principal?(group_id)
+    Membership.exists?(:user_id => current_user, :group_id => group_id,
+                                                      :interest => true)
+  end
+  
+  def principals(group_id)
+    User.find(Membership.find_all_by_group_id_and_interest(group_id, true).
+                collect { |u| u.user_id })
+  end
+  
+   
 end

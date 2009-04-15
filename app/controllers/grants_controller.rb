@@ -33,8 +33,6 @@ class GrantsController < ApplicationController
 
     @vote = Vote.new(:user_id   => current_user.id,
                              :group_id  => params[:grant][:group_id],
-    :authority => Membership.find_by_user_id_and_group_id(current_user.id, 
-                                      params[:grant][:group_id]).authority,
                              :cast => "yea")
 
     respond_to do |format|

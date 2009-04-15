@@ -9,12 +9,9 @@ namespace :db do
     Group.populate 5 do |g|
       g.name = Populator.words(2..5).titleize
       g.purpose = Populator.words(5..10).titleize
-      g.democratic = [true, false]
-      g.principals = 0
       g.members = 0
       g.dues = [2, 5, 9, 12]
-      g.funds = 50..500
-      g.statistic = [0.123, 0.234, 0.345, 0.456]
+      g.funds = 100..500
       g.wait = 7
       g.created_at = 2.months.ago..Time.now
     end
@@ -25,11 +22,12 @@ namespace :db do
       g.name = Faker::Company.name
       g.proposal = Populator.sentences(2..10)
       g.amount = 20..50
-      g.current = [true, false]
+      g.votes_awarding = 10..50
+      g.final = [true, false]
       g.awarded = [true, false]
-      g.created_at = 1.month.ago..2.days.ago      
+      g.created_at = 1.month.ago..Time.now     
     end
-
+    
   end
 end
 

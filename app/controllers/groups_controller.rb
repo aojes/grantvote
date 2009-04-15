@@ -43,7 +43,7 @@ class GroupsController < ApplicationController
   # POST /groups.xml
   def create
     @group = Group.new(params[:group])
-    @group.memberships << Membership.new(:user => current_user, :authority => 0)
+    @group.memberships << Membership.new(:user => current_user)
     respond_to do |format|
       if @group.save
         flash[:notice] = 'Group was successfully created.'
@@ -58,17 +58,6 @@ class GroupsController < ApplicationController
     end
   end
   
-#  def join
-#    Membership.create(:user_id => current_user, :group_id => params[:id])
-#    respond_to do |format|
-#      # flash
-#      format.html { redirect_back_or_default :back }
-#      format.js
-#    end
-#  end
-#  
-  # PUT /groups/1
-  # PUT /groups/1.xml
   def update
     @group = Group.find(params[:id])
 

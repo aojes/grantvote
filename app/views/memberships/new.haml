@@ -1,8 +1,16 @@
-%h2 Standard Membership Portal
-%p People can join groups w/o paying dues (0 authority) / assign other roles to membership
+%h2 Membership#new
+%h3 Watch Group
 %p
   - form_for @membership, :url => { :action => :create } do |f|
     = f.hidden_field :user_id, :value => current_user.id
     = f.hidden_field :group_id, :value => params[:group_id]
-    = f.submit "Join Group"
+    = f.hidden_field :interest, :value => "false"
+    = f.submit "Join"
+%h3.prepend-top Voting Membership
+%p
+  - form_for @membership, :url => { :action => :create } do |f|
+    = f.hidden_field :user_id, :value => current_user.id
+    = f.hidden_field :group_id, :value => params[:group_id]
+    = f.hidden_field :interest, :value => "true"
+    = f.submit "Dues Paid"
 

@@ -1,10 +1,13 @@
 - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
-  = f.radio_button :cast, "yea"
-  Yea
-  = f.radio_button :cast, "nay"
-  Nay
-  = f.hidden_field :user_id, :value => current_user.id
-  = f.hidden_field :group_id, :value => params[:group_id]
-  = f.hidden_field :grant_id, :value => grant.id
-  = f.hidden_field :authority, :value => current_user.authority
-  = f.submit "Cast Vote"
+  - if principal?(params[:group_id])
+    = f.radio_button :cast, "yea"
+    Yea
+    = f.radio_button :cast, "nay"
+    Nay
+    = f.hidden_field :user_id, :value => current_user.id
+    = f.hidden_field :group_id, :value => params[:group_id]
+    = f.hidden_field :grant_id, :value => grant.id
+    = f.submit "Cast Vote"    
+  - else
+    %h3 link to pay dues
+

@@ -25,11 +25,11 @@
     .success
       %h3== Dues $#{@group.dues} 
       %h3== Funds $#{@group.funds.floor.to_i} 
-      %h3= link_to "Join Group", new_group_membership_path(@group) if not member?
-      %h3= link_to "Write Grant", new_group_grant_path(@group) if member?
-      %h3= link_to "View Forum", group_grants_path(@group) if member?
+      %h3= link_to "Join Group", new_group_membership_path(@group) if not member?(params[:id])
+      %h3= link_to "Write Grant", new_group_grant_path(@group) if member?(params[:id])
+      %h3= link_to "View Forum", group_grants_path(@group) if member?(params[:id])
     .success.prepend-top.last
       %h3= pluralize @group.memberships.count, "Member"
-      -# %h3= pluralize principals.count, "Principal"
+      %h3= pluralize principals(params[:id]).count, "Voting Member"
       - for member in @group.users
         = image_tag member.photo.url(:thumb)
