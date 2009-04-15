@@ -4,22 +4,22 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    [Group, Grant].each(&:delete_all)
+    [Group, Membership, Grant, Vote].each(&:delete_all)
     
-    Group.populate 3 do |g|
+    Group.populate 5 do |g|
       g.name = Populator.words(2..5).titleize
       g.purpose = Populator.words(5..10).titleize
-      g.dues = [1, 2, 5, 9, 15]
-      g.dues_collected = 99..499
-      g.grants_written = 20..50
-      g.votes_held = 5..10
-      g.yield_average = 20..50
-      g.wait = 7..45
-      g.withdrawals = 10..40
-      g.created_at = 2.years.ago..Time.now
+      g.democratic = [true, false]
+      g.principals = 0
+      g.members = 0
+      g.dues = [2, 5, 9, 12]
+      g.funds = 50..500
+      g.statistic = [0.123, 0.234, 0.345, 0.456]
+      g.wait = 7
+      g.created_at = 2.months.ago..Time.now
     end
     
-    Grant.populate 20 do |g|
+    Grant.populate 50 do |g|
       g.user_id = [1, 2]
       g.group_id = 1..3
       g.name = Faker::Company.name

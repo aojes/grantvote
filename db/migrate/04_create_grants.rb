@@ -3,9 +3,6 @@ class CreateGrants < ActiveRecord::Migration
     create_table :grants do |t|
       t.integer :user_id
       t.integer :group_id
-      # Q. Would it work better to parameterize the grant name?
-      #    so that if grant ID=20 & Group ID=1, first grant = /groups/1/grants/1
-      # t.integer :group_index (?)
       t.string :name, :default => "", :null => false
       t.text :proposal, :default => "", :null => false
       t.datetime :expires, :null => true

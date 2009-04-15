@@ -1,3 +1,7 @@
+work on membership views
+
+defer: add table for email prefs
+
 people CAN vote on their own grants: yea vote created on grant creation
 
 set model constant on create group: how much 'yea' authority to win a grant?
