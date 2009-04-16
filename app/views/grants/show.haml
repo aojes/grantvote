@@ -6,5 +6,5 @@
   %p= simple_format @grant.proposal, :class => "large"
   %h3
     == #{pluralize @grant.votes.count, "vote"} 
-    == #{percent_authorized(grant_authority(@grant))}% authorized
+
 

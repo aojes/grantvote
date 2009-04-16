@@ -23,7 +23,7 @@ class GrantsController < ApplicationController
   
   def create
     @grant = Grant.new(params[:grant])
-    
+
     # Really baffled here
 #    @grant.votes << Vote.new(:user_id   => current_user.id,
 #                             :group_id  => params[:grant][:group_id],

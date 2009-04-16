@@ -1,5 +1,7 @@
 class Group < ActiveRecord::Base
-
+  
+  AWARD_THRESHOLD  = 0.50  # Yea > 50% OF CURRENT AND FUTURE VOTING MEMBERS
+  
   has_many :grants
   has_many :memberships, :dependent => :destroy # don't destroy groups
   has_many :users, :through => :memberships
@@ -7,7 +9,7 @@ class Group < ActiveRecord::Base
   
   validates_presence_of :name, :purpose, :dues
   validates_numericality_of :dues, :minimum => 2, :only_integer => true,
-                      :message => "can be an integer value greater than 1"
+                      :message => "can be an integer value of minimum 2"
   
   validates_length_of :name, :in => 2..50, 
                       :message => "can be 3 to 50 characters"
@@ -25,5 +27,4 @@ class Group < ActiveRecord::Base
   validates_attachment_content_type :photo, 
                                     :content_type => ['image/jpeg', 'image/png']
                                     
-  
 end

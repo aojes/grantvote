@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 8) do
     t.integer  "group_id"
     t.string   "name"
     t.text     "proposal"
-    t.integer  "votes_awarding"
     t.boolean  "final",                                            :default => false, :null => false
     t.boolean  "awarded",                                          :default => false, :null => false
     t.decimal  "amount",             :precision => 9, :scale => 2, :default => 0.0,   :null => false
