@@ -1,3 +1,9 @@
+Thr Apr 16
+
+  validations for most things in place
+  
+  revised schema for simplified award system, see Vote model
+
 Wed Apr 15
 
   confused by Grant#create, get "Votes is invalid" on commented code

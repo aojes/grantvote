@@ -9,7 +9,6 @@ namespace :db do
     Group.populate 5 do |g|
       g.name = Populator.words(2..5).titleize
       g.purpose = Populator.words(5..10).titleize
-      g.members = 0
       g.dues = [2, 5, 9, 12]
       g.funds = 100..500
       g.wait = 7
@@ -19,7 +18,7 @@ namespace :db do
     Grant.populate 50 do |g|
       g.user_id = [1, 2]
       g.group_id = 1..3
-      g.name = Faker::Company.name
+      g.name = Faker::Name.name
       g.proposal = Populator.sentences(2..10)
       g.amount = 20..50
       g.final = [true, false]
