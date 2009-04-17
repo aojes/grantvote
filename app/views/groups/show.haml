@@ -11,8 +11,8 @@
         %h3== <span style="float:right">#{image_tag grant.user.photo.url(:small)}</span> #{h grant.name}
         %h5== $#{grant.amount.to_i}
         .span-3.last
-          .span-3.last= image_tag(grant.photo.url(:medium), :alt => "HELPER METHOD")
-          -# DEFER .span-2.success.prepend-top.last nifty chart
+          .span-3= image_tag(grant.photo.url(:medium), :alt => "HELPER METHOD")
+          .span-2.success.prepend-top.last nifty chart
         .span-10.last= simple_format grant.proposal, :style => "text-align: justify; line-height: 2" 
         %hr
     #comments
@@ -36,7 +36,6 @@
       %h3= pluralize principals(params[:id]).count, "Voter"
       - for member in @group.users
         = image_tag member.photo.url(:thumb)
-    -# DEFER
-      .success.prepend-top.last
-        %h3 nifty charts
+    .success.prepend-top.last
+      nifty charts
         
