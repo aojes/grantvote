@@ -19,8 +19,10 @@ class Vote < ActiveRecord::Base
     votes_nay = self.grant.votes.nay.count   
   
     if votes_yea > threshold or voters == 1
-      self.grant.final = true
+      self.grant.final   = true
       self.grant.awarded = true
+      self.group.funds  -= self.grant.amount
+      self.group.save             #
       self.grant.save             # or raise error? TODO
     elsif votes_nay > threshold
       self.grant.final = true

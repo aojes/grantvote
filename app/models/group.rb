@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
   
-  AWARD_THRESHOLD  = 0.50  # Yea > 50% OF CURRENT AND FUTURE VOTING MEMBERS
+  AWARD_THRESHOLD = 0.500 # 50% OF CURRENT AND FUTURE VOTING MEMBERS
   
   has_many :grants
   has_many :memberships, :dependent => :destroy # don't destroy groups

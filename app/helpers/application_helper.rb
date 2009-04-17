@@ -27,7 +27,7 @@ module ApplicationHelper
     User.find(Membership.find_all_by_group_id(group_id).
                 collect { |m| m.user_id })
   end
-  
+
   def principal?(group_id)
     Membership.exists?(:user_id => current_user, :group_id => group_id,
                                                       :interest => true)

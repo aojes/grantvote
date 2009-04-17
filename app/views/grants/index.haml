@@ -1,5 +1,7 @@
-- if params[:group_id]
+- if controller.controller_name == "grants" and params[:group_id]
   = render 'shared/groups_header' 
   = render 'groups/forum'
 - elsif params[:user_id]
-  = render 'account' if params[:user_id]
+  = render 'account'
+- elsif controller.congroller_name == "groups"
+  = redirect_to root_path

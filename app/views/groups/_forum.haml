@@ -1,13 +1,20 @@
-- for grant in forum(@grants)
-  %h3=h grant.name
-  %h3== $#{grant.amount.to_i.to_s}
-  %p= simple_format grant.proposal, :class => "large"
-  .span-4.prepend-2.success.last
-    %p
-      = render 'shared/vote', :grant => grant
-  .span-2.last &nbsp; <!-- ? -->
-  .span-8.success.last
-    %p status at present
-    %p exempt or time expires
-  %hr
-  
+%h2.prepend-1.append-2 Group Session
+.span-21.prepend-2.append-1.last
+  - for grant in forum(@grants)
+    #div
+      .span-14.append-1
+        %h3== <span style="float:right">#{image_tag grant.user.photo.url(:small), :alt=> "TODO"}</span> #{h grant.name}
+        %h3== $#{grant.amount.to_i.to_s}
+      .span-5.success.last 
+        %h6 Cred    
+    #div
+      .span-15
+        .span-3
+          = image_tag grant.photo.url(:medium)
+        .span-11.last{:style => "text-align:justify"}
+          = simple_format grant.proposal, :style => "line-height: 2"
+      .span-5.success
+        %h6 Status
+      .span-5.success.last
+        = render 'shared/vote', :grant => grant
+    %hr

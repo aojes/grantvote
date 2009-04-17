@@ -4,7 +4,11 @@ module GrantsHelper
   def forum(grants)
     # TODO write scopes
     grants.collect! { |grant|
-      grant unless Vote.exists?(:user_id => current_user, :grant_id => grant)
+      if !Vote.exists?(:user_id => current_user, :grant_id => grant)
+        if !grant.final
+          grant
+        end
+      end
     }
     grants.compact
   end

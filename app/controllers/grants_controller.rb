@@ -38,8 +38,9 @@ class GrantsController < ApplicationController
     respond_to do |format|
       if @grant.save
         @vote.grant_id = @grant.id # TODO fixme
-        @vote.save                 #
-        flash[:notice] = 'Grant was successfully created.'
+        @vote.save
+        message = @vote.final_message if @vote.finalized_grant?                 #
+        flash[:notice] = message or 'Grant was successfully created.'
         
         format.html { redirect_to @grant.group }
       else

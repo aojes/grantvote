@@ -1,4 +1,8 @@
-make preview page for grants and comments; require for grants
+work out solvency of group on grant#new
+
+make preview page for groups, grants and comments; require for groups & grants
+
+make splash page for /grants and default views for empty sets
 
 work on membership views
 
@@ -11,12 +15,10 @@ make pretty urls
 figure out how to use redirect_back_or_default (session?)
 
 _________________
-done:
-  people CAN vote on their own grants: yea vote created on grant creation
-  make small, square thumbnail images, like flickr
-
-_________________
 defer: 
+
+  Nifty Charts! voting imagery/vis. charts in the right column of group#show
+  place group comments under the charts
   add some type of expiry so people aren't forced to act for unfavorable grants
   add table for email prefs
   give users control over their own comments
@@ -24,3 +26,4 @@ defer:
   maybe embed a forum app like altered_beast
   set model constant on create group: how much 'yea' authority to win a grant?
   change default naming (of images) for additional clarity
+  clear %p tags before simple_format because it wraps its own

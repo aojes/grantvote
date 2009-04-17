@@ -1,13 +1,17 @@
 .span-24
   .prepend-top
     .span-8.prepend-1
-      - if @group.photo.url =~ /\/missing\.png$/
+      -# FIXME for /grants
+      - if @group and @group.photo.url =~ /\/missing\.png$/
         %p
           - form_for @group, :html => { :multipart => true } do |f|
             = f.file_field :photo
             = f.submit "Add Photo" 
       - else
-        %p= link_to image_tag(@group.photo.url :large), group_path(@group)
+        - if controller.controller_name == "groups"
+          %h2= link_to image_tag(@group.photo.url :large), group_grants_path(@group)
+        - else
+          %h2= link_to image_tag(@group.photo.url :large), group_path(@group)
     .span-14.append-1.last
       %h2=h @group.name
       %h3=h @group.purpose
