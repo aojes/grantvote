@@ -1,10 +1,19 @@
-%h1 Listing groups
-- @groups.each do |group|
-  %h2= "Name: " + group.name
-  %h2= "Purpose: " + group.purpose
-  %h2= "Members: " + group.users.count.to_s
-  %h2= "Dues: $" + group.dues.to_s
-  %p= link_to 'Show', group
-  %p= link_to 'Edit', edit_group_path(group)
-  %p= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
+%h2 Listing groups
 = link_to 'New group', new_group_path 
+#div
+  - @groups.each do |group|
+    .span-22.prepend-2.prepend-top
+      .span-3
+        = link_to image_tag(group.photo.url(:medium)), group_path(group)
+      .span-9
+        %h3= h(group.name)
+        == #{pluralize group.memberships.voters.count, "voter"}
+        == | $#{group.dues.to_i} dues
+        == | $#{group.funds.to_i} pool 
+        == | #{group.created_at.strftime "%B %Y"}
+        -#.prepend-top= h group.purpose
+      .span-7.success.last 
+        %p nifty charts
+        = link_to 'Edit', edit_group_path(group)
+        = link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
+
