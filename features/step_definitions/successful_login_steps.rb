@@ -1,24 +1,16 @@
-Given /^I am the registered user (.+)$/ do |login|
-  params = {
-    "login" => login,
-    "email" => "foo@grantvote.com",
-    "password" => "password",
-    "password_confirmation" => "password"
-  }
-  @user = User.create!(params)
-end
+Before('@login') do
+  # This will only run before scenarios tagged above
 
-And /^I am on ([^\"]*)$/ do |page_name|
- visit path_to(page_name)
-end
-
-When /^I login with valid credentials$/ do
+  @user = User.create!(:login => "foo", :email => "foo@grantvote.com",
+                    :password => "secret", :password_confirmation => "secret")
+  visit path_to("/the homepage/i")
   fill_in('Login', :with => @user.login)
-  fill_in('Password', :with => "password")
+  fill_in('Password', :with => @user.password)
   click_button("Login")
+
 end
 
-Then /^I should be on ([^\"]*)$/ do |page_name|
-  response.request.path.should == path_to(page_name)
+Given /^I am a logged in user$/ do
 end
+
 
