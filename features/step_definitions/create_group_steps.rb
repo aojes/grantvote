@@ -1,6 +1,7 @@
 Given /^I am logged in$/ do
-   user = User.make
-   @controller.stub!(:current_user).and_return(user)
+  @user = User.create!(:login => "foo", :email => "foo@grantvote.com", 
+    :password => "secret", :password_confirmation => "secret")
+  set_session_for(@user).should == true
 end
 
 When /^I create a new group$/ do
@@ -19,5 +20,6 @@ end
 
 Then /^they must validate$/ do
   @group.save.should == true
+
 end
 
