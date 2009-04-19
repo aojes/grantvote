@@ -1,5 +1,6 @@
 Given /^I am logged in$/ do
-
+   user = User.make
+   @controller.stub!(:current_user).and_return(user)
 end
 
 When /^I create a new group$/ do
