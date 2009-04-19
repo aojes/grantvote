@@ -1,6 +1,11 @@
 class Group < ActiveRecord::Base
   
-  AWARD_THRESHOLD = 0.500 # 50% OF CURRENT AND FUTURE VOTING MEMBERS
+  AWARD_THRESHOLD = 0.500
+  
+  MIN_NAME, MAX_NAME = 2, 50
+  MIN_PURPOSE, MAX_PURPOSE = 3, 200
+  MIN_DUES, MAX_DUES = 2, 100
+  MAX_FILE_SIZE = 5.megabytes
   
   has_many :grants
   has_many :memberships, :dependent => :destroy # don't destroy groups
@@ -8,14 +13,15 @@ class Group < ActiveRecord::Base
   has_many :comments, :as => :commentable  
   
   validates_presence_of :name, :purpose, :dues
-  validates_numericality_of :dues, :minimum => 2, :only_integer => true,
-                      :message => "can be an integer value of minimum 2"
+  validates_numericality_of :dues, :only_integer => true, 
+                            :greater_than => MIN_DUES, :less_than => MAX_DUES, 
+       :message => "can be an integer value of #{MIN_DUES} up to #{MAX_DUES}"
   
-  validates_length_of :name, :in => 2..50, 
-                      :message => "can be 3 to 50 characters"
+  validates_length_of :name, :in => MIN_NAME..MAX_NAME, 
+                   :message => "can be #{MIN_NAME} to #{MAX_NAME} characters"
   
-  validates_length_of :purpose, :in => 3..255,
-                      :message => "can be 3 to 255 characters"
+  validates_length_of :purpose, :in => MIN_PURPOSE..MAX_PURPOSE,
+             :message => "can be #{MIN_PURPOSE} to #{MAX_PURPOSE} characters"
   
   has_attached_file :photo, :styles => {
                                :thumb  => "32x32#", 
@@ -23,9 +29,10 @@ class Group < ActiveRecord::Base
                                :medium => "75x75#", 
                                :large  => "256x256>" 
                              }
-  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_size :photo, :less_than => MAX_FILE_SIZE
   validates_attachment_content_type :photo, 
-                                    :content_type => ['image/jpeg', 'image/png']
+                       :content_type => ['image/jpeg', 'image/png', 'image/gif']
+  validates_attachment_presence :photo
   
   named_scope :interest, lambda { |*args|
     { :conditions => { :dues => args.first..args.second } }
