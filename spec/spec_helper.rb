@@ -3,7 +3,7 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
-require File.expand_path(File.dirname(__FILE__) + "../vendor/gems/authlogic-2.0.9/test/test_helper")
+# require File.expand_path(File.dirname(__FILE__) + "../vendor/gems/authlogic-2.0.9/test/test_helper")
 
 require 'spec/autorun'
 require 'spec/rails'

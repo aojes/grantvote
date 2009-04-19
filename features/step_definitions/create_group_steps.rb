@@ -1,7 +1,12 @@
 Given /^I am logged in$/ do
   @user = User.create!(:login => "foo", :email => "foo@grantvote.com", 
     :password => "secret", :password_confirmation => "secret")
-  set_session_for(@user).should == true
+  
+#  UserSession.create!(:login => @user.login, 
+#                                 :password => @user.password).activate_authlogic
+#  
+#  
+
 end
 
 When /^I create a new group$/ do

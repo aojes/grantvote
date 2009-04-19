@@ -3,6 +3,8 @@ def path_to(page_name)
   
   when /the homepage/i
     root_path
+  when /the account page/i
+    account_path
   
   # Add more page name => path mappings here
   
