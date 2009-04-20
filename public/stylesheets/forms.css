@@ -1,0 +1,13 @@
+legend {
+  padding: .4em 1em; }
+
+label {
+  width: 10em;
+  float: left;
+  text-align: right;
+  margin-right: 1.4em;
+  display: block; }
+
+.form_row {
+  white-space: nowrap;
+  padding-bottom: 0.4em; }

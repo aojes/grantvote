@@ -1,0 +1,4 @@
+- comments.each do |c|
+  .span-2= image_tag User.find(c.user_id).photo.url(:small) # Q. is this ok?
+  .span-11.last= simple_format c.content
+  %hr

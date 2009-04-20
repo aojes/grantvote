@@ -4,5 +4,6 @@ class Membership < ActiveRecord::Base
   
   validates_uniqueness_of :user_id, :scope => :group_id
   
-  named_scope :voters, :conditions => { :interest => true } 
+  named_scope :voters,  :conditions => { :interest => true } 
+  named_scope :members, :conditions => { :interest => false } 
 end

@@ -36,5 +36,6 @@ class Group < ActiveRecord::Base
   
   named_scope :interest, lambda { |*args|
     { :conditions => { :dues => args.first..args.second } }
-  }                                  
+  }
+                                
 end

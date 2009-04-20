@@ -21,13 +21,13 @@
     .span-3
       = image_tag @grant.photo.url(:medium)
       .span-2.prepend-top.last
-        - if preview = @grant.votes.count.zero?
+        - if @grant.votes.count.zero?
           = button_to "Edit Grant", edit_group_grant_path(@grant.group, @grant), :method => :get
     .span-11.last{:style => "text-align:justify"}
       = simple_format @grant.proposal, :style => "line-height: 2"
   .span-5.success
     %h6 Status
-  - if preview
+  - if @grant.votes.count.zero?
     .span-5.success.last
       %p
         - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|

@@ -43,7 +43,7 @@ class GroupsController < ApplicationController
   # POST /groups.xml
   def create
     @group = Group.new(params[:group])
-    @group.memberships << Membership.new(:user => current_user)
+    @group.memberships.build(:user => current_user, :interest => false)
     respond_to do |format|
       if @group.save
         flash[:notice] = 'Group was successfully created.'

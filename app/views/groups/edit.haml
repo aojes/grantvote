@@ -1,13 +1,22 @@
-%h1 Editing group
-- form_for(@group) do |f|
-  = f.error_messages
-  %p
-    = f.label :name
-    = f.text_field :name
-  %p
-    = f.label :purpose
-    = f.text_field :purpose
-  %p= f.submit 'Update'
-= link_to 'Show', @group
-|
-= link_to 'Back', group_path
+- form_for @group do |f|
+  .span-24
+    .prepend-top
+      .span-8.prepend-1
+        %h2= link_to image_tag(@group.photo.url :large), group_grants_path(@group)
+      .span-14.append-1.last
+        .form_row
+          = f.text_field :name
+          name
+        .form_row
+          = f.text_field :purpose, :size => 60
+          purpose
+        .form_row
+          $
+          = f.text_field :dues, :size => 3
+          dues
+        .form_row
+          = f.file_field :photo
+          change photo
+        .form_row.prepend-top.prepend-1
+          = f.submit "Preview"
+  %br{:style => "clear: both"}

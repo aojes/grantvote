@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  # before_filter :require_user  
+  before_filter :require_user  
   
   def index
     @commentable = find_commentable
@@ -13,9 +13,15 @@ class CommentsController < ApplicationController
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.build(params[:comment])
+
     if @comment.save
       flash[:notice] = "Successfully created comment."
-      redirect_to :id => nil
+      case @comment.commentable_type
+        when "Group"
+          redirect_to group_path(Group.find(@comment.commentable_id))
+        else
+          redirect_to :id => nil  
+      end
     else
       render :action => 'new'
     end

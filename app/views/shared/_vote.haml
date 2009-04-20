@@ -1,5 +1,5 @@
 - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
-  - if principal?(params[:group_id])
+  - if voter?(params[:group_id])
     = f.radio_button :cast, "yea"
     Yea
     = f.radio_button :cast, "nay"
