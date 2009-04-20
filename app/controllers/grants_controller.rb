@@ -4,12 +4,12 @@ class GrantsController < ApplicationController
 
   def index
     if params[:group_id]
-      @group  = Group.find(params[:group_id])
       @grants = Grant.find_all_by_group_id(params[:group_id], 
                                             :order => "created_at ASC")
+
     elsif params[:user_id]
-#      @grants = Grant.find_all_by_user_id(params[:user_id], 
-#                                            :order => "created_at ASC")
+      @grants = Grant.find_all_by_user_id(params[:user_id], 
+                                            :order => "created_at ASC")
     end
   end
   
@@ -24,25 +24,14 @@ class GrantsController < ApplicationController
   def create
     @grant = Grant.new(params[:grant])
 
-    # Really baffled here
-#    @grant.votes << Vote.new(:user_id   => current_user.id,
+#    @vote = Vote.new(:user_id   => current_user.id,
 #                             :group_id  => params[:grant][:group_id],
-#    :authority => Membership.find_by_user_id_and_group_id(current_user.id, 
-#                                      params[:grant][:group_id]).authority,
 #                             :cast => "yea")
-
-    @vote = Vote.new(:user_id   => current_user.id,
-                             :group_id  => params[:grant][:group_id],
-                             :cast => "yea")
 
     respond_to do |format|
       if @grant.save
-        @vote.grant_id = @grant.id # TODO fixme
-        @vote.save
-        message = @vote.final_message if @vote.finalized_grant? 
-        flash[:notice] = message or 'Grant was successfully created.'
-        
-        format.html { redirect_to @grant.group }
+        flash[:notice] = 'Grant was successfully created.'
+        format.html { redirect_to group_grant_path(@grant.group, @grant) }
       else
         format.html { render :action => "new" }
       end
@@ -54,7 +43,16 @@ class GrantsController < ApplicationController
   end
   
   def update
-  
+    @grant = Grant.find(params[:id])
+
+    respond_to do |format|
+      if @grant.update_attributes(params[:grant])
+        flash[:notice] = 'Grant was successfully updated.'
+        format.html { redirect_to group_grant_path(@grant.group, @grant) }
+      else
+        format.html { render :action => "edit" }
+      end
+    end
   end
   
 end

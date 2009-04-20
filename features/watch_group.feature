@@ -1,7 +1,8 @@
 Feature: watch existing group
-  I want to watch a group without paying dues
+  As a registered, logged in user
+  I want to join a group without paying dues
   
+  @login @group
   Scenario: watch group
-    When I find an interesting group
-    Then I join without paying dues
+    When I join a group without paying dues
     Then I am a member without voting interest

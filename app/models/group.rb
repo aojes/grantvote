@@ -2,7 +2,7 @@ class Group < ActiveRecord::Base
   
   AWARD_THRESHOLD = 0.500
   
-  MIN_NAME, MAX_NAME = [2, 50]
+  MIN_NAME, MAX_NAME = [2, 140]
   MIN_PURPOSE, MAX_PURPOSE = [3, 200]
   MIN_DUES, MAX_DUES = [2, 100]
   MAX_FILE_SIZE = 5.megabytes
@@ -25,7 +25,10 @@ class Group < ActiveRecord::Base
                                :small  => "48x48#",
                                :medium => "75x75#", 
                                :large  => "256x256>" 
-                             }
+                             },                                    
+   :url  => "/assets/groups/:id/:style/:basename.:extension",
+   :path => ":rails_root/public/assets/groups/:id/:style/:basename.:extension"
+   
   validates_attachment_size :photo, :less_than => MAX_FILE_SIZE
   validates_attachment_content_type :photo, 
                       :content_type => ['image/jpeg', 'image/png', 'image/gif']

@@ -1,0 +1,23 @@
+= render 'groups/header', :group => @grant.group
+%h2.prepend-1.append-2 Edit Grant
+.span-21.prepend-2.append-1.last  
+  - form_for @grant, :html => {:multipart => true} do |f|
+    = f.error_messages
+    .span-11
+      = f.text_area :proposal
+    .span-10.last
+      = f.text_field :name
+      %br
+      %br
+      = f.text_field :amount
+      %br
+      %br
+      = image_tag @grant.photo.url(:large), :alt => @grant.name
+      %br
+      %br
+      = f.file_field :photo
+    .span-18.prepend-3.append-top
+      = f.submit "Preview Changes"
+
+
+    

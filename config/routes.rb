@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :has_many => [:comments, :grants, :votes]
   map.resources :password_resets
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
-  map.resources :grants, :has_many => [:comments, :votes]
+  map.resources :grants, :has_many => [:comments, :votes]         
   map.resources :votes, :has_many => :comments
 
   map.connect ':controller/:action/:id'

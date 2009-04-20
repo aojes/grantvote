@@ -1,4 +1,8 @@
 class Grant < ActiveRecord::Base
+
+  MIN_AWARD = 10
+  MIN_NAME, MAX_NAME = [2, 60]
+
   belongs_to :group
   belongs_to :user
   has_many :votes
@@ -10,14 +14,20 @@ class Grant < ActiveRecord::Base
                                :med_sm => "75x75#",
                                :medium => "92x92#", 
                                :large  => "256x256>" 
-                             }
-  validates_attachment_size :photo, :less_than => 5.megabytes
+                             },                                    
+   :url  => "/assets/grants/:id/:style/:basename.:extension",
+   :path => ":rails_root/public/assets/grants/:id/:style/:basename.:extension"
+   
+  validates_attachment_size :photo, :less_than => Group::MAX_FILE_SIZE
   validates_attachment_content_type :photo, 
-                                    :content_type => ['image/jpeg', 'image/png']                                    
-  
+                              :content_type => ['image/jpeg', 'image/png']
+ 
   validates_presence_of :name, :proposal, :amount
-  # TODO round amount to nearest integer
-  validates_numericality_of :amount, :only_integer => true, :minimum => 10,
-            :message => "can be an integer value of 10 or more"
+  validates_length_of :name, :in => MIN_NAME..MAX_NAME,
+              :message => "length can be #{MIN_NAME} to #{MAX_NAME} characters"
+  validates_numericality_of :amount, :only_integer => true, 
+    :greater_than_or_equal_to => MIN_AWARD, 
+    :message => "can be an integer value greater than or equal to $#{MIN_AWARD}"
+  validates_attachment_presence :photo
     
 end

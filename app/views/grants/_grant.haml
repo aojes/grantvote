@@ -1,0 +1,39 @@
+%h2.prepend-1.append-12.last<
+  - if @grant.votes.count.zero?
+    Preview
+  - elsif @grant.final 
+    - if @grant.awarded
+      .success Awarded
+    - else
+      .error Denied
+  - else
+    Session Grant
+.span-21.prepend-2.append-1.last  
+  .span-14.append-1
+    %h3<
+      %span{:style=>"float:right"}
+        = image_tag @grant.user.photo.url(:small), :alt=> @grant.user.login
+      = h @grant.name
+    %h3== $#{@grant.amount.to_i.to_s}
+  .span-5.success.last 
+    %h6 Cred    
+  .span-15
+    .span-3
+      = image_tag @grant.photo.url(:medium)
+      .span-2.prepend-top.last
+        - if preview = @grant.votes.count.zero?
+          = button_to "Edit Grant", edit_group_grant_path(@grant.group, @grant), :method => :get
+    .span-11.last{:style => "text-align:justify"}
+      = simple_format @grant.proposal, :style => "line-height: 2"
+  .span-5.success
+    %h6 Status
+  - if preview
+    .span-5.success.last
+      %p
+        - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
+          = f.hidden_field :cast, :value => "yea"
+          = f.hidden_field :user_id, :value => @grant.user_id
+          = f.hidden_field :group_id, :value => @grant.group_id
+          = f.hidden_field :grant_id, :value => @grant.id
+          = f.submit "Vote Into Session"
+          

@@ -12,7 +12,10 @@ class User < ActiveRecord::Base
                                :small  => "48x48#",
                                :medium => "75x75#", 
                                :large  => "256x256>" 
-                             }
+                             },                                    
+   :url  => "/assets/users/:id/:style/:basename.:extension",
+   :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
+   
   validates_attachment_size :photo, :less_than => 3.megabytes
   validates_attachment_content_type :photo, 
                                     :content_type => ['image/jpeg', 'image/png']  
