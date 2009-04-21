@@ -7,17 +7,40 @@ body {
   background: url('/images/header_bg.png') 0 0 repeat-x;
   height: 117px;
   color: #ededed; }
-  #header h1, #header h2, #header h3, #header h4, #header h5, #header h6 {
-    color: #ededed; }
-  #header a {
-    color: #ededed; }
+
+.nav {
+  color: :ededed; }
+  .nav a {
+    color: #ededed;
+    text-decoration: none;
+    padding: 0 4px; }
+    .nav a:hover {
+      color: #004B73;
+      background-color: #d1e1ea; }
+  .nav p {
+    color: #004B73;
+    background-color: #d1e1ea;
+    padding: 2px 4px; }
 
 #content {
   background: white;
   margin-bottom: 120px; }
+
+.cred {
+  border-top: 1px solid #888; }
+
 
 .flr {
   float: right; }
 
 .fll {
   float: left; }
+
+.center {
+  text-align: center; }
+
+.rounded {
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }

@@ -13,7 +13,24 @@ namespace :db do
       g.funds = 100..500
       g.wait = 7
       g.created_at = 2.months.ago..Time.now
+      
+      Membership.populate 1 do |m|
+        m.user_id = 1
+        m.group_id = g.id
+        m.interest = true
+      end      
+      Membership.populate 1 do |m|
+        m.user_id = 2
+        m.group_id = g.id
+        m.interest = true
+      end      
+      Membership.populate 1 do |m|
+        m.user_id = 3
+        m.group_id = g.id
+        m.interest = true
+      end
     end
+    
     
     Grant.populate 50 do |g|
       g.user_id = [1, 2]

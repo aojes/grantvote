@@ -7,17 +7,43 @@ body
   :background url('/images/header_bg.png') 0 0 repeat-x
   :height 117px
   :color #ededed
-  h1, h2, h3, h4, h5, h6
-    :color #ededed
+  
+.nav
+  h2, h3, h4, h5, h6
+  :color :ededed
   a
-    :color #ededed  
-    
+    :color #ededed
+    :text-decoration none
+    :padding 0 4px
+    &:hover
+      :color #004B73
+      :background-color #d1e1ea
+  p
+    :color #004B73
+    :background-color #d1e1ea
+    :padding 2px 4px
+          
 #content
   :background white
   :margin-bottom 120px
-  
+
+.cred
+  :border-top 1px solid #888
+
+.ballot
+ 
 .flr
   float: right
 
 .fll
   float: left
+  
+.center
+  text-align: center
+
+.rounded 
+  :-webkit-border-radius 4px
+  :-khtml-border-radius 4px
+  :-moz-border-radius 4px
+  :border-radius 4px  
+

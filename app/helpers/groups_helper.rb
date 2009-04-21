@@ -21,4 +21,13 @@ module GroupsHelper
   def group_voters(group_id)
     User.find(Group.find(group_id).memberships.voters.collect {|m| m.user_id })
   end     
+ 
+  def session_award_time(grant)
+    # make chart as such for later
+    # 
+    # http://chart.apis.google.com/chart?cht=lc&chs=92x50&chco=224499
+    # &chd=t:20,30,40,50,60,70,80,90,100&chm=B,80C65A,0,0,0&chtt=session+time
+    distance_of_time_in_words grant.created_at, grant.updated_at, true
+  end  
+  
 end

@@ -1,9 +1,11 @@
 .span-24.last
   .span-14.prepend-1.append-1.last
     - if @group.memberships.voters.count.zero?
-      %h3<
-        .flr= button_to 'Edit Group', edit_group_path(@group), :method => :get
+      %h3
+        .flr= button_to 'Edit Group', edit_group_path(@group), :method => :get, :onclick => "this.blur();"
         Anyone can edit this group until dues are paid
+      %br
+      %br
     - else
       %h2 Recent Awards
     .prepend-1
@@ -14,7 +16,10 @@
         %h5== $#{grant.amount.to_i}
         .span-3.last
           .span-3= image_tag(grant.photo.url(:medium), :alt => grant.name)
-          .span-2.success.prepend-top.last nifty chart
+          .span-3.prepend-top.last
+            .small<
+              &nbsp;
+              = session_award_time grant
         .span-10.last= simple_format grant.proposal, :style => "text-align: justify; line-height: 2" 
         %hr
     #comments

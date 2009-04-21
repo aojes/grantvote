@@ -21,12 +21,13 @@
     .span-3
       = image_tag @grant.photo.url(:medium)
       .span-2.prepend-top.last
-        - if @grant.votes.count.zero?
-          = button_to "Edit Grant", edit_group_grant_path(@grant.group, @grant), :method => :get
+        &nbsp;
     .span-11.last{:style => "text-align:justify"}
       = simple_format @grant.proposal, :style => "line-height: 2"
-  .span-5.success
-    %h6 Status
+      - if @grant.votes.count.zero?
+        = button_to "Edit Grant", edit_group_grant_path(@grant.group, @grant), :method => :get
+  .span-5
+    == <img alt="session chart" src="#{session_bar_chart_url(@grant)}" />
   - if @grant.votes.count.zero?
     .span-5.success.last
       %p
@@ -35,5 +36,5 @@
           = f.hidden_field :user_id, :value => @grant.user_id
           = f.hidden_field :group_id, :value => @grant.group_id
           = f.hidden_field :grant_id, :value => @grant.id
-          = f.submit "Vote Into Session"
+          = submit_button "Vote Into Session"
           

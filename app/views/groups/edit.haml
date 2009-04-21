@@ -11,12 +11,12 @@
           = f.text_field :purpose, :size => 60
           purpose
         .form_row
-          $
+          %span $
           = f.text_field :dues, :size => 3
-          dues
+          %span dues
         .form_row
           = f.file_field :photo
           change photo
         .form_row.prepend-top.prepend-1
-          = f.submit "Preview"
+          = submit_button "Preview"
   %br{:style => "clear: both"}

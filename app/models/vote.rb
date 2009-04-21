@@ -36,5 +36,5 @@ class Vote < ActiveRecord::Base
   def final_message
     self.grant.awarded ? "Grant awarded!" : "Grant defeated."
   end
-    
+  
 end

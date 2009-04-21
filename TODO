@@ -1,37 +1,31 @@
-session grants must have one vote (don't create yea vote on grant create)
+check grant finalized
 
-list photo in group sidebar only voters
+secure edit grant after first vote (validate on update attributes)
 
-create user profiles
+validate solvency of group at create dependent
 
-work out solvency of group on grant#new and groups#index (google charts)
+chart solvency of group (google charts)
 
-paginate group's recent awards and session
+chart session grants
 
-make preview page for groups, grants and comments; require for groups & grants
+create user profiles & cred
 
-make splash page for /grants & /groups & default views
+implement search
 
-work on membership views
-
-write helper method for default User & Group images
-
-don't destroy grants, votes, or memberships on Group#destroy (unless none)
+paginate groups
 
 make pretty urls
 
-figure out how to use redirect_back_or_default (session?)
+don't destroy any data
+
+_________________
+design:
+  splash page for /grants & /groups & default views
+  create user cred images
 
 _________________
 defer: 
 
-  Nifty Charts! voting imagery/vis. charts in the right column of group#show
-  place group comments under the charts
-  add some type of expiry so people aren't forced to act for unfavorable grants
-  add table for email prefs
-  give users control over their own comments
-  put group comments in a partial and add column for opt. administrative approval
-  maybe embed a forum app like altered_beast
-  set model constant on create group: how much 'yea' authority to win a grant?
-  change default naming (of images) for additional clarity
-  clear %p tags before simple_format because it wraps its own
+  create default images for member, group, and grant
+  figure group comments more prominently (make forum)
+  email notifications

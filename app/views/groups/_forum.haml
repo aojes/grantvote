@@ -3,18 +3,20 @@
   - forum(@grants).each do |grant|
     #div
       .span-14.append-1
-        %h3== <span style="float:right">#{image_tag grant.user.photo.url(:small), :alt=> "TODO"}</span> #{h grant.name}
+        %h3<
+          .flr= image_tag grant.user.photo.url(:small), :alt=> ""
+          = h grant.name
         %h3== $#{grant.amount.to_i.to_s}
-      .span-5.success.last 
-        %h6 Cred    
+      .span-5.cred.last 
+        Cred    
     #div
       .span-15
         .span-3
           = image_tag grant.photo.url(:medium)
         .span-11.last{:style => "text-align:justify"}
           = simple_format grant.proposal, :style => "line-height: 2"
-      .span-5.success
-        %h6 Status
-      .span-5.success.last
+      .span-5
+        == <img alt="session chart" src="#{session_bar_chart_url(grant)}" />
+      .span-5.prepend-top.ballot.last
         = render 'shared/vote', :grant => grant
     %hr

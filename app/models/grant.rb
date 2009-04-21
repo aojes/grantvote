@@ -1,8 +1,15 @@
 class Grant < ActiveRecord::Base
-
+  
+  AWARD_THRESHOLD_PCT = 50
+  
   MIN_AWARD = 10
   MIN_NAME, MAX_NAME = [2, 60]
-
+  
+  GREEN, BLUE, RED, SCALE = ["E6EFC2", "DFF4FF", "FBE3E4", "DFDFDF"]
+  
+  SESSION_BAR_CHART_X, SESSION_BAR_CHART_Y  = [191, 42]
+  AWARD_CHART_X, AWARD_CHART_Y = [92, 50]
+  
   belongs_to :group
   belongs_to :user
   has_many :votes
@@ -29,5 +36,8 @@ class Grant < ActiveRecord::Base
     :greater_than_or_equal_to => MIN_AWARD, 
     :message => "can be an integer value greater than or equal to $#{MIN_AWARD}"
   validates_attachment_presence :photo
-    
+   
 end
+
+
+
