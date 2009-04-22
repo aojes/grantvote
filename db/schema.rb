@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(:version => 8) do
     t.integer  "photo_file_size"
   end
 
+  add_index "grants", ["awarded"], :name => "index_grants_on_awarded"
+  add_index "grants", ["final"], :name => "index_grants_on_final"
   add_index "grants", ["group_id"], :name => "index_grants_on_group_id"
   add_index "grants", ["user_id"], :name => "index_grants_on_user_id"
 

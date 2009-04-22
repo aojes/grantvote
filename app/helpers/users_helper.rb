@@ -90,4 +90,7 @@ module UsersHelper
     end
   end
 
+  def session_grants
+    current_user.grants
+  end
 end

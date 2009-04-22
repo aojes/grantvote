@@ -1,5 +1,9 @@
 check grant finalized
 
+index awarded and final
+
+validate length of comment
+
 secure edit grant after first vote (validate on update attributes)
 
 validate solvency of group at create dependent

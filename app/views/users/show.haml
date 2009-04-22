@@ -1,13 +1,13 @@
-%h3=h @user.login
--# TODO write helper method for default User & Group images
--# change default naming for additional clarity
-- if @user.photo.url =~ /\/missing.png$/
-  -# TODO add change photo to #edit
-  %p
-    - form_for @user, :html => { :multipart => true } do |f|
-      = f.file_field :photo
-      = f.submit "Change Photo"  
-- else
-  %p= image_tag @user.photo.url :medium
-%h3= link_to 'My Grants', user_grants_path(current_user)
-%h3= link_to 'Edit', edit_account_path
+.prepend-1.span-22.append-1.prepend-top
+  .prepend-1.span-7.append-1
+    %p= image_tag @user.photo.url :large
+    %h3.prepend-1=h @user.login  
+    .flr= button_to 'Edit', edit_account_path, :method => :get
+  .span-12.append-1.last
+    %h3 Awards
+    - @user.grants.awarded.each do |g|
+      = link_to image_tag(g.photo.url :medium), group_grant_path(g.group, g)
+    %h3 Session
+    - @user.grants.session.each do |g|
+      = link_to image_tag(g.photo.url :small), group_grant_path(g.group, g)
+    

@@ -36,6 +36,10 @@ class Grant < ActiveRecord::Base
     :greater_than_or_equal_to => MIN_AWARD, 
     :message => "can be an integer value greater than or equal to $#{MIN_AWARD}"
   validates_attachment_presence :photo
+  
+  named_scope :awarded, :conditions => {:awarded => true}
+  named_scope :defeated, :conditions => {:final => true, :awarded => false}
+  named_scope :session, :conditions => {:final => false}
    
 end
 

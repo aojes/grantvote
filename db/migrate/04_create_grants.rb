@@ -12,11 +12,15 @@ class CreateGrants < ActiveRecord::Migration
     end
     add_index :grants, :user_id
     add_index :grants, :group_id
+    add_index :grants, :final
+    add_index :grants, :awarded
   end
 
   def self.down
     remove_index :grants, :user_id
     remove_index :grants, :group_id
+    remove_index :grants, :final
+    remove_index :grants, :awarded
     drop_table :grants
   end
 end
