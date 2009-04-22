@@ -1,5 +1,5 @@
 class GrantsController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, :only => [:new, :create, :update]
   before_filter :verify_authenticity_token
 
   def index
@@ -22,22 +22,16 @@ class GrantsController < ApplicationController
   end
   
   def create
-    @grant = Grant.new(params[:grant])
+    @grant = current_user.grants.build(params[:grant])
 
-#    @vote = Vote.new(:user_id   => current_user.id,
-#                             :group_id  => params[:grant][:group_id],
-#                             :cast => "yea")
-
-    respond_to do |format|
-      if @grant.save
-        flash[:notice] = 'Grant was successfully created.'
-        format.html { redirect_to group_grant_path(@grant.group, @grant) }
-      else
-        format.html { render :action => "new" }
-      end
+    if @grant.save
+     flash[:notice] =  "Grant was successfully created."
+     redirect_to group_grant_path(@grant.group, @grant)
+    else
+      render :action => "new"
     end
   end
-  
+    
   def edit
     @grant = Grant.find(params[:id])
   end

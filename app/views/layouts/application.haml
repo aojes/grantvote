@@ -3,8 +3,8 @@
   %head
     %title= controller.controller_name + ": " + controller.action_name 
     %meta{ "http-equiv" => "content-type", :content => "text/xhtml; charset=utf-8" }
-    %meta{ :name => 'description', :content => "" }
-    %meta{ :name => 'keywords', :content => "" }
+    %meta{ :name => 'description', :content => "A place for giving and winning financial grants from people with similar interests." }
+    %meta{ :name => 'keywords', :content => "grants, grant, money, funding, writing, financial, resource, network, community, philanthropy, giving" }
     %meta{ "http-equiv" => "imagetoolbar", :content => "no" }
     %meta{ :name => "distribution", :content => "all" }
     %meta{ :name => "robots", :content => "all" }
@@ -21,19 +21,21 @@
         .span-8.append-4
           %h1= link_to image_tag("/images/grantvote.png"), root_path, :alt => "GrantVote"
         .span-10.append-2.prepend-top.nav.last
-          %h3= link_to "Groups", groups_path, :class => "rounded"
-          -#= pluralize User.logged_in.count, "user"\ currently logged in
-          .flr
+          %ul#nav-list.pull-1.prepend-top
+            %li= link_to "Groups", groups_path, :class => "rounded"
+            %li= link_to "Leaders", root_path, :class => "rounded"
+            %li<
+              - if current_user
+                =link_to "You", account_path, :class => "rounded"
+          -#= pluralize User.logged_in.count, "user" currently logged in
+          .prepend-top.flr#login
             - if !current_user
               = link_to "Register", new_account_path, :class => "rounded" 
               |
               = link_to "Log In", new_user_session_path, :class => "rounded" 
             - else 
-              = link_to "My Account", account_path, :class => "rounded"  
-              |
-              = link_to "Logout", user_session_path, :method => :delete, :class => "rounded"  
+              = link_to "Logout", user_session_path, :method => :delete, :class => "rounded" 
           - if flash[:notice]
             .span-14.pull-3
               %p.rounded= flash[:notice]
-      .span-24.last#content
-        = yield
+      .span-24.last#content= yield

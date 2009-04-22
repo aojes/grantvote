@@ -1,13 +1,19 @@
 .prepend-1.span-22.append-1.prepend-top
   .prepend-1.span-7.append-1
-    %p= image_tag @user.photo.url :large
-    %h3.prepend-1=h @user.login  
+    .span-2<
+      %p= image_tag @user.photo.url :medium
+    .span-5.prepend-top.last<
+      %h3.center=h @user.login  
     .flr= button_to 'Edit', edit_account_path, :method => :get
   .span-12.append-1.last
-    %h3 Awards
+    %h3.prepend-top< 
+      Awards
+      %hr
     - @user.grants.awarded.each do |g|
-      = link_to image_tag(g.photo.url :medium), group_grant_path(g.group, g)
-    %h3 Session
+      = link_to image_tag(g.photo.url :small), group_grant_path(g.group, g)
+    %h3.prepend-top< 
+      Session
+      %hr
     - @user.grants.session.each do |g|
       = link_to image_tag(g.photo.url :small), group_grant_path(g.group, g)
     

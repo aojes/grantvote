@@ -25,7 +25,7 @@
     #comments
       %h6= pluralize @group.comments.count, "Comment"
       %hr
-      = render 'shared/comments', :comments => @group.comments
+      .last= render 'shared/comments', :comments => @group.comments
     %h5= link_to "Add Comment", new_group_comment_path(@group)
   .span-6
     .success

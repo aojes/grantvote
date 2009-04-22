@@ -1,14 +1,14 @@
 class Group < ActiveRecord::Base
   
-  AWARD_THRESHOLD = 0.500
+  AWARD_THRESHOLD, AWARD_THRESHOLD_PCT = [0.500, 50]
   
   MIN_NAME, MAX_NAME = [2, 140]
   MIN_PURPOSE, MAX_PURPOSE = [3, 200]
   MIN_DUES, MAX_DUES = [2, 100]
   MAX_FILE_SIZE = 5.megabytes
   
-  has_many :grants
-  has_many :memberships, :dependent => :destroy # don't destroy groups
+  has_many :grants                            #   
+  has_many :memberships                       # don't destroy any data
   has_many :users, :through => :memberships
   has_many :comments, :as => :commentable  
   

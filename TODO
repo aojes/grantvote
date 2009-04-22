@@ -1,35 +1,41 @@
-check grant finalized
+disallow editing grant after first vote (back button sneak)
 
-index awarded and final
+confirm solvency of group at create grant or vote
 
-validate length of comment
+update membership interest, cycle dues against changes in membership and awards
 
-secure edit grant after first vote (validate on update attributes)
-
-validate solvency of group at create dependent
-
-chart solvency of group (google charts)
-
-chart session grants
-
-create user profiles & cred
-
-implement search
-
-paginate groups
-
-make pretty urls
+dynamic chart on right-hand side of login/registration view
 
 don't destroy any data
 
+chart solvency of group for index & search
+
+add link, forgotten password
+
+add attr minimum award to group
+
 _________________
-design:
+defer 
+  
+  make pretty urls 
+  optimize page titles
+  implement search with circulating index
+  paginate groups
+  implement payment system / gateway
+  implement email notifications
+  create user cred for profile (buttons, beads, and pebbles) 
+  better validation of comment markup (malformed content breaks layout)
+  make onclick rollover button sprite
+  create default images for member, group, and grant
+  figure group comments more prominently (make forum?)
+_________________
+business
+  make company
+  get business bank account
+_________________
+design
+  
   splash page for /grants & /groups & default views
   create user cred images
 
-_________________
-defer: 
-
-  create default images for member, group, and grant
-  figure group comments more prominently (make forum)
-  email notifications
+  

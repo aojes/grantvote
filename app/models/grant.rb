@@ -1,6 +1,6 @@
 class Grant < ActiveRecord::Base
   
-  AWARD_THRESHOLD_PCT = 50
+  AWARD_THRESHOLD, AWARD_THRESHOLD_PCT = [0.500, 50]
   
   MIN_AWARD = 10
   MIN_NAME, MAX_NAME = [2, 60]
@@ -37,10 +37,43 @@ class Grant < ActiveRecord::Base
     :message => "can be an integer value greater than or equal to $#{MIN_AWARD}"
   validates_attachment_presence :photo
   
-  named_scope :awarded, :conditions => {:awarded => true}
+  named_scope :awarded,  :conditions => {:awarded => true}
   named_scope :defeated, :conditions => {:final => true, :awarded => false}
-  named_scope :session, :conditions => {:final => false}
-   
+  named_scope :session,  :conditions => {:final => false}
+  named_scope :chronological, :order => "created_at ASC"
+
+  def voters
+    group.memberships.voters.count
+  end
+
+  def vote_threshold
+    (voters * AWARD_THRESHOLD).ceil
+  end
+
+  def finalizable?
+    passes? || denies?
+  end
+
+  def passes?
+    votes.yea.count > vote_threshold || voters == 1
+  end
+
+  def denies?
+    votes.nay.count > vote_threshold
+  end
+
+  def award!
+    transaction do
+      update_attributes!(:final => true, :awarded => true)
+      group.update_attributes!(:funds => (group.funds - amount))
+      # ...or better yet:
+      # group.deduct_funds!(amount)
+    end
+  end
+
+  def deny!
+    update_attributes!(:final => true, :awarded => false)
+  end   
 end
 
 

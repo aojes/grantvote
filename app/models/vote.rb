@@ -11,30 +11,20 @@ class Vote < ActiveRecord::Base
   named_scope :yea, :conditions => { :cast => "yea" }
   named_scope :nay, :conditions => { :cast => "nay" }  
   
-  def finalized_grant?
-    voters    = self.group.memberships.voters.count
-    threshold = (voters * Group::AWARD_THRESHOLD).ceil 
+  after_create :check_grant_finalization
   
-    votes_yea = self.grant.votes.yea.count
-    votes_nay = self.grant.votes.nay.count   
-  
-    if votes_yea > threshold or voters == 1
-      self.grant.final   = true
-      self.grant.awarded = true
-      self.group.funds  -= self.grant.amount
-      self.group.save             #
-      self.grant.save             # or raise error? TODO
-    elsif votes_nay > threshold
-      self.grant.final = true
-      self.grant.awarded = false
-      self.grant.save             #
-    else
-      false
+  def check_grant_finalization
+    if grant.finalizable?
+      if grant.passes?
+        grant.award!
+      else
+        grant.deny!
+      end
     end
-  end
+  end  
   
   def final_message
-    self.grant.awarded ? "Grant awarded!" : "Grant defeated."
+    grant.final ? grant.awarded ? "Grant awarded!" : "Grant defeated." : nil
   end
   
 end

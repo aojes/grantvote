@@ -6,10 +6,8 @@ class VotesController < ApplicationController
     @vote = Vote.new(params[:vote])
    
     if @vote.save
-      message = @vote.final_message if @vote.finalized_grant?
-       
       respond_to do |format|
-        flash[:notice] = message or "Vote cast successfully."
+        flash[:notice] = @vote.final_message or "Vote cast successfully."
         format.html { redirect_to :back }
       end
     else
