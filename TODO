@@ -1,3 +1,7 @@
+populate users
+
+populate default photos for users, groups, grants
+
 model public profiles
 
 model tagging system

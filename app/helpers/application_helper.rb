@@ -54,5 +54,5 @@ module ApplicationHelper
     %(<button type="submit", onclick="this.blur();"><span><em>) + name + 
     %(</em></span></button>)
   end
-       
+        
 end

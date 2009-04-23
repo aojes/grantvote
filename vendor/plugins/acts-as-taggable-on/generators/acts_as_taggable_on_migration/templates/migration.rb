@@ -1,5 +1,4 @@
-class CreateTags < ActiveRecord::Migration
-  # default name: ActsAsTaggableOnMigration
+class ActsAsTaggableOnMigration < ActiveRecord::Migration
   def self.up
     create_table :tags do |t|
       t.column :name, :string

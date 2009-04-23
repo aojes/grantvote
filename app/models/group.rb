@@ -7,6 +7,8 @@ class Group < ActiveRecord::Base
   MIN_DUES, MAX_DUES = [2, 100]
   MAX_FILE_SIZE = 5.megabytes
   
+  # acts_as_taggable_on :tags
+  
   has_many :grants                            #   
   has_many :memberships                       # don't destroy any data
   has_many :users, :through => :memberships

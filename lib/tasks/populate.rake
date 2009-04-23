@@ -4,7 +4,19 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    [Group, Membership, Grant, Vote].each(&:delete_all)
+    [User, Profile, Group, Membership, Grant, Vote].each(&:delete_all)
+    
+    User.create!(:login => "foo", :email => "foo@grantvote.com",
+                   :password => "pass", :password_confirmation => "pass")
+      Profile.create!(:user_id => 1)
+    
+    User.create!(:login => "bar", :email => "bar@grantvote.com",
+                   :password => "pass", :password_confirmation => "pass")
+      Profile.create!(:user_id => 2)
+    
+    User.create!(:login => "baz", :email => "baz@grantvote.com",
+                   :password => "pass", :password_confirmation => "pass")
+      Profile.create!(:user_id => 3)
     
     Group.populate 5 do |g|
       g.name = Populator.words(2..5).titleize
@@ -32,14 +44,14 @@ namespace :db do
     end
     
     
-    Grant.populate 50 do |g|
-      g.user_id = [1, 2]
-      g.group_id = 1..3
+    Grant.populate 30 do |g|
+      g.user_id = [1, 2, 3]
+      g.group_id = 1..5
       g.name = Faker::Name.name
       g.proposal = Populator.sentences(2..10)
       g.amount = 20..50
-      g.final = [true, false]
       g.awarded = [true, false]
+      g.final = [true, false]
       g.created_at = 1.month.ago..Time.now     
     end
     
