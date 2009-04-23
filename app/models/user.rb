@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   acts_as_authentic
   
+  has_one  :profile
   has_many :memberships
   has_many :groups, :through => :memberships
   has_many :votes

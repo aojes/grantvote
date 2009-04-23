@@ -3,6 +3,7 @@ Before('@login') do
 
   @user = User.create!(:login => "foo", :email => "foo@grantvote.com",
                     :password => "secret", :password_confirmation => "secret")
+  @user.create_profile(:user => @user)
   visit path_to("/the homepage/i")
   fill_in('Login', :with => @user.login)
   fill_in('Password', :with => @user.password)

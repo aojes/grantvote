@@ -1,5 +1,3 @@
-add link, forgotten password
-
 model public profiles
 
 model tagging system
@@ -18,6 +16,7 @@ defer
     
   normal workflow
     
+    put user groups on account view
     make pretty urls 
     optimize page titles
     implement search with circulating index
