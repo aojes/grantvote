@@ -1,37 +1,42 @@
-disallow editing grant after first vote (back button sneak)
-
-confirm solvency of group at create grant or vote
-
-update membership interest, cycle dues against changes in membership and awards
-
-dynamic chart on right-hand side of login/registration view
-
-don't destroy any data
-
-chart solvency of group for index & search
-
 add link, forgotten password
 
-add attr minimum award to group
+model public profiles
+
+model tagging system
+
+don't destroy any data
 
 _________________
 defer 
   
-  make pretty urls 
-  optimize page titles
-  implement search with circulating index
-  paginate groups
-  implement payment system / gateway
-  implement email notifications
-  create user cred for profile (buttons, beads, and pebbles) 
-  better validation of comment markup (malformed content breaks layout)
-  make onclick rollover button sprite
-  create default images for member, group, and grant
-  figure group comments more prominently (make forum?)
+  important
+    
+    confirm solvency of group at create dependent
+    determine solvency of group for index & search
+    update membership interest, cycle dues against group finances
+    scale minimum award according to required dues and the number of voters
+    
+  normal workflow
+    
+    make pretty urls 
+    optimize page titles
+    implement search with circulating index
+    paginate groups
+    implement payment system / gateway
+    implement email notifications
+    create user cred for profile (buttons, beads, and pebbles) 
+    dynamic chart on right-hand side of login/registration view
+    better validation of comment markup (malformed markup breaks layout)
+    make onclick rollover button sprite
+    create default images for member, group, and grant
+    figure group comments more prominently (make forum?)
+    facilitate audio & video proposals
 _________________
 business
+  
   make company
   get business bank account
+  production on heroku & S3 or slicehost ?
 _________________
 design
   
