@@ -1,14 +1,3 @@
-Given /^I am logged in$/ do
-  @user = User.create!(:login => "foo", :email => "foo@grantvote.com", 
-    :password => "secret", :password_confirmation => "secret")
-  
-#  UserSession.create!(:login => @user.login, 
-#                                 :password => @user.password).activate_authlogic
-#  
-#  
-
-end
-
 When /^I create a new group$/ do
   @group = Group.new
 end
@@ -23,7 +12,7 @@ Then /^I enter a name, purpose, dues, and photo$/ do
   @group.photo_content_type = 'image/jpeg'
 end
 
-Then /^they must validate$/ do
+Then /^they should validate$/ do
   @group.save.should == true
 
 end

@@ -13,7 +13,7 @@ module ApplicationHelper
   def flash_messages
     messages = []
     %w(notice warning error).each do |msg|
-      messages << content_tag(:div, html_escape(flash[msg.to_sym]), :id => "flash-#{msg}") unless flash[msg.to_sym].blank?
+      messages << content_tag(:p, html_escape(flash[msg.to_sym]), :id => "flash-#{msg}", :class => "rounded") unless flash[msg.to_sym].blank?
     end
     messages
   end
@@ -57,5 +57,13 @@ module ApplicationHelper
   
   def find_group_id(permalink)
     Group.find_by_permalink(permalink).id
+  end        
+  
+  def find_profile_id(permalink)
+    Profile.find_by_permalink(permalink).id
+  end        
+  
+  def find_grant_id(permalink)
+    Grant.find_by_permalink(permalink).id
   end        
 end

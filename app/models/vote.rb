@@ -11,8 +11,17 @@ class Vote < ActiveRecord::Base
   named_scope :yea, :conditions => { :cast => "yea" }
   named_scope :nay, :conditions => { :cast => "nay" }  
   
+  before_create :check_session_limit
   after_create :check_grant_finalization
   
+  def check_session_limit
+    if user == @current_user
+      group.grants(:conditions => {:user => user, :final => false}).count.zero?
+    else
+      true
+    end           
+  end
+    
   def check_grant_finalization
     if grant.finalizable?
       if grant.passes?

@@ -35,7 +35,6 @@
               = link_to "Log In", new_user_session_path, :class => "rounded" 
             - else 
               = link_to "Logout", user_session_path, :method => :delete, :class => "rounded" 
-          - if flash[:notice]
-            .span-14.pull-3
-              %p.rounded= flash[:notice]
+          - if flash[:notice] or flash[:warning] or flash[:error]
+            .span-14.pull-3= flash_messages
       .span-24.last#content= yield
