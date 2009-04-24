@@ -7,7 +7,7 @@
       %strong Nay
       = f.radio_button :cast, "nay" #, :onclick => "this.blur();"
       = f.hidden_field :user_id, :value => current_user.id
-      = f.hidden_field :group_id, :value => params[:group_id]
+      = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
       = f.hidden_field :grant_id, :value => grant.id
   - else
     %h3 link to pay dues

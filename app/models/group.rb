@@ -13,6 +13,8 @@ class Group < ActiveRecord::Base
   has_many :memberships                       # don't destroy any data
   has_many :users, :through => :memberships
   has_many :comments, :as => :commentable  
+
+  has_permalink :name
   
   validates_presence_of :name, :purpose, :dues
   validates_length_of :name, :in => MIN_NAME..MAX_NAME, 
@@ -34,10 +36,16 @@ class Group < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => MAX_FILE_SIZE
   validates_attachment_content_type :photo, 
                       :content_type => ['image/jpeg', 'image/png', 'image/gif']
-  validates_attachment_presence :photo
+  ## defer
+  # validates_attachment_presence :photo
   
   named_scope :interest, lambda { |*args|
     { :conditions => { :dues => args.first..args.second } }
   }
+  
+  def to_param
+    permalink
+  end
+  
                                 
 end

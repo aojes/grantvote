@@ -9,9 +9,8 @@ class MembershipsController < ApplicationController
     @membership = Membership.new(params[:membership])
     respond_to do |format|
       if @membership.save
-        flash[:notice] = 'Membership was successfully created.'
-        format.html { redirect_to :controller => "groups", :action => "show",
-                                                      :id => params[:group_id] }
+        flash[:notice] = 'Membership successfully created.'
+        format.html { redirect_to group_path(Group.find_by_permalink(params[:group_id])) }
       else
         format.html { redirect_back_or_default :back }
       end

@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.boolean  "final",                                            :default => false, :null => false
     t.boolean  "awarded",                                          :default => false, :null => false
     t.decimal  "amount",             :precision => 9, :scale => 2, :default => 0.0,   :null => false
+    t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "dues",                                             :default => 2,   :null => false
     t.decimal  "funds",              :precision => 9, :scale => 2, :default => 0.0, :null => false
     t.integer  "wait",                                             :default => 7,   :null => false
+    t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -71,10 +73,12 @@ ActiveRecord::Schema.define(:version => 10) do
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
+    t.string   "login"
     t.string   "name"
     t.text     "bio"
     t.string   "link"
     t.string   "location"
+    t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

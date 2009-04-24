@@ -2,11 +2,12 @@ class CreateProfiles < ActiveRecord::Migration
   def self.up
     create_table :profiles do |t|
       t.integer :user_id
+      t.string :login
       t.string :name
       t.text :bio
       t.string :link
       t.string :location
-
+      t.string :permalink
       t.timestamps
     end
     add_index :profiles, :user_id

@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "Successfully created comment."
       case @comment.commentable_type
         when "Group"
-          redirect_to group_path(Group.find(@comment.commentable_id))
+          redirect_to group_path(Group.find(@comment.commentable_id)) # FIXME?
         else
           redirect_to :id => nil  
       end

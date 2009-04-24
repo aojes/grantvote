@@ -14,6 +14,8 @@ class Grant < ActiveRecord::Base
   belongs_to :user
   has_many :votes
   has_many :comments, :as => :commentable
+
+  has_permalink :name
   
   has_attached_file :photo, :styles => {
                                :thumb  => "32x32#", 
@@ -35,7 +37,8 @@ class Grant < ActiveRecord::Base
   validates_numericality_of :amount, :only_integer => true, 
     :greater_than_or_equal_to => MIN_AWARD, 
     :message => "can be an integer value greater than or equal to $#{MIN_AWARD}"
-  validates_attachment_presence :photo
+  ## defer
+  # validates_attachment_presence :photo
   
   named_scope :awarded,  :conditions => {:awarded => true}
   named_scope :defeated, :conditions => {:final => true, :awarded => false}
@@ -74,6 +77,11 @@ class Grant < ActiveRecord::Base
   def deny!
     update_attributes!(:final => true, :awarded => false)
   end   
+  
+  def to_param
+    permalink
+  end
+  
 end
 
 

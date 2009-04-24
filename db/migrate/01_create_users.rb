@@ -11,7 +11,6 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :current_login_at
       t.string :last_login_ip
       t.string :current_login_ip
-
       t.timestamps
     end
   end

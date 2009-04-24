@@ -6,6 +6,7 @@ class CreateGroups < ActiveRecord::Migration
       t.integer :dues, :default => 2, :null => false
       t.decimal :funds, :precision => 9, :scale => 2, :default => 0, :null => false
       t.integer :wait, :default => 7, :null => false
+      t.string :permalink
       t.timestamps
     end
   end

@@ -1,16 +1,18 @@
-%h2 Membership#new
-%h3 Watch Group
-%p
-  - form_for @membership, :url => { :action => :create } do |f|
-    = f.hidden_field :user_id, :value => current_user.id
-    = f.hidden_field :group_id, :value => params[:group_id]
-    = f.hidden_field :interest, :value => "false"
-    = f.submit "Join"
-%h3.prepend-top Voting Membership
-%p
-  - form_for @membership, :url => { :action => :create } do |f|
-    = f.hidden_field :user_id, :value => current_user.id
-    = f.hidden_field :group_id, :value => params[:group_id]
-    = f.hidden_field :interest, :value => "true"
-    = f.submit "Dues Paid"
-
+= render 'groups/header', :group => Group.find_by_permalink(params[:group_id])
+.span-24.prepend-top
+  .span-6.prepend-2.append-1
+    %h3 Watch Group
+    %p
+      - form_for @membership, :url => { :action => :create } do |f|
+        = f.hidden_field :user_id, :value => current_user.id
+        = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
+        = f.hidden_field :interest, :value => "false"
+        = f.submit "Watch"
+  .span-12.last
+    %h3 Full Membership
+    %p
+      - form_for @membership, :url => { :action => :create } do |f|
+        = f.hidden_field :user_id, :value => current_user.id
+        = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
+        = f.hidden_field :interest, :value => "true"
+        = f.submit "Dues Paid"

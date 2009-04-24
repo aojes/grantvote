@@ -4,7 +4,7 @@ class GrantsController < ApplicationController
 
   def index
     if params[:group_id]
-      @grants = Grant.find_all_by_group_id(params[:group_id], 
+      @grants = Grant.find_all_by_permalink(params[:group_id], 
                                             :order => "created_at ASC")
 
     elsif params[:user_id]
@@ -14,7 +14,7 @@ class GrantsController < ApplicationController
   end
   
   def show
-    @grant = Grant.find(params[:id])
+    @grant = Grant.find_by_permalink(params[:id])
   end
   
   def new
@@ -33,11 +33,11 @@ class GrantsController < ApplicationController
   end
     
   def edit
-    @grant = Grant.find(params[:id])
+    @grant = Grant.find_by_permalink(params[:id])
   end
   
   def update
-    @grant = Grant.find(params[:id])
+    @grant = Grant.find_by_permalink(params[:id])
 
     respond_to do |format|
       if @grant.update_attributes(params[:grant])
@@ -48,6 +48,10 @@ class GrantsController < ApplicationController
       end
     end
   end
+
+private
+  def destroy
+  end  
   
 end
 

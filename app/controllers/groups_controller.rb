@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
+    @group = Group.find_by_permalink(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:id])
+    @group = Group.find_by_permalink(params[:id])
   end
 
   def create
@@ -43,7 +43,7 @@ class GroupsController < ApplicationController
   end
   
   def update
-    @group = Group.find(params[:id])
+    @group = Group.find_by_permalink(params[:id])
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
@@ -58,7 +58,7 @@ class GroupsController < ApplicationController
 private
 
   def destroy
-    @group = Group.find(params[:id])
+    @group = Group.find_by_permalink(params[:id])
     @group.destroy
 
     respond_to do |format|

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :grants
   has_many :comments, :as => :commentable
-
+  
   has_attached_file :photo, :styles => {
                                :thumb  => "32x32#", 
                                :small  => "48x48#",
@@ -26,5 +26,5 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)
   end
-
+  
 end

@@ -54,5 +54,8 @@ module ApplicationHelper
     %(<button type="submit", onclick="this.blur();"><span><em>) + name + 
     %(</em></span></button>)
   end
-        
+  
+  def find_group_id(permalink)
+    Group.find_by_permalink(permalink).id
+  end        
 end

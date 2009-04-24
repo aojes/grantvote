@@ -1,12 +1,6 @@
-populate users
+make group categories / model tagging system
 
-populate default photos for users, groups, grants
-
-model public profiles
-
-model tagging system
-
-don't destroy any data
+create default photos for users, groups, grants
 
 _________________
 defer 
@@ -21,12 +15,12 @@ defer
   normal workflow
     
     put user groups on account view
-    make pretty urls 
     optimize page titles
     implement search with circulating index
     paginate groups
     implement payment system / gateway
     implement email notifications
+    model public profiles
     create user cred for profile (buttons, beads, and pebbles) 
     dynamic chart on right-hand side of login/registration view
     better validation of comment markup (malformed markup breaks layout)
@@ -34,16 +28,22 @@ defer
     create default images for member, group, and grant
     figure group comments more prominently (make forum?)
     facilitate audio & video proposals
+    establish payment system
 _________________
 business
   
   make company
   get business bank account
   production on heroku & S3 or slicehost ?
+  
 _________________
 design
   
   splash page for /grants & /groups & default views
   create user cred images
 
+_________________
+notes
+
+  don't destroy any data
   

@@ -8,6 +8,7 @@ class CreateGrants < ActiveRecord::Migration
       t.boolean :final, :default => false, :null => false
       t.boolean :awarded, :default => false, :null => false
       t.decimal :amount, :precision => 9, :scale => 2, :default => 0, :null => false
+      t.string :permalink
       t.timestamps
     end
     add_index :grants, :user_id
