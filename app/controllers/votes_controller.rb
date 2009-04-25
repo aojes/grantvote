@@ -4,18 +4,16 @@ class VotesController < ApplicationController
   
   def create
     @vote = Vote.new(params[:vote])
-   
-    if @vote.save
-      respond_to do |format|
+
+    respond_to do |format|
+      if @vote.save
         flash[:notice] = @vote.final_message or "Vote cast successfully."
         format.html { redirect_to :back }
-      end
-    else
-      respond_to do |format|
-        flash[:notice] = @vote.existing_session_message or "Please try again."
+      else
+        flash[:notice] = @vote.fail_message or "Please try again."
         format.html { redirect_to :back }
       end
     end
   end
-
+  
 end

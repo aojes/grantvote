@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params[:group])
-    @group.memberships.build(:user => current_user, :interest => false)
+    @group.memberships.build(:user => current_user, :interest => true)
     respond_to do |format|
       if @group.save
         flash[:notice] = 'Group was successfully created.'

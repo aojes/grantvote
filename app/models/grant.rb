@@ -63,7 +63,7 @@ class Grant < ActiveRecord::Base
   end
 
   def passes?
-    votes.yea.count > vote_threshold || voters == 1
+    votes.yea.count > vote_threshold || voters == 1    
   end
 
   def denies?

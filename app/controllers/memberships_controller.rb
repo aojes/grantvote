@@ -7,6 +7,7 @@ class MembershipsController < ApplicationController
   
   def create
     @membership = Membership.new(params[:membership])
+
     respond_to do |format|
       if @membership.save
         flash[:notice] = 'Membership successfully created.'

@@ -1,5 +1,4 @@
 class Vote < ActiveRecord::Base
-  extend ActiveSupport::Memoizable
   
   belongs_to :user
   belongs_to :group
@@ -18,17 +17,15 @@ class Vote < ActiveRecord::Base
   
   def check_session_limit
     if user == grant.user
-      true unless existing_user_group_session?
+      existing_user_group_session ? nil : true
     else
       true
-    end    
-    nil       
+    end       
   end
   
-  def existing_user_group_session?
+  def existing_user_group_session
     not group.grants.user_group_session(user.id, group.id).empty?
   end  
-  memoize :existing_user_group_session?
   
   def check_grant_finalization
     if grant.finalizable?
@@ -44,8 +41,8 @@ class Vote < ActiveRecord::Base
     grant.final ? grant.awarded ? "Grant awarded!" : "Grant defeated." : nil
   end
   
-  def existing_session_message
-    existing_user_group_session? ? 
+  def fail_message
+    existing_user_group_session ? 
       "You may have only one grant in session per group." : nil
   end  
 end
