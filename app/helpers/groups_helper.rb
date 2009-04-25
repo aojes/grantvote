@@ -1,8 +1,8 @@
 module GroupsHelper
 
   def grants_awarded
-    Grant.find_all_by_permalink_and_awarded(params[:id], true, 
-                                              :order => "updated_at DESC")
+    find_group(params[:id]).grants.awarded.sort! { |a, b| 
+                                            b.updated_at <=> a.created_at } 
   end
   
   def member?(group_id)

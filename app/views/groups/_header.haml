@@ -8,9 +8,9 @@
             = f.submit "Add Photo" 
       - else
         - if controller.controller_name == "groups"
-          %h2= link_to image_tag(group.photo.url :large), group_grants_path(group)
+          %h2= link_to image_tag(group.photo.url(:large), :alt => "to group voting page"), group_grants_path(group)
         - else
-          %h2= link_to image_tag(group.photo.url :large), group_path(group)
+          %h2= link_to image_tag(group.photo.url(:large), :alt => "to group home page"), group_path(group)
     .span-14.append-1.last
       %h2=h group.name
       %h3=h group.purpose

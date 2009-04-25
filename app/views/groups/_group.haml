@@ -9,7 +9,7 @@
     - else
       %h2 Recent Awards
     .prepend-1
-      - for grant in grants_awarded
+      - grants_awarded.each do |grant|
         %h3<
           .flr= image_tag grant.user.photo.url(:small)
           =h grant.name

@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build(params[:comment])
 
     if @comment.save
-      flash[:notice] = "Successfully created comment."
+      flash[:notice] = "Comment created."
       case @comment.commentable_type
         when "Group"
           redirect_to group_path(Group.find(@comment.commentable_id)) # FIXME?
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
   def find_commentable
     params.each do |name, value|
       if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
+        return $1.classify.constantize.find_by_permalink(value)
       end
     end
     nil

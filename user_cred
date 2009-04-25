@@ -17,6 +17,7 @@ Debit
   
   give bead = 3 pebbles
   give button = 3 beads
+  give pen = 3 buttons
  
   hold tiebreaker = 1 button  # available on any vote, yea or nay
                               # draw goes to yea

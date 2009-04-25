@@ -55,7 +55,7 @@ class Grant < ActiveRecord::Base
   end
 
   def vote_threshold
-    (voters * AWARD_THRESHOLD).ceil
+    voters * AWARD_THRESHOLD  # .ceil
   end
 
   def finalizable?

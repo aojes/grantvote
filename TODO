@@ -1,11 +1,10 @@
 test writing and voting restrictions
 
-implement cred (buttons > beads > pebbles)
-  required for breaking stalemates ( 1 yea & 1 nay for 2 voters, etc.)
-
 make group categories / model tagging system
 
-create default photos for users, groups, grants
+implement user cred
+
+model public profiles
 
 _________________
 defer 
@@ -18,15 +17,14 @@ defer
     scale minimum award according to required dues and the number of voters
     
   normal workflow
-    
+
+    create default photos for users, groups, grants    
     put user groups on account view
     optimize page titles
     implement search with circulating index
     paginate groups
     implement payment system / gateway
     implement email notifications
-    model public profiles
-    create user cred for profile (buttons, beads, and pebbles) 
     dynamic chart on right-hand side of login/registration view
     better validation of comment markup (malformed markup breaks layout)
     make onclick rollover button sprite
