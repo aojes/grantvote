@@ -15,6 +15,7 @@ Credit
    
 Debit
   
-  give pebble = 1 bead
-  give bead = 1 button
-  take tiebreaker = 1 button
+  give bead = 3 pebbles
+  give button = 3 beads
+  hold tiebreaker = 1 button  # only on vote yea into session or vote nay
+  take tiebreaker = 3 buttons # available to anyone with 3 buttons, first call
