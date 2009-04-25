@@ -1,8 +1,6 @@
 class Vote < ActiveRecord::Base
   extend ActiveSupport::Memoizable
   
-  require 'andand'
-  
   belongs_to :user
   belongs_to :group
   belongs_to :grant
@@ -10,7 +8,7 @@ class Vote < ActiveRecord::Base
   
   validates_presence_of   :user_id, :group_id, :grant_id, :cast
   validates_inclusion_of  :cast, :in => %w(yea nay)
-  validates_uniqueness_of :user_id, :scope  => :grant_id
+  validates_uniqueness_of :user_id, :scope => :grant_id
 
   named_scope :yea, :conditions => { :cast => "yea" }
   named_scope :nay, :conditions => { :cast => "nay" }  
@@ -19,18 +17,18 @@ class Vote < ActiveRecord::Base
   after_create :check_grant_finalization
   
   def check_session_limit
-    if grant.user == UserSession.find.andand.user
-      not existing_session_grant?
+    if user == grant.user
+      true unless existing_user_group_session?
     else
       true
-    end           
+    end    
+    nil       
   end
   
-  def existing_session_grant?
-    not group.grants(:conditions => 
-                          { :user => user, :final => false }).count.zero?
+  def existing_user_group_session?
+    not group.grants.user_group_session(user.id, group.id).empty?
   end  
-  memoize :existing_session_grant?
+  memoize :existing_user_group_session?
   
   def check_grant_finalization
     if grant.finalizable?
@@ -47,7 +45,7 @@ class Vote < ActiveRecord::Base
   end
   
   def existing_session_message
-    existing_session_grant? ? 
+    existing_user_group_session? ? 
       "You may have only one grant in session per group." : nil
   end  
 end

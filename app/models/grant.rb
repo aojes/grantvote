@@ -43,6 +43,11 @@ class Grant < ActiveRecord::Base
   named_scope :awarded,  :conditions => {:awarded => true}
   named_scope :defeated, :conditions => {:final => true, :awarded => false}
   named_scope :session,  :conditions => {:final => false}
+  named_scope :user_group_session, lambda { |*args|
+    {  :conditions => 
+          { :user_id => args.first, :group_id => args.second, :final => false } 
+    }
+  }
   named_scope :chronological, :order => "created_at ASC"
 
   def voters

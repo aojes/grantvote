@@ -1,6 +1,6 @@
 - if params[:group_id]
-  = render 'groups/header', :group => Group.find_by_permalink(params[:group_id])
-  = render 'groups/forum', :grants => @grants
+  = render 'groups/header', :group => find_group(params[:group_id])
+  = render 'groups/forum'
 - elsif params[:user_id]
   = render 'account'
 

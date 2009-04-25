@@ -3,21 +3,8 @@ module GrantsHelper
   # returns current grants voted into session
   def group_session_grants(grants)
     grants.collect! { |grant|
-    #  if !Vote.exists?(:user_id => current_user, :grant_id => grant)
-    #    if grant.votes.count > 0
-         grant if !grant.final
-   #         grant
-    #      end
-     #   end
-      #end
-    }
-    grants.compact
-  end
-  
-  # returns grants voted on but the vote is not final
-  def review(grants)
-    grants.collect! { |grant|
-      grant if Vote.exists?(:user_id => current_user, :grant_id => grant)
+      grant unless grant.final or grant.votes.count.zero? or
+                     Vote.exists?(:user_id => current_user, :grant_id => grant)
     }.compact
   end
   

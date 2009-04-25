@@ -11,12 +11,12 @@ ActionController::Routing::Routes.draw do |map|
   #    Then I want to make the show action.. /foo, /bar (which I know how to do)
   
   map.resources :users, :has_many => [:comments, :grants, :votes]
-
   map.resources :password_resets
+
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
   map.resources :grants, :has_many => [:comments, :votes]         
   map.resources :votes, :has_many => :comments
-  
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   

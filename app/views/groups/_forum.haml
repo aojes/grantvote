@@ -1,10 +1,10 @@
 %h2.prepend-1.append-2 Group Session
 .span-21.prepend-2.append-1.last  
-  - group_session_grants(grants).each do |grant|
+  - group_session_grants(@grants).each do |grant|
     #div
       .span-14.append-1
         %h3<
-          .flr= image_tag grant.user.photo.url(:small), :alt=> ""
+          .flr= image_tag grant.user.photo.url(:small), :alt=> "#{grant.user.login.capitalize}"
           = h grant.name
         %h3== $#{grant.amount.to_i.to_s}
       .span-5.cred.last 

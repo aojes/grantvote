@@ -51,10 +51,14 @@ module ApplicationHelper
   end
   
   def submit_button(name) 
-    %(<button type="submit", onclick="this.blur();"><span><em>) + name + 
+    %(<button type="submit" onclick="this.blur();"><span><em>) + name + 
     %(</em></span></button>)
   end
   
+  def find_group(permalink)
+    Group.find_by_permalink(permalink)
+  end
+    
   def find_group_id(permalink)
     Group.find_by_permalink(permalink).id
   end        

@@ -4,8 +4,7 @@ class GrantsController < ApplicationController
 
   def index
     if params[:group_id]
-      @grants = Grant.find_all_by_permalink(params[:group_id], 
-                                            :order => "created_at ASC")
+      @grants = Group.find_by_permalink(params[:group_id]).grants.chronological        
 
     elsif params[:user_id]
       @grants = Grant.find_all_by_user_id(params[:user_id], 
