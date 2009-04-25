@@ -1,17 +1,17 @@
+Cred
 
-  1 point = 1 pebble
+  laurel > ribbon > pearl > shell <=> pebble < bead < button < pen
+
+  pebble x3 = bead x3 = button x3 = pen
   
-  pebble > 30 days old = 1 bead
-  
-  bead > 90 days old = 1 button
-
-Credit 
-
-   reg  
-     1 point of credibility on registration
+  give bead = shell x3 = pearl x3 = ribbon
+  give button = ribbon x3 = laurel
+  give pen = laurel
    
-   dues 
-     1 point on paying group dues of any amount
+  
+Credit 
+   1 pebble on registration
+   1 pebble on each dues paid
    
 Debit
   
@@ -25,3 +25,5 @@ Debit
   take tiebreaker = 3 buttons # available on any vote
                               # claim tiebreaker outright, yea or nay
                               # limit one per grant
+                              
+  # I'm not sure how to use the philanthropical credits
