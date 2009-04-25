@@ -15,7 +15,7 @@ class Vote < ActiveRecord::Base
   after_create :check_grant_finalization
   
   def check_session_limit
-    if user == @current_user
+    if user == @user
       group.grants(:conditions => {:user => user, :final => false}).count.zero?
     else
       true
@@ -36,4 +36,11 @@ class Vote < ActiveRecord::Base
     grant.final ? grant.awarded ? "Grant awarded!" : "Grant defeated." : nil
   end
   
+  def existing_session_message
+    if group.grants(:conditions => {:user => user, :final => false}).count.zero?
+      nil
+    else
+      "You may have only one grant in session per group."
+    end
+  end  
 end

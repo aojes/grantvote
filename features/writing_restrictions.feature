@@ -7,5 +7,5 @@ Feature: limit writing of grants against the solvency of the group
     When I write a grant
     Then I vote the grant into session
     Then I write another grant
-    And I am not allowed to vote it into session    
+    Then I am not allowed to vote it into session    
     

@@ -12,7 +12,7 @@ class VotesController < ApplicationController
       end
     else
       respond_to do |format|
-        flash[:notice] = "Please try again."
+        flash[:notice] = @vote.existing_session_message or "Please try again."
         format.html { redirect_to :back }
       end
     end
