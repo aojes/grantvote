@@ -69,5 +69,64 @@ module ApplicationHelper
   
   def find_grant_id(permalink)
     Grant.find_by_permalink(permalink).id
-  end        
+  end
+  
+  def compile_and_render_user_cred_images(user, size = "small")
+    user_cred_image_url_set(user.credit.pebbles, user.credit.beads, user.credit.buttons, user.credit.pens, user.credit.shells, user.credit.pearls, user.credit.ribbons, user.credit.laurels, size)
+  end
+  
+  def user_cred_image_url_set(p, b, bu, pe, sh, per, r, l, size = "small")
+    pebbles, beads, buttons, pens = "","","",""
+    shells, pearls, ribbons, laurels = "","","",""
+    p.times do
+      pebbles += "<img alt='pebble' src='#{cred_image_path(:pebble, size)}' title='pebble'/>&nbsp; "
+    end
+    b.times do
+      beads += "<img alt='bead' src='#{cred_image_path(:bead, size)}' title='bead'/>&nbsp; "
+    end
+    bu.times do
+      buttons += "<img alt='button' src='#{cred_image_path(:button, size)}' title='button'/>&nbsp; "
+    end
+    pe.times do
+      pens += "<img alt='pen' src='#{cred_image_path(:pen, size)}' title='pen'/>&nbsp; "
+    end
+    sh.times do
+      shells += "<img alt='shell' src='#{cred_image_path(:shell, size)}' title='shell'/>&nbsp; "
+    end
+    per.times do
+      pearls += "<img alt='pearl' src='#{cred_image_path(:pearl, size)}' title='pearl'/>&nbsp; "
+    end
+    r.times do
+      ribbons += "<img alt='ribbon' src='#{cred_image_path(:ribbon, size)}' title='ribbon'/>&nbsp; "
+    end
+    l.times do
+      laurels += "<img alt='laurel' src='#{cred_image_path(:laurel, size)}' title='laurel'/>&nbsp; "
+    end
+    
+    pebbles + beads + buttons + pens + shells + pearls + ribbons + laurels
+    
+  end  
+  
+  def cred_image_path(type, size = "small")
+    prefix = Credit::IMAGE_PATH
+    case type.to_s
+      when "pebble" 
+        path = Credit::DIR[:pebble] + "#{size}/#{Credit::IMAGE_NAMES[:pebble]}"
+      when "bead" 
+        path = Credit::DIR[:bead]   + "#{size}/#{Credit::IMAGE_NAMES[:bead]}"
+      when "button" 
+        path = Credit::DIR[:button] + "#{size}/#{Credit::IMAGE_NAMES[:button]}"
+      when "pen" 
+        path = Credit::DIR[:pen]    + "#{size}/#{Credit::IMAGE_NAMES[:pen]}"
+      when "shell" 
+        path = Credit::DIR[:shell]  + "#{size}/#{Credit::IMAGE_NAMES[:shell]}"
+      when "pearl" 
+        path = Credit::DIR[:pearl]  + "#{size}/#{Credit::IMAGE_NAMES[:pearl]}"
+      when "ribbon" 
+        path = Credit::DIR[:ribbon] + "#{size}/#{Credit::IMAGE_NAMES[:ribbon]}"
+      when "laurel" 
+        path = Credit::DIR[:laurel] + "#{size}/#{Credit::IMAGE_NAMES[:laurel]}" 
+    end
+    prefix + path
+  end       
 end

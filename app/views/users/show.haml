@@ -8,7 +8,12 @@
     %h3< 
       Cred
       %hr
-    .flr= button_to 'Edit', edit_account_path, :method => :get      
+    = compile_and_render_user_cred_images(@user, :medium)
+    .flr
+      %br
+      %br
+      %br
+      .center= button_to 'Edit', edit_account_path, :method => :get      
   .span-12.append-1.last
     %h3.prepend-top< 
       Groups
