@@ -19,6 +19,7 @@ class Group < ActiveRecord::Base
   validates_presence_of :name, :purpose, :dues
   validates_length_of :name, :in => MIN_NAME..MAX_NAME, 
                    :message => "can be #{MIN_NAME} to #{MAX_NAME} characters"
+  validates_uniqueness_of :name
   validates_length_of :purpose, :in => MIN_PURPOSE..MAX_PURPOSE,
              :message => "can be #{MIN_PURPOSE} to #{MAX_PURPOSE} characters"  
   validates_numericality_of :dues, :only_integer => true, 

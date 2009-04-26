@@ -4,7 +4,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.integer :user_id
       t.string :login
       t.string :name
-      t.text :bio
+      t.text :detail
       t.string :link
       t.string :location
       t.string :permalink

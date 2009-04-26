@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.build_profile(:user => @user)
+    @user.build_credit(:user => @user, :pebbles => 1)
     if @user.save
       flash[:notice] = "Account registered!"
       redirect_back_or_default account_url

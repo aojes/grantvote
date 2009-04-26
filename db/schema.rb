@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 10) do
+ActiveRecord::Schema.define(:version => 11) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -24,14 +24,30 @@ ActiveRecord::Schema.define(:version => 10) do
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "credits", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "laurels",    :default => 0, :null => false
+    t.integer  "ribbons",    :default => 0, :null => false
+    t.integer  "pearls",     :default => 0, :null => false
+    t.integer  "shells",     :default => 0, :null => false
+    t.integer  "pebbles",    :default => 0, :null => false
+    t.integer  "beads",      :default => 0, :null => false
+    t.integer  "buttons",    :default => 0, :null => false
+    t.integer  "pens",       :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "credits", ["user_id"], :name => "index_credits_on_user_id"
+
   create_table "grants", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
     t.string   "name"
     t.text     "proposal"
-    t.boolean  "final",                                            :default => false, :null => false
-    t.boolean  "awarded",                                          :default => false, :null => false
-    t.decimal  "amount",             :precision => 9, :scale => 2, :default => 0.0,   :null => false
+    t.boolean  "final",              :default => false, :null => false
+    t.boolean  "awarded",            :default => false, :null => false
+    t.integer  "amount",             :default => 10,    :null => false
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,9 +56,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "photo_file_size"
   end
 
-  add_index "grants", ["awarded"], :name => "index_grants_on_awarded"
-  add_index "grants", ["final"], :name => "index_grants_on_final"
-  add_index "grants", ["group_id"], :name => "index_grants_on_group_id"
+  add_index "grants", ["group_id", "final", "awarded"], :name => "index_grants_on_group_id_and_final_and_awarded", :unique => true
   add_index "grants", ["user_id"], :name => "index_grants_on_user_id"
 
   create_table "groups", :force => true do |t|
@@ -50,7 +64,6 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "purpose"
     t.integer  "dues",                                             :default => 2,   :null => false
     t.decimal  "funds",              :precision => 9, :scale => 2, :default => 0.0, :null => false
-    t.integer  "wait",                                             :default => 7,   :null => false
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -63,19 +76,19 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.boolean  "interest"
+    t.string   "role",       :default => "basic", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
-  add_index "memberships", ["interest"], :name => "index_memberships_on_interest"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
     t.string   "login"
     t.string   "name"
-    t.text     "bio"
+    t.text     "detail"
     t.string   "link"
     t.string   "location"
     t.string   "permalink"

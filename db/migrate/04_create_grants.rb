@@ -7,21 +7,17 @@ class CreateGrants < ActiveRecord::Migration
       t.text :proposal
       t.boolean :final, :default => false, :null => false
       t.boolean :awarded, :default => false, :null => false
-      t.decimal :amount, :precision => 9, :scale => 2, :default => 0, :null => false
+      t.integer :amount, :default => 10, :null => false
       t.string :permalink
       t.timestamps
     end
     add_index :grants, :user_id
-    add_index :grants, :group_id
-    add_index :grants, :final
-    add_index :grants, :awarded
+    add_index :grants, [:group_id, :final, :awarded], :unique => true
   end
 
   def self.down
     remove_index :grants, :user_id
-    remove_index :grants, :group_id
-    remove_index :grants, :final
-    remove_index :grants, :awarded
+    remove_index :grants, [:group_id, :final, :awarded]
     drop_table :grants
   end
 end
