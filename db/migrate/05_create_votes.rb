@@ -8,14 +8,13 @@ class CreateVotes < ActiveRecord::Migration
       t.timestamps
     end
     add_index :votes, :user_id
-    add_index :votes, :group_id
-    add_index :votes, :grant_id
+    add_index :votes, [:group_id, :grant_id], :unique => true,
+                                                :name => "by_group_grant"
   end
 
   def self.down
     remove_index :votes, :user_id
-    remove_index :votes, :group_id
-    remove_index :votes, :grant_id
+    remove_index :votes, :name => "by_group_grant"
     drop_table :votes
   end
 end

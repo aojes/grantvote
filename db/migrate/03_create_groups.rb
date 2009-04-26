@@ -8,9 +8,11 @@ class CreateGroups < ActiveRecord::Migration
       t.string :permalink
       t.timestamps
     end
+    add_index :groups, :name
   end
 
   def self.down
+    remove_index :groups, :name
     drop_table :groups
   end
 end

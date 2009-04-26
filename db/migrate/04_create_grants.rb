@@ -12,12 +12,12 @@ class CreateGrants < ActiveRecord::Migration
       t.timestamps
     end
     add_index :grants, :user_id
-    add_index :grants, [:group_id, :final, :awarded], :unique => true
+    add_index :grants, :group_id
   end
 
   def self.down
     remove_index :grants, :user_id
-    remove_index :grants, [:group_id, :final, :awarded]
+    remove_index :grants, :group_id
     drop_table :grants
   end
 end

@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 11) do
     t.integer  "photo_file_size"
   end
 
-  add_index "grants", ["group_id", "final", "awarded"], :name => "index_grants_on_group_id_and_final_and_awarded", :unique => true
+  add_index "grants", ["group_id"], :name => "index_grants_on_group_id"
   add_index "grants", ["user_id"], :name => "index_grants_on_user_id"
 
   create_table "groups", :force => true do |t|
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(:version => 11) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
   end
+
+  add_index "groups", ["name"], :name => "index_groups_on_name"
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
@@ -147,8 +149,7 @@ ActiveRecord::Schema.define(:version => 11) do
     t.datetime "updated_at"
   end
 
-  add_index "votes", ["grant_id"], :name => "index_votes_on_grant_id"
-  add_index "votes", ["group_id"], :name => "index_votes_on_group_id"
+  add_index "votes", ["group_id", "grant_id"], :name => "by_group_grant", :unique => true
   add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
 
 end
