@@ -41,7 +41,7 @@ class Vote < ActiveRecord::Base
     grant.final ? grant.awarded ? "Grant awarded!" : "Grant defeated." : nil
   end
   
-  def fail_message
+  def session_limit_message
     existing_user_group_session ? 
       "You may have only one grant in session per group." : nil
   end  

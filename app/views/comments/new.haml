@@ -1,9 +1,9 @@
-%h2 New Comment
-- form_for [@commentable, Comment.new] do |f|
-  %p
-    = f.label :content
-    %br
-    = f.text_area :content
-    = f.hidden_field :user_id, :value => current_user.id
-  %p= f.submit "Add Comment"
+.prepend-1.prepend-top
+  %h2 New Comment
+.prepend-2
+  - form_for [@commentable, Comment.new] do |f|
+    .form_row
+      = f.text_area :content
+      = f.hidden_field :user_id, :value => current_user.id
+      %p= submit_button "Say it"
 

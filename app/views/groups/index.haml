@@ -3,17 +3,17 @@
 - @groups.each do |group|
   .span-22.prepend-2.prepend-top
     .span-3
-      = link_to image_tag(group.photo.url(:medium)), group_path(group)
+      = link_to image_tag(group.photo.url(:medium), :alt => "visit group"), group_path(group), :alt => h(group.name)
     .span-9
-      %h3= h(group.name)
+      %h3= link_to h(group.name), group_path(group), :alt => h(group.name)
       == #{pluralize group.memberships.voters.count, "voter"}
-      == | $#{group.dues.to_i} dues
+      == | $#{group.dues} dues
       == | $#{group.funds.to_i} pool 
       == | #{group.created_at.strftime "%B %Y"}
       -#.prepend-top= h group.purpose
     .span-7.success.last 
       %p<
-        %strong nifty charts
+        %strong solvency chart
       -#= link_to 'Edit', edit_group_path(group)
       -#= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
 

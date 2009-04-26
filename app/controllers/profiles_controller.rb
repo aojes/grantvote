@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
-
+  before_filter :verify_authenticity_token
+  
   # GET /profiles
   # GET /profiles.xml
   def index
@@ -45,7 +46,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        flash[:notice] = 'Profile was successfully created.'
+        flash[:notice] = 'Profile created'
         format.html { redirect_to(@profile) }
         format.xml  { render :xml => @profile, :status => :created, :location => @profile }
       else
@@ -62,7 +63,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
-        flash[:notice] = 'Profile was successfully updated.'
+        flash[:notice] = 'Updated'
         format.html { redirect_to(@profile) }
         format.xml  { head :ok }
       else

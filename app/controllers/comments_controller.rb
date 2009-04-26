@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :require_user  
+  before_filter :verify_authenticity_token
   
   def index
     @commentable = find_commentable
@@ -15,7 +16,7 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build(params[:comment])
 
     if @comment.save
-      flash[:notice] = "Comment created."
+      flash[:notice] = "Created"
       case @comment.commentable_type
         when "Group"
           redirect_to group_path(Group.find(@comment.commentable_id)) # FIXME?

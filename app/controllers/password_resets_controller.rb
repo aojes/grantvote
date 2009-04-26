@@ -1,6 +1,7 @@
 class PasswordResetsController < ApplicationController
   before_filter :require_no_user
   before_filter :load_user_using_perishable_token, :only => [:edit, :update]
+  before_filter :verify_authenticity_token
 
   def new
     render
@@ -10,11 +11,11 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user
       @user.deliver_password_reset_instructions!
-      flash[:notice] = "Instructions to reset your password have been emailed to you. " +
-        "Please check your email."
+      flash[:notice] = "Please check your email for instructions " +
+                          "to reset your password "
       redirect_to root_url
     else
-      flash[:notice] = "No user was found with that email address"
+      flash[:notice] = "Account for email address not found"
       render :action => :new
     end
   end
@@ -27,7 +28,7 @@ class PasswordResetsController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
-      flash[:notice] = "Password successfully updated"
+      flash[:notice] = "Password updated"
       redirect_to account_url
     else
       render :action => :edit

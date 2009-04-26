@@ -4,7 +4,7 @@
     #div
       .span-14.append-1
         %h3<
-          .flr= image_tag grant.user.photo.url(:small), :alt=> "#{grant.user.login.capitalize}"
+          .flr= link_to image_tag(grant.user.photo.url(:small), :alt=> "#{grant.user.login.capitalize}"), "/#{h(grant.user.login)}", :title => h(grant.user.login)
           = h grant.name
         %h3== $#{grant.amount.to_i.to_s}
       .span-5.cred.last 
@@ -12,7 +12,7 @@
     #div
       .span-15
         .span-3
-          = image_tag grant.photo.url(:medium)
+          = link_to image_tag(grant.photo.url(:medium), :alt => h(grant.name)), group_grant_path(grant.group, grant), :alt => h(grant.name)
         .span-11.last{:style => "text-align:justify"}
           = simple_format grant.proposal, :style => "line-height: 2"
       .span-5

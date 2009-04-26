@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_filter :require_user, :except => [:index, :show]
+  before_filter :verify_authenticity_token
   
   def index
     @groups = Group.all
@@ -32,9 +33,10 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     @group.memberships.build(:user => current_user, :interest => true)
+    # TODO assign pebble on dues paid
     respond_to do |format|
       if @group.save
-        flash[:notice] = 'Group was successfully created.'
+        flash[:notice] = 'Group created '
         format.html { redirect_to(@group) }
       else
         format.html { render :action => "new" }
@@ -47,7 +49,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        flash[:notice] = 'Group was successfully updated.'
+        flash[:notice] = 'Updated '
         format.html { redirect_to(@group) }
       else
         format.html { render :action => "edit" }

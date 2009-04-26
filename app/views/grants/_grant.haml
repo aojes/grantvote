@@ -12,14 +12,14 @@
   .span-14.append-1
     %h3<
       %span{:style=>"float:right"}
-        = image_tag @grant.user.photo.url(:small), :alt=> @grant.user.login
+        = link_to image_tag(@grant.user.photo.url(:small), :alt=> h(@grant.user.login), :title => h(@grant.user.login)), "/#{h @grant.user.login}"
       = h @grant.name
     %h3== $#{@grant.amount.to_i.to_s}
   .span-5.success.last 
     %h6 Cred    
   .span-15
     .span-3
-      = image_tag @grant.photo.url(:medium)
+      = image_tag @grant.photo.url(:medium), :alt => h(@grant.name)
       .span-2.prepend-top.last
         &nbsp;
     .span-11.last{:style => "text-align:justify"}

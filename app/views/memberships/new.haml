@@ -1,4 +1,4 @@
-= render 'groups/header', :group => Group.find_by_permalink(params[:group_id])
+= render 'groups/header', :group => find_group(params[:group_id])
 .span-24.prepend-top
   .span-6.prepend-2.append-1
     %h3 Watch Group

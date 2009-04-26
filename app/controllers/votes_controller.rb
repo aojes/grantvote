@@ -7,10 +7,12 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       if @vote.save
-        flash[:notice] = @vote.final_message or "Vote cast successfully."
-        format.html { redirect_to :back }
+        final = @vote.final_message
+        flash[:notice] = final ? final : "Voted successfully."
+        format.html { redirect_back_or_default :back }
       else
-        flash[:notice] = @vote.fail_message or "Please try again."
+        limit = @vote.session_limit_message 
+        flash[:notice] = limit ? limit : "Bleep, bloop. Please try again."
         format.html { redirect_to :back }
       end
     end

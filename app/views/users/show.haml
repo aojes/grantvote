@@ -1,19 +1,29 @@
 .prepend-1.span-22.append-1.prepend-top
   .prepend-1.span-7.append-1
     .span-2<
-      %p= image_tag @user.photo.url :medium
+      %p= image_tag @user.photo.url(:medium), :alt => "#{h @user.login}"
     .span-5.prepend-top.last<
       %h3.center=h @user.login  
-    .flr= button_to 'Edit', edit_account_path, :method => :get
+    %br{:style => "clear: both"}
+    %h3< 
+      Cred
+      %hr
+    .flr= button_to 'Edit', edit_account_path, :method => :get      
   .span-12.append-1.last
+    %h3.prepend-top< 
+      Groups
+      %hr
+    - @user.groups.each do |g|
+      = link_to image_tag(g.photo.url :small), group_path(g), :alt => "#{h g.name}", :title => "#{h g.name}"
     %h3.prepend-top< 
       Awards
       %hr
     - @user.grants.awarded.each do |g|
-      = link_to image_tag(g.photo.url :small), group_grant_path(g.group, g)
+      = link_to image_tag(g.photo.url :small), group_grant_path(g.group, g), :alt => "#{h g.name}", :title => "#{h g.name}"
     %h3.prepend-top< 
-      Session
+      Sessions
       %hr
     - @user.grants.session.each do |g|
-      = link_to image_tag(g.photo.url :small), group_grant_path(g.group, g)
+      -# show all sessions on account page, only those voted on public profile
+      = link_to image_tag(g.photo.url :small), group_grant_path(g.group, g), :alt => "#{h g.name}", :title => "#{h g.name}"
     

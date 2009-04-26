@@ -24,7 +24,7 @@ class GrantsController < ApplicationController
     @grant = current_user.grants.build(params[:grant])
 
     if @grant.save
-     flash[:notice] =  "Grant was successfully created."
+     flash[:notice] =  "Created"
      redirect_to group_grant_path(@grant.group, @grant)
     else
       render :action => "new"
@@ -40,7 +40,7 @@ class GrantsController < ApplicationController
 
     respond_to do |format|
       if @grant.update_attributes(params[:grant])
-        flash[:notice] = 'Grant was successfully updated.'
+        flash[:notice] = 'Updated'
         format.html { redirect_to group_grant_path(@grant.group, @grant) }
       else
         format.html { render :action => "edit" }

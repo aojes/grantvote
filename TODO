@@ -1,11 +1,10 @@
-test writing and voting restrictions
+make group categories 
 
-make group categories / model tagging system
+debug tagging system
 
-implement user cred
+route public profiles ~/:login
 
-model public profiles
-
+add public boolean to memberships (on edit from account page, note in FAQ)
 _________________
 defer 
   
@@ -13,13 +12,13 @@ defer
     
     confirm solvency of group at create dependent
     determine solvency of group for index & search
+    test writing and voting restrictions
     update membership interest, cycle dues against group finances
     scale minimum award according to required dues and the number of voters
     
   normal workflow
 
     create default photos for users, groups, grants    
-    put user groups on account view
     optimize page titles
     implement search with circulating index
     paginate groups
@@ -27,11 +26,10 @@ defer
     implement email notifications
     dynamic chart on right-hand side of login/registration view
     better validation of comment markup (malformed markup breaks layout)
-    make onclick rollover button sprite
-    create default images for member, group, and grant
+    make onclick button sprite work
     figure group comments more prominently (make forum?)
     facilitate audio & video proposals
-    establish payment system
+
 _________________
 business
   
@@ -49,4 +47,5 @@ _________________
 notes
 
   don't destroy any data
+  user can fake the permalink on edit grant
   

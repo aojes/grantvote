@@ -2,10 +2,11 @@ Cred
 
   laurel > ribbon > pearl > shell <=> pebble < bead < button < pen
 
-  pebble x3 = bead x3 = button x3 = pen
+  pebble, x3 = bead, x3 = button, x3 = pen
   
-  give bead = shell x3 = pearl x3 = ribbon
-  give button = ribbon x3 = laurel
+  give pebble = ?
+  give bead = shell, x3 = pearl, x3 = ribbon
+  give button = ribbon, x3 = laurel
   give pen = laurel
    
   
