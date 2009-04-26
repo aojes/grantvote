@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(:version => 11) do
     t.datetime "updated_at"
   end
 
-  add_index "votes", ["group_id", "grant_id"], :name => "by_group_grant", :unique => true
+  add_index "votes", ["group_id", "grant_id"], :name => "index_votes_on_group_id_and_grant_id"
   add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
 
 end
