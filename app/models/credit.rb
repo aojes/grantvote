@@ -16,12 +16,12 @@ class Credit < ActiveRecord::Base
    }
   
   IMAGE_NAMES = {
-    :pebble => "1_pebble.png",
-    :bead   => "2_bead.png",
-    :button => "3_button.png",
-    :pen    => "4_pen.png",
-    :shell  => "5_shell.png",
-    :pearl  => "6_pearl.png",
+    :pebble => "1_pebble.jpg",
+    :bead   => "2_bead.jpg",
+    :button => "3_button.jpg",
+    :pen    => "4_pen.jpg",
+    :shell  => "5_shell.jpg",
+    :pearl  => "6_pearl.jpg",
     :ribbon => "7_ribbon.jpg",
     :laurel => "8_laurel.jpg"  
    }
