@@ -4,7 +4,16 @@ class Group < ActiveRecord::Base
   
   MIN_NAME, MAX_NAME = [2, 140]
   MIN_PURPOSE, MAX_PURPOSE = [3, 200]
-  MIN_DUES, MAX_DUES = [2, 100]
+  MIN_DUES, MAX_DUES = [1, 5]
+  
+  YIELD_RANK = {
+    :five  => 0.90, # dues = 5
+    :four  => 0.87, #      = 4
+    :three => 0.85, #      = 3
+    :two   => 0.80, #      = 2
+    :one   => 0.65  #      = 1
+   }
+  
   MAX_FILE_SIZE = 5.megabytes
   
   # acts_as_taggable_on :tags
@@ -26,10 +35,11 @@ class Group < ActiveRecord::Base
     :greater_than_or_equal_to => MIN_DUES, :less_than_or_equal_to => MAX_DUES, 
          :message => "can be an integer value of #{MIN_DUES} up to #{MAX_DUES}"
   has_attached_file :photo, :styles => {
-                               :thumb  => "32x32#", 
-                               :small  => "48x48#",
-                               :medium => "75x75#", 
-                               :large  => "256x256>" 
+                               :thumb   => "32x32#", 
+                               :small   => "48x48#",
+                               :medium  => "75x75#",
+                               :large   => "92x92#", 
+                               :display => "256x256>" 
                              },                                    
    :url  => "/assets/groups/:id/:style/:basename.:extension",
    :path => ":rails_root/public/assets/groups/:id/:style/:basename.:extension"
@@ -47,6 +57,5 @@ class Group < ActiveRecord::Base
   def to_param
     permalink
   end
-  
-                                
+                                  
 end

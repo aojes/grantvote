@@ -1,16 +1,11 @@
-make group categories 
+add public boolean to memberships
 
-debug tagging system
-
-route public profiles ~/:login
-
-add public boolean to memberships (on edit from account page, note in FAQ)
 _________________
 defer 
   
   important
     
-    confirm solvency of group at create dependent
+    confirm solvency of group before create dependent
     determine solvency of group for index & search
     test writing and voting restrictions
     update membership interest, cycle dues against group finances
@@ -22,14 +17,15 @@ defer
     optimize page titles
     implement search with circulating index
     paginate groups
-    implement payment system / gateway
     implement email notifications
     dynamic chart on right-hand side of login/registration view
     better validation of comment markup (malformed markup breaks layout)
     make onclick button sprite work
     figure group comments more prominently (make forum?)
     facilitate audio & video proposals
-
+    debug tagging system
+    implement payment system / gateway
+    maybe make group categories 
 _________________
 business
   

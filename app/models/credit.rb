@@ -6,8 +6,8 @@ class Credit < ActiveRecord::Base
   
   DIR = { 
     :pebble => "/pebble/", 
-    :bead   => "/bead_ab092ebwc2/",   # this image is too imposing for its place
-    :button => "/button_hqp730qnc3/", # use for bead
+    :bead   => "/bead_ab092ebwc2/",   
+    :button => "/button_hqp730qnc3/", 
     :pen    => "/pen_itngh284h4/",
     :shell  => "/shell_lp524wmos5/",
     :pearl  => "/pearl_hw8bc34mx6/",
@@ -25,6 +25,5 @@ class Credit < ActiveRecord::Base
     :ribbon => "7_ribbon.jpg",
     :laurel => "8_laurel.jpg"  
    }
-
 
 end

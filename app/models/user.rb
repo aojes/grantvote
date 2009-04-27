@@ -11,17 +11,18 @@ class User < ActiveRecord::Base
   has_many :comments, :as => :commentable
   
   has_attached_file :photo, :styles => {
-                               :thumb  => "32x32#", 
-                               :small  => "48x48#",
-                               :medium => "75x75#", 
-                               :large  => "256x256>" 
+                               :thumb   => "32x32#", 
+                               :small   => "48x48#",
+                               :medium  => "75x75#", 
+                               :large   => "92x92#",
+                               :display => "256x256>" 
                              },                                    
    :url  => "/assets/users/:id/:style/:basename.:extension",
    :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
    
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, 
-                                    :content_type => ['image/jpeg', 'image/png']  
+                       :content_type => ['image/jpeg', 'image/gif', 'image/png']  
 
   def deliver_password_reset_instructions!
     reset_perishable_token!

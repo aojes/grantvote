@@ -5,18 +5,20 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
   map.resource :account, :controller => "users"
   
-  map.resources :profiles
-  # Q. How do I establish a route '/account/profile' for edit, like twitter
+  #    How do I establish a route '/account/profile' for edit, like twitter
   #    I have User has_one :profile and Profile belongs_to :user
   #    Then I want to make the show action.. /foo, /bar (which I know how to do)
   
-  map.resources :users, :has_many => [:comments, :grants, :votes]
+  map.resources :users, :has_many => [:comments, :grants, :votes] 
   map.resources :password_resets
 
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
   map.resources :grants, :has_many => [:comments, :votes]         
   map.resources :votes, :has_many => :comments
 
+  map.profile ':permalink', :controller => "profiles", :action => "view"
+#  map.connect ':permalink.:format', :controller => "profiles", 
+#                                    :action => "view", :format => nil
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   

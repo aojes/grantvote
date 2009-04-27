@@ -18,18 +18,18 @@ class Grant < ActiveRecord::Base
   has_permalink :name
   
   has_attached_file :photo, :styles => {
-                               :thumb  => "32x32#", 
-                               :small  => "48x48#",
-                               :med_sm => "75x75#",
-                               :medium => "92x92#", 
-                               :large  => "256x256>" 
+                               :thumb   => "32x32#", 
+                               :small   => "48x48#",
+                               :medium  => "75x75#",
+                               :large   => "92x92#", 
+                               :display => "256x256>" 
                              },                                    
    :url  => "/assets/grants/:id/:style/:basename.:extension",
    :path => ":rails_root/public/assets/grants/:id/:style/:basename.:extension"
    
   validates_attachment_size :photo, :less_than => Group::MAX_FILE_SIZE
   validates_attachment_content_type :photo, 
-                              :content_type => ['image/jpeg', 'image/png']
+                       :content_type => ['image/jpeg', 'image/gif', 'image/png']
  
   validates_presence_of :name, :proposal, :amount
   validates_length_of :name, :in => MIN_NAME..MAX_NAME,
