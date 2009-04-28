@@ -22,7 +22,7 @@ class GrantsController < ApplicationController
   
   def create
     @grant = current_user.grants.build(params[:grant])
-
+    
     if @grant.save
      flash[:notice] =  "Created"
      redirect_to group_grant_path(@grant.group, @grant)

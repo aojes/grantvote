@@ -7,7 +7,7 @@ class CreateMemberships < ActiveRecord::Migration
       t.string  :role, :default => "basic", :null => false
       t.boolean :public, :default => true, :null => false
       t.decimal :contributes, :precision => 9, :scale => 2, :default => 0, :null => false
-      t.decimal :rewards, :precision => 9, :scale => 2, :default => 0, :null => false
+      t.decimal :rewards, :precision => 9, :scale => 3, :default => 0, :null => false
       t.timestamps
     end
     add_index :memberships, :user_id

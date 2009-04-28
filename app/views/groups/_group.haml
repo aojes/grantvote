@@ -30,8 +30,7 @@
   .span-6
     .success
       -# FIXME use partial
-      %h3== Dues $#{@group.dues} 
-      %h3== Funds $#{@group.funds.floor.to_i} 
+      %h3== Pool $#{@group.funds.floor.to_i} 
       %h3= link_to "Join Group", new_group_membership_path(@group) if not member?(params[:id])
       %h3= link_to "Write Grant", new_group_grant_path(@group) if voter?(params[:id])
       -# %h3= "Pay Dues" unless voter?(params[:id])

@@ -6,16 +6,21 @@ class VotesController < ApplicationController
     @vote = Vote.new(params[:vote])
 
     respond_to do |format|
-      if @vote.save
-        final = @vote.final_message
-        flash[:notice] = final ? final : "Voted successfully."
-        format.html { redirect_back_or_default :back }
+      if @vote.grant.group.solvent?
+        if @vote.save
+          final = @vote.final_message
+          flash[:notice] = final ? final : "Voted successfully."
+          format.html { redirect_back_or_default :back }
+        else
+          limit = @vote.session_limit_message 
+          flash[:error] = limit ? limit : "Bleep, bloop. Please try again."
+          format.html { redirect_to :back }
+        end
       else
-        limit = @vote.session_limit_message 
-        flash[:notice] = limit ? limit : "Bleep, bloop. Please try again."
-        format.html { redirect_to :back }
+        flash[:warning] = "Amount is too high to keep the group solvent. " +
+                          "This is due to the sum of existing session amounts."                          
+        format.html { redirect_back_or_default :back }
       end
     end
   end
-  
 end

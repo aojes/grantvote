@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 11) do
     t.text     "proposal"
     t.boolean  "final",              :default => false, :null => false
     t.boolean  "awarded",            :default => false, :null => false
-    t.integer  "amount",             :default => 10,    :null => false
+    t.integer  "amount",             :default => 5,     :null => false
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 11) do
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.string   "purpose"
-    t.integer  "dues",                                             :default => 2,   :null => false
+    t.integer  "dues",                                             :default => 5,   :null => false
     t.decimal  "funds",              :precision => 9, :scale => 2, :default => 0.0, :null => false
     t.string   "permalink"
     t.datetime "created_at"
@@ -78,7 +78,10 @@ ActiveRecord::Schema.define(:version => 11) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.boolean  "interest"
-    t.string   "role",       :default => "basic", :null => false
+    t.string   "role",                                      :default => "basic", :null => false
+    t.boolean  "public",                                    :default => true,    :null => false
+    t.decimal  "contributes", :precision => 9, :scale => 2, :default => 0.0,     :null => false
+    t.decimal  "rewards",     :precision => 9, :scale => 3, :default => 0.0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

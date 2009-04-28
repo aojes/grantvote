@@ -2,9 +2,9 @@
   .prepend-top
     .span-8.prepend-1
       - if controller.controller_name == "groups"
-        %h2= link_to image_tag(group.photo.url(:large), :alt => "to group voting page"), group_grants_path(group), :title => "View Session"
+        %h2= link_to image_tag(group.photo.url(:display), :alt => "to group voting page"), group_grants_path(group), :title => "View Session"
       - else
-        %h2= link_to image_tag(group.photo.url(:large), :alt => "to group home page"), group_path(group)
+        %h2= link_to image_tag(group.photo.url(:display), :alt => "to group home page"), group_path(group)
     .span-14.append-1.last
       %h2=h group.name
       %h3=h group.purpose

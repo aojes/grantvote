@@ -4,36 +4,31 @@ class Group < ActiveRecord::Base
   
   MIN_NAME, MAX_NAME = [2, 140]
   MIN_PURPOSE, MAX_PURPOSE = [3, 200]
-  MIN_DUES, MAX_DUES = [1, 5]
-  
-  YIELD_RANK = {
-    :five  => 0.90, # dues = 5
-    :four  => 0.87, #      = 4
-    :three => 0.85, #      = 3
-    :two   => 0.80, #      = 2
-    :one   => 0.65  #      = 1
-   }
+  DUES = 5
+  MIN_DUES, MAX_DUES = [5, 5] # defer
   
   MAX_FILE_SIZE = 5.megabytes
   
-  # acts_as_taggable_on :tags
+  # acts_as_taggable_on :tags  FIXME defer
   
   has_many :grants                            #   
   has_many :memberships                       # don't destroy any data
   has_many :users, :through => :memberships
   has_many :comments, :as => :commentable  
 
-  has_permalink :name
+  has_permalink :name # TODO close loophole to fake permalkinks (group, grant)
   
-  validates_presence_of :name, :purpose, :dues
+  validates_presence_of :name, :purpose # :dues
   validates_length_of :name, :in => MIN_NAME..MAX_NAME, 
                    :message => "can be #{MIN_NAME} to #{MAX_NAME} characters"
   validates_uniqueness_of :name
   validates_length_of :purpose, :in => MIN_PURPOSE..MAX_PURPOSE,
-             :message => "can be #{MIN_PURPOSE} to #{MAX_PURPOSE} characters"  
-  validates_numericality_of :dues, :only_integer => true, 
-    :greater_than_or_equal_to => MIN_DUES, :less_than_or_equal_to => MAX_DUES, 
-         :message => "can be an integer value of #{MIN_DUES} up to #{MAX_DUES}"
+             :message => "can be #{MIN_PURPOSE} to #{MAX_PURPOSE} characters" 
+  # For now, dues are preset at $5 
+  # validates_inclusion_of :dues, :in => DUES
+#  validates_numericality_of :dues, :only_integer => true, 
+#    :greater_than_or_equal_to => MIN_DUES, :less_than_or_equal_to => MAX_DUES, 
+#         :message => "can be an integer value of #{MIN_DUES} up to #{MAX_DUES}"
   has_attached_file :photo, :styles => {
                                :thumb   => "32x32#", 
                                :small   => "48x48#",
@@ -48,11 +43,20 @@ class Group < ActiveRecord::Base
   validates_attachment_content_type :photo, 
                       :content_type => ['image/jpeg', 'image/png', 'image/gif']
   ## defer
-  # validates_attachment_presence :photo
+  # validates_attachment_presence :photo SET EDIT BEFORE PUBLIC
   
-  named_scope :interest, lambda { |*args|
-    { :conditions => { :dues => args.first..args.second } }
-  }
+  #  named_scope :interest, lambda { |*args|
+  #    { :conditions => { :dues => args.first..args.second } }
+  #  }
+  #  
+  
+  def solvent?
+    funds >= grants.session.sum(:amount)
+  end
+  
+  def deduct_funds!(amount)
+    update_attributes!(:funds => (funds - amount))
+  end
   
   def to_param
     permalink

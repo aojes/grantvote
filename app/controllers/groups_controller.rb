@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params[:group])
-    @group.memberships.build(:user => current_user, :interest => true)
+    @group.memberships.build(:user => current_user, :interest => false)
     # TODO assign pebble on dues paid
     respond_to do |format|
       if @group.save

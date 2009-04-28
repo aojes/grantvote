@@ -1,28 +1,27 @@
-confirm solvency of group before create dependent
+
+implement search with circulating index
 
 _________________
 defer 
   
   important
-    
-    determine solvency of group for index & search
-    test writing and voting restrictions
+
+    new route for queue after session (voted session) (voting roster per user?)
     update membership interest, cycle dues against group finances
-    scale minimum award according to required dues and the number of voters
+    DO NOT scale minimum award (encourages participation / play / dwell time)
     
   normal workflow
-
-    create default photos for users, groups, grants    
-    implement search with circulating index
+  
     paginate groups
+    optimize page titles
+    create default photos for users, groups, grants  
     implement email notifications
     dynamic chart on right-hand side of login/registration view
     better validation of comment markup (malformed markup breaks layout)
-    make onclick button sprite work
-    figure group comments more prominently (make forum?)
     facilitate audio & video proposals
+    figure group comments more prominently (make forum?)
     debug tagging system
-    optimize page titles
+    make onclick button sprite work
     implement payment system / gateway
 
 _________________
@@ -31,6 +30,7 @@ business
   make company
   get business bank account
   production on heroku & S3 or slicehost ?
+  legal TOS 
   
 _________________
 design
@@ -42,5 +42,4 @@ _________________
 notes
 
   don't destroy any data
-  user can fake the permalink on edit grant
   

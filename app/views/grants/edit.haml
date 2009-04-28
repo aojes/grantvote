@@ -3,7 +3,7 @@
   %h2.prepend-1.append-2 Edit Grant
   .span-21.prepend-2.append-1.last  
     - form_for @grant, :html => {:multipart => true} do |f|
-      = f.error_messages
+      .span-22.pull-1.last= f.error_messages
       .span-11
         = f.text_area :proposal
       .span-10.last

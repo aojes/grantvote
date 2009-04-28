@@ -2,7 +2,7 @@ class Grant < ActiveRecord::Base
   
   AWARD_THRESHOLD, AWARD_THRESHOLD_PCT = [0.500, 50]
   
-  MIN_AWARD = 10
+  MIN_AWARD = 5
   MIN_NAME, MAX_NAME = [2, 60]
   
   GREEN, BLUE, RED, SCALE = ["E6EFC2", "DFF4FF", "FBE3E4", "DFDFDF"]
@@ -37,7 +37,8 @@ class Grant < ActiveRecord::Base
   validates_numericality_of :amount, :only_integer => true, 
     :greater_than_or_equal_to => MIN_AWARD, 
     :message => "can be an integer value greater than or equal to $#{MIN_AWARD}"
-  ## defer
+  
+  # TODO
   # validates_attachment_presence :photo
   
   named_scope :awarded,  :conditions => {:awarded => true}
@@ -55,7 +56,7 @@ class Grant < ActiveRecord::Base
   end
 
   def vote_threshold
-    voters * AWARD_THRESHOLD  # .ceil
+    voters * AWARD_THRESHOLD 
   end
 
   def finalizable?
@@ -73,9 +74,7 @@ class Grant < ActiveRecord::Base
   def award!
     transaction do
       update_attributes!(:final => true, :awarded => true)
-      group.update_attributes!(:funds => (group.funds - amount))
-      # ...or better yet:
-      # group.deduct_funds!(amount)
+      group.deduct_funds!(amount)
     end
   end
 
