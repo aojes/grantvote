@@ -1,29 +1,40 @@
+better validation of comment markup (malformed markup breaks layout)
 
-implement search with circulating index
+work on public profiles
+    
+use very basic JS editor for new comments and grants
+
+facilitate audio &/or video proposals
 
 _________________
 defer 
   
   important
-
+    
+    put site up so Ryan and Sean can log in
     new route for queue after session (voted session) (voting roster per user?)
     update membership interest, cycle dues against group finances
-    DO NOT scale minimum award (encourages participation / play / dwell time)
     
   normal workflow
-  
-    paginate groups
+    
+    adapt all views to common dues
     optimize page titles
     create default photos for users, groups, grants  
-    implement email notifications
-    dynamic chart on right-hand side of login/registration view
-    better validation of comment markup (malformed markup breaks layout)
-    facilitate audio & video proposals
-    figure group comments more prominently (make forum?)
     debug tagging system
+    make current link stand out in .nav
+    implement email notifications
+    figure group comments more prominently (make forum?)
     make onclick button sprite work
+    dynamic chart on right-hand side of login/registration view
     implement payment system / gateway
+  
+_________________
+design
 
+  groups view  
+  group view
+  session view
+  
 _________________
 business
   
@@ -33,13 +44,8 @@ business
   legal TOS 
   
 _________________
-design
-  
-  splash page for /grants & /groups & default views
-  create user cred images
-
-_________________
 notes
 
   don't destroy any data
+  don't scale minimum award
   

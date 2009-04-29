@@ -1,7 +1,8 @@
 class GrantsController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :update]
   before_filter :verify_authenticity_token
-
+  before_filter :store_location
+  
   def index
     if params[:group_id]
       @grants = Group.find_by_permalink(params[:group_id]).grants.chronological        
@@ -24,7 +25,7 @@ class GrantsController < ApplicationController
     @grant = current_user.grants.build(params[:grant])
     
     if @grant.save
-     flash[:notice] =  "Created"
+     flash[:notice] =  "Grant created. "
      redirect_to group_grant_path(@grant.group, @grant)
     else
       render :action => "new"
@@ -40,7 +41,7 @@ class GrantsController < ApplicationController
 
     respond_to do |format|
       if @grant.update_attributes(params[:grant])
-        flash[:notice] = 'Updated'
+        flash[:notice] = 'Grant updated. '
         format.html { redirect_to group_grant_path(@grant.group, @grant) }
       else
         format.html { render :action => "edit" }

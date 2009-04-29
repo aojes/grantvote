@@ -48,7 +48,7 @@ namespace :db do
     # set permalinks
     Group.find(:all).each(&:save!)
         
-    Grant.populate 100 do |g|
+    Grant.populate 1000 do |g|
       g.user_id = [1, 2, 3]
       g.group_id = 1..5
       g.name = Faker::Name.name

@@ -14,7 +14,7 @@ class VotesController < ApplicationController
         else
           limit = @vote.session_limit_message 
           flash[:error] = limit ? limit : "Bleep, bloop. Please try again."
-          format.html { redirect_to :back }
+          format.html { redirect_back_or_default :back }
         end
       else
         flash[:warning] = "Amount is too high to keep the group solvent. " +

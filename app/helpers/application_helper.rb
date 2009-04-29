@@ -71,43 +71,49 @@ module ApplicationHelper
     Grant.find_by_permalink(permalink).id
   end
   
-  def compile_and_render_user_cred_images(user, size = "small")
-    user_cred_image_url_set(user.credit.pebbles, user.credit.beads, user.credit.buttons, user.credit.pens, user.credit.shells, user.credit.pearls, user.credit.ribbons, user.credit.laurels, size)
+  def user_cred_images(user, size = "small", limit = nil)
+    compilation = user_cred_image_url_set(user.credit.pebbles, user.credit.beads, user.credit.buttons, user.credit.pens, user.credit.shells, user.credit.pearls, user.credit.ribbons, user.credit.laurels, size, limit)
+    if limit
+      compilation.values_at(0..2).join
+    else
+      compilation.values_at(0..23).join
+    end
   end
   
-  def user_cred_image_url_set(p, b, bu, pe, sh, per, r, l, size = "small")
+  def user_cred_image_url_set(p, b, bu, pe, sh, per, r, l, size, limit)
     pebbles, beads, buttons, pens = "","","",""
     shells, pearls, ribbons, laurels = "","","",""
-    p.times do
-      pebbles += "<img alt='pebble' src='#{cred_image_path(:pebble, size)}' title='pebble'/>&nbsp; "
-    end
-    b.times do
-      beads += "<img alt='bead' src='#{cred_image_path(:bead, size)}' title='bead'/>&nbsp; "
-    end
-    bu.times do
-      buttons += "<img alt='button' src='#{cred_image_path(:button, size)}' title='button'/>&nbsp; "
-    end
-    pe.times do
-      pens += "<img alt='pen' src='#{cred_image_path(:pen, size)}' title='pen'/>&nbsp; "
-    end
-    sh.times do
-      shells += "<img alt='shell' src='#{cred_image_path(:shell, size)}' title='shell'/>&nbsp; "
-    end
-    per.times do
-      pearls += "<img alt='pearl' src='#{cred_image_path(:pearl, size)}' title='pearl'/>&nbsp; "
+    total = p + b + bu + pe + sh + per + r + l
+    compilation = []
+
+    l.times do
+      compilation << "<img alt='laurel' src='#{cred_image_path(:laurel, size)}' title='laurel'/>"
     end
     r.times do
-      ribbons += "<img alt='ribbon' src='#{cred_image_path(:ribbon, size)}' title='ribbon'/>&nbsp; "
+      compilation << "<img alt='ribbon' src='#{cred_image_path(:ribbon, size)}' title='ribbon'/>"
+    end    
+    per.times do
+      compilation << "<img alt='pearl' src='#{cred_image_path(:pearl, size)}' title='pearl'/>"
     end
-    l.times do
-      laurels += "<img alt='laurel' src='#{cred_image_path(:laurel, size)}' title='laurel'/>&nbsp; "
+    sh.times do
+      compilation << "<img alt='shell' src='#{cred_image_path(:shell, size)}' title='shell'/>"
     end
-    
-    pebbles + beads + buttons + pens + shells + pearls + ribbons + laurels
-    
+    pe.times do
+      compilation << "<img alt='pen' src='#{cred_image_path(:pen, size)}' title='pen'/>"
+    end
+    bu.times do
+      compilation << "<img alt='button' src='#{cred_image_path(:button, size)}' title='button'/>"
+    end
+    b.times do
+      compilation << "<img alt='bead' src='#{cred_image_path(:bead, size)}' title='bead'/>"
+    end
+    p.times do
+      compilation << "<img alt='pebble' src='#{cred_image_path(:pebble, size)}' title='pebble'/>"
+    end
+    compilation
   end  
   
-  def cred_image_path(type, size = "small")
+  def cred_image_path(type, size)
     prefix = Credit::IMAGE_PATH
     case type.to_s
       when "pebble" 

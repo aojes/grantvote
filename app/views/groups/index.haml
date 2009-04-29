@@ -5,15 +5,9 @@
     %legend Search Groups
     - f.fields_for @search.conditions do |groups|
       .form_row
-        = groups.text_field :name_keywords
-        = submit_button "Search"
-    Per page: 
-    = per_page_select
-    - if @groups_count > 0
-      - if @search.page_count > 1
-        %br 
-        Page: 
-        = page_select        
+        = groups.text_field :name_keywords, :class => "text buttonless_field"
+        -#= submit_button "Search"
+
 -#
   - if @groups_count > 0 
     = #{@groups_count} groups found
@@ -39,16 +33,22 @@
   .span-22.prepend-2.prepend-top
     .span-3
       = link_to image_tag(group.photo.url(:medium), :alt => "visit group"), group_path(group), :alt => h(group.name)
-    .span-9
+    .span-9{:style => "margin-right: 1em"} 
       %h3= link_to h(group.name), group_path(group), :alt => h(group.name)
       == #{pluralize group.memberships.voters.count, "voter"}
-      == | $#{group.dues} dues
       == | $#{group.funds.to_i} pool 
-      == | #{group.created_at.strftime "%B %Y"}
+      == | #{pluralize group.grants.session.count, "session"}
+      == | formed
+      = group.created_at.strftime "%B %Y"
       -#.prepend-top= h group.purpose
-    .span-7.success.last 
+    .span-7.last
       %p<
-        %strong solvency chart
-      -#= link_to 'Edit', edit_group_path(group)
-      -#= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
-
+        %strong=h group.purpose
+%br{ :style => "clear:both" }        
+- if @groups_count > 0
+  - if @search.page_count > 1
+    .span-24.pagination.prepend-top
+      %br
+      %br
+      %h3= page_links
+        

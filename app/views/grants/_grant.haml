@@ -15,8 +15,8 @@
         = link_to image_tag(@grant.user.photo.url(:small), :alt=> h(@grant.user.login), :title => h(@grant.user.login)), "/#{h @grant.user.login}"
       = h @grant.name
     %h3== $#{@grant.amount.to_i.to_s}
-  .span-5.success.last 
-    %h6 Cred    
+  .span-5.last 
+    = user_cred_images(@grant.user, :small, true)
   .span-15
     .span-3
       = image_tag @grant.photo.url(:medium), :alt => h(@grant.name)

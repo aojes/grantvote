@@ -1,8 +1,8 @@
 class GroupsController < ApplicationController
+  require 'searchlogic'
+
   before_filter :require_user, :except => [:index, :show]
   before_filter :verify_authenticity_token
-  
-  require 'searchlogic'
   
   def index
     
@@ -15,10 +15,13 @@ class GroupsController < ApplicationController
         g.name_keywords = query
         g.purpose_keywords = query
       end
-    end
-    
-    @groups, @groups_count = @search.all, @search.count
+      @search.per_page = 10
 
+      
+    else
+      # will_paginate @groups, by popularity and solvency
+    end
+    @groups, @groups_count = @search.all, @search.count
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -50,7 +53,7 @@ class GroupsController < ApplicationController
     # TODO assign pebble on dues paid
     respond_to do |format|
       if @group.save
-        flash[:notice] = 'Group created '
+        flash[:notice] = 'Group created. '
         format.html { redirect_to(@group) }
       else
         format.html { render :action => "new" }
@@ -63,7 +66,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        flash[:notice] = 'Updated '
+        flash[:notice] = 'Group updated. '
         format.html { redirect_to(@group) }
       else
         format.html { render :action => "edit" }

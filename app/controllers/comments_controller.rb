@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build(params[:comment])
 
     if @comment.save
-      flash[:notice] = "Created"
+      flash[:notice] = "Comment created. "
       case @comment.commentable_type
         when "Group"
           redirect_to group_path(Group.find(@comment.commentable_id)) # FIXME?
