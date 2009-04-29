@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 11) do
   end
 
   add_index "groups", ["name"], :name => "index_groups_on_name"
+  add_index "groups", ["purpose"], :name => "index_groups_on_purpose"
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"

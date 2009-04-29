@@ -9,10 +9,12 @@ class CreateGroups < ActiveRecord::Migration
       t.timestamps
     end
     add_index :groups, :name
+    add_index :groups, :purpose
   end
 
   def self.down
     remove_index :groups, :name
+    remove_index :groups, :purpose
     drop_table :groups
   end
 end

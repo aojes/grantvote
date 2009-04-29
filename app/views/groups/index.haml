@@ -1,5 +1,40 @@
 %h2.prepend-1 Listing groups
 .prepend-1= link_to 'New group', new_group_path 
+- form_for @search do |f|
+  %fieldset
+    %legend Search Groups
+    - f.fields_for @search.conditions do |groups|
+      .form_row
+        = groups.text_field :name_keywords
+        = submit_button "Search"
+    Per page: 
+    = per_page_select
+    - if @groups_count > 0
+      - if @search.page_count > 1
+        %br 
+        Page: 
+        = page_select        
+-#
+  - if @groups_count > 0 
+    = #{@groups_count} groups found
+    %table
+      %tr
+        %th= order_by_link :id
+        %th= order_by_link :name
+        %th= order_by_link :purpose
+      - @groups.each do |group|
+        %tr
+          %td= group.id
+          %td= group.name 
+          %td= group.purpose 
+    Per page: 
+    = per_page_select
+    - if @search.page_count > 1
+      %br 
+      Page: 
+      = page_select
+  - else
+    No groups were returned
 - @groups.each do |group|
   .span-22.prepend-2.prepend-top
     .span-3

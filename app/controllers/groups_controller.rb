@@ -2,8 +2,22 @@ class GroupsController < ApplicationController
   before_filter :require_user, :except => [:index, :show]
   before_filter :verify_authenticity_token
   
+  require 'searchlogic'
+  
   def index
-    @groups = Group.all
+    
+    @search = Group.new_search(params[:search])
+    
+    if params[:search]
+      query = params[:search][:conditions][:name_keywords].split
+      
+      @search.conditions.or_group do |g|
+        g.name_keywords = query
+        g.purpose_keywords = query
+      end
+    end
+    
+    @groups, @groups_count = @search.all, @search.count
 
     respond_to do |format|
       format.html # index.html.erb
