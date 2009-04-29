@@ -1,6 +1,9 @@
 better validation of comment markup (malformed markup breaks layout)
+  textile? markdown? JS editor?
 
 work on public profiles
+
+change default redirect on session and change root_path
     
 use very basic JS editor for new comments and grants
 

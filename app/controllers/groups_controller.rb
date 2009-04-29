@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
       
       @search.conditions.or_group do |g|
         g.name_keywords = query
-        g.purpose_keywords = query
+        g.or_purpose_keywords = query
       end
       @search.per_page = 10
 

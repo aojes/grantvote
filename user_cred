@@ -20,12 +20,12 @@ Debit (draft)
   give button = 3 beads
   give pen = 3 buttons
  
-  hold tiebreaker = 1 button  # available on any vote, yea or nay
+  hold tiebreaker = 1 button  # available on any vote, one per vote, yea or nay
+                              # usage final, no refund, anonymous
                               # draw goes to yea
-                              # unless or until a tiebreaker is claimed outright
-                              
-  take tiebreaker = 3 buttons # available on any vote
-                              # claim tiebreaker outright, yea or nay
-                              # limit one per grant
-                              
-  # I'm not sure how to use the philanthropical credits
+    case 2 voters
+      yea (hold) & nay = yea
+         3 voters
+      yea nay (hold) yea = yea
+         4 voters
+      yea (hold) nay (hold) nay (hold) yea (hold) = yea

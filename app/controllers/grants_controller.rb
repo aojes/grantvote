@@ -1,7 +1,6 @@
 class GrantsController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :update]
   before_filter :verify_authenticity_token
-  before_filter :store_location
   
   def index
     if params[:group_id]

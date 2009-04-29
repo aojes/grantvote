@@ -41,6 +41,9 @@ class Grant < ActiveRecord::Base
   # TODO
   # validates_attachment_presence :photo
   
+  before_save :adapt_objects
+  before_save :adapt_links
+  
   named_scope :awarded,  :conditions => {:awarded => true}
   named_scope :defeated, :conditions => {:final => true, :awarded => false}
   named_scope :session,  :conditions => {:final => false}
@@ -86,7 +89,38 @@ class Grant < ActiveRecord::Base
     permalink
   end
   
+  private  
+  
+    def adapt_objects
+      a = proposal.include?("</object>")
+      b = proposal.include?("value=\"http://www.youtube.com")
+      c = proposal.include?("value=\"http://www.youtube-nocookie.com")
+      # d = proposal.include?("viddler.com") 
+      # Viddler seems to have OK defaults right now @ width=437
+      
+      if a
+        if b or c
+          proposal.gsub!(/width=\"\d+\"/, 'width="425"')
+          proposal.gsub!(/height=\"\d+\"/, 'height="344"')
+        end
+      end
+      true 
+    end  
+    
+    def adapt_links
+      a = proposal.include?("</a>")
+      proposal.gsub!(/<a.+?href/, '<a rel="nofollow" target="_blank" href') if a      
+      true
+    end
 end
+
+
+
+
+
+
+
+
 
 
 
