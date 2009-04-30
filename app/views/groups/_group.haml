@@ -7,19 +7,20 @@
       %br
       %br
     - else
-      %h2 Recent Awards
+      - if @group.grants.count.zero?
+        %h2 Welcome
+      - else
+        %h2 Recent Awards
     .prepend-1
       - grants_awarded.each do |grant|
         %h3<
           .flr= link_to image_tag(grant.user.photo.url(:small), :alt => h(grant.user.login)), "/#{h(grant.user.login)}", :title => h(grant.user.login)
           =h grant.name
-        %h5== $#{grant.amount.to_i}
+        %h5== $#{grant.amount}
         .span-3.last
           .span-3= link_to image_tag(grant.photo.url(:medium), :alt => h(grant.name)), group_grant_path(grant.group, grant)
           .span-3.prepend-top.last
-            .small<
-              &nbsp;
-              = session_award_time grant
+            .small== &nbsp;#{session_award_time grant}
         .span-10.last= simple_format grant.proposal, :style => "text-align: justify; line-height: 2" 
         %hr
     #comments
@@ -27,15 +28,14 @@
       %hr
       .last= render 'shared/comments', :comments => @group.comments
     %h5= link_to "Add Comment", new_group_comment_path(@group)
-  .span-6
-    .success
+  .span-6.prepend-1.prepend-top
+    .border-test
       -# FIXME use partial
-      %h3== Pool $#{@group.funds.floor.to_i} 
-      %h3= link_to "Join Group", new_group_membership_path(@group) if not member?(params[:id])
-      %h3= link_to "Write Grant", new_group_grant_path(@group) if voter?(params[:id])
-      -# %h3= "Pay Dues" unless voter?(params[:id])
-      %h3= link_to "Session", group_grants_path(@group) unless @group.grants.count.zero?
-    .success.prepend-top.last
+      -#%h3== Pool $#{@group.funds.floor.to_i} 
+      %h3= button_to "Join Group", new_group_membership_path(@group), :method => :get if not member?(params[:id])
+      %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
+      %h3= button_to "New Grant", new_group_grant_path(@group), :method => :get if voter?(params[:id])
+    .border-test.prepend-top.last
       - if @group.memberships.voters.count.zero?
         %h3= pluralize @group.memberships.members.count, "Member"
         - group_members(params[:id]).each do |m|
@@ -44,5 +44,8 @@
         %h3= pluralize @group.memberships.voters.count, "Voter"
         - group_voters(params[:id]).each do |v|
           = link_to image_tag(v.photo.url(:thumb), :alt => h(v.login)), "/#{h(v.login)}", :title => h(v.login)
+    %br
+    %br
+    %br          
     -#.success.prepend-top.last
       nifty charts       

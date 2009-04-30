@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(:version => 11) do
     t.integer  "user_id"
     t.string   "login"
     t.string   "name"
-    t.text     "detail"
+    t.string   "detail"
     t.string   "link"
     t.string   "location"
     t.string   "permalink"

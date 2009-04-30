@@ -74,7 +74,7 @@ module ApplicationHelper
   def user_cred_images(user, size = "small", limit = nil)
     compilation = user_cred_image_url_set(user.credit.pebbles, user.credit.beads, user.credit.buttons, user.credit.pens, user.credit.shells, user.credit.pearls, user.credit.ribbons, user.credit.laurels, size, limit)
     if limit
-      compilation.values_at(0..2).join
+      compilation.values_at(0..3).join
     else
       compilation.values_at(0..23).join
     end

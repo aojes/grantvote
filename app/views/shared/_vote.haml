@@ -1,13 +1,13 @@
-- form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
-  - if voter?(params[:group_id])
-    .center
+.center
+  - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
+    - if voter?(params[:group_id])
       = f.radio_button :cast, "yea"
-      %strong Yea
+      %strong.large Yea
       = submit_button "Vote"
-      %strong Nay
+      %strong.large Nay 
       = f.radio_button :cast, "nay"
       = f.hidden_field :user_id, :value => current_user.id
       = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
       = f.hidden_field :grant_id, :value => grant.id
-  - else
-    %h3 link to pay dues
+    - else
+      %h4 link to pay dues

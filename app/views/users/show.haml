@@ -1,7 +1,7 @@
 .prepend-1.span-22.append-1.prepend-top
   .prepend-1.span-7.append-1
     .span-2<
-      %p= image_tag @user.photo.url(:medium), :alt => "#{h @user.login}"
+      %p= link_to image_tag(@user.photo.url(:medium), :alt => "#{h @user.login}"), "/#{h @user.login}"
     .span-5.prepend-top.last<
       %h3.center=h @user.login  
     %br{:style => "clear: both"}
@@ -11,10 +11,11 @@
     = user_cred_images(@user, :medium)
     .flr
       %br
-      %br
-      %br
       .center= button_to 'Edit', edit_account_path, :method => :get      
-  .span-12.append-1.last
+    %br{:style => "clear:both"}
+    %br
+    %br    
+  .span-12.append-1.prepend-top.last
     %h3.prepend-top< 
       Groups
       %hr
@@ -31,4 +32,6 @@
     - @user.grants.session.each do |g|
       -# show all sessions on account page, only those voted on public profile
       = link_to image_tag(g.photo.url :small), group_grant_path(g.group, g), :alt => "#{h g.name}", :title => "#{h g.name}"
-    
+    %br
+    %br
+    %br     

@@ -3,7 +3,21 @@
   = form.text_field :login
 .form_row
   = form.label :email 
-  = form.text_field :email 
+  = form.text_field :email
+-# form.fields_for @user.profile do |p|
+  .form_row
+    = p.label :name, "Full name"
+    = p.text_field :name
+  .form_row
+    = p.label :location
+    = p.text_field :location
+  .form_row
+    = p.label :link
+    = p.text_field :link
+  .form_row
+    = p.label :detail, "About you"
+    = p.text_field :detail
+    = p.hidden_field :user_id, :value => @user.id
 .form_row
   = form.label :photo, "Photo"
   = form.file_field :photo 

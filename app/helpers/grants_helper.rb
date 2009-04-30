@@ -20,7 +20,8 @@ module GrantsHelper
     "http://chart.apis.google.com/chart?cht=bhs" +
     "&amp;chs=#{Grant::SESSION_BAR_CHART_X}x#{Grant::SESSION_BAR_CHART_Y}" +
     "&amp;chd=t:#{green}|#{blue}|#{red}|#{scale}" +
-    "&amp;chco=#{Grant::GREEN},#{Grant::BLUE},#{Grant::RED},#{Grant::SCALE}"
+    "&amp;chco=#{Grant::GREEN},#{Grant::BLUE},#{Grant::RED},#{Grant::SCALE}" +
+    "&amp;chf=bg,s,EDEDED"
   end
     
 end

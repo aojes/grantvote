@@ -1,10 +1,10 @@
 class ProfilesController < ApplicationController
 
   def view
-    @profile = Profile.find_by_permalink(params[:permalink])
+    @user = User.find_by_login(params[:permalink])
    
     respond_to do |format|
-      if @profile
+      if @user
         format.html
       else
         flash[:notice] = "The page you were looking for was not found."

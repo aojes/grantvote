@@ -1,3 +1,46 @@
-%h2
-  Profile for
-  =h @profile.login
+.prepend-1.span-22.append-1.prepend-top
+  .prepend-1.span-7.append-1
+    .span-2<
+      %p= link_to image_tag(@user.photo.url(:medium), :alt => "#{h @user.login}"), "/#{h @user.login}"
+    .span-5.prepend-top.last<
+      %h3.center=h @user.login  
+    %br{:style => "clear: both"}
+    %h6.quiet
+      = h @user.profile.name if @user.profile.name
+      = " ☼ " if @user.profile.name and @user.profile.location
+      = h @user.profile.location if @user.profile.location
+      -# TODO write helper method for links and breadcrumbs ...
+    - if @user.profile.link
+      %h5.quiet= link_to h(@user.profile.link), h(@user.profile.link) if @user.profile.link.include?("http://")
+    %h5.quiet=h @user.profile.detail if @user.profile.detail
+    %h3< 
+      Cred
+      %hr
+    = user_cred_images(@user, :medium)
+    .flr
+      %br
+      .center= button_to('Edit', edit_account_path, :method => :get) if @user == current_user
+    %br{:style => "clear:both"}
+    %br
+    %br 
+  .span-12.append-1.prepend-top.last
+    %h3.prepend-top< 
+      Groups
+      %hr
+    - @user.groups.each do |g|
+      = link_to image_tag(g.photo.url :small), group_path(g), :alt => "#{h g.name}", :title => "#{h g.name}"
+    %h3.prepend-top< 
+      Awards
+      %hr
+    - @user.grants.awarded.each do |g|
+      = link_to image_tag(g.photo.url :small), group_grant_path(g.group, g), :alt => "#{h g.name}", :title => "#{h g.name}"
+    %h3.prepend-top< 
+      Sessions
+      %hr
+    - @user.grants.session.each do |g|
+      - unless g.votes.count.zero?
+        = link_to image_tag(g.photo.url :small), group_grant_path(g.group, g), :alt => "#{h g.name}", :title => "#{h g.name}"
+    %br
+    %br
+    %br    
+    
