@@ -12,7 +12,7 @@
       - else
         %h2 Recent Awards
     .prepend-1
-      - grants_awarded.each do |grant|
+      - @grants_awarded.each do |grant|
         %h3<
           .flr= link_to image_tag(grant.user.photo.url(:small), :alt => h(grant.user.login)), "/#{h(grant.user.login)}", :title => h(grant.user.login)
           =h grant.name
@@ -22,6 +22,13 @@
           .span-3.prepend-top.last
             .small== &nbsp;#{session_award_time grant}
         .span-10.last= simple_format grant.proposal, :style => "text-align: justify; line-height: 2" 
+        %br{ :style => "clear:both" }
+        %hr        
+      - if @grants_awarded_count > 0
+        - if @search.page_count > 1
+          .span-10.pagination.center.prepend-top.last
+            %br
+            %h3= page_links
         %hr
     #comments
       %h6= pluralize @group.comments.count, "Comment"
@@ -30,8 +37,6 @@
     %h5= link_to "Add Comment", new_group_comment_path(@group)
   .span-6.prepend-1.prepend-top
     .border-test
-      -# FIXME use partial
-      -#%h3== Pool $#{@group.funds.floor.to_i} 
       %h3= button_to "Join Group", new_group_membership_path(@group), :method => :get if not member?(params[:id])
       %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
       %h3= button_to "New Grant", new_group_grant_path(@group), :method => :get if voter?(params[:id])

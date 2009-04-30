@@ -7,7 +7,7 @@
     - else
       .error Denied
   - else
-    Session Grant
+    .success= link_to "Session", group_grants_path(@grant.group)
 .span-21.prepend-2.append-1.last  
   .span-14.append-1
     %h3<
@@ -41,14 +41,16 @@
           == &nbsp; Denied #{@grant.updated_at.strftime("%B %d, %Y")} 
           %br
           == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
-  - if @grant.votes.count.zero?
-    .span-5.center.last
-      %p
-        - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
-          = f.hidden_field :cast, :value => "yea"
-          = f.hidden_field :user_id, :value => @grant.user_id
-          = f.hidden_field :group_id, :value => @grant.group_id
-          = f.hidden_field :grant_id, :value => @grant.id
-          %span{:style => "padding-left: 7px"}
-            = submit_button "Vote Into Session"
-          
+  .span-5.center.last
+    - unless @grant.final
+      - if @grant.votes.count.zero?
+        %p
+          - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
+            = f.hidden_field :cast, :value => "yea"
+            = f.hidden_field :user_id, :value => @grant.user_id
+            = f.hidden_field :group_id, :value => @grant.group_id
+            = f.hidden_field :grant_id, :value => @grant.id
+            %span{:style => "padding-left: 7px"}
+              = submit_button "Vote Into Session"
+      - elsif not @grant.user == current_user
+        .prepend-top= render 'shared/vote', :grant => @grant

@@ -29,6 +29,17 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find_by_permalink(params[:id])
+    
+    @search = @group.grants.new_search(params[:search])
+
+    @search.conditions.final = true
+    @search.per_page = 10
+    @search.order_as = "ASC"
+    @search.order_by = :updated_at
+    
+    @grants_awarded = @search.all
+
+    @grants_awarded_count = @search.count
 
     respond_to do |format|
       format.html # show.html.erb

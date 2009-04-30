@@ -1,6 +1,6 @@
 %h2.prepend-1.append-2 Group Session
 .span-21.prepend-2.append-1.last  
-  - group_session_grants(@grants).each do |grant|
+  - @grants.each do |grant|
     #div
       .span-14.append-1
         %h3<
@@ -15,6 +15,12 @@
         .span-11.last{:style => "text-align:justify"}
           = simple_format grant.proposal, :style => "line-height: 2"
       .span-5.last
-        == <img alt="session chart" src="#{session_bar_chart_url(grant)}" />
+        == <img alt="#{accessible_tally grant}" title="#{accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />
         %p= render 'shared/vote', :grant => grant
     %hr
+  - if @grants_count > 0
+    - if @search.page_count > 1
+      .span-10.pagination.center.prepend-top.last
+        %br
+        %h3= page_links
+      %hr    

@@ -4,8 +4,19 @@ class GrantsController < ApplicationController
   
   def index
     if params[:group_id]
-      @grants = Group.find_by_permalink(params[:group_id]).grants.chronological        
 
+     @group = Group.find_by_permalink(params[:group_id])
+     
+     @search = @group.grants.new_search(params[:search])
+
+     @search.conditions.final = false
+     @search.per_page = 10
+     @search.order_as = "ASC"
+     @search.order_by = :created_at
+    
+     @grants = @search.all
+     @grants_count = @search.count                          
+                          
     elsif params[:user_id]
       @grants = Grant.find_all_by_user_id(params[:user_id], 
                                             :order => "created_at ASC")
