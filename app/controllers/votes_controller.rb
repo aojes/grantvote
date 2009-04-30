@@ -10,7 +10,7 @@ class VotesController < ApplicationController
         if @vote.save
           final = @vote.final_message
           flash[:notice] = final ? final : "Voted successfully."
-          format.html { redirect_back_or_default :back }
+          format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
         else
           limit = @vote.session_limit_message 
           flash[:error] = limit ? limit : "Bleep, bloop. Please try again."

@@ -38,7 +38,7 @@ class Vote < ActiveRecord::Base
   end  
   
   def final_message
-    grant.final ? grant.awarded ? "Grant awarded!" : "Grant defeated." : nil
+    grant.final ? grant.awarded ? "Grant awarded!" : "Grant denied." : nil
   end
   
   def session_limit_message

@@ -42,7 +42,7 @@
           %br
           == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
   .span-5.center.last
-    - unless @grant.final
+    - unless @grant.final or not current_user or voted?(@grant)
       - if @grant.votes.count.zero?
         %p
           - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
