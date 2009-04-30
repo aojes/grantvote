@@ -1,5 +1,5 @@
 - if params[:group_id]
-  = render 'groups/header', :group => find_group(params[:group_id])
+  = render 'groups/header', :group => @group
   = render 'groups/session'
 - elsif params[:user_id]
   = render 'account'

@@ -9,18 +9,16 @@ class GroupsController < ApplicationController
     @search = Group.new_search(params[:search])
     
     if params[:search]
-      query = params[:search][:conditions][:name_keywords].split
+      if params[:search][:conditions]
+        query = params[:search][:conditions][:name_keywords].split
       
-      @search.conditions.or_group do |g|
-        g.name_keywords = query
-        g.or_purpose_keywords = query
+        @search.conditions.or_group do |g|
+          g.name_keywords = query
+          g.or_purpose_keywords = query
+        end
       end
-      @search.per_page = 10
-
-      
-    else
-      # will_paginate @groups, by popularity and solvency
-    end
+    end  
+    @search.per_page = 10
     @groups, @groups_count = @search.all, @search.count
     respond_to do |format|
       format.html # index.html.erb
@@ -56,11 +54,22 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find_by_permalink(params[:id])
+    
+    respond_to do |format|
+      if Membership.exists?(:user_id => current_user.id, 
+                                :group_id => @group.id,
+                                :interest => true, :role => "moderator")
+        format.html
+      else
+        format.html { redirect_back_or_default :back }
+      end
+    end                      
   end
 
   def create
     @group = Group.new(params[:group])
-    @group.memberships.build(:user => current_user, :interest => false)
+    @group.memberships.build(:user => current_user, :interest => true,
+                                                    :role => "moderator")
     # TODO assign pebble on dues paid
     respond_to do |format|
       if @group.save
@@ -87,14 +96,14 @@ class GroupsController < ApplicationController
 
 private
 
-  def destroy
-    @group = Group.find_by_permalink(params[:id])
-    @group.destroy
+#  def destroy
+#    @group = Group.find_by_permalink(params[:id])
+#    @group.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(groups_url) }
-      format.xml  { head :ok }
-    end
-  end
+#    respond_to do |format|
+#      format.html { redirect_to(groups_url) }
+#      format.xml  { head :ok }
+#    end
+#  end
   
 end

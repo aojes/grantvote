@@ -2,8 +2,6 @@ better validation of comment markup (malformed markup breaks layout)
   textile? markdown? JS editor?
   facilitate audio &/or video proposals
 
-paginate recent awards and session
-
 restrict edit action after group create (role based?)
 
 _________________

@@ -1,4 +1,4 @@
-- form_for @group do |f|
+- form_for @group, :html => { :multipart => true } do |f|
   .span-24
     .prepend-top
       .span-8.prepend-1
@@ -14,5 +14,5 @@
           = f.file_field :photo
           change photo
         .form_row.prepend-top.prepend-1
-          = submit_button "Preview"
+          = submit_button "Update"
   %br{:style => "clear: both"}
