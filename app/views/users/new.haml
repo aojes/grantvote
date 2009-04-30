@@ -2,4 +2,8 @@
 - form_for @user, :url => account_path, :html => {:multipart => true} do |f|
   = f.error_messages
   = render :partial => "form", :object => f
-  .prepend-4= submit_button "Register"
+  .prepend-4
+    %br
+    = submit_button "Register"
+%br
+%br

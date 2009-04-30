@@ -93,10 +93,10 @@ ActiveRecord::Schema.define(:version => 11) do
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
     t.string   "login"
-    t.string   "name"
-    t.string   "detail"
-    t.string   "link"
-    t.string   "location"
+    t.string   "name",       :default => "",        :null => false
+    t.string   "detail",     :default => "",        :null => false
+    t.string   "link",       :default => "http://", :null => false
+    t.string   "location",   :default => "",        :null => false
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"

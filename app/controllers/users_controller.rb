@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user.build_profile(:user => @user)
     @user.build_credit(:user => @user, :pebbles => 1)
     if @user.save
-      flash[:notice] = "Account registered. "
+      flash[:notice] = "Account created. "
       redirect_back_or_default account_url
     else
       render :action => :new
@@ -30,16 +30,11 @@ class UsersController < ApplicationController
 
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
-    profile = params[:user][:profile]
-    
+   
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Account updated. "
-      if profile
-        if @user.profile.update_attributes(profile)
-          flash[:notice] = "Profile updated."
-        end
-      end
-      redirect_to account_url
+      flash[:notice] = "Updated profile. "
+
+      redirect_to profile_path(@user.login)
     else
       render :action => :edit
     end

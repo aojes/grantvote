@@ -33,4 +33,12 @@ module GroupsHelper
     distance_of_time_in_words grant.created_at, grant.updated_at, true
   end  
   
+  def voted_sessions(grants)
+    count = 0
+    grants.each do |g|
+      count += 1 unless g.votes.count.zero?
+    end
+    count
+  end
+  
 end

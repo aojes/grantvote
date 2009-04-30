@@ -17,8 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :votes, :has_many => :comments
 
   map.profile ':permalink', :controller => "profiles", :action => "view"
-#  map.connect ':permalink.:format', :controller => "profiles", 
-#                                    :action => "view", :format => nil
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   

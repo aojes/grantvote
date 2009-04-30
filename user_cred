@@ -22,10 +22,6 @@ Debit (draft)
  
   hold tiebreaker = 1 button  # available on any vote, one per vote, yea or nay
                               # usage final, no refund, anonymous
-                              # draw goes to yea
-    case 2 voters
-      yea (hold) & nay = yea
-         3 voters
-      yea nay (hold) yea = yea
-         4 voters
-      yea (hold) nay (hold) nay (hold) yea (hold) = yea
+                              # a draw is a draw
+                              # scale minimum votes before calling tiebreakers
+

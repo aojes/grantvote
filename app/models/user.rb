@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   acts_as_authentic
-  # acts_as_tagger
+  # acts_as_tagger FIXME
   
   has_one  :profile
   has_one  :credit
@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :comments, :as => :commentable
   
+  accepts_nested_attributes_for :profile  
+
   has_attached_file :photo, :styles => {
                                :thumb   => "32x32#", 
                                :small   => "48x48#",

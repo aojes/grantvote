@@ -1,19 +1,15 @@
 better validation of comment markup (malformed markup breaks layout)
   textile? markdown? JS editor?
 
-make session chart alt attribute accessible (yea: 1, nay: 1, awaiting: 2)
-
-work on public profiles (edit form)
-
 paginate recent awards and session
 
 change default redirect on session and change root_path
     
-use very basic JS editor for new comments and grants
-
 facilitate audio &/or video proposals
 
 restrict edit action after group create (role based)
+
+check duplicate grant names for different groups
 _________________
 defer 
   
@@ -25,6 +21,7 @@ defer
     
   normal workflow
     
+    change login / registration redirect (time for the splash page)    
     optimize page titles
     create default photos for users, groups, grants  
     debug tagging system
@@ -38,9 +35,11 @@ defer
 _________________
 design
 
+  splash page
   groups view  
   group view
   session view
+  edit profile view
   
 _________________
 business
@@ -54,5 +53,5 @@ _________________
 notes
 
   don't destroy any data
-  don't scale minimum award
+  don't scale minimum award (at least not at first)
   

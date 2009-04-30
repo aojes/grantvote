@@ -23,6 +23,18 @@ module GrantsHelper
     "&amp;chco=#{Grant::GREEN},#{Grant::BLUE},#{Grant::RED},#{Grant::SCALE}" +
     "&amp;chf=bg,s,EDEDED"
   end
+  
+  def accessible_tally(grant)
+    voters   = grant.group.memberships.voters.count
+    yea      = grant.votes.yea.count
+    nay      = grant.votes.nay.count
+    awaiting = voters - yea - nay
+    votes = "#{yea} Yea, #{nay} Nay, "  
+    status = grant.final   ? 
+             grant.awarded ? 
+                 "Awarded" : "Denied" : "Awaiting #{awaiting}"
+    votes + status
+  end
     
 end
 

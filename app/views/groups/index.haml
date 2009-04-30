@@ -37,7 +37,7 @@
       %h3= link_to h(group.name), group_path(group), :alt => h(group.name)
       == #{pluralize group.memberships.voters.count, "voter"}
       == | $#{group.funds.to_i} pool 
-      == | #{pluralize group.grants.session.count, "session"}
+      == | #{pluralize voted_sessions(group.grants.session), "session"}
       == | formed
       = group.created_at.strftime "%B %Y"
       -#.prepend-top= h group.purpose
@@ -51,4 +51,5 @@
       %br
       %br
       %h3= page_links
-        
+%br
+%br      
