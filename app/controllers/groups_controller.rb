@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
 
     @search.conditions.final = true
     @search.per_page = 10
-    @search.order_as = "ASC"
+    @search.order_as = "DESC"
     @search.order_by = :updated_at
     
     @grants_awarded = @search.all
@@ -56,9 +56,8 @@ class GroupsController < ApplicationController
     @group = Group.find_by_permalink(params[:id])
     
     respond_to do |format|
-      if Membership.exists?(:user_id => current_user.id, 
-                                :group_id => @group.id,
-                                :interest => true, :role => "moderator")
+
+      if @group.authorize_edit?(current_user)
         format.html
       else
         format.html { redirect_back_or_default :back }
@@ -68,8 +67,8 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params[:group])
-    @group.memberships.build(:user => current_user, :interest => true,
-                                                    :role => "moderator")
+    @group.memberships.build(:user => current_user, :interest => false,
+                                                    :role => "creator")
     # TODO assign pebble on dues paid
     respond_to do |format|
       if @group.save

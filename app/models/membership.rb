@@ -6,4 +6,5 @@ class Membership < ActiveRecord::Base
   
   named_scope :voters,  :conditions => { :interest => true } 
   named_scope :members, :conditions => { :interest => false } 
+  
 end

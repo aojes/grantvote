@@ -31,18 +31,18 @@
     No groups were returned
 - @groups.each do |group|
   .span-22.prepend-2.prepend-top
-    .span-3
-      = link_to image_tag(group.photo.url(:medium), :alt => "visit group"), group_path(group), :alt => h(group.name)
+    .span-3{:style => "min-height: 102px"}
+      = link_to image_tag(group.photo.url(:large), :alt => "visit group"), group_path(group), :alt => h(group.name)
     .span-9{:style => "margin-right: 1em"} 
       %h3= link_to h(group.name), group_path(group), :alt => h(group.name)
       == #{pluralize group.memberships.voters.count, "voter"}
-      == | $#{group.funds.to_i} pool 
+      == | #{number_to_currency group.funds.floor, :precision => 0} pool 
       == | #{pluralize voted_sessions(group.grants.session), "session"}
       == | formed
       = group.created_at.strftime "%B %Y"
       -#.prepend-top= h group.purpose
     .span-7.last
-      %p<
+      %span{:style => "position:relative; top: 4px"}
         %strong=h group.purpose
 %br{ :style => "clear:both" }        
 - if @groups_count > 0

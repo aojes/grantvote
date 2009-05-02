@@ -24,7 +24,7 @@ class Vote < ActiveRecord::Base
   end
   
   def existing_user_group_session
-    not group.grants.user_group_session(user.id, group.id).empty?
+    not group.grants.user_group_session(user.id, grant.group.id).empty?
   end  
   
   def check_grant_finalization

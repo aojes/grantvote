@@ -1,4 +1,6 @@
 class GrantsController < ApplicationController
+  require 'searchlogic'
+  
   before_filter :require_user, :only => [:new, :create, :update]
   before_filter :verify_authenticity_token
   
@@ -33,6 +35,7 @@ class GrantsController < ApplicationController
   
   def create
     @grant = current_user.grants.build(params[:grant])
+   # @grant.group_id = Group.find_by_permalink(params[:grant][:group_id]).id
     
     if @grant.save
      flash[:notice] =  "Grant created. "

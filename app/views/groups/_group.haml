@@ -2,8 +2,8 @@
   .span-14.prepend-1.append-1.last
     - if @group.memberships.voters.count.zero?
       %h3
-        .flr= button_to 'Edit Group', edit_group_path(@group), :method => :get, :onclick => "this.blur();"
-        Anyone can edit this group until dues are paid
+        .flr= button_to 'Edit', edit_group_path(@group), :method => :get, :onclick => "this.blur();"
+        Creator can edit this group until anyone pays dues
       %br
       %br
     - else
@@ -16,12 +16,17 @@
         %h3<
           .flr= link_to image_tag(grant.user.photo.url(:small), :alt => h(grant.user.login)), "/#{h(grant.user.login)}", :title => h(grant.user.login)
           =h grant.name
-        %h5== $#{grant.amount}
+        %h5== #{number_to_currency grant.amount, :precision => 0}
         .span-3.last
           .span-3= link_to image_tag(grant.photo.url(:medium), :alt => h(grant.name)), group_grant_path(grant.group, grant)
           .span-3.prepend-top.last
-            .small== &nbsp;#{session_award_time grant}
-        .span-10.last= simple_format grant.proposal, :style => "text-align: justify; line-height: 2" 
+            &nbsp;
+        .span-10.last
+          - if not grant.media.blank?
+            = simple_format grant.media
+            = simple_format grant.proposal, :style => "text-align: justify; line-height: 2; margin-right: -40px;" 
+          - else
+            = simple_format grant.proposal, :style => "text-align: justify; line-height: 2;"
         %br{ :style => "clear:both" }
         %hr        
       - if @grants_awarded_count > 0
@@ -29,7 +34,7 @@
           .span-10.pagination.center.prepend-top.last
             %br
             %h3= page_links
-        %hr
+          %hr
     #comments
       %h6= pluralize @group.comments.count, "Comment"
       %hr

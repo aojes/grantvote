@@ -1,8 +1,12 @@
-better validation of comment markup (malformed markup breaks layout)
-  textile? markdown? JS editor?
-  facilitate audio &/or video proposals
+before_create on Vote is broken  (user_group_session returns grants not votes)
 
-restrict edit action after group create (role based?)
+for now, change usage of "= simple_format @" to "%p=h @" (proposal now string)
+  better validation of comment markup 
+  parse media
+
+optimize page titles
+
+set default photos for users, groups, grants  
 
 _________________
 defer 
@@ -15,16 +19,15 @@ defer
     
   normal workflow
     
+    safeguard against double post
     put "Writeboard" on /account page
-    change login redirect (time for the splash page)    
-    optimize page titles
-    create default photos for users, groups, grants  
-    debug tagging system
-    make current link stand out in .nav
-    implement mailing system
+    put up Leaderboard
+    make current nav link appear same as hover
     figure group comments more prominently (make forum?)
-    make onclick button sprite work
+    make onclick button sprite work (unnecessary?)
+    debug tagging system
     dynamic chart on right-hand side of login/registration view
+    implement mailing system
     implement payment system
   
 _________________
@@ -49,4 +52,4 @@ notes
 
   don't destroy any data
   don't scale minimum award (at least not at first)
-  
+  "Pool" on group page is misplaced without group photo

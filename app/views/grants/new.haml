@@ -1,25 +1,12 @@
-%h2.prepend-1 New Grant
-%p
-  - form_for @grant, :html => {:multipart => true} do |f|
-    = f.error_messages
-    .form_row
-      = f.label :name
-      = f.text_field :name
-    .form_row
-      = f.label "Request Amount"
-      = f.text_field :amount
-    .form_row
-      = f.label :proposal
-      = f.text_area :proposal
-    .form_row
-      = f.label "Photo"
-      = f.file_field :photo
-      = f.hidden_field :user_id, :value => current_user.id
-      = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
-    .prepend-4
-      %br
-      = f.submit "Preview"
-%br
-%br
-%br    
+= render 'groups/header', :group => find_group(params[:group_id])
+- form_for @grant, :html => { :multipart => true } do |f|
+  = render 'form', :object => f
+  = f.hidden_field :user_id, :value => current_user.id
+  = f.hidden_field :group_id, :value => find_group_id(params[:group_id])  
+  .prepend-4
+    %br
+    = f.submit "Preview"
+    %br
+    %br
+    %br    
     

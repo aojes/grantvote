@@ -23,7 +23,11 @@
       .span-2.prepend-top.last
         &nbsp;
     .span-11.last{:style => "text-align:justify"}
-      = simple_format @grant.proposal, :style => "line-height: 2"
+      - if not @grant.media.blank?
+        = simple_format @grant.media
+        .large= simple_format @grant.proposal, :style => "line-height: 1.8; margin-right: -40px;"
+      - else
+        .large= simple_format @grant.proposal, :style => "line-height: 2"
       - if @grant.votes.count.zero?
         = button_to "Edit", edit_group_grant_path(@grant.group, @grant), :method => :get
       %br{:style => "clear: both"}

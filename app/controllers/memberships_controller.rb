@@ -12,7 +12,7 @@ class MembershipsController < ApplicationController
     respond_to do |format|
       if @membership.save
         flash[:notice] = 'Membership created.'
-        format.html { redirect_to group_path(Group.find_by_permalink(params[:group_id])) }
+        format.html { redirect_to group_path(@membership.group) }
       else
         format.html { redirect_back_or_default :back }
       end

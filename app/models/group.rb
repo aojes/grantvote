@@ -58,6 +58,14 @@ class Group < ActiveRecord::Base
     update_attributes!(:funds => (funds - amount))
   end
   
+  def authorize_edit?(user)
+    creator = Membership.exists?(:role => 'creator', :user_id => user.id, 
+          :group_id => self.id)
+    moderator = Membership.exists?(:role => 'moderator', :user_id => user.id, 
+          :group_id => self.id, :interest => true)  
+    (creator and funds == 0) or (moderator and funds == 0)
+  end
+  
   def to_param
     permalink
   end
