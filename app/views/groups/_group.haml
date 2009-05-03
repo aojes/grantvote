@@ -14,11 +14,11 @@
     .prepend-1
       - @grants_awarded.each do |grant|
         %h3<
-          .flr= link_to image_tag(grant.user.photo.url(:small), :alt => h(grant.user.login)), "/#{h(grant.user.login)}", :title => h(grant.user.login)
+          .flr= link_to user_defined_image(grant.user, :small, :alt => h(grant.user.login), :title => h(grant.user.login)), "/#{h(grant.user.login)}"
           =h grant.name
         %h5== #{number_to_currency grant.amount, :precision => 0}
         .span-3.last
-          .span-3= link_to image_tag(grant.photo.url(:medium), :alt => h(grant.name)), group_grant_path(grant.group, grant)
+          .span-3= link_to user_defined_image(grant, :medium, :alt => h(grant.name)), group_grant_path(grant.group, grant)
           .span-3.prepend-top.last
             &nbsp;
         .span-10.last
@@ -49,11 +49,11 @@
       - if @group.memberships.voters.count.zero?
         %h3= pluralize @group.memberships.members.count, "Member"
         - group_members(params[:id]).each do |m|
-          = link_to image_tag(m.photo.url(:thumb), :alt => h(m.login)), "/#{h(m.login)}", :title => h(m.login)
+          = link_to user_defined_image(m, :thumb, :alt => h(m.login), :title => h(m.login)), "/#{h(m.login)}"
       - else
         %h3= pluralize @group.memberships.voters.count, "Voter"
         - group_voters(params[:id]).each do |v|
-          = link_to image_tag(v.photo.url(:thumb), :alt => h(v.login)), "/#{h(v.login)}", :title => h(v.login)
+          = link_to user_defined_image(v, :thumb, :alt => h(v.login), :title => h(v.login)), "/#{h(v.login)}"
     %br
     %br
     %br          

@@ -4,14 +4,14 @@
     - unless grant.user == current_user or grant.votes.count.zero?
       .span-14.append-1
         %h3<
-          .flr= link_to image_tag(grant.user.photo.url(:small), :alt=> "#{grant.user.login.capitalize}"), "/#{h(grant.user.login)}", :title => h(grant.user.login)
+          .flr= link_to user_defined_image(grant, :small, :alt=> "#{grant.user.login.capitalize}", :title => h(grant.user.login)), "/#{h(grant.user.login)}"
           = h grant.name
         %h3== $#{grant.amount.to_i.to_s}
       .span-6.last 
         = user_cred_images(grant.user, :small, true)   
       .span-15
         .span-3
-          = link_to image_tag(grant.photo.url(:medium), :alt => h(grant.name)), group_grant_path(grant.group, grant), :alt => h(grant.name)
+          = link_to user_defined_image(grant, :medium, :alt => h(grant.name)), group_grant_path(grant.group, grant)
         .span-11.last{:style => "text-align:justify"}
           = simple_format grant.proposal, :style => "line-height: 2"
       .span-5.last

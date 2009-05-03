@@ -12,13 +12,14 @@ class User < ActiveRecord::Base
   
   accepts_nested_attributes_for :profile  
 
-  has_attached_file :photo, :styles => {
-                               :thumb   => "32x32#", 
-                               :small   => "48x48#",
-                               :medium  => "75x75#", 
-                               :large   => "92x92#",
-                               :display => "256x256>" 
-                             },                                    
+  has_attached_file :photo, #:default_url => "/images/defaults/user_medium.png", 
+    :styles => {
+        :thumb   => "32x32#", 
+        :small   => "48x48#",
+        :medium  => "75x75#", 
+        :large   => "92x92#",
+        :display => "256x256>" 
+      },                                    
    :url  => "/assets/users/:id/:style/:basename.:extension",
    :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
    

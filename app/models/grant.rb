@@ -17,13 +17,14 @@ class Grant < ActiveRecord::Base
 
   has_permalink :name
   
-  has_attached_file :photo, :styles => {
-                               :thumb   => "32x32#", 
-                               :small   => "48x48#",
-                               :medium  => "75x75#",
-                               :large   => "92x92#", 
-                               :display => "256x256>" 
-                             },                                    
+  has_attached_file :photo, #:default_url => "/images/defaults/grant_small.png",  
+    :styles => {
+        :thumb   => "32x32#", 
+        :small   => "48x48#",
+        :medium  => "75x75#",
+        :large   => "92x92#", 
+        :display => "256x256>" 
+      },
    :url  => "/assets/grants/:id/:style/:basename.:extension",
    :path => ":rails_root/public/assets/grants/:id/:style/:basename.:extension"
    

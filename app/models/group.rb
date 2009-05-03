@@ -29,13 +29,14 @@ class Group < ActiveRecord::Base
 #  validates_numericality_of :dues, :only_integer => true, 
 #    :greater_than_or_equal_to => MIN_DUES, :less_than_or_equal_to => MAX_DUES, 
 #         :message => "can be an integer value of #{MIN_DUES} up to #{MAX_DUES}"
-  has_attached_file :photo, :styles => {
-                               :thumb   => "32x32#", 
-                               :small   => "48x48#",
-                               :medium  => "75x75#",
-                               :large   => "92x92#", 
-                               :display => "256x256>" 
-                             },                                    
+  has_attached_file :photo, #:default_url => "/images/defaults/group_small.png",  
+    :styles => {
+        :thumb   => "32x32#", 
+        :small   => "48x48#",
+        :medium  => "75x75#",
+        :large   => "92x92#", 
+        :display => "256x256>" 
+      },
    :url  => "/assets/groups/:id/:style/:basename.:extension",
    :path => ":rails_root/public/assets/groups/:id/:style/:basename.:extension"
    

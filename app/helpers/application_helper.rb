@@ -163,5 +163,16 @@ module ApplicationHelper
              grant.awarded ? 
                  "Awarded" : "Denied" : "Awaiting #{awaiting}"
     votes + status
-  end        
+  end 
+  
+  # formerly image_default
+  def user_defined_image(instance, size, options = {})
+    if instance.photo.file?
+      image_tag instance.photo.url(size), options
+    else
+      type = instance.class.name.downcase
+      image_tag "/images/defaults/#{type}_#{size}.png", options
+    end
+  end
+         
 end

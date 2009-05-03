@@ -2,9 +2,9 @@
   .prepend-top
     .span-8.prepend-1{:style => "min-height: 160px"}
       - if controller.controller_name == "groups"
-        %h2= link_to image_tag(group.photo.url(:display), :alt => "to group voting page"), group_grants_path(group), :title => "View Session"
+        %h2= link_to user_defined_image(group, :display, :alt => "to group voting page", :title => "View Session"), group_grants_path(group)
       - else
-        %h2= link_to image_tag(group.photo.url(:display), :alt => "to group home page"), group_path(group)
+        %h2= link_to user_defined_image(group, :display, :alt => "to group home page"), group_path(group)
     .span-14.append-1.last
       %h2{:style => "padding-right: 40px"}=h group.name
       %h3{:style => "padding-right: 40px"}=h group.purpose

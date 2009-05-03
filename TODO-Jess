@@ -1,6 +1,6 @@
-set default photos for users, groups, grants  
-
 put "Writeboard" on /account page
+
+add booleans or radio select for public profile details
 _________________
 defer 
   
