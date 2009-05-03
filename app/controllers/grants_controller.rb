@@ -8,7 +8,8 @@ class GrantsController < ApplicationController
     if params[:group_id]
 
      @group = Group.find_by_permalink(params[:group_id])
-     
+     @page_title = "Voting Session for " + @group.name
+
      @search = @group.grants.new_search(params[:search])
 
      @search.conditions.final = false
@@ -22,14 +23,17 @@ class GrantsController < ApplicationController
     elsif params[:user_id]
       @grants = Grant.find_all_by_user_id(params[:user_id], 
                                             :order => "created_at ASC")
+      @page_title = "Listing Grants"                                            
     end
   end
   
   def show
     @grant = Grant.find_by_permalink(params[:id])
+    @page_title = @grant.name << " on Grantvote"
   end
   
   def new
+    @page_title = "New Grant"
     @grant = Grant.new
   end
   
@@ -47,6 +51,7 @@ class GrantsController < ApplicationController
     
   def edit
     @grant = Grant.find_by_permalink(params[:id])
+    @page_title = "Editing " << @grant.name
   end
   
   def update
@@ -63,8 +68,8 @@ class GrantsController < ApplicationController
   end
 
 private
-  def destroy
-  end  
+#  def destroy
+#  end  
   
 end
 

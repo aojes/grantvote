@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_filter :verify_authenticity_token
 
   def new
+    @page_title = "Welcome to Grantvote"
     @user = User.new
   end
 
@@ -21,10 +22,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    @page_title = "Your Account"  
     @user = @current_user
   end
 
   def edit
+    @page_title = "Edit Account"  
     @user = @current_user
   end
 

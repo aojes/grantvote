@@ -3,6 +3,7 @@ class MembershipsController < ApplicationController
   before_filter :verify_authenticity_token
   
   def new
+    @page_title = "New Membership"
     @membership = Membership.new
   end
   

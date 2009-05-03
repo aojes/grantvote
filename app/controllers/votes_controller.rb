@@ -8,12 +8,11 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.grant.group.solvent?
         if @vote.save
-          final = @vote.final_message
-          flash[:notice] = final ? final : "Voted successfully."
+          flash[:notice] = @vote.final_message || "Voted successfully."
           format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
         else
-          limit = @vote.limit_message 
-          flash[:notice] = limit ? limit : "Bleep, bloop. Please try again."
+          flash[:notice] = @vote.limit_message ||
+                                        "Bleep, bloop. Please try again."
           format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
         end
       else

@@ -4,6 +4,7 @@ class PasswordResetsController < ApplicationController
   before_filter :verify_authenticity_token
 
   def new
+    @page_title = "Reset Password"
     render
   end
 
@@ -15,12 +16,13 @@ class PasswordResetsController < ApplicationController
                           "to reset your password. "
       redirect_to root_url
     else
-      flash[:notice] = "Account for email address not found"
+      flash[:notice] = "Account for email address was not found. "
       render :action => :new
     end
   end
 
   def edit
+    @page_title = "Reset Password"
     render
   end
 
@@ -28,7 +30,7 @@ class PasswordResetsController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
-      flash[:notice] = "Password updated."
+      flash[:notice] = "Updated password. "
       redirect_to account_url
     else
       render :action => :edit

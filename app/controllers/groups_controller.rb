@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   before_filter :verify_authenticity_token
   
   def index
-    
+    @page_title = "Search Groups"
     @search = Group.new_search(params[:search])
     
     if params[:search]
@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find_by_permalink(params[:id])
-    
+    @page_title = @group.name + " on Grantvote"
     @search = @group.grants.new_search(params[:search])
 
     @search.conditions.final = true
@@ -45,6 +45,7 @@ class GroupsController < ApplicationController
   end
 
   def new
+    @page_title = "New Group on Grantvote"
     @group = Group.new
 
     respond_to do |format|
@@ -54,7 +55,7 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find_by_permalink(params[:id])
-    
+    @page_title = "Editing #{@group.name} "    
     respond_to do |format|
 
       if @group.authorize_edit?(current_user)
@@ -72,7 +73,7 @@ class GroupsController < ApplicationController
     # TODO assign pebble on dues paid
     respond_to do |format|
       if @group.save
-        flash[:notice] = 'Group created. '
+        flash[:notice] = 'Created group. '
         format.html { redirect_to(@group) }
       else
         format.html { render :action => "new" }
@@ -85,7 +86,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        flash[:notice] = 'Group updated. '
+        flash[:notice] = 'Updated group. '
         format.html { redirect_to(@group) }
       else
         format.html { render :action => "edit" }

@@ -1,10 +1,10 @@
 !!!
 %html{ html_attrs }
   %head
-    %title= controller.controller_name + ": " + controller.action_name 
+    %title=h(@page_title) || "(" + controller.controller_name + ": " + controller.action_name + ")"
     %meta{ "http-equiv" => "content-type", :content => "text/xhtml; charset=utf-8" }
-    %meta{ :name => 'description', :content => "A place for giving and winning financial grants from people with similar interests." }
-    %meta{ :name => 'keywords', :content => "grants, grant, money, funding, writing, financial, resource, network, community, philanthropy, giving" }
+    %meta{ :name => 'description', :content => "A place for winning and giving financial support from people with similar interests." }
+    %meta{ :name => 'keywords', :content => "grants, grant, money, funding, writing, winning, giving, financial, resource, network, community, philanthropy" }
     %meta{ "http-equiv" => "imagetoolbar", :content => "no" }
     %meta{ :name => "distribution", :content => "all" }
     %meta{ :name => "robots", :content => "all" }

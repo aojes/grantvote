@@ -3,11 +3,13 @@ class CommentsController < ApplicationController
   before_filter :verify_authenticity_token
   
   def index
+    @page_title = "Listing Comments"
     @commentable = find_commentable
     @comments = @commentable.comments
   end
   
   def new
+    @page_title = "New Comment"
     @commentable = find_commentable
   end
   
