@@ -12,8 +12,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :grants, :has_many => [:votes]         
   map.resources :votes # ?
 
+  map.leaders '/leaders', :controller => "leaders", :action => "index"
   map.profile ':permalink', :controller => "profiles", :action => "view"
-
+  
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   

@@ -1,0 +1,12 @@
+.prepend-1
+  %h2= "Grantvote Leaders"
+.span-20.prepend-2.append-2.last
+  - @leaders.each_with_index do |leader, id|
+    .span-3<
+      .flr= link_to user_defined_image(leader.user, :large), "/#{h leader.user.login}"
+      %h3== #{id + 1}
+    .span-5<
+      %h3= h leader.user.login
+    .span-9.append-3.last
+      = user_cred_images leader.user, :small
+    %hr

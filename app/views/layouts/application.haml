@@ -23,7 +23,7 @@
         .span-10.append-2.prepend-top.nav.last
           %ul#nav-list.pull-1.prepend-top
             %li= link_to "Groups", groups_path, :class => "rounded", :alt => "Groups index"
-            %li= link_to "Leaders", root_path, :class => "rounded", :alt => "Sitewide leaderboard"
+            %li= link_to "Leaders", leaders_path, :class => "rounded", :alt => "Sitewide leaderboard"
             %li<
               - if current_user
                 =link_to "You", account_path, :class => "rounded", :alt => "Your account"
