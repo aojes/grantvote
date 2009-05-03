@@ -1,9 +1,3 @@
-before_create on Vote is broken  (user_group_session returns grants not votes)
-
-for now, change usage of "= simple_format @" to "%p=h @" (proposal now string)
-  better validation of comment markup 
-  parse media
-
 optimize page titles
 
 set default photos for users, groups, grants  

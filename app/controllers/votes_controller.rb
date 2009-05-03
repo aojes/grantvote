@@ -12,9 +12,9 @@ class VotesController < ApplicationController
           flash[:notice] = final ? final : "Voted successfully."
           format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
         else
-          limit = @vote.session_limit_message 
-          flash[:error] = limit ? limit : "Bleep, bloop. Please try again."
-          format.html { redirect_back_or_default :back }
+          limit = @vote.limit_message 
+          flash[:notice] = limit ? limit : "Bleep, bloop. Please try again."
+          format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
         end
       else
         flash[:warning] = "Amount is too high to keep the group solvent. " +

@@ -20,6 +20,7 @@ module ApplicationHelper
 
   # Replacement for Rails' default button_to helper
   # using HTML button element rather than HTML input element
+  # Note use of <span><em> for styling
   def button_to(name, options = {}, html_options = {})
     html_options = html_options.stringify_keys
     convert_boolean_attributes!(html_options, %w( disabled ))
@@ -72,7 +73,7 @@ module ApplicationHelper
   end
   
   def user_cred_images(user, size = "small", limit = nil)
-    compilation = user_cred_image_url_set(user.credit.pebbles, user.credit.beads, user.credit.buttons, user.credit.pens, user.credit.shells, user.credit.pearls, user.credit.ribbons, user.credit.laurels, size, limit)
+    compilation = user_cred_image_url_set(user.credit.pebbles, user.credit.beads, user.credit.buttons, user.credit.pens, user.credit.shells, user.credit.pearls, user.credit.ribbons, user.credit.laurels, size)
     if limit
       compilation.values_at(0..3).join
     else
@@ -80,7 +81,7 @@ module ApplicationHelper
     end
   end
   
-  def user_cred_image_url_set(p, b, bu, pe, sh, per, r, l, size, limit)
+  def user_cred_image_url_set(p, b, bu, pe, sh, per, r, l, size)
     pebbles, beads, buttons, pens = "","","",""
     shells, pearls, ribbons, laurels = "","","",""
     total = p + b + bu + pe + sh + per + r + l
@@ -135,6 +136,7 @@ module ApplicationHelper
     end
     prefix + path
   end 
+  
   def session_bar_chart_url(grant)
     voters    = grant.group.memberships.voters.count
     votes_yea = grant.votes.yea.count

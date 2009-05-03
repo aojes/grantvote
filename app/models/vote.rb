@@ -1,9 +1,8 @@
 class Vote < ActiveRecord::Base
-  
+    
   belongs_to :user
   belongs_to :group
   belongs_to :grant
-  has_many :comments, :as => :commentable 
   
   validates_presence_of   :user_id, :group_id, :grant_id, :cast
   validates_inclusion_of  :cast, :in => %w(yea nay)
@@ -17,14 +16,15 @@ class Vote < ActiveRecord::Base
   
   def check_session_limit
     if user == grant.user
-      existing_user_group_session ? nil : true
+      allow_session?
     else
       true
     end       
   end
   
-  def existing_user_group_session
-    not group.grants.user_group_session(user.id, grant.group.id).empty?
+  def allow_session?
+    group.grants.user_group_session(user.id, group.id).
+      detect { |g| !g.votes.count.zero? }.nil?
   end  
   
   def check_grant_finalization
@@ -41,8 +41,9 @@ class Vote < ActiveRecord::Base
     grant.final ? grant.awarded ? "Grant awarded!" : "Grant denied." : nil
   end
   
-  def session_limit_message
-    existing_user_group_session ? 
-      "You may have only one grant in session per group." : nil
+  def limit_message
+    !group.grants.user_group_session(user.id, group.id).
+      detect { |g| !g.votes.count.zero? }.nil? ?
+        "You may have only one grant in session per group." : nil
   end  
 end

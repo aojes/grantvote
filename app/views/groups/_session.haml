@@ -1,7 +1,7 @@
 %h2.prepend-1.append-2 Group Session
 .span-21.prepend-2.append-1.last  
   - @grants.each do |grant|
-    - unless grant.user == current_user
+    - unless grant.user == current_user or grant.votes.count.zero?
       .span-14.append-1
         %h3<
           .flr= link_to image_tag(grant.user.photo.url(:small), :alt=> "#{grant.user.login.capitalize}"), "/#{h(grant.user.login)}", :title => h(grant.user.login)
@@ -17,7 +17,7 @@
       .span-5.last
         == <img alt="#{accessible_tally grant}" title="#{accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />
         %p= render 'shared/vote', :grant => grant 
-    %hr
+      %hr
   - if @grants_count > 0
     - if @search.page_count > 1
       .span-10.pagination.center.prepend-top.last
