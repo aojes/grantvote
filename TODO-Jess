@@ -1,6 +1,8 @@
-put "Writeboard" on /account page
+put login inside comments, in addition to titled photo
 
-add booleans or radio select for public profile details
+put up Leaderboard
+
+safeguard against double post
 _________________
 defer 
   
@@ -11,26 +13,13 @@ defer
     put site up so Ryan and Sean can log in
     
   normal workflow
-    
-    safeguard against double post
-    put up Leaderboard
-    make current nav link appear same as hover
+
     figure group comments more prominently (make forum?)
-    make onclick button sprite work (unnecessary?)
     debug tagging system
-    dynamic chart on right-hand side of login/registration view
     implement mailing system
     implement payment system
   
-_________________
-design
-
-  splash page
-  groups view  
-  group view
-  session view
-  edit profile view
-  
+ 
 _________________
 business
   

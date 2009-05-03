@@ -29,7 +29,7 @@ class GrantsController < ApplicationController
   
   def show
     @grant = Grant.find_by_permalink(params[:id])
-    @page_title = @grant.name << " on Grantvote"
+    @page_title = @grant.name + " on Grantvote"
   end
   
   def new
@@ -51,7 +51,7 @@ class GrantsController < ApplicationController
     
   def edit
     @grant = Grant.find_by_permalink(params[:id])
-    @page_title = "Editing " << @grant.name
+    @page_title = "Editing " + @grant.name
   end
   
   def update
@@ -68,8 +68,6 @@ class GrantsController < ApplicationController
   end
 
 private
-#  def destroy
-#  end  
   
 end
 

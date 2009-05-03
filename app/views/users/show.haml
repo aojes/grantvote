@@ -5,6 +5,14 @@
     .span-5.prepend-top.last<
       %h3.center=h @user.login  
     %br{:style => "clear: both"}
+    - unless @user.profile.name.blank?
+      %h6.quiet= h @user.profile.name 
+    - unless @user.profile.location.blank?
+      %h6.quiet= h @user.profile.location 
+      -# TODO write helper method for links and breadcrumbs ...
+    - unless @user.profile.link.blank? or @user.profile.link == "http://"
+      %h6.quiet= link_to h(@user.profile.link), h(@user.profile.link) if @user.profile.link.include?("http://")
+    %h5.quiet=h @user.profile.detail if @user.profile.detail
     %h3< 
       Cred
       %hr
@@ -31,7 +39,13 @@
       %hr
     - @user.grants.session.each do |g|
       -# show all sessions on account page, only those voted on public profile
-      = link_to user_defined_image(g.photo.url :small), group_grant_path(g.group, g), :alt => "#{h g.name}", :title => "#{h g.name}"
+      = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g) unless g.votes.count.zero?
+    %h3.prepend-top<
+      Writeboard
+      %hr
+    - @user.grants.session.each do |g|
+      -# show all sessions on account page, only those voted on public profile
+      = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g) if g.votes.count.zero?
     %br
     %br
     %br     
