@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 11) do
 
   create_table "credits", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "points",     :default => 0, :null => false
     t.integer  "laurels",    :default => 0, :null => false
     t.integer  "ribbons",    :default => 0, :null => false
     t.integer  "pearls",     :default => 0, :null => false
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(:version => 11) do
     t.datetime "updated_at"
   end
 
+  add_index "credits", ["points"], :name => "index_credits_on_points"
   add_index "credits", ["user_id"], :name => "index_credits_on_user_id"
 
   create_table "grants", :force => true do |t|

@@ -1,8 +1,10 @@
 %h2.prepend-1 Password reset
 %h4.prepend-2.append-2 
-  Fill out the form below and instructions to reset your password will be emailed to you.
+  .quiet Enter you account email and instructions to reset your password will be sent.
 - form_tag password_resets_path do 
   .form_row
     %label Email
     = text_field_tag "email" 
     = submit_tag "Reset"
+  %br
+  %br

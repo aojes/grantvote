@@ -2,6 +2,16 @@ class Credit < ActiveRecord::Base
   belongs_to :user
   validates_uniqueness_of :user_id
   
+  VALUES = {
+    :pebble =>  1,
+    :bead   =>  3,
+    :button =>  9,
+    :pen    => 27,
+    :shell  =>  3,
+    :pearl  =>  9,
+    :ribbon => 27,
+    :laurel => 81 }
+  
   IMAGE_PATH = "/images/cred"
   
   DIR = { 
@@ -25,5 +35,12 @@ class Credit < ActiveRecord::Base
     :ribbon => "7_ribbon.jpg",
     :laurel => "8_laurel.jpg"  
    }
-
+  
+  named_scope :leaders, :order => ["points DESC"], :limit => 100
 end
+
+
+
+
+
+
