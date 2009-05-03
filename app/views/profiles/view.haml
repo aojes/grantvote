@@ -35,19 +35,18 @@
       Groups
       %hr
     - @user.groups.each do |g|
-      = link_to user_defined_image(g.photo.url :small), group_path(g), :alt => "#{h g.name}", :title => "#{h g.name}"
+      = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_path(g)
     %h3.prepend-top< 
       Awards
       %hr
     - @user.grants.awarded.each do |g|
-      = link_to user_defined_image(g.photo.url :small), group_grant_path(g.group, g), :alt => "#{h g.name}", :title => "#{h g.name}"
+      = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g)
     %h3.prepend-top< 
       Sessions
       %hr
     - @user.grants.session.each do |g|
       - unless g.votes.count.zero?
-        = link_to user_defined_image(g.photo.url :small), group_grant_path(g.group, g), :alt => "#{h g.name}", :title => "#{h g.name}"
+        = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g)
     %br
     %br
-    %br    
-    
+    %br       
