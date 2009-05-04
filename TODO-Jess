@@ -1,27 +1,29 @@
-put login inside comments, in addition to photo
+update membership interest, cycle dues against group finances  
 
-safeguard against double post (comment)
+make point assignment, cred conversion, and cred giving system
 
 additional link back to group home from session
+
+v-align login/register links with nav links
+
 _________________
 defer 
   
   important
-
-    update membership interest, cycle dues against group finances    
-    put site up so Ryan and Sean can log in
-    how to protect against comment spam?
+  
     legal TOS     
  
   normal workflow
-
+  
+    put login inside comments, in addition to photo
+    safeguard against double posting
+    verify email before allowing comments (model for activations or privileges)
     figure group comments more prominently (make forum?)
-    debug tagging system
-    make point assignment, cred conversion, and cred giving system
     implement mailer
     implement payment gateway
     develop membership views (watch, join, sponsor)
-  
+    forget about tags, maybe list the top queries?  
+    stream grants? (work on /grants page)
  
 _________________
 business
@@ -30,11 +32,12 @@ business
   get business bank account
   production on heroku & S3 or slicehost ?
   ask for hosting sponsorship
-
+  
   
 _________________
 notes
 
   don't destroy any data
   don't scale minimum award (at least not at first)
+  is it a bad idea to put a few ads beneath the group voters images?
 
