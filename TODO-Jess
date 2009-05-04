@@ -1,17 +1,17 @@
-put login inside comments, in addition to titled photo
+put login inside comments, in addition to photo
 
-put up Leaderboard
+safeguard against double post (comment)
 
-safeguard against double post
 _________________
 defer 
   
   important
 
     update membership interest, cycle dues against group finances    
-    new route for queue after session (voted session) (voting roster per user?)
     put site up so Ryan and Sean can log in
-    
+    how to protect against comment spam?
+    legal TOS     
+ 
   normal workflow
 
     figure group comments more prominently (make forum?)
@@ -26,11 +26,12 @@ business
   make company
   get business bank account
   production on heroku & S3 or slicehost ?
-  legal TOS 
+  ask for hosting sponsorship
+
   
 _________________
 notes
 
   don't destroy any data
   don't scale minimum award (at least not at first)
-  "Pool" on group page is misplaced without group photo
+

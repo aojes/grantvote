@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     @vote = Vote.new(params[:vote])
 
     respond_to do |format|
-      if @vote.grant.group.solvent?
+      if @vote.group.solvent?
         if @vote.save
           flash[:notice] = @vote.final_message || "Voted successfully."
           format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
@@ -16,7 +16,7 @@ class VotesController < ApplicationController
           format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
         end
       else
-        flash[:warning] = "Amount is too high to keep the group solvent. " +
+        flash[:notice] = "Amount is too high to keep the group solvent. " +
                           "This is due to the sum of existing session amounts."                          
         format.html { redirect_back_or_default :back }
       end
