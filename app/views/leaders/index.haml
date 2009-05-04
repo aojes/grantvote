@@ -2,11 +2,16 @@
   %h2= "Grantvote Leaders"
 .span-20.prepend-2.append-2.last
   - @leaders.each_with_index do |leader, id|
-    .span-3<
-      .flr= link_to user_defined_image(leader.user, :large), "/#{h leader.user.login}"
-      %h3== #{id + 1}
-    .span-5<
-      %h3= h leader.user.login
-    .span-9.append-3.last
-      = user_cred_images leader.user, :small
+    .span-2<
+      = link_to user_defined_image(leader.user, :medium, :alt => h(leader.user.login)), profile_path(h leader.user.login)
+    .span-15.append-3.last
+      .span-5<
+        %h3{:style => "padding-left: 1em"}= link_to h(leader.user.login), profile_path(h(leader.user.login))
+      .span-10.last
+        .span-10= user_cred_images leader.user, :thumb
+        .span-10.last
+          - leader.user.groups.slice(0..10).each do |group|
+            = link_to user_defined_image(group, :thumb, :alt => h(group.name), :title => h(group.name)), group_path(h(group.name))
     %hr
+.span-20.prepend-8.pagination
+  %h3= page_links
