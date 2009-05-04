@@ -4,7 +4,7 @@
     - unless grant.user == current_user or grant.votes.count.zero?
       .span-14.append-1
         %h3<
-          .flr= link_to user_defined_image(grant, :small, :alt=> "#{grant.user.login.capitalize}", :title => h(grant.user.login)), "/#{h(grant.user.login)}"
+          .flr= link_to user_defined_image(grant.user, :small, :alt=> "#{grant.user.login.capitalize}", :title => h(grant.user.login)), "/#{h(grant.user.login)}"
           = h grant.name
         %h3== $#{grant.amount.to_i.to_s}
       .span-6.last 

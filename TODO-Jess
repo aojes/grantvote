@@ -2,6 +2,7 @@ put login inside comments, in addition to photo
 
 safeguard against double post (comment)
 
+additional link back to group home from session
 _________________
 defer 
   
@@ -16,8 +17,10 @@ defer
 
     figure group comments more prominently (make forum?)
     debug tagging system
-    implement mailing system
-    implement payment system
+    make point assignment, cred conversion, and cred giving system
+    implement mailer
+    implement payment gateway
+    develop membership views (watch, join, sponsor)
   
  
 _________________

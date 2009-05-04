@@ -4,6 +4,7 @@
       - if @user == current_user
         %p= link_to user_defined_image(@user, :medium, :alt => "#{h @user.login}"), account_path
       - else
+        -# TODO link_to original size?
         %p= user_defined_image(@user, :medium, :alt => "#{h @user.login}")
     .span-5.prepend-top.last<
       %h3.center=h @user.login  

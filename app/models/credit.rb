@@ -36,7 +36,7 @@ class Credit < ActiveRecord::Base
     :laurel => "8_laurel.jpg"  
    }
   
-  named_scope :leaders, :order => "points DESC", :limit => 60
+  named_scope :leaders, :order => "points DESC", :limit => 100
 end
 
 

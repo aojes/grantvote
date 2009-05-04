@@ -153,6 +153,7 @@ module ApplicationHelper
     "&amp;chf=bg,s,EDEDED"
   end
   
+  # for bar chart image alt & title attributes
   def accessible_tally(grant)
     voters   = grant.group.memberships.voters.count
     yea      = grant.votes.yea.count
@@ -165,7 +166,7 @@ module ApplicationHelper
     votes + status
   end 
   
-  # formerly image_default
+  # returns the default image for instance if none defined
   def user_defined_image(instance, size, options = {})
     if instance.photo.file?
       image_tag instance.photo.url(size), options
