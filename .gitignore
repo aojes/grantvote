@@ -1,9 +1,9 @@
 public/system/**/*
 public/assets/**/*
-doc/**/*
-log/**/*
+doc/*
+log/*
 *.log
-tmp/**/*
+tmp/*
 config/database.yml
 db/*3
 db/schema.rb
