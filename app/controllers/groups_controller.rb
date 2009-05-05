@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find_by_permalink(params[:id])
-    @page_title = @group.name + " on Grantvote"
+    @page_title = @group.name + " on Grantvote"  # TODO safe call ?
     @search = @group.grants.new_search(params[:search])
 
     @search.conditions.final = true
@@ -56,7 +56,7 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find_by_permalink(params[:id])
-    @page_title = "Editing #{@group.name} "    
+    @page_title = "Editing #{@group.name} "    # TODO safe call?
     respond_to do |format|
 
       if @group.authorize_edit?(current_user)

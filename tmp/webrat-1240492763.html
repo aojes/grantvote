@@ -1,0 +1,395 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Action Controller: Exception caught</title>
+  <style>
+    body { background-color: #fff; color: #333; }
+
+    body, p, ol, ul, td {
+      font-family: verdana, arial, helvetica, sans-serif;
+      font-size:   13px;
+      line-height: 18px;
+    }
+
+    pre {
+      background-color: #eee;
+      padding: 10px;
+      font-size: 11px;
+    }
+
+    a { color: #000; }
+    a:visited { color: #666; }
+    a:hover { color: #fff; background-color:#000; }
+  </style>
+</head>
+<body>
+
+<h1>
+  NoMethodError in
+  Users#edit
+</h1>
+
+<p>
+  Showing <i>app/views/users/_form.haml</i> where line <b>#3</b> raised:
+  <pre><code>undefined method `full_name' for #&lt;User:0xb5711c30&gt;</code></pre>
+</p>
+
+<p>Extracted source (around line <b>#3</b>):
+<pre><code>1: .form_row
+2:   = form.label :full_name
+3:   = form.text_field :full_name
+4: .form_row
+5:   = form.label :login
+6:   = form.text_field :login
+</code></pre></p>
+
+<p>Trace of template inclusion: app/views/users/edit.haml</p>
+
+
+
+
+<p><code>RAILS_ROOT: /home/jess/Rails/grantvote</code></p>
+
+<div id="traces">
+  
+    
+    <a href="#" onclick="document.getElementById('Framework-Trace').style.display='none';document.getElementById('Full-Trace').style.display='none';document.getElementById('Application-Trace').style.display='block';; return false;">Application Trace</a> |
+  
+    
+    <a href="#" onclick="document.getElementById('Application-Trace').style.display='none';document.getElementById('Full-Trace').style.display='none';document.getElementById('Framework-Trace').style.display='block';; return false;">Framework Trace</a> |
+  
+    
+    <a href="#" onclick="document.getElementById('Application-Trace').style.display='none';document.getElementById('Framework-Trace').style.display='none';document.getElementById('Full-Trace').style.display='block';; return false;">Full Trace</a> 
+  
+
+  
+    <div id="Application-Trace" style="display: block;">
+      <pre><code>/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/attribute_methods.rb:260:in `method_missing'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:834:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:834:in `value_before_type_cast'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:822:in `value_before_type_cast'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:739:in `to_input_field_tag'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:531:in `text_field'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:930:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:930:in `text_field'
+/home/jess/Rails/grantvote/app/views/users/_form.haml:3:in `_run_haml_app47views47users47_form46haml_locals_form_object'
+/home/jess/Rails/grantvote/app/views/users/edit.haml:4:in `_run_haml_app47views47users47edit46haml'
+/home/jess/Rails/grantvote/app/views/users/edit.haml:2:in `_run_haml_app47views47users47edit46haml'</code></pre>
+    </div>
+  
+    <div id="Framework-Trace" style="display: none;">
+      <pre><code>/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/attribute_methods.rb:260:in `method_missing'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:834:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:834:in `value_before_type_cast'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:822:in `value_before_type_cast'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:739:in `to_input_field_tag'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:531:in `text_field'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:930:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:930:in `text_field'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:34:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:34:in `render_without_template_tracking'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:301:in `with_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:30:in `render_without_template_tracking'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/test_case.rb:20:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable_partial.rb:20:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable_partial.rb:19:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/template.rb:194:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable_partial.rb:44:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/partials.rb:184:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:262:in `render_without_haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:12:in `render'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers.rb:57:in `non_haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:12:in `render'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:165:in `call'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:165:in `form_for'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers.rb:447:in `call'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers.rb:447:in `haml_bind_proc'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:490:in `fields_for'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:282:in `form_for_without_haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:171:in `form_for'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:34:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:34:in `render_without_template_tracking'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:301:in `with_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:30:in `render_without_template_tracking'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/test_case.rb:20:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/template.rb:194:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:260:in `render_without_haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:14:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:343:in `_render_with_layout'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:257:in `render_without_haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:14:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:1241:in `render_for_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:937:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:51:in `render'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:51:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:1317:in `default_render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:1323:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/filters.rb:617:in `call_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/flash.rb:141:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:523:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:523:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/filters.rb:606:in `sass_old_process'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/sass/plugin/rails.rb:19:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:391:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:386:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/routing/route_set.rb:433:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:88:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:111:in `_call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:82:in `initialize'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:29:in `call'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:29:in `call'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:9:in `cache'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:28:in `call'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/head.rb:9:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/methodoverride.rb:24:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/params_parser.rb:15:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/rewindable_input.rb:25:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/session/cookie_store.rb:93:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/failsafe.rb:11:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lock.rb:11:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lock.rb:11:in `synchronize'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lock.rb:11:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:106:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lint.rb:47:in `_call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lint.rb:35:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/integration.rb:320:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/integration.rb:196:in `get'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/integration.rb:498:in `__send__'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/integration.rb:498:in `get'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/rails.rb:70:in `send'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/rails.rb:70:in `do_request'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/rails.rb:35:in `get'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/core/session.rb:106:in `send'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/core/session.rb:106:in `request_page'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/core/elements/form.rb:20:in `submit'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/core/elements/field.rb:203:in `click'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/core/scope.rb:275:in `click_button'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/core_ext/instance_exec.rb:20:in `instance_exec'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/core_ext/instance_exec.rb:20:in `cucumber_instance_exec'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/core_ext/instance_exec.rb:38:in `cucumber_run_with_backtrace_filtering'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/core_ext/instance_exec.rb:10:in `cucumber_instance_exec'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/step_definition.rb:102:in `invoke'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/step_match.rb:13:in `invoke'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/step_invocation.rb:32:in `invoke'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/step_invocation.rb:22:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/visitor.rb:74:in `visit_step'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/formatter/pretty.rb:120:in `visit_step'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/step_collection.rb:14:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/step_collection.rb:13:in `each'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/step_collection.rb:13:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/visitor.rb:70:in `visit_steps'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/scenario.rb:33:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/step_mother.rb:230:in `before_and_after'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/scenario.rb:32:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/visitor.rb:45:in `visit_feature_element'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/formatter/pretty.rb:79:in `visit_feature_element'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/feature.rb:22:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/feature.rb:21:in `each'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/feature.rb:21:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/visitor.rb:23:in `visit_feature'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/formatter/pretty.rb:41:in `visit_feature'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/features.rb:21:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/features.rb:20:in `each'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/features.rb:20:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/visitor.rb:19:in `visit_features'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/formatter/pretty.rb:26:in `visit_features'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/broadcaster.rb:9:in `__send__'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/broadcaster.rb:9:in `method_missing'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/broadcaster.rb:8:in `map'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/broadcaster.rb:8:in `method_missing'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/cli/main.rb:41:in `execute!'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/cli/main.rb:20:in `execute'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/bin/cucumber:6</code></pre>
+    </div>
+  
+    <div id="Full-Trace" style="display: none;">
+      <pre><code>/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/attribute_methods.rb:260:in `method_missing'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:834:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:834:in `value_before_type_cast'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:822:in `value_before_type_cast'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:739:in `to_input_field_tag'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:531:in `text_field'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:930:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:930:in `text_field'
+/home/jess/Rails/grantvote/app/views/users/_form.haml:3:in `_run_haml_app47views47users47_form46haml_locals_form_object'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:34:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:34:in `render_without_template_tracking'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:301:in `with_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:30:in `render_without_template_tracking'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/test_case.rb:20:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable_partial.rb:20:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable_partial.rb:19:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/template.rb:194:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable_partial.rb:44:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/partials.rb:184:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:262:in `render_without_haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:12:in `render'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers.rb:57:in `non_haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:12:in `render'
+/home/jess/Rails/grantvote/app/views/users/edit.haml:4:in `_run_haml_app47views47users47edit46haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:165:in `call'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:165:in `form_for'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers.rb:447:in `call'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers.rb:447:in `haml_bind_proc'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:490:in `fields_for'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/helpers/form_helper.rb:282:in `form_for_without_haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:171:in `form_for'
+/home/jess/Rails/grantvote/app/views/users/edit.haml:2:in `_run_haml_app47views47users47edit46haml'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:34:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:34:in `render_without_template_tracking'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:301:in `with_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/renderable.rb:30:in `render_without_template_tracking'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/test_case.rb:20:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/template.rb:194:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:260:in `render_without_haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:14:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:343:in `_render_with_layout'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_view/base.rb:257:in `render_without_haml'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/haml/helpers/action_view_mods.rb:14:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:1241:in `render_for_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:937:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:51:in `render'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:51:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:1317:in `default_render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:1323:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/filters.rb:617:in `call_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/flash.rb:141:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:523:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:523:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/filters.rb:606:in `sass_old_process'
+/usr/lib/ruby/gems/1.8/gems/haml-2.0.9/lib/sass/plugin/rails.rb:19:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:391:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:386:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/routing/route_set.rb:433:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:88:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:111:in `_call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:82:in `initialize'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:29:in `call'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:29:in `call'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:9:in `cache'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:28:in `call'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/head.rb:9:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/methodoverride.rb:24:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/params_parser.rb:15:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/rewindable_input.rb:25:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/session/cookie_store.rb:93:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/failsafe.rb:11:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lock.rb:11:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lock.rb:11:in `synchronize'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lock.rb:11:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:106:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lint.rb:47:in `_call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lint.rb:35:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/integration.rb:320:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/integration.rb:196:in `get'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/integration.rb:498:in `__send__'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/integration.rb:498:in `get'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/rails.rb:70:in `send'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/rails.rb:70:in `do_request'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/rails.rb:35:in `get'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/core/session.rb:106:in `send'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/core/session.rb:106:in `request_page'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/core/elements/form.rb:20:in `submit'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/core/elements/field.rb:203:in `click'
+/home/jess/Rails/grantvote/vendor/gems/webrat-0.4.4/lib/webrat/core/scope.rb:275:in `click_button'
+(__FORWARDABLE__):3:in `__send__'
+(__FORWARDABLE__):3:in `click_button'
+(eval):2:in `click_button'
+features/step_definitions/create_public_profile_steps.rb:6
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/core_ext/instance_exec.rb:20:in `instance_exec'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/core_ext/instance_exec.rb:20:in `cucumber_instance_exec'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/core_ext/instance_exec.rb:38:in `cucumber_run_with_backtrace_filtering'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/core_ext/instance_exec.rb:10:in `cucumber_instance_exec'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/step_definition.rb:102:in `invoke'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/step_match.rb:13:in `invoke'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/step_invocation.rb:32:in `invoke'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/step_invocation.rb:22:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/visitor.rb:74:in `visit_step'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/formatter/pretty.rb:120:in `visit_step'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/step_collection.rb:14:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/step_collection.rb:13:in `each'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/step_collection.rb:13:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/visitor.rb:70:in `visit_steps'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/scenario.rb:33:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/step_mother.rb:230:in `before_and_after'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/scenario.rb:32:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/visitor.rb:45:in `visit_feature_element'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/formatter/pretty.rb:79:in `visit_feature_element'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/feature.rb:22:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/feature.rb:21:in `each'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/feature.rb:21:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/visitor.rb:23:in `visit_feature'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/formatter/pretty.rb:41:in `visit_feature'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/features.rb:21:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/features.rb:20:in `each'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/features.rb:20:in `accept'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/ast/visitor.rb:19:in `visit_features'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/formatter/pretty.rb:26:in `visit_features'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/broadcaster.rb:9:in `__send__'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/broadcaster.rb:9:in `method_missing'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/broadcaster.rb:8:in `map'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/broadcaster.rb:8:in `method_missing'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/cli/main.rb:41:in `execute!'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/lib/cucumber/cli/main.rb:20:in `execute'
+/usr/lib/ruby/gems/1.8/gems/cucumber-0.3.0/bin/cucumber:6
+/usr/bin/cucumber:19:in `load'
+/usr/bin/cucumber:19</code></pre>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+<h2 style="margin-top: 30px">Request</h2>
+<p><b>Parameters</b>: <pre>None</pre></p>
+
+<p><a href="#" onclick="document.getElementById('session_dump').style.display='block'; return false;">Show session dump</a></p>
+<div id="session_dump" style="display:none"><pre class='debug_dump'>--- 
+</pre></div>
+
+
+<h2 style="margin-top: 30px">Response</h2>
+<p><b>Headers</b>: <pre>{&quot;Content-Type&quot;=&gt;&quot;&quot;,
+ &quot;Cache-Control&quot;=&gt;&quot;no-cache&quot;}</pre></p>
+
+
+
+</body>
+</html>
