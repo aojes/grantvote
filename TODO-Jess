@@ -1,0 +1,48 @@
+update membership interest, cycle dues against group finances  
+
+make point assignment, cred conversion, and cred giving system
+
+additional link back to group home from session
+
+v-align login/register links with nav links
+
+_________________
+defer 
+  
+  important
+  
+    legal TOS     
+ 
+  normal workflow
+  
+    display user login name in comments, in addition to photo
+    add 'Go' button for searching groups, in lieu of live-action results
+    safeguard against double posting comments
+    verify email before allowing comments or add captcha to registration
+    add profile view count to user account page
+    implement mailer
+    implement payment gateway
+    figure solvency of groups in search?
+    figure group comments more prominently (make forum?)
+    develop membership views (watch, join, sponsor)
+    forget about tags, maybe list the top queries?  
+    stream grants? (work on /grants page)
+    add group rss feeds
+    remove 'add comment' link for logged-out view
+    replace 'link to pay dues' with suitable CTA on group session
+_________________
+business
+  
+  make company
+  get business bank account
+  production on heroku & S3 or slicehost ?
+  ask for hosting sponsorship
+  
+  
+_________________
+notes
+
+  don't destroy any data
+  don't scale minimum award (at least not at first)
+  is it a bad idea to put a few ads beneath the group voters images?
+  how might developing an API benefit us?

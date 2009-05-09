@@ -1,0 +1,60 @@
+%h3.prepend-1.append-14.last<
+  - if @grant.votes.count.zero?
+    .notice Preview
+  - elsif @grant.final 
+    - if @grant.awarded
+      .success Awarded
+    - else
+      .error Denied
+  - else
+    .success= link_to "Group Session", group_grants_path(@grant.group)
+.span-21.prepend-2.append-1.last  
+  .span-14.append-1
+    %h3<
+      %span.flr
+        = link_to user_defined_image(@grant.user, :small, :alt=> h(@grant.user.login), :title => h(@grant.user.login)), "/#{h @grant.user.login}"
+      = h @grant.name
+    %h3== $#{@grant.amount}
+  .span-6.last 
+    = user_cred_images(@grant.user, :small, true)
+  .span-15
+    .span-3
+      = user_defined_image(@grant, :medium, :alt => h(@grant.name))
+      .span-2.prepend-top.last
+        &nbsp;
+    .span-11.last{:style => "text-align:justify"}
+      - if not @grant.media.blank?
+        = simple_format @grant.media
+        .large= simple_format @grant.proposal, :style => "line-height: 1.8; margin-right: -40px;"
+      - else
+        .large= simple_format @grant.proposal, :style => "line-height: 2"
+      - if @grant.votes.count.zero?
+        = button_to "Edit", edit_group_grant_path(@grant.group, @grant), :method => :get
+      %br{:style => "clear: both"}
+      %br
+      %br
+  .span-5
+    == <img alt="#{accessible_tally(@grant)}" title="#{accessible_tally(@grant)}" src="#{session_bar_chart_url(@grant)}" />
+    .quiet
+      - if @grant.final
+        - if @grant.awarded
+          == &nbsp; Awarded #{@grant.updated_at.strftime("%B %d, %Y")} 
+          %br
+          == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
+        - else
+          == &nbsp; Denied #{@grant.updated_at.strftime("%B %d, %Y")} 
+          %br
+          == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
+  .span-5.center.last
+    - unless @grant.final or not current_user or voted?(@grant)
+      - if @grant.votes.count.zero?
+        %p
+          - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
+            = f.hidden_field :cast, :value => "yea"
+            = f.hidden_field :user_id, :value => @grant.user_id
+            = f.hidden_field :group_id, :value => @grant.group_id
+            = f.hidden_field :grant_id, :value => @grant.id
+            %span{:style => "padding-left: 7px"}
+              = submit_button "Vote Into Session"
+      - elsif not @grant.user == current_user
+        .prepend-top= render 'shared/vote', :grant => @grant

@@ -1,0 +1,27 @@
+Cred
+
+  laurel > ribbon > pearl > shell <=> pebble < bead < button < pen
+
+  pebble, x3 = bead, x3 = button, x3 = pen
+  
+  give pebble = ?
+  give bead = shell, x3 = pearl, x3 = ribbon
+  give button = ribbon, x3 = laurel
+  give pen = laurel
+   
+  
+Credit 
+   1 pebble on registration
+   1 pebble on each dues paid
+   
+Debit (draft)
+  
+  give bead = 3 pebbles
+  give button = 3 beads
+  give pen = 3 buttons
+ 
+  hold tiebreaker = 1 button  # available on any vote, one per vote, yea or nay
+                              # usage final, no refund, anonymous
+                              # a draw is a draw
+                              # scale minimum votes before calling tiebreakers
+

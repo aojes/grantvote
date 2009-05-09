@@ -1,0 +1,179 @@
+# Methods added to this helper will be available to all templates in the application.
+module ApplicationHelper
+  
+  # Sets the page title and outputs title if container is passed in.
+  # eg. <%= title('Hello World', :h2) %> will return the following:
+  # <h2>Hello World</h2> as well as setting the page title.
+  def title(str, container = nil)
+    @page_title = str
+    content_tag(container, str) if container
+  end
+    
+  # Outputs the corresponding flash message if any are set
+  def flash_messages
+    messages = []
+    %w(notice warning error).each do |msg|
+      messages << content_tag(:p, html_escape(flash[msg.to_sym]), :id => "flash-#{msg}", :class => "rounded") unless flash[msg.to_sym].blank?
+    end
+    messages
+  end
+
+  # Replacement for Rails' default button_to helper
+  # using HTML button element rather than HTML input element
+  # Note use of <span><em> for styling
+  def button_to(name, options = {}, html_options = {})
+    html_options = html_options.stringify_keys
+    convert_boolean_attributes!(html_options, %w( disabled ))
+   
+    method_tag = ''
+    if (method = html_options.delete('method')) && %w{put delete}.include?(method.to_s)
+      method_tag = tag('input', :type => 'hidden', :name => '_method', :value => method.to_s)
+    end
+   
+    form_method = method.to_s == 'get' ? 'get' : 'post'
+   
+    request_token_tag = ''
+    if form_method == 'post' && protect_against_forgery?
+      request_token_tag = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
+    end
+   
+    if confirm = html_options.delete("confirm")
+      html_options["onclick"] = "return #{confirm_javascript_function(confirm)};"
+    end
+   
+    url = options.is_a?(String) ? options : self.url_for(options)
+    name ||= url
+   
+    html_options.merge!("type" => "submit", "value" => name)
+   
+    "<form method=\"#{form_method}\" action=\"#{escape_once url}\" class=\"button-to\"><div>" +
+      method_tag + content_tag("button", "<span><em>" +name+ "</em></span>", html_options) + 
+      request_token_tag + "</div></form>"
+  end
+  
+  def submit_button(name) 
+    %(<button type="submit" onclick="this.blur();"><span><em>) + name + 
+    %(</em></span></button>)
+  end
+  
+  def find_group(permalink)
+    Group.find_by_permalink(permalink)
+  end
+    
+  def find_group_id(permalink)
+    Group.find_by_permalink(permalink).id
+  end        
+  
+  def find_profile_id(permalink)
+    Profile.find_by_permalink(permalink).id
+  end        
+  
+  def find_grant_id(permalink)
+    Grant.find_by_permalink(permalink).id
+  end
+  
+  def user_cred_images(user, size = "small", limit = nil)
+    compilation = user_cred_image_url_set(user.credit.pebbles, user.credit.beads, user.credit.buttons, user.credit.pens, user.credit.shells, user.credit.pearls, user.credit.ribbons, user.credit.laurels, size)
+    if limit
+      compilation.values_at(0..3).join
+    else
+      compilation.values_at(0..23).join
+    end
+  end
+  
+  def user_cred_image_url_set(p, b, bu, pe, sh, per, r, l, size)
+    pebbles, beads, buttons, pens = "","","",""
+    shells, pearls, ribbons, laurels = "","","",""
+    total = p + b + bu + pe + sh + per + r + l
+    compilation = []
+
+    l.times do
+      compilation << "<img alt='laurel' src='#{cred_image_path(:laurel, size)}' title='laurel'/>"
+    end
+    r.times do
+      compilation << "<img alt='ribbon' src='#{cred_image_path(:ribbon, size)}' title='ribbon'/>"
+    end    
+    per.times do
+      compilation << "<img alt='pearl' src='#{cred_image_path(:pearl, size)}' title='pearl'/>"
+    end
+    sh.times do
+      compilation << "<img alt='shell' src='#{cred_image_path(:shell, size)}' title='shell'/>"
+    end
+    pe.times do
+      compilation << "<img alt='pen' src='#{cred_image_path(:pen, size)}' title='pen'/>"
+    end
+    bu.times do
+      compilation << "<img alt='button' src='#{cred_image_path(:button, size)}' title='button'/>"
+    end
+    b.times do
+      compilation << "<img alt='bead' src='#{cred_image_path(:bead, size)}' title='bead'/>"
+    end
+    p.times do
+      compilation << "<img alt='pebble' src='#{cred_image_path(:pebble, size)}' title='pebble'/>"
+    end
+    compilation
+  end  
+  
+  def cred_image_path(type, size)
+    prefix = Credit::IMAGE_PATH
+    case type.to_s
+      when "pebble" 
+        path = Credit::DIR[:pebble] + "#{size}/#{Credit::IMAGE_NAMES[:pebble]}"
+      when "bead" 
+        path = Credit::DIR[:bead]   + "#{size}/#{Credit::IMAGE_NAMES[:bead]}"
+      when "button" 
+        path = Credit::DIR[:button] + "#{size}/#{Credit::IMAGE_NAMES[:button]}"
+      when "pen" 
+        path = Credit::DIR[:pen]    + "#{size}/#{Credit::IMAGE_NAMES[:pen]}"
+      when "shell" 
+        path = Credit::DIR[:shell]  + "#{size}/#{Credit::IMAGE_NAMES[:shell]}"
+      when "pearl" 
+        path = Credit::DIR[:pearl]  + "#{size}/#{Credit::IMAGE_NAMES[:pearl]}"
+      when "ribbon" 
+        path = Credit::DIR[:ribbon] + "#{size}/#{Credit::IMAGE_NAMES[:ribbon]}"
+      when "laurel" 
+        path = Credit::DIR[:laurel] + "#{size}/#{Credit::IMAGE_NAMES[:laurel]}" 
+    end
+    prefix + path
+  end 
+  
+  def session_bar_chart_url(grant)
+    voters    = grant.group.memberships.voters.count
+    votes_yea = grant.votes.yea.count
+    votes_nay = grant.votes.nay.count
+    
+    green = ((votes_yea.to_f / voters.to_f) * 100).to_i
+      red = ((votes_nay.to_f / voters.to_f) * 100).to_i
+    scale = voters < 100 ? "100" : voters
+    scale == "100" ? blue = 100 - (green + red) : Group::AWARD_THRESHOLD_PCT
+    "http://chart.apis.google.com/chart?cht=bhs" +
+    "&amp;chs=#{Grant::SESSION_BAR_CHART_X}x#{Grant::SESSION_BAR_CHART_Y}" +
+    "&amp;chd=t:#{green}|#{blue}|#{red}|#{scale}" +
+    "&amp;chco=#{Grant::GREEN},#{Grant::BLUE},#{Grant::RED},#{Grant::SCALE}" +
+    "&amp;chf=bg,s,EDEDED"
+  end
+  
+  # for bar chart image alt & title attributes
+  def accessible_tally(grant)
+    voters   = grant.group.memberships.voters.count
+    yea      = grant.votes.yea.count
+    nay      = grant.votes.nay.count
+    awaiting = voters - yea - nay
+    votes = "#{yea} Yea, #{nay} Nay, "  
+    status = grant.final   ? 
+             grant.awarded ? 
+                 "Awarded" : "Denied" : "Awaiting #{awaiting}"
+    votes + status
+  end 
+  
+  # returns the default image for instance if none defined
+  def user_defined_image(instance, size, options = {})
+    if instance.photo.file?
+      image_tag instance.photo.url(size), options
+    else
+      type = instance.class.name.downcase
+      image_tag "/images/defaults/#{type}_#{size}.png", options
+    end
+  end
+         
+end

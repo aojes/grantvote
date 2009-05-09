@@ -1,0 +1,182 @@
+body {
+  background: url('/images/body_bg.png') 0 0 repeat-x;
+  background-color: #ededed; }
+
+#header {
+  position: relative;
+  background: url('/images/header_bg.png') 0 0 repeat-x;
+  height: 117px;
+  color: #ededed; }
+
+.nav {
+  color: #ededed; }
+  .nav #login a {
+    color: #ededed;
+    text-decoration: none;
+    padding: 0 4px; }
+    .nav #login a:hover {
+      color: #004B73;
+      background-color: #d1e1ea; }
+  .nav p {
+    color: #004B73;
+    background-color: #d1e1ea;
+    padding: 2px 4px; }
+  .nav #nav-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+  .nav #nav-list li {
+    float: left;
+    margin: 0 0.2em;
+    list-style: none; }
+  .nav #nav-list li a {
+    color: #ededed;
+    font-size: 14pt;
+    line-height: 1em;
+    padding: 1px 2px;
+    float: left;
+    display: block;
+    text-decoration: none;
+    text-align: center; }
+    .nav #nav-list li a:hover {
+      color: #004B73;
+      background-color: #d1e1ea; }
+
+#content {
+  background: white;
+  margin-bottom: 120px; }
+
+#splash {
+  background: #EAFFD6;
+  border: 1px solid #97AD71; }
+
+.cred {
+  border-top: 1px solid #888; }
+
+
+.flr {
+  float: right; }
+
+.fll {
+  float: left; }
+
+.center {
+  text-align: center; }
+
+.rounded {
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }
+
+.border-test {
+  border: 1px solid #999;
+  padding: 4px; }
+
+@import url(styles.css);
+legend {
+  padding: .4em 1em; }
+
+label {
+  width: 10em;
+  float: left;
+  text-align: right;
+  margin-right: 1.4em;
+  display: block; }
+
+.form_row {
+  white-space: nowrap;
+  padding-bottom: 0.4em; }
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  overflow: visible;
+  text-align: center;
+  white-space: nowrap;
+  height: 29px;
+  line-height: 29px;
+  cursor: pointer; }
+
+button span, button em {
+  display: block;
+  height: 29px;
+  line-height: 29px;
+  margin: 0; }
+
+button span {
+  padding-left: 12px;
+  background: url('/images/button.png') 0px -40px no-repeat; }
+
+button em {
+  font-size: 12pt;
+  font-style: normal;
+  font-weight: bold;
+  color: #ededed;
+  padding-right: 12px;
+  background: url('/images/button.png') 100% -40px no-repeat; }
+
+.buttonless_field {
+  background: url('/images/search_glass_gray.png') 5px 5px no-repeat;
+  padding-left: 23px !important; }
+
+.fieldWithErrors {
+  display: block; }
+
+#errorExplanation {
+  font-size: large;
+  border: 1px solid red;
+  padding: 12px 7px 0px 7px;
+  background-color: #f0f0f0;
+  margin: 1em 2.5em; }
+  #errorExplanation h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 12px 5px 5px 15px;
+    font-size: 12pt;
+    margin: -7px;
+    background-color: #c00;
+    color: #fff;
+    display: none; }
+  #errorExplanation p {
+    color: #333;
+    margin-bottom: 0;
+    padding: 5px;
+    display: none; }
+  #errorExplanation ul li {
+    font-size: 11pt;
+    list-style: circle; }
+
+div.pagination {
+  padding: 3px;
+  margin: 3px;
+  text-align: center; }
+  div.pagination a {
+    border: 1px solid #dedfde;
+    margin-right: 3px;
+    padding: 2px 6px;
+    background-position: bottom;
+    text-decoration: none;
+    color: #0061de; }
+    div.pagination a:hover {
+      border: 1px solid #000;
+      background-image: none;
+      background-color: #0061de;
+      color: #fff; }
+  div.pagination span.current_page {
+    margin-right: 3px;
+    padding: 2px 6px;
+    font-weight: bold;
+    color: #ff0084; }
+  div.pagination span.disabled_page {
+    margin-right: 3px;
+    padding: 2px 6px;
+    color: #adaaad; }
+div.meneame a:active {
+  border: 1px solid #000;
+  background-image: none;
+  background-color: #0061de;
+  color: #fff; }

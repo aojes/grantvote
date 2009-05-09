@@ -1,0 +1,12 @@
+= render 'groups/header', :group => find_group(params[:group_id])
+- form_for @grant, :html => { :multipart => true } do |f|
+  = render 'form', :object => f
+  = f.hidden_field :user_id, :value => current_user.id
+  = f.hidden_field :group_id, :value => find_group_id(params[:group_id])  
+  .prepend-4
+    %br
+    = f.submit "Preview"
+    %br
+    %br
+    %br    
+    
