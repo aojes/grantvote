@@ -1,8 +1,0 @@
-= render 'groups/header', :group => @grant.group
-- if @grant.votes.count.zero?
-  - form_for @grant, :html => {:multipart => true} do |f|
-    = render 'form', :object => f
-    .span-18.prepend-2.prepend-top
-      = submit_button "Preview"
-      %br
-      %br  
