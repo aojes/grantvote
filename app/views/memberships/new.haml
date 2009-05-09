@@ -1,0 +1,18 @@
+= render 'groups/header', :group => find_group(params[:group_id])
+.span-24.prepend-top
+  .span-6.prepend-2.append-1
+    %h3 Watch Group
+    %p
+      - form_for @membership, :url => { :action => :create } do |f|
+        = f.hidden_field :user_id, :value => current_user.id
+        = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
+        = f.hidden_field :interest, :value => "false"
+        = f.submit "Watch"
+  .span-12.last
+    %h3 Full Membership
+    %p
+      - form_for @membership, :url => { :action => :create } do |f|
+        = f.hidden_field :user_id, :value => current_user.id
+        = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
+        = f.hidden_field :interest, :value => "true"
+        = f.submit "Dues Paid"
