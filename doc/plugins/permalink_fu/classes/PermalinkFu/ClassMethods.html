@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: PermalinkFu::ClassMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">PermalinkFu::ClassMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/vendor/plugins/permalink_fu/lib/permalink_fu_rb.html">
+                vendor/plugins/permalink_fu/lib/permalink_fu.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Contains class methods for ActiveRecord models that have permalinks
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000005">define_attribute_methods_with_permalinks</a>&nbsp;&nbsp;
+      <a href="#M000004">setup_permalink_fu_on</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">setup_permalink_fu_on</span><span class="method-args">(base) {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/permalink_fu/lib/permalink_fu.rb, line 77</span>
+77:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">setup_permalink_fu_on</span>(<span class="ruby-identifier">base</span>)
+78:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">extend</span> <span class="ruby-keyword kw">self</span>
+79:       <span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">base</span>
+80:         <span class="ruby-identifier">attr_accessor</span> <span class="ruby-identifier">:permalink_options</span>
+81:         <span class="ruby-identifier">attr_accessor</span> <span class="ruby-identifier">:permalink_attributes</span>
+82:         <span class="ruby-identifier">attr_accessor</span> <span class="ruby-identifier">:permalink_field</span>
+83:       <span class="ruby-keyword kw">end</span>
+84:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:include</span>, <span class="ruby-constant">InstanceMethods</span>
+85: 
+86:       <span class="ruby-keyword kw">yield</span>
+87: 
+88:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">permalink_options</span>[<span class="ruby-identifier">:unique</span>]
+89:         <span class="ruby-identifier">base</span>.<span class="ruby-identifier">before_validation</span> <span class="ruby-identifier">:create_unique_permalink</span>
+90:       <span class="ruby-keyword kw">else</span>
+91:         <span class="ruby-identifier">base</span>.<span class="ruby-identifier">before_validation</span> <span class="ruby-identifier">:create_common_permalink</span>
+92:       <span class="ruby-keyword kw">end</span>
+93:       <span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">base</span>
+94:         <span class="ruby-identifier">alias_method</span> <span class="ruby-identifier">:define_attribute_methods_without_permalinks</span>, <span class="ruby-identifier">:define_attribute_methods</span>
+95:         <span class="ruby-identifier">alias_method</span> <span class="ruby-identifier">:define_attribute_methods</span>, <span class="ruby-identifier">:define_attribute_methods_with_permalinks</span>
+96:       <span class="ruby-keyword kw">end</span>
+97:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="#M000005" class="method-signature">
+          <span class="method-name">define_attribute_methods_with_permalinks</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000005-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/plugins/permalink_fu/lib/permalink_fu.rb, line 99</span>
+ 99:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">define_attribute_methods_with_permalinks</span>
+100:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> = <span class="ruby-identifier">define_attribute_methods_without_permalinks</span>
+101:         <span class="ruby-identifier">evaluate_attribute_method</span> <span class="ruby-identifier">permalink_field</span>, <span class="ruby-node">&quot;def #{self.permalink_field}=(new_value);write_attribute(:#{self.permalink_field}, new_value.blank? ? '' : PermalinkFu.escape(new_value));end&quot;</span>, <span class="ruby-node">&quot;#{self.permalink_field}=&quot;</span>
+102:       <span class="ruby-keyword kw">end</span>
+103:       <span class="ruby-identifier">value</span>
+104:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

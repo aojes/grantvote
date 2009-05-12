@@ -4,6 +4,7 @@ log/*.log
 Capfile
 config/database.yml
 public/system/*
+public/assets/*
 tmp
 **/*.db
 \#*

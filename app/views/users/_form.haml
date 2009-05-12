@@ -20,7 +20,7 @@
       = p.text_field :detail
 - if @user == current_user      
   .form_row
-    = form.label :photo, @user.photo_file_name ? "Change photo" : "Add photo"
+    = form.label :photo, @user.photo.file? ? "Change photo" : "Add photo"
     = form.file_field :photo 
 .form_row
   = form.label :password, form.object.new_record? ? nil : "Change password" 

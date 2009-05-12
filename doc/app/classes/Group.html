@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Group</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Group</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/models/group_rb.html">
+                app/models/group.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ActiveRecord::Base
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000011">authorize_edit?</a>&nbsp;&nbsp;
+      <a href="#M000010">deduct_funds!</a>&nbsp;&nbsp;
+      <a href="#M000009">solvent?</a>&nbsp;&nbsp;
+      <a href="#M000012">to_param</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AWARD_THRESHOLD_PCT</td>
+          <td>=</td>
+          <td class="context-item-value">[0.500, 50]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">[2, 140]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_PURPOSE</td>
+          <td>=</td>
+          <td class="context-item-value">[3, 200]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DUES</td>
+          <td>=</td>
+          <td class="context-item-value">5</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_DUES</td>
+          <td>=</td>
+          <td class="context-item-value">[5, 5]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_FILE_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">5.megabytes</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="#M000011" class="method-signature">
+          <span class="method-name">authorize_edit?</span><span class="method-args">(user)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000011-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/group.rb, line 61</span>
+61:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authorize_edit?</span>(<span class="ruby-identifier">user</span>)
+62:     <span class="ruby-identifier">creator</span> = <span class="ruby-constant">Membership</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">:role</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'creator'</span>, <span class="ruby-identifier">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>, 
+63:           <span class="ruby-identifier">:group_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>)
+64:     <span class="ruby-identifier">moderator</span> = <span class="ruby-constant">Membership</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">:role</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'moderator'</span>, <span class="ruby-identifier">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>, 
+65:           <span class="ruby-identifier">:group_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">:interest</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)  
+66:     (<span class="ruby-identifier">creator</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">funds</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-keyword kw">or</span> (<span class="ruby-identifier">moderator</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">funds</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)
+67:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="#M000010" class="method-signature">
+          <span class="method-name">deduct_funds!</span><span class="method-args">(amount)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000010-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/group.rb, line 57</span>
+57:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deduct_funds!</span>(<span class="ruby-identifier">amount</span>)
+58:     <span class="ruby-identifier">update_attributes!</span>(<span class="ruby-identifier">:funds</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">funds</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">amount</span>))
+59:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="#M000009" class="method-signature">
+          <span class="method-name">solvent?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+named_scope :interest, lambda { |*args|
+</p>
+<pre>
+  { :conditions =&gt; { :dues =&gt; args.first..args.second } }
+</pre>
+<p>
+}
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000009-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/group.rb, line 53</span>
+53:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">solvent?</span>
+54:     <span class="ruby-identifier">funds</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">grants</span>.<span class="ruby-identifier">session</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-identifier">:amount</span>)
+55:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="#M000012" class="method-signature">
+          <span class="method-name">to_param</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000012-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/group.rb, line 69</span>
+69:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_param</span>
+70:     <span class="ruby-identifier">permalink</span>
+71:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

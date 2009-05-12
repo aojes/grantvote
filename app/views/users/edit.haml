@@ -1,4 +1,4 @@
-%h2.prepend-1 Edit My Account
+%h2.prepend-1 Edit Your Account
 - form_for @user, :url => account_path, :html => {:multipart => true } do |f|
   = f.error_messages
   = render :partial => "form", :object => f

@@ -1,11 +1,12 @@
 # please keep your notes in here
 
-make current nav link appear same as hover
-dynamic chart on right-hand side of login/registration view
-make subtle JS color effect on messages (blip green, yellow, red, fade to blue)
+
 _______________
 defer
   
+  make current nav link appear same as hover
+  dynamic chart on right-hand side of login/registration view
+  make subtle JS color effect on messages (blip green, yellow, red, fade to blue)  
   make onclick button sprite work (unnecessary?)
   logged-out splash page
   groups view (search and create)  

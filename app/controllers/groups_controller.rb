@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
   require 'searchlogic'
-
-  before_filter :require_user, :except => [:index, :show]
+  
+  # require user for private production
+  before_filter :require_user #, :except => [:index, :show]
   before_filter :verify_authenticity_token
   
   def index

@@ -123,6 +123,12 @@ button em {
   background: url('/images/search_glass_gray.png') 5px 5px no-repeat;
   padding-left: 23px !important; }
 
+input.invitation_email_text {
+  width: 200px; }
+
+input.invitation_email_text:focus {
+  border: 1px solid #bbb; }
+
 .fieldWithErrors {
   display: block; }
 
