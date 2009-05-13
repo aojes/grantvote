@@ -3,8 +3,9 @@ body {
   background-color: #ededed;
   font-family: Verdana, Arial, sans-serif; }
 
-a {
-  outline: none; }
+* {
+  outline: none;
+  -moz-outline-style: none; }
 
 #header {
   position: relative;
