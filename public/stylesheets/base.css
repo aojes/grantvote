@@ -1,6 +1,10 @@
 body {
   background: url('/images/body_bg.png') 0 0 repeat-x;
-  background-color: #ededed; }
+  background-color: #ededed;
+  font-family: Verdana, Arial, sans-serif; }
+
+a {
+  outline: none; }
 
 #header {
   position: relative;
@@ -44,7 +48,10 @@ body {
 
 #content {
   background: white;
-  margin-bottom: 120px; }
+  margin-bottom: 120px;
+  min-height: 500px;
+  height: 500px;
+  height: auto !important; }
 
 #splash {
   background: #EAFFD6;
@@ -72,6 +79,28 @@ body {
 .border-test {
   border: 1px solid #999;
   padding: 4px; }
+
+#green {
+  width: 970px;
+  min-height: 300px;
+  background: url('/images/green_mid_rpt.jpg') 0 0 repeat-y;
+  margin: 30px 0px 0px 27px; }
+
+#green-top {
+  background: url('/images/green_mid_top.jpg') 0 0 no-repeat;
+  width: 970px;
+  height: 20px;
+  display: block;
+  margin: 0px 0px 0px 0px;
+  float: left; }
+
+#green-bottom {
+  clear: both;
+  background: url('/images/green_mid_btm.jpg') no-repeat bottom left;
+  width: 970px;
+  height: 20px;
+  display: block;
+  margin: 0px 0px 0px 0px; }
 
 @import url(styles.css);
 legend {
@@ -128,6 +157,28 @@ input.invitation_email_text {
 
 input.invitation_email_text:focus {
   border: 1px solid #bbb; }
+
+input#invitation_submit {
+  background: url('/images/submit_btn.jpg') no-repeat top left;
+  width: 134px;
+  height: 43px;
+  display: block;
+  text-indent: -8888px;
+  font-size: 0px !important;
+  border: 0;
+  margin: -42px 0px 0px 280px;
+  outline: 0;
+  cursor: pointer; }
+
+label.email {
+  width: 10em;
+  float: none;
+  text-align: left;
+  margin: 5px 0px 0px 0px;
+  display: inline;
+  font-size: 18px;
+  padding: 10px 3px 3px 0px;
+  color: #336666; }
 
 .fieldWithErrors {
   display: block; }

@@ -1,6 +1,6 @@
 - form_for :invitation, :url => {:controller => "invitations", :action => "create"} do |f|
   .form_row
-    %strong Email: &nbsp;
+    %label.email Email
     = f.text_field :email, :class => "text invitation_email_text"
     = f.submit "Submit"
   .form_row
