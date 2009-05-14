@@ -1,0 +1,41 @@
+!!!
+%html{ html_attrs }
+  %head
+    %title=h(@page_title) || "(" + controller.controller_name + ": " + controller.action_name + ")"
+    %meta{ "http-equiv" => "content-type", :content => "text/xhtml; charset=utf-8" }
+    %meta{ :name => 'description', :content => "Grantvote helps people give and win financial support." }
+    %meta{ :name => 'keywords', :content => "grants, grant, money, funding, writing, winning, giving, financial, resource, network, community, philanthropy" }
+    %meta{ "http-equiv" => "imagetoolbar", :content => "no" }
+    %meta{ :name => "distribution", :content => "all" }
+    %meta{ :name => "robots", :content => "all" }
+    %meta{ :name => "resource-type", :content => "document" }
+    %meta{ :name => "MSSmartTagsPreventParsing", :content => "true" }
+    = stylesheet_link_tag 'blueprint/screen', {:media => "screen, projection"}
+    = stylesheet_link_tag 'blueprint/print', {:media => "print"}
+    <!-- [if IE]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    = stylesheet_link_tag 'base'
+    = javascript_include_tag :defaults
+  %body
+    .container
+      .span-24#header
+        .span-8.append-4
+          %h1= link_to image_tag("/images/grantvote.png", :alt => "Grantvote"), root_path
+        .span-10.append-2.prepend-top.nav.last
+          - if current_user
+            %ul#nav-list.pull-1.prepend-top
+              %li= link_to "Groups", groups_path, :class => "rounded", :alt => "Groups index"
+              %li= link_to "Leaders", leaders_path, :class => "rounded", :alt => "Sitewide leaderboard"
+              %li=link_to "You", account_path, :class => "rounded", :alt => "Your account"
+            -#= pluralize User.logged_in.count, "user" currently logged in
+          .prepend-top.flr#login{:style => "position:relative; top: 3px"}
+            - if not current_user
+              -#= link_to "Register", new_account_path, :class => "rounded", :alt => "Register a new account" 
+              -#|
+              = link_to "Log In", login_path, :class => "rounded", :alt => "Log in to your account"
+            - else 
+              = link_to "Logout", user_session_path, :method => :delete, :class => "rounded", :alt => "log out"
+          - if current_user and (flash[:notice] or flash[:warning] or flash[:error])
+            .span-14.pull-3= flash_messages
+          - else
+            .span-14.pull-3.prepend-top= flash_messages
+      .span-24.last#content= yield

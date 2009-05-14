@@ -1,89 +1,94 @@
-/*
-Sass::SyntaxError: Undefined variable: "!grantvoteblue".
-on line 90 of /home/katz/sandbox/htdocs/grantvote/public/stylesheets/sass/forms.sass
+legend {
+  padding: .4em 1em; }
 
-86:   :margin 5px 0px 0px 0px 
-87:   :display inline
-88:   :font-size 18px
-89:   :padding 10px 3px 3px 0px
-90:   :color = !grantvoteblue
+label {
+  width: 10em;
+  float: left;
+  text-align: right;
+  margin-right: 1.4em;
+  display: block; }
 
+.form_row {
+  white-space: nowrap;
+  padding-bottom: 0.4em; }
 
-Backtrace:
-/home/katz/sandbox/htdocs/grantvote/public/stylesheets/sass/forms.sass:90
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/script/variable.rb:16:in `perform'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/attr_node.rb:49:in `perform!'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:57:in `_perform'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:47:in `perform'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:66:in `perform_children'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:66:in `map'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:66:in `perform_children'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:62:in `perform!'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/rule_node.rb:133:in `perform!'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:57:in `_perform'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:47:in `perform'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:66:in `perform_children'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:66:in `map'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:66:in `perform_children'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:62:in `perform!'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:57:in `_perform'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/tree/node.rb:47:in `perform'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/engine.rb:104:in `render'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/plugin.rb:75:in `update_stylesheet'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/plugin.rb:60:in `update_stylesheets'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/plugin.rb:55:in `each'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/plugin.rb:55:in `update_stylesheets'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/plugin.rb:53:in `each'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/plugin.rb:53:in `update_stylesheets'
-/usr/local/lib/ruby/gems/1.8/gems/haml-2.1.0/rails/../lib/sass/plugin/rails.rb:16:in `process'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:391:in `process'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:386:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/routing/route_set.rb:433:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:88:in `dispatch'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:111:in `_call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:82:in `initialize'
-/usr/local/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:29:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:29:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
-/usr/local/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:9:in `cache'
-/usr/local/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:28:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/head.rb:9:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/methodoverride.rb:24:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/params_parser.rb:15:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/rewindable_input.rb:25:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/session/cookie_store.rb:93:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/reloader.rb:9:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/failsafe.rb:11:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lock.rb:11:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lock.rb:11:in `synchronize'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/lock.rb:11:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:106:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/rails/rack/static.rb:31:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/urlmap.rb:46:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/urlmap.rb:40:in `each'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/urlmap.rb:40:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/rails/rack/log_tailer.rb:17:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/content_length.rb:13:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/chunked.rb:15:in `call'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/handler/mongrel.rb:61:in `process'
-/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
-/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
-/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
-/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
-/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
-/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
-/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
-/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
-/usr/local/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/vendor/rack-1.0/rack/handler/mongrel.rb:34:in `run'
-/usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/commands/server.rb:111
-/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-script/server:3
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Sass::SyntaxError: Undefined variable: \"!grantvoteblue\".\A on line 90 of /home/katz/sandbox/htdocs/grantvote/public/stylesheets/sass/forms.sass\A \A 86:   :margin 5px 0px 0px 0px \A 87:   :display inline\A 88:   :font-size 18px\A 89:   :padding 10px 3px 3px 0px\A 90:   :color = !grantvoteblue\A "; }
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  overflow: visible;
+  text-align: center;
+  white-space: nowrap;
+  height: 29px;
+  line-height: 29px;
+  cursor: pointer; }
+
+button span, button em {
+  display: block;
+  height: 29px;
+  line-height: 29px;
+  margin: 0; }
+
+button span {
+  padding-left: 12px;
+  background: url('/images/button.png') 0px -40px no-repeat; }
+
+button em {
+  font-size: 12pt;
+  font-style: normal;
+  font-weight: bold;
+  color: #ededed;
+  padding-right: 12px;
+  background: url('/images/button.png') 100% -40px no-repeat; }
+
+.buttonless_field {
+  background: url('/images/search_glass_gray.png') 5px 5px no-repeat;
+  padding-left: 23px !important; }
+
+input.invitation_email_text {
+  width: 207px; }
+
+input.invitation_email_text:focus {
+  border: 1px solid #bbb; }
+
+input#invitation_submit {
+  background: url('/images/submit_btn.jpg') no-repeat top left;
+  width: 134px;
+  height: 43px;
+  display: block;
+  text-indent: -8888px;
+  font-size: 0px !important;
+  border: 0;
+  margin: -42px 0px 0px 280px;
+  outline: 0;
+  cursor: pointer;
+  cursor: hand;
+  color: #003567; }
+
+input#invitation_submit:hover, input#invitation_submit:focus {
+  background: url('/images/submit_btn_hvr.jpg') no-repeat top left;
+  width: 134px;
+  height: 43px;
+  display: block;
+  text-indent: -8888px;
+  border: 0;
+  font-size: 0px !important;
+  margin: -42px 0px 0px 280px;
+  outline: 0;
+  cursor: pointer;
+  cursor: hand;
+  color: #2c6989; }
+
+form>#invitation_submit {
+  height: 0px; }
+
+h2.email {
+  float: left;
+  text-align: left;
+  margin: -4px 0px 4px 0px;
+  display: inline;
+  font-size: 18px;
+  padding: 10px 3px 3px 0px;
+  color: #003366; }
