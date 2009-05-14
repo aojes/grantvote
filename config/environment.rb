@@ -46,10 +46,10 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
-ActionMailer::Base.delivery_method = :sendmail
-ActionMailer::Base.raise_delivery_errors = true
-ActionMailer::Base.default_charset = "utf-8"
-ActionMailer::Base.perform_deliveries = false
+#ActionMailer::Base.delivery_method = :sendmail
+#ActionMailer::Base.raise_delivery_errors = true
+#ActionMailer::Base.default_charset = "utf-8"
+#ActionMailer::Base.perform_deliveries = false
 # ActionView:: Template or TemplateHandler ( register haml extension )
 
 
