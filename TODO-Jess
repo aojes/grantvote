@@ -49,6 +49,9 @@ notes
 _________________
 notes-katz
 
+   %li= show_link "Groups", groups_path,  :alt => "Groups index"
+   Can you modify the show_link helper to include the alt? or probably define them on controllers and add :alt=>'@title' or somethink like that. I'll let you know if I figure out something more simple. Also groups_path doesn't work, it has to be :controller=>'groups'
+      
 
 
   
