@@ -1,19 +1,11 @@
 body {
   background: url('/images/body_bg.png') 0 0 repeat-x;
   background-color: #ededed;
-  behavior: url('/stylesheets/csshover3.htc'); }
+  font-family: Verdana, Arial, sans-serif; }
 
-a {
+* {
   outline: none;
-  color: #003366; }
-
-#header {
-  position: absolute;
-  width: 950px;
-  height: 117px;
-  background: url('/images/header_bg.png') 0 0 repeat-x;
-  color: #ededed;
-  top: 0; }
+  -moz-outline-style: none; }
 
 h1.logo a {
   width: 310px;
@@ -21,15 +13,17 @@ h1.logo a {
   background: url('/images/logo.jpg') 0 0 repeat-x;
   display: block;
   text-indent: -8888px;
-  margin: 4px 0px 0px 13px;
-  position: absolute; }
+  margin: 0px 0px 0px 13px;
+  float: left; }
+
+#header {
+  position: relative;
+  background: url('/images/header_bg.png') 0 0 repeat-x;
+  height: 117px;
+  color: #ededed; }
 
 .nav {
-  color: #ededed;
-  position: relative;
-  width: 630px;
-  float: right;
-  margin-right: 20px; }
+  color: #ededed; }
   .nav #login a {
     color: #ededed;
     text-decoration: none;
@@ -41,15 +35,6 @@ h1.logo a {
     color: #004B73;
     background-color: #d1e1ea;
     padding: 2px 4px; }
-  .nav p#flash-notice {
-    position: absolute;
-    margin: 0 0 0 140px; }
-  .nav #nav-list {
-    position: absolute;
-    top: 40px;
-    margin-left: 40px;
-    _padding-left: 20px;
-    *margin-left: -400px; }
   .nav #nav-list ul {
     list-style: none;
     padding: 0;
@@ -57,45 +42,26 @@ h1.logo a {
   .nav #nav-list li {
     float: left;
     margin: 0 0.2em;
-    list-style: none;
-    font-size: 14px;
-    _width: 40px!important; }
-  .nav #nav-list li span {
-    background: url('/images/nav_btn_right.jpg') no-repeat top right;
-    padding-right: 12px;
-    height: 32px;
-    line-height: 30px;
-    min-width: 40px;
-    _width: 40px!important;
-    display: block;
-    color: #333; }
-    .nav #nav-list li span:hover {
-      background: url('/images/nav_btn_right_hvr.jpg') no-repeat top right; }
-  .nav #nav-list li span a {
-    background: url('/images/nav_btn_left.jpg') no-repeat top left;
-    display: block;
-    padding-right: 0px;
-    color: #333;
-    height: 32px;
-    _width: 40px!important;
-    line-height: 30px;
+    list-style: none; }
+  .nav #nav-list li a {
+    color: #ededed;
+    font-size: 14pt;
+    line-height: 1em;
+    padding: 1px 2px;
+    float: left;
     display: block;
     text-decoration: none;
-    text-align: center;
-    text-indent: 11px; }
-    .nav #nav-list li span a:hover {
-      background: url('/images/nav_btn_left_hvr.jpg') no-repeat top left;
-      color: #000; }
+    text-align: center; }
+    .nav #nav-list li a:hover {
+      color: #004B73;
+      background-color: #d1e1ea; }
 
 #content {
   background: white;
-  position: absolute;
-  margin: 117px 0px 150px 0px;
-  width: 950px;
+  margin-bottom: 120px;
   min-height: 500px;
   height: 500px;
-  height: auto !important;
-  overflow: hidden; }
+  height: auto !important; }
 
 #splash {
   background: #EAFFD6;
@@ -197,7 +163,7 @@ button em {
   padding-left: 23px !important; }
 
 input.invitation_email_text {
-  width: 207px; }
+  width: 200px; }
 
 input.invitation_email_text:focus {
   border: 1px solid #bbb; }
@@ -212,26 +178,7 @@ input#invitation_submit {
   border: 0;
   margin: -42px 0px 0px 280px;
   outline: 0;
-  cursor: pointer;
-  cursor: hand;
-  color: #003567; }
-
-input#invitation_submit:hover, input#invitation_submit:focus {
-  background: url('/images/submit_btn_hvr.jpg') no-repeat top left;
-  width: 134px;
-  height: 43px;
-  display: block;
-  text-indent: -8888px;
-  border: 0;
-  font-size: 0px !important;
-  margin: -42px 0px 0px 280px;
-  outline: 0;
-  cursor: pointer;
-  cursor: hand;
-  color: #2c6989; }
-
-form>#invitation_submit {
-  height: 0px; }
+  cursor: pointer; }
 
 h2.email {
   float: left;

@@ -48,7 +48,7 @@ button em {
   padding-left: 23px !important; }
 
 input.invitation_email_text {
-  width: 207px; }
+  width: 200px; }
 
 input.invitation_email_text:focus {
   border: 1px solid #bbb; }
@@ -63,26 +63,7 @@ input#invitation_submit {
   border: 0;
   margin: -42px 0px 0px 280px;
   outline: 0;
-  cursor: pointer;
-  cursor: hand;
-  color: #003567; }
-
-input#invitation_submit:hover, input#invitation_submit:focus {
-  background: url('/images/submit_btn_hvr.jpg') no-repeat top left;
-  width: 134px;
-  height: 43px;
-  display: block;
-  text-indent: -8888px;
-  border: 0;
-  font-size: 0px !important;
-  margin: -42px 0px 0px 280px;
-  outline: 0;
-  cursor: pointer;
-  cursor: hand;
-  color: #2c6989; }
-
-form>#invitation_submit {
-  height: 0px; }
+  cursor: pointer; }
 
 h2.email {
   float: left;

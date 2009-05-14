@@ -27,9 +27,29 @@ notes-jess
 
     _padding-left: 20px => :_padding-left 20x
     *margin-left: -400px  => :*margin-left -400px
+  
     
     blueprint sets good default fonts (maybe they look bad on windows ?)
     
     i don't know what the .htc file is for, and i can't find it either
     
     (i think we should keep to the default nav for now)
+    
+_______________
+notes-katz
+
+    _padding-left: 20px => :_padding-left 20x
+    *margin-left: -400px  => :*margin-left -400px
+    #fonts should always be in px and minimize use of em or pt. they would look fine on any browser
+    
+    blueprint sets good default fonts (maybe they look bad on windows ?)
+    #fonts should always be in px and minimize use of em or pt. they would look fine on any browser
+    
+    i don't know what the .htc file is for, and i can't find it either
+    #it would fix the problem with hovering elements (submit button) in IE6, IE7 and IE8 (yes, even IE8)
+    
+    (i think we should keep to the default nav for now)
+    #alright. 
+    
+    
+    
