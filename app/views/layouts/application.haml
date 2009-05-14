@@ -21,11 +21,11 @@
         .nav
           - if current_user
             %ul#nav-list.pull-1.prepend-top
-              %li
+              %li<
                 %span= link_to "Groups", groups_path, :alt => "Groups index"
-              %li
+              %li<
                 %span= link_to "Leaders", leaders_path, :alt => "Sitewide leaderboard"
-              %li
+              %li<
                 %span= link_to "You", account_path, :alt => "Your account"
           -#= pluralize User.logged_in.count, "user" currently logged in
           .prepend-top.flr#login{:style => "position:relative; top: 3px"}

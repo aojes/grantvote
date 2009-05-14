@@ -25,7 +25,7 @@
             %ul#nav-list.pull-1.prepend-top
               %li= link_to "Groups", groups_path, :class => "rounded", :alt => "Groups index"
               %li= link_to "Leaders", leaders_path, :class => "rounded", :alt => "Sitewide leaderboard"
-              %li=link_to "You", account_path, :class => "rounded", :alt => "Your account"
+              %li= link_to "You", account_path, :class => "rounded", :alt => "Your account"
             -#= pluralize User.logged_in.count, "user" currently logged in
           .prepend-top.flr#login{:style => "position:relative; top: 3px"}
             - if not current_user

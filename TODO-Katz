@@ -1,7 +1,7 @@
-# please keep your notes in here
 
 I'd be submitting PSD's through email
 Still trying to check out the app and I'm studying the blueprint css right now
+
 
 _______________
 defer
@@ -20,4 +20,16 @@ defer
 _______________
 debug views and css
   IE bug fixing to be done later
-  
+
+
+_______________
+notes-jess
+
+    _padding-left: 20px => :_padding-left 20x
+    *margin-left: -400px  => :*margin-left -400px
+    
+    blueprint sets good default fonts (maybe they look bad on windows ?)
+    
+    i don't know what the .htc file is for, and i can't find it either
+    
+    (i think we should keep to the default nav for now)

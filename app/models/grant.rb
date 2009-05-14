@@ -68,7 +68,7 @@ class Grant < ActiveRecord::Base
   end
 
   def passes?
-    votes.yea.count > vote_threshold || voters == 1    
+    votes.yea.count > vote_threshold
   end
 
   def denies?
@@ -79,6 +79,7 @@ class Grant < ActiveRecord::Base
     transaction do
       update_attributes!(:final => true, :awarded => true)
       group.deduct_funds!(amount)
+      group.memberships.find_by_user_id(user).cycle_membership!(amount)
     end
   end
 

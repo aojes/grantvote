@@ -138,9 +138,10 @@ module ApplicationHelper
   end 
   
   def session_bar_chart_url(grant)
-    voters    = grant.group.memberships.voters.count
-    votes_yea = grant.votes.yea.count
-    votes_nay = grant.votes.nay.count
+    voters_count = grant.group.memberships.voters.count
+    voters       = voters_count.zero? ? 1 : voters_count
+    votes_yea    = grant.votes.yea.count
+    votes_nay    = grant.votes.nay.count
     
     green = ((votes_yea.to_f / voters.to_f) * 100).to_i
       red = ((votes_nay.to_f / voters.to_f) * 100).to_i

@@ -1,4 +1,6 @@
 - comments.each do |c|
-  .span-2= link_to user_defined_image(c.user, :small, :alt => h(c.user.login), :title => h(c.user.login)), "/#{c.user.login}"
-  .span-11.last= simple_format c.content
+  .span-2= link_to user_defined_image(c.user, :small, :alt => h(c.user.login), :title => h(c.user.login)), profile_path(c.user.login)
+  .span-11.last
+    %strong= link_to c.user.login, profile_path(c.user.login)
+    = simple_format c.content
   %hr
