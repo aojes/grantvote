@@ -3,7 +3,7 @@ body {
   background-color: #ededed;
   font-family: Verdana, Arial, sans-serif; }
 
-* {
+a, a:focus, button:focus, input:focus {
   outline: none;
   -moz-outline-style: none; }
 
@@ -178,7 +178,7 @@ input.invitation_email_text {
 input.invitation_email_text:focus {
   border: 1px solid #bbb; }
 
-input#invitation_submit {
+button#invitation_submit {
   background: url('/images/submit_btn.jpg') no-repeat top left;
   width: 134px;
   height: 43px;
@@ -189,6 +189,8 @@ input#invitation_submit {
   margin: -42px 0px 0px 280px;
   outline: 0;
   cursor: pointer; }
+  button#invitation_submit:focus {
+    background: url('/images/submit_btn_hvr.jpg') no-repeat top left; }
 
 h2.email {
   float: left;

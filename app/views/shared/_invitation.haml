@@ -2,7 +2,7 @@
   .form_row
     %h2.email Email
     = f.text_field :email, :class => "text invitation_email_text"
-    = f.submit "Submit"
+    %button#invitation_submit{'type'=>'submit', 'name'=>'commit'} Submit
   .form_row
     = f.check_box :news, {:style => "position:relative; top: 3px;"}, "true", "false"
     Check to also subscribe to Grantvote news and product updates.

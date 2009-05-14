@@ -47,6 +47,7 @@ notes
   how might developing an API benefit us?
   
 _________________
+
 notes-katz
 
    %li= show_link "Groups", groups_path,  :alt => "Groups index"
