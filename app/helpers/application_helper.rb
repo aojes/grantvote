@@ -178,14 +178,15 @@ module ApplicationHelper
   end
   
   def show_link(name, options = {}, html_options= nil)
-  url = options.is_a?(String) ? options : url_for(options.merge({:only_path => false}))
-  current_url = url_for(:action => @current_action, :only_path => false)
+    url = options.is_a?(String) ? 
+                        options : url_for(options.merge({:only_path => false}))
+    current_url = url_for(:action => @current_action, :only_path => false)
   
-    if (url == current_url)
+    if url == current_url
      content_tag(:li, link_to(name,options, html_options ),  :class => "active")
     else
 
-	   content_tag(:li,  link_to(name,options, html_options ),  :class => "normal")
+	   content_tag(:li,  link_to(name,options, html_options ), :class => "normal")
     end
   end
 

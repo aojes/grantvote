@@ -23,14 +23,16 @@
         .span-10.append-2.prepend-top.nav.last
           - if current_user
             %ul#nav-list.pull-1.prepend-top
-              = show_link "Groups", {:controller=>'groups', :action=>'index'}, {:title=>'Groups'}
-              = show_link "Leaders", {:controller=>'leaders', :action=>'index'}, {:title=>'Sitewide leaderboard'}
-              - if current_page?(:controller=>'account', :action=>'index')
-                %li.active
-                  = link_to "You",  account_path, {:title => "Your account"}
-              - else 
-                %li.normal
-                  = link_to "You", account_path, {:title => "Your account"}
+              %li= link_to "Groups", groups_path
+              %li= link_to "Leaders", leaders_path
+              %li= link_to "You", account_path
+              -# Defer
+                - if current_page?(:controller=>'account', :action=>'index')
+                  %li.active
+                    = link_to "You",  account_path, {:title => "Your account"}
+                - else 
+                  %li.normal
+                    = link_to "You", account_path, {:title => "Your account"}
             
             -#= pluralize User.logged_in.count, "user" currently logged in
           .prepend-top.flr#login{:style => "position:relative; top: 3px"}

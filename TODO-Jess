@@ -3,6 +3,7 @@ make point assignment, cred conversion, and cred giving system
 
 additional link back to group home from session
 
+set recent things order-first on profile
 
 _________________
 defer 
@@ -33,7 +34,7 @@ _________________
 business
   
   make company
-  write legal TOS    
+  write legal TOS
   get business bank account
   production on heroku & S3 or slicehost (or railsmachine) ?
   ask for hosting sponsorship
@@ -52,8 +53,19 @@ _________________
 notes-katz
 
    %li= show_link "Groups", groups_path,  :alt => "Groups index"
-   Can you modify the show_link helper to include the alt? or probably define them on controllers and add :alt=>'@title' or somethink like that. I'll let you know if I figure out something more simple. Also groups_path doesn't work, it has to be :controller=>'groups'
-      
+   # we can do this later.. we need to get the nuts & bolts of deployment ready
+   
+   Can you modify the show_link helper to include the alt? or probably define 
+   them on controllers and add :alt=>'@title' or somethink like that. 
+   # for now, alt & title attrs are fine for images
+   
+   
+   I'll let you know if I figure out something more simple. Also groups_path 
+   doesn't work, it has to be :controller=>'groups'
+   
+   # groups_path is working here now.  keep me posted. try migrating
+     to VERSION=0, roll it forward, then rake db:populate_users & 
+     rake db:populate  (just a guess)    
 
 
   

@@ -20,15 +20,11 @@ debug views and css
 _______________
 notes-jess
 
-    _padding-left: 20px => :_padding-left 20x
-    *margin-left: -400px  => :*margin-left -400px
-  
+    keep the nav touches for later.  focus on firefox linux development.
+    don't let IE slow you down
     
-    blueprint sets good default fonts (maybe they look bad on windows ?)
-    
-    i don't know what the .htc file is for, and i can't find it either
-    
-    (i think we should keep to the default nav for now)
+    please try to keep lines under 80 characters ------------------------------<
+    most text editors can display a vertical rule at 80 chars
     
 _______________
 notes-katz
