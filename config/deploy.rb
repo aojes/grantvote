@@ -7,7 +7,7 @@ ssh_options[:forward_agent] = true
 set :user, 'root'
 set :domain, '67.23.26.17'
 set :application, 'grantvote'
-
+set :port, 3288
 
 set :repository,  "git@github.com:tefflox/grantvote.git" 
 set :deploy_to, "/var/web/staging/" 
