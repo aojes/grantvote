@@ -7,7 +7,8 @@ class InvitationsController < ApplicationController
     
     if @invitation.save
       flash[:notice] =  "Please allow some time to prepare an invitation.  " +
-                       "Thank you for your interest.  See you soon!"
+                       # "Thank you for your interest.  
+                       "See you soon!"
       redirect_to :back
     else
       redirect_to root_path
