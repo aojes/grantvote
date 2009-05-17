@@ -10,7 +10,7 @@ set :application, 'grantvote'
 
 
 set :repository,  "git@github.com:tefflox/grantvote.git" 
-set :deploy_to, "/home/#{user}/#{domain}" 
+set :deploy_to, "/var/web/staging/" 
 set :deploy_via, :remote_cache
 set :scm, 'git'
 set :branch, 'staging'
