@@ -65,7 +65,8 @@ button#invitation_submit {
   outline: 0;
   cursor: pointer; }
   button#invitation_submit:focus {
-    background: url('/images/submit_btn_hvr.jpg') no-repeat top left; }
+    background: url('/images/submit_btn_hvr.jpg') no-repeat top left;
+    outline: none; }
 
 h2.email {
   float: left;
