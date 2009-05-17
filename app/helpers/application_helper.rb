@@ -85,6 +85,7 @@ module ApplicationHelper
     pebbles, beads, buttons, pens = "","","",""
     shells, pearls, ribbons, laurels = "","","",""
     total = p + b + bu + pe + sh + per + r + l
+    
     compilation = []
 
     l.times do
@@ -136,6 +137,44 @@ module ApplicationHelper
     end
     prefix + path
   end 
+  
+  def promote_cred(pebbles, beads, buttons, pens, shells, pearls, ribbons, laurels)
+    # TODO FIXME put this in the Credit model on after_create
+    if pebbles == 3
+      pebbles -= 3
+      beads += 1
+    end
+    
+    if beads == 3
+      beads -= 3
+      buttons += 1
+    end
+    
+    if buttons == 3
+      buttons -= 3
+      pens += 1
+    end
+
+    if shells == 3
+      shells -= 3
+      pearls += 1
+    end
+    
+    if pearls == 3
+      pearls -= 3
+      ribbons += 1
+    end
+    
+    if ribbons == 3
+      ribbons -= 3
+      laurels += 1
+    end    
+    
+    if laurels > 3
+      # Something nice
+    end
+    
+  end
   
   def session_bar_chart_url(grant)
     voters_count = grant.group.memberships.voters.count

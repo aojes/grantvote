@@ -1,33 +1,21 @@
 _______________
 defer
-  
-  make current nav link appear same as hover
-  dynamic chart on right-hand side of login/registration view
+
   make subtle JS color effect on messages (blip green, yellow, red, fade to blue)  
-  make onclick button sprite work (unnecessary?)
-  logged-out splash page
   groups view (search and create)  
   group view (friendly look for new group)
   session view (friendly look for blank page)
   edit profile view (friendly look)
+  dynamic chart on right-hand side of login/registration view  
+  make onclick button sprite work (unnecessary?)
   
-
 _______________
 debug views and css
   IE bug fixing to be done later
 
-
-_______________
-notes-jess
-
-    keep the nav touches for later.  focus on firefox linux development.
-    don't let IE slow you down
-    
-    please try to keep lines under 80 characters ------------------------------<
-    most text editors can display a vertical rule at 80 chars
     
 _______________
-notes-katz
+notes
 
     #fonts should always be in px and minimize use of em or pt. they would look fine on any browser
     
@@ -37,5 +25,14 @@ notes-katz
     (i think we should keep to the default nav for now)
     #alright. 
     
+
+
+_______________
+notes-jess
+
+    keep the nav touches for later.  focus on firefox linux development.
+    don't let IE slow you down
     
+    try to keep lines under 80 characters -------------------------------------<
+    most text editors can display a vertical rule at the designated margin
     
