@@ -1,15 +1,29 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+default_run_options[:pty] = true
 
-# If you aren't deploying to /u/apps/#{application} on the target
-# servers (which is the default), you can specify the actual location
-# via the :deploy_to variable:
-# set :deploy_to, "/var/www/#{application}"
+ssh_options[:forward_agent] = true
 
-# If you aren't using Subversion to manage your source code, specify
-# your SCM below:
-# set :scm, :subversion
 
-role :app, "your app-server here"
-role :web, "your web-server here"
-role :db,  "your db-server here", :primary => true
+# be sure to change these
+set :user, 'root'
+set :domain, '67.23.26.17'
+set :application, 'grantvote'
+
+
+set :repository,  "git@github.com:tefflox/grantvote.git" 
+set :deploy_to, "/home/#{user}/#{domain}" 
+set :deploy_via, :remote_cache
+set :scm, 'git'
+set :branch, 'staging'
+set :git_shallow_clone, 1
+set :git_enable_submodules, 1
+set :scm_verbose, true
+set :use_sudo, false
+
+server domain, :app, :web
+role :db, domain, :primary => true
+
+namespace :deploy do
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt" 
+  end
+end
