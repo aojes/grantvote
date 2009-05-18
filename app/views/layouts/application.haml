@@ -39,11 +39,12 @@
             
             -#= pluralize User.logged_in.count, "user" currently logged in
           .prepend-top.flr#login{:style => "position:relative; top: 3px"}
-            - if not current_user
+            -# if not current_user
               -#= link_to "Register", new_account_path, :class => "rounded", :alt => "Register a new account" 
               -#|
-              = link_to "Log In", login_path, :class => "rounded", :alt => "Log in to your account"
-            - else 
+              =# link_to "Log In", login_path, :class => "rounded", :alt => "Log in to your account"
+            -# else 
+            - if current_user 
               = link_to "Logout", user_session_path, :method => :delete, :class => "rounded", :alt => "log out"
           - if current_user and (flash[:notice] or flash[:warning] or flash[:error])
             .span-14.pull-3= flash_messages
