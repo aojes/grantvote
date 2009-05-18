@@ -9,7 +9,7 @@ class Notifier < ActionMailer::Base
     from          "My Awesome Site Notifications <notifications@example.com>"  
     subject       "Welcome to My Awesome Site"  
     sent_on       Time.now 
-    body          {:user => user, :url => "http://example.com/login"} 
+    body          :user => user, :url => "http://example.com/login" 
   end 
   
   def password_reset_instructions(user)
