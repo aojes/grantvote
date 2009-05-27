@@ -1,7 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
   # map.root :controller => "user_sessions", :action => "new"
-  map.root :controller => "home"
+  #map.root :controller => "home"
+  map.root :controller => "invitations"
   map.login '/login', :controller => "user_sessions", :action => "new"
   
   map.resource :user_session
@@ -13,7 +14,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
   map.resources :grants, :has_many => [:votes]         
 
+  map.resources :invitations
 
+  
   map.leaders '/leaders', :controller => "leaders", :action => "index"
   map.profile ':permalink', :controller => "profiles", :action => "view"
   

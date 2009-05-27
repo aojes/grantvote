@@ -1,18 +1,48 @@
 class InvitationsController < ApplicationController
-  before_filter :require_no_user
+  before_filter :require_user, :except => [:index, :new, :create] 
   before_filter :verify_authenticity_token
   
+  def index
+    @page_title = "Grantvote"
+  end
+  
+  def new
+    @invitation = Invitation.new
+  end
+  
   def create
-    @invitation = Invitation.new(params[:invitation])
+  
+   @invitation = Invitation.new(params[:invitation])
+    #@invitation.sender = current_user
     
     if @invitation.save
-      flash[:notice] =  "Please allow some time to prepare an invitation.  " +
-                       # "Thank you for your interest.  
-                       "See you soon!"
-      redirect_to :back
+
+       
+        flash[:notice] = "Thank you, we'll send you an invitation soon"
+       redirect_to root_path
+
     else
-      redirect_to root_path
+      render :action => 'new'
     end
+    
   end
+  
+  def list
+  
+  @invitations = Invitation.find(:all)
+  
+  end
+  
+  def show
+  
+  end
+  
+  private 
+  
+  def send_invitation
+  # Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+  
+  end
+  
   
 end

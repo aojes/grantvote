@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :grants
   has_many :votes
   has_many :comments, :as => :commentable
+  has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
+  belongs_to :invitation
   
   accepts_nested_attributes_for :profile  
 
@@ -27,9 +29,28 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, 
                        :content_type => ['image/jpeg', 'image/gif', 'image/png']  
 
+  validates_presence_of :invitation_id, :message => 'is required'
+  validates_uniqueness_of :invitation_id
+  
+  
   def deliver_password_reset_instructions!
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)
   end
+  
+    def invitation_token
+    invitation.token if invitation
+  end
+  
+  def invitation_token=(token)
+    self.invitation = Invitation.find_by_token(token)
+  end
+  
+  private
+  
+  def set_invitation_limit
+    self.invitation_limit = 5
+  end
+  
   
 end
