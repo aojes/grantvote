@@ -35,4 +35,15 @@ notes-jess
     
     try to keep lines under 80 characters -------------------------------------<
     most text editors can display a vertical rule at the designated margin
+
+
+_______________
+notes-katz
+
+   Beta invitation - only admin or moderator can send email invitations or approve requests - still working on it
+   Later-when all the features are done: any user can send invites
+   Note: Make sure id on Invitations table = id on Users table when you run rake db:populate_users
+
+   
+   
     

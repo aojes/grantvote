@@ -203,6 +203,28 @@ h2.email {
   padding: 10px 3px 3px 0px;
   color: #003366; }
 
+ul.invitations {
+  margin: 0;
+  padding: 0; }
+
+ul.invitations li {
+  list-style: none;
+  margin: 5px 5px 5px 0px; }
+
+ul.invitations li span {
+  min-width: 170px;
+  height: 20px;
+  background: #eee;
+  margin: 1px;
+  display: inline-block;
+  text-align: center;
+  padding: 4px; }
+
+ul.invitations li span.title {
+  background: #ccc;
+  font-weight: bold;
+  text-transform: uppercase; }
+
 .fieldWithErrors {
   display: block; }
 

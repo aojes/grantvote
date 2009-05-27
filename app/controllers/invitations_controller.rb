@@ -3,10 +3,18 @@ class InvitationsController < ApplicationController
   before_filter :verify_authenticity_token
   
   def index
+    if current_user 
+     @page_title ="Manage Invitations"
+     @invitations = Invitation.find(:all)
+    
+    else
     @page_title = "Grantvote"
+    end
+    
   end
   
   def new
+    @page_title ="Grantvote"
     @invitation = Invitation.new
   end
   
@@ -27,15 +35,6 @@ class InvitationsController < ApplicationController
     
   end
   
-  def list
-  
-  @invitations = Invitation.find(:all)
-  
-  end
-  
-  def show
-  
-  end
   
   private 
   
