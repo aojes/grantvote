@@ -38,7 +38,7 @@ test:
 production:
  adapter: mysql
  encoding: utf8
- database: grantvote_production
+ database: grantvote_staging
  pool: 5
  username: root
  password: 
