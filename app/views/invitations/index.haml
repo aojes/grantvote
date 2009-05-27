@@ -13,15 +13,16 @@
         %span.title 
           Send Invitation 
       - @invitations.each do |i|
-        %li
-          %span 
-            = i.id
-          %span
-            = i.email
-          %span
-            = i.news
-          %span
-            Send 
+        - if i.sender_id == nil and i.id != 1
+          %li
+            %span 
+              = i.id
+            %span
+              = i.email
+            %span
+              = i.news
+            %span
+              = link_to "Send", i , :confirm => "Are you sure?", :action => :send_invitation
 
 -  else 
   #green

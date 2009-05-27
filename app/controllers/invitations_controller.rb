@@ -25,7 +25,6 @@ class InvitationsController < ApplicationController
     
     if @invitation.save
 
-       
         flash[:notice] = "Thank you, we'll send you an invitation soon"
        redirect_to root_path
 
@@ -36,11 +35,22 @@ class InvitationsController < ApplicationController
   end
   
   
-  private 
-  
   def send_invitation
-  # Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+   @invitation = Invitation.find(params[:id])
+   Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
   
+    respond_to do |format|
+      format.html { redirect_to(invitations_url) }
+    end
+    
+  end
+  
+  def show
+      @invitation = Invitation.find(params[:id])
+
+    respond_to do |format|
+      format.html
+    end
   end
   
   
