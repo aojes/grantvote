@@ -22,7 +22,7 @@
             %span
               = i.news
             %span
-              = link_to "Send", i , :confirm => "Are you sure?", :action => :send_invitation
+              = link_to "Send", :controller=>'invitations', :action => 'send_invitation', :id=>i.id
 
 -  else 
   #green

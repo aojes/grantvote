@@ -37,7 +37,7 @@ class InvitationsController < ApplicationController
   
   def send_invitation
    @invitation = Invitation.find(params[:id])
-   Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+   Mailer.deliver_invitation(@invitation, invitations_url(@invitation.token))
   
     respond_to do |format|
       format.html { redirect_to(invitations_url) }
