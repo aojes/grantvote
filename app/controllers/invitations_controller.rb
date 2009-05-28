@@ -21,8 +21,7 @@ class InvitationsController < ApplicationController
   def create
   
    @invitation = Invitation.new(params[:invitation])
-    #@invitation.sender = current_user
-    
+
     if @invitation.save
 
         flash[:notice] = "Thank you, we'll send you an invitation soon"
@@ -36,7 +35,9 @@ class InvitationsController < ApplicationController
   
   
   def send_invitation
+ 
    @invitation = Invitation.find(params[:id])
+    @invitation.sender = current_user
    Mailer.deliver_invitation(@invitation, invitations_url(@invitation.token))
   
     respond_to do |format|
