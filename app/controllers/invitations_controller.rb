@@ -41,7 +41,8 @@ class InvitationsController < ApplicationController
    Mailer.deliver_invitation(@invitation, invitations_url(@invitation.token))
   
     respond_to do |format|
-      format.html { redirect_to(invitations_url) }
+     # format.html { redirect_to(invitations_url) }
+     format.html { redirect_to root_path  }
     end
     
   end

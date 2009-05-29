@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
   validates_presence_of :invitation_id, :message => 'is required'
   validates_uniqueness_of :invitation_id
   
+  before_create :set_invitation_limit
+    
   
   def deliver_password_reset_instructions!
     reset_perishable_token!
