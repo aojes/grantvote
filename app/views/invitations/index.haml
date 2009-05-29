@@ -1,32 +1,5 @@
-- if current_user
-  .prepend-1
-    %br 
-    %h2 Manage Invitations
-    %ul.invitations
-      %li
-        %span.title 
-          Invitation Id
-        %span.title 
-          Email 
-        %span.title 
-          Receive news
-        %span.title 
-          Send Invitation 
-      - @invitations.each do |i|
-        - if i.sender_id == nil and i.id != 1
-          %li
-            %span 
-              = i.id
-            %span
-              = i.email
-            %span
-              = i.news
-            %span
-              = link_to "Send", :controller=>'invitations', :action => 'send_invitation', :id=>i.id
-
--  else 
-  #green
-    #green-top
+#green
+  #green-top
     .prepend-1.prepend-top
       %br
       %br

@@ -4,11 +4,17 @@ class InvitationsController < ApplicationController
   
   def index
     if current_user 
-     @page_title ="Manage Invitations"
-     @invitations = Invitation.find(:all)
+    # @page_title ="Manage Invitations"
+    # @invitations = Invitation.find(:all)
+        
+    respond_to do |format|
+     # format.html { redirect_to(invitations_url) }
+     format.html { redirect_to account_url  }
+    end
     
     else
     @page_title = "Grantvote"
+
     end
     
   end
@@ -21,11 +27,18 @@ class InvitationsController < ApplicationController
   def create
   
    @invitation = Invitation.new(params[:invitation])
-
+   @invitation.sender = current_user
     if @invitation.save
-
+      if current_user 
+       Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+        flash[:notice] = "Thank you, invitation sent."
+       
+       redirect_to root_url
+       
+       else 
         flash[:notice] = "Thank you, we'll send you an invitation soon"
-       redirect_to root_path
+        redirect_to root_url
+       end
 
     else
       render :action => 'new'
@@ -34,18 +47,6 @@ class InvitationsController < ApplicationController
   end
   
   
-  def send_invitation
- 
-   @invitation = Invitation.find(params[:id])
-    @invitation.sender = current_user
-   Mailer.deliver_invitation(@invitation, invitations_url(@invitation.token))
-  
-    respond_to do |format|
-     # format.html { redirect_to(invitations_url) }
-     format.html { redirect_to root_path  }
-    end
-    
-  end
   
   def show
       @invitation = Invitation.find(params[:id])
