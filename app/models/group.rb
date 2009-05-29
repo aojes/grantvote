@@ -46,11 +46,6 @@ class Group < ActiveRecord::Base
   ## defer
   # validates_attachment_presence :photo SET EDIT BEFORE PUBLIC
   
-  #  named_scope :interest, lambda { |*args|
-  #    { :conditions => { :dues => args.first..args.second } }
-  #  }
-  #  
-  
   def solvent?
     funds >= grants.session.sum(:amount)
   end
