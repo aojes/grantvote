@@ -45,7 +45,7 @@
       %h3= button_to "Join Group", new_group_membership_path(@group), :method => :get if not member?(params[:id])
       %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
       %h3= button_to "New Grant", new_group_grant_path(@group), :method => :get if voter?(params[:id])
-    .border-test.prepend-top
+    .border-test.prepend-top.last
       - if @group.memberships.voters.count.zero?
         %h3= pluralize @group.memberships.members.count, "Member"
         - group_members(params[:id]).each do |m|
@@ -54,7 +54,7 @@
         %h3= pluralize @group.memberships.voters.count, "Voter"
         - group_voters(params[:id]).each do |v|
           = link_to user_defined_image(v, :thumb, :alt => h(v.login), :title => h(v.login)), "/#{h(v.login)}"
-    .border-test.prepend-top.last= render 'shared/tipjoy', :group => @group.permalink          
+    -#.border-test.prepend-top= render 'shared/tipjoy', :group => @group.permalink          
     %br
     %br
     %br          

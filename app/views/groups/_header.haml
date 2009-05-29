@@ -1,9 +1,9 @@
 .span-24
   .prepend-top
     .span-8.prepend-1{:style => "min-height: 160px"}
-      - if controller.controller_name == "groups" and group != nil 
+      - if controller.controller_name == "groups" and !group.nil?
         %h2= link_to user_defined_image(group, :display, :alt => "to group voting page", :title => "View Session"), group_grants_path(group)
-      - elsif group != nil 
+      - elsif !group.nil?
         %h2= link_to user_defined_image(group, :display, :alt => "to group home page"), group_path(group)
       - else 
         %h2 Nothing 
