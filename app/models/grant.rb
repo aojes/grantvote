@@ -40,10 +40,8 @@ class Grant < ActiveRecord::Base
     :message => "can be an integer value greater than or equal to $#{MIN_AWARD}"
   
   # TODO
-  # validates_attachment_presence :photo 
-  validates_attachment_size :photo, :less_than=> 600.kilobytes
-  validates_attachment_content_type :photo, :content_type => ['image/jpg']
-  
+  # validates_attachment_presence :photo <= this includes validations
+    
   before_save :adapt_objects
   # before_save :adapt_links
   
