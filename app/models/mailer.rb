@@ -3,7 +3,7 @@ class Mailer < ActionMailer::Base
     subject    'Invitation'
     recipients invitation.email
     from       'foo@egrantvote.com'
-    body       :invitation => invitation, :signup_url => root_path
+    body       :invitation => invitation, :signup_url => signup_url
     invitation.update_attribute(:sent_at, Time.now)
   end
 end

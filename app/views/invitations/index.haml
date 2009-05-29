@@ -1,50 +1,23 @@
-- if current_user
-  .prepend-1
-    %br 
-    %h2 Manage Invitations
-    %ul.invitations
-      %li
-        %span.title 
-          Invitation Id
-        %span.title 
-          Email 
-        %span.title 
-          Receive news
-        %span.title 
-          Send Invitation 
-      - @invitations.each do |i|
-        - if i.sender_id == nil and i.id != 1
-          %li
-            %span 
-              = i.id
-            %span
-              = i.email
-            %span
-              = i.news
-            %span
-              = link_to "Send", :controller=>'invitations', :action => 'send_invitation', :id=>i.id
-
--  else 
-  #green
-    #green-top
+#green
+  #green-top
+  .prepend-1.prepend-top
+    %br
+    %br
+    %h2.prepend-1.prepend-top Grantvote helps people give and win financial support.
     .prepend-1.prepend-top
       %br
+      .large Enter your email address and we'll send you an invitation.  
+      .prepend-top
+        = render 'shared/invitation'
       %br
-      %h2.prepend-1.prepend-top Grantvote helps people give and win financial support.
-      .prepend-1.prepend-top
-        %br
-        .large Enter your email address and we'll send you an invitation.  
-        .prepend-top
-          = render 'shared/invitation'
-        %br
-        %br
-        %br
-        .quiet We won't spam you or give your email to others.
-        =# link_to "Grantvote Factsheet", root_path
-        %br
-        %br
-        %br
-    #green-bottom
+      %br
+      %br
+      .quiet We won't spam you or give your email to others.
+      =# link_to "Grantvote Factsheet", root_path
+      %br
+      %br
+      %br
+  #green-bottom
 
 
   

@@ -4,6 +4,8 @@ ActionController::Routing::Routes.draw do |map|
   #map.root :controller => "home"
   map.root :controller => "invitations"
   map.login '/login', :controller => "user_sessions", :action => "new"
+  #map.register '/register', :controller => 'users', :action => 'create'
+  map.signup '/signup/:invitation_token', :controller => 'users', :action => 'new'
   
   map.resource :user_session
   map.resource :account, :controller => "users"

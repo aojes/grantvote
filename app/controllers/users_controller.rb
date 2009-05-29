@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   # require user for private production
   #before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user#, :only => [:show, :edit, :update]
+  before_filter :require_user, :only => [:show, :edit, :update]
   before_filter :verify_authenticity_token
 
   def new
     @page_title = "Welcome to Grantvote"
-    @user = User.new
+    #@user = User.new
+    @user = User.new(:invitation_token => params[:invitation_token])
+    @user.email = @user.invitation.email if @user.invitation
   end
 
   def create
