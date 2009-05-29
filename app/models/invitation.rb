@@ -34,4 +34,17 @@ private
     sender.decrement! :invitation_limit
   end
   
+  def self.send_invites
+    
+    find(:all).each do | i |
+     if i.sender_id.nil?
+     @invitation = i
+     @invitation.sender = current_user
+     
+     Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+     end
+    end
+  
+  end
+  
 end

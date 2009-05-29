@@ -34,13 +34,14 @@ class User < ActiveRecord::Base
   
   before_create :set_invitation_limit
     
-  
+ 
+
   def deliver_password_reset_instructions!
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)
   end
   
-    def invitation_token
+  def invitation_token
     invitation.token if invitation
   end
   
