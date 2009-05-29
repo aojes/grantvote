@@ -15,8 +15,14 @@ module GroupsHelper
   end
 
   def voter?(group_id)
-    Membership.exists?(:user_id => current_user, :group_id => find_group_id(group_id),
+    Membership.exists?(:user_id => current_user, 
+                          :group_id => find_group_id(group_id),
                                                       :interest => true)
+  end
+  
+  def creator?(user, group)
+    Membership.exists?(:user_id => user, :group_id => @group, 
+              :role => 'creator')
   end
   
   def group_voters(group_id)

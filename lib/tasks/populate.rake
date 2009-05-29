@@ -77,7 +77,7 @@ namespace :db do
       g.created_at = 1.year.ago..Time.now
       g.updated_at = 1.week.ago..Time.now
       Vote.populate 1 do |v|
-        v.user_id = [1, 2, 3]
+        v.user_id = [3, 4, 5]
         v.grant_id = g.id
         v.group_id = 1..5
         v.cast = ["yea", "nay"]
