@@ -17,3 +17,4 @@ db/schema.rb
 sql_backup/*
 vendor/rails
 vendor/extensions
+public/.htaccess
