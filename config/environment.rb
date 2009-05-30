@@ -25,6 +25,7 @@ Rails::Initializer.run do |config|
   config.gem "faker"
   config.gem "haml"
   config.gem "cucumber"
+  config.gem "activemerchant", :lib => "active_merchant"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

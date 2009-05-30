@@ -1,0 +1,10 @@
+- form_for @payment do |f|
+  = f.error_messages
+  = f.hidden_field :express_token
+  = f.hidden_field :express_payer_id
+  %h3
+    Name: 
+    =h @payment.first_name 
+    =h @payment.last_name
+  = f.submit "Complete Payment"
+  

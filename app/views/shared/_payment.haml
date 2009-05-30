@@ -1,0 +1,28 @@
+- form_for :payment, :url => {:controller => "payments", :action => "create"} do |f|
+  = f.error_messages
+  .form_row
+    = f.label :first_name
+    = f.text_field :first_name 
+  .form_row
+    = f.label :last_name 
+    = f.text_field :last_name 
+  .form_row
+    = f.label :card_type 
+    = f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] 
+  .form_row
+    = f.label :card_number 
+    = f.text_field :card_number 
+  .form_row
+    = f.label :card_verification, "CVV" 
+    = f.text_field :card_verification 
+  .form_row
+    = f.label :card_expires_on 
+    = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true 
+  .form_row
+    = f.label :amount, "$"
+    = f.text_field :amount
+    = f.hidden_field :group_id, :value =>  params[:group_id].nil? ? params[:payment][:group_id] : find_group_id(params[:group_id])
+  .form_row.prepend-4= f.submit "Submit" 
+  %p= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_payment_path
+
+

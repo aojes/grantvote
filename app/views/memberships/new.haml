@@ -1,18 +1,23 @@
-= render 'groups/header', :group => find_group(params[:group_id])
+= render 'groups/header', :group => find_group(params[:group_id]) || Group.find(params[:payment][:group_id])
 .span-24.prepend-top
-  .span-6.prepend-2.append-1
+  .span-14.prepend-2
+    %h3 Test ActiveMerchant
+    = render 'shared/payment', :payment => Payment.new
+  .span-8.last
     %h3 Watch Group
     %p
-      - form_for @membership, :url => { :action => :create } do |f|
+      - form_for :membership, :url => { :controller => :memberships, :action => :create } do |f|
         = f.hidden_field :user_id, :value => current_user.id
-        = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
+        = f.hidden_field :group_id, :value => params[:group_id].nil? ? params[:payment][:group_id] : find_group_id(params[:group_id])
         = f.hidden_field :interest, :value => "false"
         = f.submit "Watch"
-  .span-12.last
-    %h3 Full Membership
-    %p
-      - form_for @membership, :url => { :action => :create } do |f|
-        = f.hidden_field :user_id, :value => current_user.id
-        = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
-        = f.hidden_field :interest, :value => "true"
-        = f.submit "Dues Paid"
+  -#
+    .span-5
+      %h3 Full Membership
+      %p
+        - form_for :membership, :url => { :controller => :memberships, :action => :create } do |f|
+          = f.hidden_field :user_id, :value => current_user.id
+          = f.hidden_field :group_id, :value =>  params[:group_id].nil? ? params[:payment][:group_id] : find_group_id(params[:group_id])
+          = f.hidden_field :interest, :value => "true"
+          = f.submit "Dues Paid"
+

@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.connect ':controller/:action'
+
   # map.root :controller => "user_sessions", :action => "new"
   #map.root :controller => "home"
   map.root :controller => "invitations"
@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
   map.resources :grants, :has_many => [:votes]         
-
+  map.resources :payments, :new => { :express => :get }
   map.resources :invitations
   map.send_invites '/send_invitations', :controller => "invitations", :action => "approve_invitations"
 
@@ -65,6 +65,7 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
+    map.connect ':controller/:action'
   # map.connect ':controller/:action/:id'
   # map.connect ':controller/:action/:id.:format'
 end

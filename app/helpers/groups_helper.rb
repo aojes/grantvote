@@ -25,6 +25,11 @@ module GroupsHelper
               :role => 'creator')
   end
   
+  def moderator?(user, group)
+    Membership.exists?(:user_id => user, :group_id => @group, 
+              :role => 'moderator')  
+  end
+  
   def group_voters(group_id)
     User.find(Group.find_by_permalink(group_id).
                 memberships.voters.collect {|m| m.user_id })

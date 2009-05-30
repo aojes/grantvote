@@ -33,3 +33,8 @@ config.gem 'rspec', :lib => false
 config.gem 'cucumber'
 config.gem 'webrat'
 
+config.after_initialize do
+  ActiveMerchant::Billing::Base.mode = :test
+  ::STANDARD_GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+end
