@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-
+  map.connect ':controller/:action'
   # map.root :controller => "user_sessions", :action => "new"
   #map.root :controller => "home"
   map.root :controller => "invitations"
@@ -17,6 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :grants, :has_many => [:votes]         
 
   map.resources :invitations
+  map.send_invites '/send_invitations', :controller => "invitations", :action => "approve_invitations"
 
   
   map.leaders '/leaders', :controller => "leaders", :action => "index"

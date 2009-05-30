@@ -1,0 +1,25 @@
+.prepend-1.prepend-top
+  %h2 Manage Invitations
+  
+  %table 
+    %tr
+      %th Requested 
+      %th Email
+      %th Receive News
+      %th Send Invitation
+    - @invitation.each do |i|
+      -if i.sender_id.nil? and i.id != 1
+        %tr
+          %td 
+            =distance_of_time_in_words(i.created_at, Time.now + 33, true)
+            ago 
+          %td 
+            =i.email
+          %td
+            -if i.news == true
+              Yes
+            -else
+              No
+          %td
+            = link_to "Send Invite" , :action => "send_invite"
+          

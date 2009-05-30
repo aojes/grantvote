@@ -1,10 +1,10 @@
 class Mailer < ActionMailer::Base
   default_url_options[:host] = "67.23.26.17"
-  def invitation(invitation)
+   def invitation(invitation, signup_url)
     subject    'Invitation'
     recipients invitation.email
     from       'foo@egrantvote.com'
-    body       :invitation => invitation, :signup_url => "http://67.23.26.17/signup"
+    body       :invitation => invitation, :signup_url => signup_url
     content_type "text/html"
     invitation.update_attribute(:sent_at, Time.now)
   end

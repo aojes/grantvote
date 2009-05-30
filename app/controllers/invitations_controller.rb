@@ -46,24 +46,25 @@ class InvitationsController < ApplicationController
     
   end
   
+  def approve_invitations
   
-  
-  def show
-      @invitation = Invitation.find(params[:id])
-
-    respond_to do |format|
-      format.html
+    if current_user.id == 1
+    @invitation = Invitation.find(:all)
+    else
+    redirect_to root_url
     end
+  
   end
   
-  def self.send_invites
+
+  
+  def send_invite
     
     Invitation.find(:all).each do | i |
      if i.sender_id.nil?
      @invitation = i
-     #@invitation.sender = current_user
-     i.update_attribute(:sender_id, 1)
-     
+     @invitation.sender = current_user
+     #i.update_attribute(:sender_id, 1)
      Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
      end
     end
