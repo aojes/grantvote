@@ -57,8 +57,20 @@ class InvitationsController < ApplicationController
   end
   
 
-  
   def send_invite
+     @invitation  = Invitation.find(params[:id])
+
+     @invitation.sender = current_user
+     Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+    respond_to do |format|
+     # format.html { redirect_to(invitations_url) }
+     format.html { redirect_to account_url  }
+    end
+  end
+  
+
+  
+  def self.send_all_invites
     
     Invitation.find(:all).each do | i |
      if i.sender_id.nil?

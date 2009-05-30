@@ -11,7 +11,7 @@
       -if i.sender_id.nil? and i.id != 1
         %tr
           %td 
-            =distance_of_time_in_words(i.created_at, Time.now + 33, true)
+            =distance_of_time_in_words(i.created_at, Time.now, true)
             ago 
           %td 
             =i.email
@@ -21,5 +21,5 @@
             -else
               No
           %td
-            = link_to "Send Invite" , :action => "send_invite"
+            = link_to "Send Invite" , {:action => "send_invite", :id=>i.id}, {:method=>:post}
           

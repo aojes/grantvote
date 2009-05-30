@@ -3,6 +3,10 @@ class UserSessionsController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => :destroy
   before_filter :verify_authenticity_token
+ 
+ def index
+  redirect_to root_url
+ end
 
   def new
     @page_title = "Welcome to Grantvote"
