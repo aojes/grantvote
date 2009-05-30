@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.connect ':controller/:action'
+  
   # map.root :controller => "user_sessions", :action => "new"
   #map.root :controller => "home"
   map.root :controller => "invitations"
@@ -23,6 +23,7 @@ ActionController::Routing::Routes.draw do |map|
   map.leaders '/leaders', :controller => "leaders", :action => "index"
   map.profile ':permalink', :controller => "profiles", :action => "view"
   
+  map.connect ':controller/:action'
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   
