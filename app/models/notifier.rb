@@ -10,7 +10,7 @@ class Notifier < ActionMailer::Base
     from          "Grantvote <tefflox@gmail.com>"  
     subject       "Welcome to Granvote"  
     sent_on       Time.now 
-    body          :user => user, :url => "http://example.com/login" 
+    body          :user => user, :url => "http://67.23.26.17/login" 
   end 
   
   def password_reset_instructions(user)

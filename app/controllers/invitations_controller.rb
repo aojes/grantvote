@@ -56,5 +56,19 @@ class InvitationsController < ApplicationController
     end
   end
   
+  def self.send_invites
+    
+    Invitation.find(:all).each do | i |
+     if i.sender_id.nil?
+     @invitation = i
+     #@invitation.sender = current_user
+     i.update_attribute(:sender_id, 1)
+     
+     Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+     end
+    end
+  
+  end
+  
   
 end
