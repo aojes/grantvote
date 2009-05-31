@@ -9,6 +9,8 @@
           = submit_button "Search"
     %h3= link_to "Create a new group", new_group_path, :method => :get
 
+.span-20.prepend-2.append-2
+  .prepend-15.quiet Top Members  
 
 -#
   - if @groups_count > 0 
@@ -49,8 +51,9 @@
       .span-12.last
         %span{:style => "position:relative; top: 4px"}
           %strong=h group.purpose
-    .span-4.last.border-test
-      %h3 Grants / members          
+    .span-4.last
+      - top_contributors(group.id).each do |c|
+        = link_to user_defined_image(c, :small, :alt => "#{c.login}", :title => "#{c.login}"), profile_path(c.login)
     
 %br{ :style => "clear:both" }        
 - if @groups_count > 0

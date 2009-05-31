@@ -1,5 +1,12 @@
 module GroupsHelper
-
+  
+  def top_contributors(group_id)
+    top_members = Membership.find_all_by_group_id(group_id, 
+                          :order => "contributes DESC", :limit => 3).
+                          collect {|u| u.user_id }
+    User.find(top_members)
+  end
+  
   def grants_awarded
     find_group(params[:id]).grants.awarded.sort! { |a, b| 
                                             b.updated_at <=> a.created_at } 
