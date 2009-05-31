@@ -1,6 +1,9 @@
 .prepend-top
 .span-20.prepend-2.append-2#search
-  .prepend-10.last
+  .span-10.pull-1.border-test
+    %h3.quiet Katz magic here :)
+    %p.quiet good place for lite graphical element ?
+  .span-10.last
     - form_for @search do |f|
       - f.fields_for @search.conditions do |groups|
         .form_row
@@ -10,8 +13,10 @@
     %h3= link_to "Create a new group", new_group_path, :method => :get
 
 .span-20.prepend-2.append-2
-  .prepend-15.quiet Top Members  
-
+  .span-12.prepend-3.quiet== #{pluralize @groups_count, 'group'} found
+  .span-4.last.quiet Top Members 
+  
+  
 -#
   - if @groups_count > 0 
     = #{@groups_count} groups found
