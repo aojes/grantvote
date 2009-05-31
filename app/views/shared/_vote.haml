@@ -10,4 +10,4 @@
       = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
       = f.hidden_field :grant_id, :value => grant.id
     - else
-      %h4 link to pay dues
+      %h4.quiet= link_to 'pay dues and vote', new_group_membership_path(grant.group)
