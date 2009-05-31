@@ -25,7 +25,7 @@
         = f.label :amount, "$"
         = f.text_field :amount, :size => "6"
         = f.hidden_field :group_id, :value =>  params[:group_id].nil? ? params[:payment][:group_id] : find_group_id(params[:group_id])
-      .prepend-6= f.submit "Process Order"
+      .prepend-8= f.submit "Process Order"
    
   .span-11.last
     %h5.center Billing Address

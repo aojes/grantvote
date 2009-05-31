@@ -42,6 +42,7 @@
     %h5= link_to "Add Comment", new_group_comment_path(@group)
   .span-6.prepend-1.prepend-top
     .border-test
+      %h3= button_to "Pay Dues", new_group_membership_path(@group), :method => :get if member?(params[:id])
       %h3= button_to "Join Group", new_group_membership_path(@group), :method => :get if not member?(params[:id])
       %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
       %h3= button_to "New Grant", new_group_grant_path(@group), :method => :get if voter?(params[:id])
