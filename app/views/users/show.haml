@@ -17,9 +17,9 @@
       Cred
       %hr
     = user_cred_images(@user, :medium)
-    .flr
+    .prepend-1
       %br
-      .center= button_to 'Settings', edit_account_path, :method => :get      
+      = button_to 'Settings', edit_account_path, :method => :get      
     %br{:style => "clear:both"}
     %br
     %br    
