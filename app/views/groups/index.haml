@@ -13,7 +13,11 @@
     %h3= link_to "Create a new group", new_group_path, :method => :get
 
 .span-20.prepend-2.append-2
-  .span-12.prepend-3.quiet== #{pluralize @groups_count, 'group'} found
+  .span-12.prepend-3.quiet
+    - if params[:search] and not params[:search][:conditions][:name_keywords].blank?
+      == #{pluralize @groups_count, 'group'} found
+    - else
+      All Groups
   .span-4.last.quiet Top Members 
   
   
