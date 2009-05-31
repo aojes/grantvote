@@ -1,12 +1,14 @@
-%h2.prepend-1 Listing groups
-.prepend-1= link_to 'New group', new_group_path 
-- form_for @search do |f|
-  %fieldset
-    %legend Search Groups
-    - f.fields_for @search.conditions do |groups|
-      .form_row
-        = groups.text_field :name_keywords, :class => "text buttonless_field"
-        -#= submit_button "Search"
+.prepend-top
+.span-20.prepend-2.append-2#search
+  .prepend-10.last
+    - form_for @search do |f|
+      - f.fields_for @search.conditions do |groups|
+        .form_row
+          %h6 Find a group
+          = groups.text_field :name_keywords, :class => "text buttonless_field"
+          = submit_button "Search"
+    %h3= link_to "Create a new group", new_group_path, :method => :get
+
 
 -#
   - if @groups_count > 0 
@@ -29,21 +31,27 @@
       = page_select
   - else
     No groups were returned
+
+
 - @groups.each do |group|
-  .span-22.prepend-2.prepend-top
+  .span-20.prepend-2.append-2.prepend-top.last
+
     .span-3{:style => "min-height: 102px"}
       = link_to user_defined_image(group, :large, :alt => "visit group"), group_path(group)
-    .span-9{:style => "margin-right: 1em"} 
-      %h3= link_to h(group.name), group_path(group), :alt => h(group.name)
-      == #{pluralize group.memberships.voters.count, "voter"}
-      == | #{number_to_currency group.funds.floor, :precision => 0} pool 
-      == | #{pluralize voted_sessions(group.grants.session), "session"}
-      == | formed
-      = group.created_at.strftime "%B %Y"
-      -#.prepend-top= h group.purpose
-    .span-7.last
-      %span{:style => "position:relative; top: 4px"}
-        %strong=h group.purpose
+    .span-12
+      .span-12.last{:style => "margin-right: 1em"} 
+        %h3= link_to h(group.name), group_path(group), :alt => h(group.name)
+        == #{pluralize group.memberships.voters.count, "voter"}
+        == | #{number_to_currency group.funds.floor, :precision => 0} pool 
+        == | #{pluralize voted_sessions(group.grants.session), "session"}
+        == | formed
+        = group.created_at.strftime "%B %Y"
+      .span-12.last
+        %span{:style => "position:relative; top: 4px"}
+          %strong=h group.purpose
+    .span-4.last.border-test
+      %h3 Grants / members          
+    
 %br{ :style => "clear:both" }        
 - if @groups_count > 0
   - if @search.page_count > 1
