@@ -16,10 +16,11 @@ class GroupsController < ApplicationController
         @search.conditions.or_group do |g|
           g.name_keywords = query
           g.or_purpose_keywords = query
-        end
+        end 
       end
     end  
     @search.per_page = 10
+    @search.order_by, @search.order_as = [:funds], 'DESC'
     @groups, @groups_count = @search.all, @search.count
     respond_to do |format|
       format.html # index.html.erb
