@@ -2,6 +2,7 @@ log/*.log
 .DS_Store
 .rake_tasks
 Capfile
+config/deploy.rb
 config/database.yml
 public/system/*
 public/assets/*

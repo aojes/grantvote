@@ -42,10 +42,15 @@
     %h5= link_to "Add Comment", new_group_comment_path(@group)
   .span-6.prepend-1.prepend-top
     .border-test
-      %h3= button_to "Pay Dues", new_group_membership_path(@group), :method => :get if watching?(@group.id, current_user) and not voter?(params[:id])
-      %h3= button_to "Join Group", new_group_membership_path(@group), :method => :get if !watching?(@group.id, current_user) && !voter?(params[:id])
-      %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
-      %h3= button_to "New Grant", new_group_grant_path(@group), :method => :get if voter?(params[:id])
+      - if voting?(@group.id, current_user)
+        %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
+        %h3= button_to "New Grant", new_group_grant_path(@group), :method => :get
+      - elsif group_member?(@group.id, current_user)
+        %h3= button_to "Pay Dues", new_group_membership_path(@group), :method => :get
+        %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
+      - else
+        %h3= button_to "Join Group", new_group_membership_path(@group), :method => :get
+        %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
     .border-test.prepend-top.last
       - if @group.memberships.voters.count.zero?
         %h3= pluralize @group.memberships.members.count, "Member"
