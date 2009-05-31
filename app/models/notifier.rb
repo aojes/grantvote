@@ -1,16 +1,13 @@
 class Notifier < ActionMailer::Base
-  ###
-  ##
-  #
- # default_url_options[:host] = "authlogic_example.binarylogic.com"
-  default_url_options[:host] = "67.23.26.17"
+  
+  default_url_options[:host] = "www.grantvote.com"
   
   def welcome_email(user)  
     recipients    user.email 
     from          "Grantvote <tefflox@gmail.com>"  
     subject       "Welcome to Granvote"  
     sent_on       Time.now 
-    body          :user => user, :url => "http://67.23.26.17/login" 
+    body          :user => user, :url => "http://www.grantvote.com/login" 
   end 
   
   def password_reset_instructions(user)
