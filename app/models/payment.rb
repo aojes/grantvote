@@ -6,7 +6,8 @@ class Payment < ActiveRecord::Base
   
   attr_accessor :card_number, :card_verification
   
-  validates_presence_of :amount
+  validates_presence_of :amount, :full_name, :address_line_1, :city, :state
+  validates_presence_of :country, :zipcode
   
   validates_numericality_of :amount, :greater_than_or_equal_to => MIN_PAY, 
     :message => "can be greater than or equal to $#{MIN_PAY}"  
@@ -48,12 +49,13 @@ class Payment < ActiveRecord::Base
     {
       :ip => ip_address,
       :billing_address => {
-        :name     => "Jesse Crockett",
-        :address1 => "123 Main St.",
-        :city     => "New York",
-        :state    => "NY",
-        :country  => "US",
-        :zip      => "10001"
+        :name     => full_name,
+        :address1 => address_line_1,
+        :address2 => address_line_2,
+        :city     => city,
+        :state    => state,
+        :country  => country,
+        :zip      => zipcode
       }
     }
   end

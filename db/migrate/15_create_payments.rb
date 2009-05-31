@@ -11,6 +11,13 @@ class CreatePayments < ActiveRecord::Migration
       t.string :last_name
       t.string :card_type
       t.date :card_expires_on
+      t.string :full_name
+      t.string :address_line_1
+      t.string :address_line_2
+      t.string :city
+      t.string :state
+      t.string :zipcode
+      t.string :country
       t.timestamps
     end
   end
