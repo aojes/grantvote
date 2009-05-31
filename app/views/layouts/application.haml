@@ -1,7 +1,10 @@
 !!!
 %html{ html_attrs }
   %head
-    %title=h(@page_title) || "(" + controller.controller_name + ": " + controller.action_name + ")"
+    - if @page_title.nil?
+      %title== (#{controller.controller_name}: #{controller.action_name})
+    - else
+      %title=h @page_title
     %meta{ "http-equiv" => "content-type", :content => "text/xhtml; charset=utf-8" }
     %meta{ :name => 'description', :content => "Grantvote helps people give and win financial support." }
     %meta{ :name => 'keywords', :content => "grants, grant, money, funding, writing, winning, giving, financial, resource, network, community, philanthropy" }
@@ -29,6 +32,7 @@
               %li= link_to "Groups", groups_path
               %li= link_to "Leaders", leaders_path
               %li= link_to "You", account_path
+              
               -# Defer
                 - if current_page?(:controller=>'account', :action=>'index')
                   %li.active
@@ -39,11 +43,13 @@
             
             -#= pluralize User.logged_in.count, "user" currently logged in
           .prepend-top.flr#login{:style => "position:relative; top: 3px"}
+            
             -# if not current_user
               -#= link_to "Register", new_account_path, :class => "rounded", :alt => "Register a new account" 
               -#|
               =# link_to "Log In", login_path, :class => "rounded", :alt => "Log in to your account"
             -# else 
+            
             - if current_user 
               = link_to "Logout", user_session_path, :method => :delete, :class => "rounded", :alt => "log out"
           - if current_user and (flash[:notice] or flash[:warning] or flash[:error])
