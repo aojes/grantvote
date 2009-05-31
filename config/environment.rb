@@ -49,16 +49,7 @@ end
 
 ActionMailer::Base.delivery_method = :sendmail
 ActionMailer::Base.sendmail_settings = {  :location => '/usr/sbin/sendmail',  :arguments => '-i -t' } 
-#ActionMailer::Base.delivery_method = :smtp
-#ActionMailer::Base.smtp_settings = {
- #      :address                => "smtp.gmail.com",
- #       :port                 => 587,
- #       :domain               => "67.23.26.17",
- #       :authentication        => :login,
- #       :user_name                => "grantvote@gmail.com",
- #       :password                => "grant0509"
-#}
-#ActionMailer::Base.raise_delivery_errors = false
+#ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.default_charset = "utf-8"
 ActionMailer::Base.perform_deliveries = true
 # ActionView:: Template or TemplateHandler ( register haml extension )
