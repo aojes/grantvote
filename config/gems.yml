@@ -1,7 +1,7 @@
 --- 
+- :version: 2.3.2
+  :name: rails
 - :name: searchlogic
 - :name: paperclip
 - :name: haml
 - :name: activemerchant
-- :version: 2.3.2
-  :name: rails
