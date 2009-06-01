@@ -2,8 +2,6 @@
 - :name: searchlogic
 - :name: paperclip
 - :name: haml
-- :name: populator
-- :name: faker
 - :name: activemerchant
 - :version: 2.3.2
   :name: rails
