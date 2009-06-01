@@ -88,6 +88,9 @@ h1.logo a {
 .fll {
   float: left; }
 
+.clear {
+  clear: both; }
+
 .center {
   text-align: center; }
 
@@ -122,6 +125,28 @@ h1.logo a {
   height: 20px;
   display: block;
   margin: 0px 0px 50px 0px; }
+
+.rform {
+  width: 470px;
+  min-height: 200px;
+  background: url('/images/lr_mid.jpg') 0 0 repeat-y;
+  margin: 0px auto 0px auto; }
+
+.rform-top {
+  background: url('/images/lr_top.jpg') 0 0 no-repeat;
+  width: 470px;
+  min-height: 40px;
+  display: block;
+  margin: 0px 0px 0px 0px;
+  float: left; }
+
+.rform-bottom {
+  clear: both;
+  background: url('/images/lr_bottom.jpg') no-repeat bottom left;
+  width: 470px;
+  height: 20px;
+  display: block;
+  margin: 0px 0px 0px 0px; }
 
 @import url(styles.css);
 legend {
@@ -224,6 +249,25 @@ ul.invitations li span.title {
   background: #ccc;
   font-weight: bold;
   text-transform: uppercase; }
+
+.rform form, .rform div.quiet {
+  margin: 0px 0px 0px 46px;
+  width: 80%; }
+  .rform form p,   .rform div.quiet p {
+    width: 440px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px; }
+  .rform form label,   .rform div.quiet label {
+    margin: 0px 0px 0px 0px;
+    float: none;
+    text-align: left;
+    width: 100px; }
+  .rform form input, .rform form input:focus,   .rform div.quiet input, .rform div.quiet input:focus {
+    margin: 0px 0px 4px 0px;
+    padding: 4px 0px 0px 0px;
+    float: none;
+    height: 23px;
+    line-height: 25px; }
 
 .fieldWithErrors {
   display: block; }

@@ -1,10 +1,12 @@
-%h2.prepend-1 Register
-- form_for @user, :url => account_path, :html => {:multipart => true} do |f|
-  = f.hidden_field :invitation_token
-  = f.error_messages
-  = render :partial => "form", :object => f
-  .prepend-4
-    %br
-    = submit_button "Register"
-%br
-%br
+.prepend-top
+%div.rform
+  %div.rform-top
+  %h2.prepend-1 Register
+  .clear
+    - form_for @user, :url => account_path, :html => {:multipart => true} do |f|
+      = f.error_messages 
+      = f.hidden_field :invitation_token
+      = render :partial => "form", :object => f
+      = submit_button "Register"
+      %br
+  %div.rform-bottom

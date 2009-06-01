@@ -98,3 +98,22 @@ ul.invitations li span.title {
   background: #ccc;
   font-weight: bold;
   text-transform: uppercase; }
+
+.rform form, .rform div.quiet {
+  margin: 0px 0px 0px 46px;
+  width: 80%; }
+  .rform form p,   .rform div.quiet p {
+    width: 440px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px; }
+  .rform form label,   .rform div.quiet label {
+    margin: 0px 0px 0px 0px;
+    float: none;
+    text-align: left;
+    width: 100px; }
+  .rform form input, .rform form input:focus,   .rform div.quiet input, .rform div.quiet input:focus {
+    margin: 0px 0px 4px 0px;
+    padding: 4px 0px 0px 0px;
+    float: none;
+    height: 23px;
+    line-height: 25px; }
