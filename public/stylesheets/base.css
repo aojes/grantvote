@@ -250,19 +250,25 @@ ul.invitations li span.title {
   font-weight: bold;
   text-transform: uppercase; }
 
-.rform form, .rform div.quiet {
-  margin: 0px 0px 0px 46px;
+.form-space {
+  margin-bottom: 20px; }
+
+.rform div.quiet {
+  width: 80%;
+  margin: 0px 0px 0px 46px; }
+.rform form {
+  margin: 0px 20px 0px 46px;
   width: 80%; }
-  .rform form p,   .rform div.quiet p {
+  .rform form p {
     width: 440px;
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px; }
-  .rform form label,   .rform div.quiet label {
+  .rform form label {
     margin: 0px 0px 0px 0px;
     float: none;
     text-align: left;
     width: 100px; }
-  .rform form input, .rform form input:focus,   .rform div.quiet input, .rform div.quiet input:focus {
+  .rform form input, .rform form input:focus {
     margin: 0px 0px 4px 0px;
     padding: 4px 0px 0px 0px;
     float: none;
