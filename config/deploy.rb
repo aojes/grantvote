@@ -48,18 +48,20 @@ end
 
 desc "The spinner task is used by deploy:cold to start the application"
 task :spinner, :roles => :app do
- # send(run_method, ";cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::start")
-   send(run_method, ";cd #{deploy_to}/current && mongrel_rails cluster::start")
+ send(run_method, ";cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::start")
+ # send(run_method, ";cd #{deploy_to} && mongrel_rails cluster::start")
 end
 
 desc "Restart the mongrel cluster"
 task :restart, :roles => :app do
-  send(run_method, ";cd #{deploy_to}/current && mongrel_rails cluster::restart")
+ send(run_method, ";cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::restart")
+ # send(run_method, ";cd #{deploy_to} && mongrel_rails cluster::restart")
 end
 
 desc "Create the mongrel configuration"
 task :after_symlink do
-  mongrel.cluster.configure
+  # mongrel.cluster.configure
+  send(run_method, "mongrel_rails cluster::configure -e production -p 5000 -N 2 -c #{deploy_to}/#{current_dir} -a 127.0.0.1)")
 end
 
 
