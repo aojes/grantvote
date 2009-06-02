@@ -61,7 +61,7 @@ end
 desc "Create the mongrel configuration"
 task :after_symlink do
   # mongrel.cluster.configure
-  send(run_method, "mongrel_rails cluster::configure -e production -p 5000 -N 2 -c #{deploy_to}/#{current_dir} -a 127.0.0.1)")
+  send(run_method, "cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::configure -e production -p 5000 -N 2 -c -a 127.0.0.1")
 end
 
 
