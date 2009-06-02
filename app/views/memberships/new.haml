@@ -4,7 +4,7 @@
     .span-10
       %h3 Pay Dues
       %p= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_payment_path
-    - if not watching?(@group.id, current_user)
+    - if watching?(@group.id, current_user)
       .span-10.last
         %p TODO if not voting    
     - else
