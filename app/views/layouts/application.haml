@@ -32,7 +32,7 @@
             %ul#nav-list.pull-1.prepend-top
               = show_link "Groups", {:controller=>'groups', :action=>'index'}, {:title => "Groups", :class=>'rounded'}
               = show_link "Leaders", {:controller=>'leaders', :action=>'index'}, {:title => "Leaders", :class=>'rounded'}            
-              - if current_page?(:controller=>'account', :action=>'index')
+              - if current_page?(:controller=>'account', :action=>'index') or current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{current_user.login}")
                 %li.active
                   = link_to "You",  account_path, {:title => "Your account", :class=>'rounded'}
               - else 
