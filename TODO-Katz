@@ -1,3 +1,5 @@
+make onclick button sprite work (light blue to dark blue)
+
 _______________
 defer
 
@@ -5,9 +7,8 @@ defer
   groups view (search and create)  
   group view (friendly look for new group)
   session view (friendly look for blank page)
-  edit profile view (friendly look)
   dynamic chart on right-hand side of login/registration view  
-  make onclick button sprite work (unnecessary?)
+
   
 _______________
 debug views and css

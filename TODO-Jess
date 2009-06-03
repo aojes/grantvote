@@ -1,11 +1,7 @@
 
 make point assignment, cred conversion, and cred giving system
 
-additional link back to group home from session
-
-set recent things order-first on profile
-
-set recent comments order-first on group
+link up group titles
 
 _________________
 defer 
@@ -17,7 +13,8 @@ defer
     use https for payments (if gateway)
          
   normal workflow
-
+    
+    require membership for comments
     live-action search results
     safeguard against double posting comments
     add profile view count to user account page
@@ -27,10 +24,11 @@ defer
     forget about tags, maybe list the top queries?  
     stream grants? (work on /grants page)
     add group rss feeds
+    enable users to 'leave group'
     remove 'add comment' link for logged-out view
     replace 'link to pay dues' with suitable CTA on group session
     add 'mark as spam' or flag as inappropriate link on comments, etc.
-      
+    give users more profile page settings, or limit requests  
     
       
 _________________

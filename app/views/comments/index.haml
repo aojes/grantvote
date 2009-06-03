@@ -1,4 +1,4 @@
 #comments
-- for comment in @comments
+- @comments.reverse.each do |c|
   .comment
-    =simple_format comment.content
+    =simple_format c.content
