@@ -96,36 +96,37 @@ class Grant < ActiveRecord::Base
     # try to keep the media objects from breaking the layout
     # will require a more powerful solution to strip other content (i.e., JS)  
     def adapt_objects
-      # strip as much HTML & JS as we can
-      self.media = Hpricot(media).at("object").to_html.
-                          gsub(/<script.*>.*<\/script>/, '')
-      
-      
-      a = self.media.include?("http://www.youtube.com/")
-      b = self.media.include?("http://www.youtube-nocookie.com/")
-      c = self.media.include?("http://www.viddler.com/")
-      d = self.media.include?("http://vimeo.com/")
-      e = self.media.include?("height=\"") or media.include?("width=\"")
-      
-      if a or b # YouTube
-        self.media.gsub!(/width=\"\d+\"/, 'width="425"')
-        self.media.gsub!(/height=\"\d+\"/, 'height="344"')
-      elsif c   # Viddler
-        self.media.gsub!(/width=\"\d+\"/, 'width="437"')
-        self.media.gsub!(/height=\"\d+\"/, 'height="288"')
-        self.media.gsub!(/<param(\s)name=\"flashvars\"(\s)value=\"autoplay=t\"(\s)\/>/, '')
-        self.media.gsub!(/(\s)flashvars=\"autoplay=t\"/, '')
-      elsif d   # Vimeo
-        self.media.gsub!(/width=\"\d+\"/, 'width="427"')
-        self.media.gsub!(/height=\"\d+\"/, 'height="240"')
-     ##
-     # will break audio objects
-     #   
-     # elsif e   # sensible catch all
-     #   media.gsub!(/width=\"\d+\"/, 'width="425"')
-     #   media.gsub!(/height=\"\d+\"/, 'height="300"')
-      end
-      
+      unless media.blank?
+        # strip as much HTML & JS as we can
+        self.media = Hpricot(media).at("object").to_html.
+                            gsub(/<script.*>.*<\/script>/, '')
+        
+        
+        a = self.media.include?("http://www.youtube.com/")
+        b = self.media.include?("http://www.youtube-nocookie.com/")
+        c = self.media.include?("http://www.viddler.com/")
+        d = self.media.include?("http://vimeo.com/")
+        e = self.media.include?("height=\"") or media.include?("width=\"")
+        
+        if a or b # YouTube
+          self.media.gsub!(/width=\"\d+\"/, 'width="425"')
+          self.media.gsub!(/height=\"\d+\"/, 'height="344"')
+        elsif c   # Viddler
+          self.media.gsub!(/width=\"\d+\"/, 'width="437"')
+          self.media.gsub!(/height=\"\d+\"/, 'height="288"')
+          self.media.gsub!(/<param(\s)name=\"flashvars\"(\s)value=\"autoplay=t\"(\s)\/>/, '')
+          self.media.gsub!(/(\s)flashvars=\"autoplay=t\"/, '')
+        elsif d   # Vimeo
+          self.media.gsub!(/width=\"\d+\"/, 'width="427"')
+          self.media.gsub!(/height=\"\d+\"/, 'height="240"')
+       ##
+       # will break audio objects
+       #   
+       # elsif e   # sensible catch all
+       #   media.gsub!(/width=\"\d+\"/, 'width="425"')
+       #   media.gsub!(/height=\"\d+\"/, 'height="300"')
+        end
+      end      
       true 
     end  
     

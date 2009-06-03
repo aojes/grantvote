@@ -1,5 +1,3 @@
-expedite formatting of video content
-
 make point assignment, cred conversion, and cred giving system
 
 link up group titles
@@ -18,7 +16,7 @@ defer
          
   normal workflow
     
-    require membership for comments
+    facebook-style links in plain text
     live-action search results
     safeguard against double posting comments
     add profile view count to user account page
@@ -29,6 +27,7 @@ defer
     stream grants? (work on /grants page)
     add group rss feeds
     enable users to 'leave group'
+    enable users to delete their own comments
     remove 'add comment' link for logged-out view
     replace 'link to pay dues' with suitable CTA on group session
     add 'mark as spam' or flag as inappropriate link on comments, etc.
