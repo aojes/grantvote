@@ -24,7 +24,10 @@
       %hr
   - if @grants_count > 0
     - if @search.page_count > 1
-      .span-10.pagination.center.prepend-top.last
-        %br
+      .pagintion
         %h3= page_links
+    - else
+      .tbs
+        &nbsp;
+        
       %hr    

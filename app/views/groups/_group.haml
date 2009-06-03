@@ -31,9 +31,11 @@
         %hr        
       - if @grants_awarded_count > 0
         - if @search.page_count > 1
-          .span-10.pagination.center.prepend-top.last
-            %br
+          .pagination
             %h3= page_links
+        - else
+          .tbs
+            &nbsp;
           %hr
     #comments
       .flr= link_to "Add Comment", new_group_comment_path(@group)

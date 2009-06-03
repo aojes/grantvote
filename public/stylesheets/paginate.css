@@ -26,11 +26,11 @@ div.pagination {
     margin-right: 3px;
     padding: 2px 6px;
     font-weight: bold;
-    color: #ff0084; }
+    color: #333; }
   div.pagination span.disabled_page {
     margin-right: 3px;
     padding: 2px 6px;
-    color: #adaaad; }
+    color: #333; }
 div.meneame a:active {
   border: 1px solid #eee;
   background-image: none;
