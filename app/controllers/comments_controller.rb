@@ -9,8 +9,16 @@ class CommentsController < ApplicationController
   end
   
   def new
-    @page_title = "New Comment"
-    @commentable = find_commentable
+    group      = Group.find_by_permalink(params[:group_id])
+    membership = Membership.exists?(:user_id => current_user.id,
+                                                    :group_id => group.id)
+    if membership                                                
+      @page_title = "New Comment"
+      @commentable = find_commentable
+    else
+      flash[:notice] = "Please join the group before commenting"
+      redirect_to new_group_membership_path(group)
+    end
   end
   
   def create

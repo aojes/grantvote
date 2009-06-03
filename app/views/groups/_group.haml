@@ -36,10 +36,10 @@
             %h3= page_links
           %hr
     #comments
-      %h6= pluralize @group.comments.count, "Comment"
+      .flr= link_to "Add Comment", new_group_comment_path(@group)
+      %strong= pluralize @group.comments.count, "Comment"
       %hr
       .last= render 'shared/comments', :comments => @group.comments
-    %h5= link_to "Add Comment", new_group_comment_path(@group)
   .span-6.prepend-1.prepend-top
     .border-test
       - if voting?(@group.id, current_user)
