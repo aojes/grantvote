@@ -97,15 +97,9 @@ class Grant < ActiveRecord::Base
 
       a = media.include?("value=\"http://www.youtube.com")
       b = media.include?("value=\"http://www.youtube-nocookie.com")
-      #  proposal.include?("viddler.com") 
-      # Viddler seems to have OK defaults right now @ width=437, height=370
-          # set: 
       c = media.include?("http://www.viddler.com")
-      # Vimeo defaults are width=400, height=225 w/ annotation
-          # set: 427, 240
       d = media.include?("http://vimeo.com/")
-      
-      e = media.include?("height=") or media.include?("width=")
+      e = media.include?("</object>") and (media.include?("height=") or media.include?("width="))
       
       if a or b # YouTube
         media.gsub!(/width=\"\d+\"/, 'width="425"')
@@ -122,9 +116,7 @@ class Grant < ActiveRecord::Base
         media.gsub!(/width=\"\d+\"/, 'width="425"')
         media.gsub!(/height=\"\d+\"/, 'height="300"')
       end
-      
       proposal.gsub!(/<object(.+)<\/object>/, '')
-            
       true 
     end  
     
