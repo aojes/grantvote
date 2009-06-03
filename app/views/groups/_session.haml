@@ -13,6 +13,10 @@
         .span-3
           = link_to user_defined_image(grant, :medium, :alt => h(grant.name)), group_grant_path(grant.group, grant)
         .span-11.last{:style => "text-align:justify"}
+          - unless grant.media.nil?
+            = grant.media
+            %br
+            %br
           = simple_format grant.proposal, :style => "line-height: 2"
       .span-5.last
         == <img alt="#{accessible_tally grant}" title="#{accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />

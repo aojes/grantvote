@@ -5,7 +5,7 @@ class CreateGrants < ActiveRecord::Migration
       t.integer :group_id
       t.string :name
       t.string :proposal
-      t.text :media
+      t.string :media
       t.boolean :final, :default => false, :null => false
       t.boolean :awarded, :default => false, :null => false
       t.integer :amount, :default => 5, :null => false

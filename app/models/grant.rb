@@ -94,17 +94,28 @@ class Grant < ActiveRecord::Base
   private  
   
     def adapt_objects
-      a = media.include?("</object>")
-      b = media.include?("value=\"http://www.youtube.com")
-      c = media.include?("value=\"http://www.youtube-nocookie.com")
-      # d = proposal.include?("viddler.com") 
-      # Viddler seems to have OK defaults right now @ width=437
+
+      a = media.include?("value=\"http://www.youtube.com")
+      b = media.include?("value=\"http://www.youtube-nocookie.com")
+      #  proposal.include?("viddler.com") 
+      # Viddler seems to have OK defaults right now @ width=437, height=370
+          # set: 
+      c = media.include?("http://www.viddler.com")
+      # Vimeo defaults are width=400, height=225 w/ annotation
+          # set: 427, 240
+      d = media.include?("http://vimeo.com/")
       
-      if a
-        if b or c
-          media.gsub!(/width=\"\d+\"/, 'width="425"')
-          media.gsub!(/height=\"\d+\"/, 'height="344"')
-        end
+      if a or b # YouTube
+        media.gsub!(/width=\"\d+\"/, 'width="425"')
+        media.gsub!(/height=\"\d+\"/, 'height="344"')
+      elsif c   # Viddler
+        media.gsub!(/width=\"\d+\"/, 'width="437"')
+        media.gsub!(/height=\"\d+\"/, 'height="288"')
+        media.gsub!(/<param(\s)name=\"flashvars\"(\s)value=\"autoplay=t\"(\s)\/>/, '')
+        media.gsub!(/(\s)flashvars=\"autoplay=t\"/, '')
+      elsif d   # Vimeo
+        media.gsub!(/width=\"\d+\"/, 'width="427"')
+        media.gsub!(/height=\"\d+\"/, 'height="240"')
       end
       true 
     end  
