@@ -112,9 +112,12 @@ class Grant < ActiveRecord::Base
       elsif d   # Vimeo
         media.gsub!(/width=\"\d+\"/, 'width="427"')
         media.gsub!(/height=\"\d+\"/, 'height="240"')
-      elsif e   # sensible catch all
-        media.gsub!(/width=\"\d+\"/, 'width="425"')
-        media.gsub!(/height=\"\d+\"/, 'height="300"')
+     ##
+     # not yet, as it may break audio objects
+     #   
+     # elsif e   # sensible catch all
+     #   media.gsub!(/width=\"\d+\"/, 'width="425"')
+     #   media.gsub!(/height=\"\d+\"/, 'height="300"')
       end
       proposal.gsub!(/<object(.+)<\/object>/, '')
       true 
