@@ -12,12 +12,13 @@ defer
   
   important
   
-    implement payment gateway
-    use https for payments
+    implement payment gateway (or use simple paypal 'pay now' buttons)
+    make return pages from payment gateway / payments
+    use https for payments (if gateway)
          
   normal workflow
 
-    add 'Go' button for searching groups, in lieu of live-action results
+    live-action search results
     safeguard against double posting comments
     add profile view count to user account page
     figure solvency of groups in search?
@@ -28,17 +29,15 @@ defer
     add group rss feeds
     remove 'add comment' link for logged-out view
     replace 'link to pay dues' with suitable CTA on group session
-    verify email before allowing comments or add captcha to registration  
+    add 'mark as spam' or flag as inappropriate link on comments, etc.
+      
     
       
 _________________
 business
   
-  get federal EIN
-  make company
   write legal TOS
   get business bank account
-  production on heroku & S3 or slicehost (or railsmachine) ?
   ask for hosting sponsorship
     
 _________________
@@ -48,6 +47,7 @@ notes
   don't scale minimum award (at least not at first)
   is it a bad idea to put a few ads beneath the group voters images?
   how might developing an API benefit us?
+  500 error on /users for staging
   
   
 _________________

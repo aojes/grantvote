@@ -60,7 +60,7 @@
       .span-12.last
         %span{:style => "position:relative; top: 4px"}
           %strong=h group.purpose
-    .span-4.last
+    .span-4.last{:style => "position:relative; top: 12px"}
       - top_contributors(group.id).each do |c|
         = link_to user_defined_image(c, :small, :alt => "#{c.login}", :title => "#{c.login}"), profile_path(c.login)
     
