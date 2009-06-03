@@ -7,6 +7,14 @@ class Mailer < ActionMailer::Base
     body       :invitation => invitation, :signup_url => signup_url
     content_type "text/html"
     invitation.update_attribute(:sent_at, Time.now)
-  end
-  
+   end
+   
+   def invitation_request_notice(invitation)
+    subject    'New Request for Private Beta'
+    recipients 'tefflox@gmail.com, bridgeutopia@gmail.com'
+    from       'noreply@grantvote.com'
+    body       :invitation => invitation
+    content_type "text/html"
+   end 
+   
 end

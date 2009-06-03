@@ -3,17 +3,18 @@ div.pagination {
   margin: 3px;
   text-align: center; }
   div.pagination a {
-    border: 1px solid #dedfde;
+    border: 1px solid #eee;
     margin-right: 3px;
     padding: 2px 6px;
+    background-color: #003f6d;
     background-position: bottom;
     text-decoration: none;
-    color: #0061de; }
+    color: #e2e9ec; }
     div.pagination a:hover {
-      border: 1px solid #000;
+      border: 1px solid #eee;
       background-image: none;
-      background-color: #0061de;
-      color: #fff; }
+      background-color: #def3f3;
+      color: #02293e; }
   div.pagination span.current_page {
     margin-right: 3px;
     padding: 2px 6px;
@@ -24,7 +25,7 @@ div.pagination {
     padding: 2px 6px;
     color: #adaaad; }
 div.meneame a:active {
-  border: 1px solid #000;
+  border: 1px solid #eee;
   background-image: none;
-  background-color: #0061de;
-  color: #fff; }
+  background-color: #def3f3;
+  color: #02293e; }

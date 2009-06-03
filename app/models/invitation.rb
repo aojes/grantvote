@@ -14,8 +14,22 @@ class Invitation < ActiveRecord::Base
   before_create :generate_token
   before_create :decrement_sender_count, :if => :sender
   
-
+  after_create :send_invitation_notice
+  
+  def send_invitation_notice
+  @invitations = Invitation.find(:all) 
+   
+    @invitations.each do | i |
+      if i.sender_id.nil?
+      Mailer.deliver_invitation_request_notice(i)
+      end
+  
+    end
+  
+  end
+  
 private
+  
   
   def recipient_is_not_registered
     errors.add :email, 'is already registered' if User.find_by_email(email)
