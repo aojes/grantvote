@@ -97,9 +97,8 @@ class Grant < ActiveRecord::Base
     # will require a more powerful solution to strip other content (i.e., JS)  
     def adapt_objects
       # strip as much HTML & JS as we can
-      object = Hpricot(media)
-      object = object.at("object").to_html
-      self.media = object.gsub(/<script.*>.*<\/script>/, '')
+      self.media = Hpricot(media).at("object").to_html.
+                          gsub(/<script.*>.*<\/script>/, '')
       
       
       a = self.media.include?("http://www.youtube.com/")
@@ -130,6 +129,8 @@ class Grant < ActiveRecord::Base
       true 
     end  
     
+    # not used presently while using h(content) in the views
+    # defer
     def adapt_links
       a = proposal.include?("</a>")
       proposal.gsub!(/<a.+?href/, '<a rel="nofollow" target="_blank" href') if a      
