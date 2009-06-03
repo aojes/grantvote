@@ -105,6 +105,8 @@ class Grant < ActiveRecord::Base
           # set: 427, 240
       d = media.include?("http://vimeo.com/")
       
+      e = media.include?("height=") or media.include?("width=")
+      
       if a or b # YouTube
         media.gsub!(/width=\"\d+\"/, 'width="425"')
         media.gsub!(/height=\"\d+\"/, 'height="344"')
@@ -116,7 +118,13 @@ class Grant < ActiveRecord::Base
       elsif d   # Vimeo
         media.gsub!(/width=\"\d+\"/, 'width="427"')
         media.gsub!(/height=\"\d+\"/, 'height="240"')
+      elsif e   # sensible catch all
+        media.gsub!(/width=\"\d+\"/, 'width="425"')
+        media.gsub!(/height=\"\d+\"/, 'height="300"')
       end
+      
+      proposal.gsub!(/<object(.+)<\/object>/, '')
+            
       true 
     end  
     
