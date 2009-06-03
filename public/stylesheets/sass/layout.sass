@@ -24,6 +24,15 @@ h1.logo a
   :background url('/images/header_bg.png') 0 0 repeat-x
   :height 117px
   :color #ededed
+
+a.rounded, div.pagination a
+  :outline none
+  :border none
+  :white-space nowrap
+  :vertical-align middle
+  :diplay -moz-inline-box
+  :display inline-block
+  :overflow visible
   
 .nav
   :color #ededed
@@ -55,25 +64,18 @@ h1.logo a
     :color #ededed
     :font-size 14pt
     :line-height 1em
-    :padding 1px 2px
     :float left
     :display block
     :text-decoration none
     :text-align center
+    :padding 3px
     &:hover
       :color #004B73
       :background-color #d1e1ea
-      :-webkit-border-radius 4px
-      :-khtml-border-radius 4px
-      :-moz-border-radius 4px
-   
-  #nav-list li.active a
-    :-webkit-border-radius 4px
-    :-khtml-border-radius 4px
-    :-moz-border-radius 4px
-    :border-radius 4px  
+
+  #nav-list li.active a.rounded
     :color #004B73
-    :background-color #d1e1ea 
+    :background-color #d1e1ea
 
 #content
   :background white
@@ -158,5 +160,7 @@ h1.logo a
   :display block
   :margin 0px 0px 0px 0px 
 
+.tbs 
+  :margin 40px auto 40px auto
 
 

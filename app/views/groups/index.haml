@@ -67,14 +67,9 @@
 %br{ :style => "clear:both" }        
 - if @groups_count > 0
   - if @search.page_count > 1
-    .span-24.pagination.prepend-top
-      %br
-      %br
+    .pagination
       %h3= page_links
-%br
-%br 
-%br 
-%br 
-%br 
-%br 
-%br      
+  - else 
+    .tbs
+      &nbsp;
+
