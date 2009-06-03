@@ -92,34 +92,41 @@ class Grant < ActiveRecord::Base
   end
   
   private  
-  
+    
+    # try to keep the media objects from breaking the layout
+    # will require a more powerful solution to strip other content (i.e., JS)  
     def adapt_objects
-
-      a = media.include?("value=\"http://www.youtube.com")
-      b = media.include?("value=\"http://www.youtube-nocookie.com")
-      c = media.include?("http://www.viddler.com")
-      d = media.include?("http://vimeo.com/")
-      e = media.include?("</object>") and (media.include?("height=") or media.include?("width="))
+      # strip as much HTML & JS as we can
+      object = Hpricot(media)
+      object = object.at("object").to_html
+      self.media = object.gsub(/<script.*>.*<\/script>/, '')
+      
+      
+      a = self.media.include?("http://www.youtube.com/")
+      b = self.media.include?("http://www.youtube-nocookie.com/")
+      c = self.media.include?("http://www.viddler.com/")
+      d = self.media.include?("http://vimeo.com/")
+      e = self.media.include?("height=\"") or media.include?("width=\"")
       
       if a or b # YouTube
-        media.gsub!(/width=\"\d+\"/, 'width="425"')
-        media.gsub!(/height=\"\d+\"/, 'height="344"')
+        self.media.gsub!(/width=\"\d+\"/, 'width="425"')
+        self.media.gsub!(/height=\"\d+\"/, 'height="344"')
       elsif c   # Viddler
-        media.gsub!(/width=\"\d+\"/, 'width="437"')
-        media.gsub!(/height=\"\d+\"/, 'height="288"')
-        media.gsub!(/<param(\s)name=\"flashvars\"(\s)value=\"autoplay=t\"(\s)\/>/, '')
-        media.gsub!(/(\s)flashvars=\"autoplay=t\"/, '')
+        self.media.gsub!(/width=\"\d+\"/, 'width="437"')
+        self.media.gsub!(/height=\"\d+\"/, 'height="288"')
+        self.media.gsub!(/<param(\s)name=\"flashvars\"(\s)value=\"autoplay=t\"(\s)\/>/, '')
+        self.media.gsub!(/(\s)flashvars=\"autoplay=t\"/, '')
       elsif d   # Vimeo
-        media.gsub!(/width=\"\d+\"/, 'width="427"')
-        media.gsub!(/height=\"\d+\"/, 'height="240"')
+        self.media.gsub!(/width=\"\d+\"/, 'width="427"')
+        self.media.gsub!(/height=\"\d+\"/, 'height="240"')
      ##
-     # not yet, as it may break audio objects
+     # will break audio objects
      #   
      # elsif e   # sensible catch all
      #   media.gsub!(/width=\"\d+\"/, 'width="425"')
      #   media.gsub!(/height=\"\d+\"/, 'height="300"')
       end
-      proposal.gsub!(/<object(.+)<\/object>/, '')
+      
       true 
     end  
     

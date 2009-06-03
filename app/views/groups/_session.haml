@@ -13,7 +13,7 @@
         .span-3
           = link_to user_defined_image(grant, :medium, :alt => h(grant.name)), group_grant_path(grant.group, grant)
         .span-11.last{:style => "text-align:justify"}
-          - unless grant.media.nil?
+          - unless grant.media.blank?
             = grant.media
             %br
             %br
