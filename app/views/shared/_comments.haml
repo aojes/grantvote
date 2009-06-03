@@ -3,5 +3,5 @@
   .span-11.last
     .quiet.small.flr= distance_of_time_in_words_to_now(c.created_at) << " ago"
     %strong= link_to c.user.login, profile_path(c.user.login)
-    = simple_format c.content
+    = simple_format h(c.content)
   %hr
