@@ -1,19 +1,20 @@
 .prepend-top
-%div.rform
-  %div.rform-top
-  %h2.prepend-1 Change Your Password
-  %h4.prepend-2.append-2 
-  .clear.large
-    - form_for @user, :url => password_reset_path, :method => :put do |f| 
-      %p
-        = f.error_messages 
-      %p 
-        = f.label :password
-        = f.password_field :password
-      %p 
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation
-      = f.submit "Update my password and log me in"
+%div.rounded-box.rounded-box-medium.centered
+  %div
+    %div
+      %div.rounded-box-largefont
+        %h2.prepend-1 Change Your Password
+        .clear.large
+          - form_for @user, :url => password_reset_path, :method => :put do |f| 
+            %p
+            = f.error_messages 
+            %p 
+            = f.label :password
+            = f.password_field :password
+            %p 
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation
+            = f.submit "Update my password and log me in"
       .form-space
-  %div.rform-bottom
-
+          %br
+  

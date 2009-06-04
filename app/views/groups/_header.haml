@@ -1,15 +1,18 @@
-.span-24
-  .prepend-top
-    .span-8.prepend-1{:style => "min-height: 160px"}
-      - if controller.controller_name == "groups" and !group.nil?
-        %h2= link_to user_defined_image(group, :display, :alt => "to group voting page", :title => "View Session"), group_grants_path(group)
-      - elsif !group.nil?
-        %h2= link_to user_defined_image(group, :display, :alt => "to group home page"), group_path(group)
-      - else 
-        %h2 Nothing 
-    .span-14.append-1.last
-      %h2{:style => "padding-right: 40px"}=h group.name
-      %h3{:style => "padding-right: 40px"}=h group.purpose
+.rwide.centered2
+  .rwide-left
+    - if controller.controller_name == "groups" and !group.nil?
+      .group-image
+        = link_to user_defined_image(group, :display, :alt => "to group voting page", :title => "View Session"), group_grants_path(group)
+    - elsif !group.nil?
+      .group-image
+        = link_to user_defined_image(group, :display, :alt => "to group home page"), group_path(group)
+    - else 
+      %h2 Nothing 
+    .group-details
+      %h2 
+        =h group.name
+      %h3 
+        =h group.purpose
       .flr.prepend-top
-        %h3.pull-6== Pool #{number_to_currency(group.funds.floor, :precision => 0)}
-%br{:style => "clear: both"}      
+      %h3== Pool #{number_to_currency(group.funds.floor, :precision => 0)}   
+  .rwide-right

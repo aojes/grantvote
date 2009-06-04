@@ -1,12 +1,15 @@
 .prepend-top
-%div.rform
-  %div.rform-top
-  %h2.prepend-1 Register
-  .large.clear
-    - form_for @user, :url => account_path, :html => {:multipart => true} do |f|
-      = f.error_messages 
-      = f.hidden_field :invitation_token
-      = render :partial => "form", :object => f
-      = submit_button "Register"
-      .form-space
-  %div.rform-bottom
+%div.rounded-box.rounded-box-medium.centered
+  %div
+    %div
+      %div.rounded-box-largefont
+        %h2.prepend-1.prepend-top Register
+        .clear.large
+          - form_for @user, :url => account_path, :html => {:multipart => true} do |f|
+            = f.error_messages 
+            = f.hidden_field :invitation_token
+            = render :partial => "form", :object => f
+            = submit_button "Register"
+          .form-space
+          %br
+  

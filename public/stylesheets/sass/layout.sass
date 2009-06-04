@@ -6,9 +6,13 @@ body
 
 a, a:focus, button:focus, input:focus, textarea:focus
   :outline none
-  
+a img
+  :padding-right 10px
 button::-moz-focus-inner
   :border 0
+  
+h2
+  :color #82b039
   
 h1.logo a
   :width 310px
@@ -83,6 +87,7 @@ a.rounded, div.pagination a
   :min-height 500px
   :height 500px
   :height auto !important
+  :width 950px
 
 #splash
   :background #EAFFD6
@@ -137,30 +142,90 @@ a.rounded, div.pagination a
   :display block
   :margin 0px 0px 50px 0px
 
-.rform
-  :width 470px 
-  :min-height 200px 
-  :background url('/images/lr_mid.jpg') 0 0 repeat-y
-  :margin 0px auto 0px auto
-  
-.rform-top
-  :background url('/images/lr_top.jpg') 0 0 no-repeat
-  :width 470px 
-  :min-height 40px 
-  :display block
-  :margin 0px 0px 0px 0px
-  :float left
-  
-  
-.rform-bottom
-  :clear both
-  :background url('/images/lr_bottom.jpg') no-repeat bottom left
-  :width 470px 
-  :height 20px 
-  :display block
-  :margin 0px 0px 0px 0px 
 
+  
 .tbs 
   :margin 40px auto 40px auto
 
+div.rounded-box, div.rounded-box div
+  :background  url('/images/rounded.jpg')
+   
+div.rounded-box
+  :padding 0px 0px 0px 0px
+  :margin 0px 0px 0px 0px 
+  :background-repeat no-repeat
+  :background-position bottom left
+  :height 1%
+
+
+.rounded-box-small
+  :width 400px
+
+.rounded-box-medium
+  :width 550px
+
+.rounded-box-full
+  :width 775px
+  
+div.rounded-box div
+  :margin 0px 0px 0px 13px
+  :background-repeat no-repeat
+  :background-position bottom right  
+  :padding 0px 0px 13px 0px
+  :width auto
+ 
+div.rounded-box div div 
+  :background-position top right
+  :margin 0px 0px 0px 0px 
+  :padding 0px 0px 0px 0px
+ 
+div.rounded-box div div div 
+  :margin 0px 13px 0px -13px
+  :background-position top left
+  :padding 13px 0px 0px 13px
+ 
+
+div.rounded-box div div div div
+  :padding 0px 0px 0px 0px
+  :margin 0px 0px 0px 0px
+  :background none
+  :background-image none
+  :background-position top left
+  :background-repeat repeat
+  :background-color transparent
+  :width 100%
+
+.rwide
+  :background url('/images/light_blue_mid.jpg') repeat top left
+  :height 290px
+  :width 900px
+  
+.rwide-left
+  :background url('/images/light_blue_left.jpg') no-repeat top left
+  :height 290px
+  :width 20px
+  :display block
+  :float left
+  :width 870px
+
+.rwide-right
+  :background url('/images/light_blue_right.jpg') no-repeat top right
+  :height 290px
+  :width 20px
+  :display block
+  :float right
+  
+.group-details 
+  :margin 10px 0px 0px 0px
+
+.group-image 
+  :padding 10px 0px 0px 20px
+  :float left
+  
+.centered
+  :position relative
+  :margin 40px auto 30px auto!important
+
+.centered2
+  :margin 4px auto 20px auto
 

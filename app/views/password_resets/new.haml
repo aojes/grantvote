@@ -1,15 +1,17 @@
 .prepend-top
-%div.rform
-  %div.rform-top
-  %h2.prepend-1 Password reset
-  %h4.prepend-2.append-2 
-  .quiet Enter your account email and instructions to reset your password will be sent.
-  .clear.large
-    - form_tag password_resets_path do 
-      %p
-        %label Email
-      = text_field_tag "email" 
-      = submit_button "Reset"
-      .form-space
-  %div.rform-bottom
-
+%div.rounded-box.rounded-box-medium.centered
+  %div
+    %div
+      %div.rounded-box-largefont
+        %h2.prepend-1.prepend-top Password reset
+        %h4.prepend-2.append-2 
+        .quiet Enter your account email and instructions to reset your password will be sent.
+        .clear.large
+          - form_tag password_resets_path do 
+            %p
+              %label Email
+              = text_field_tag "email" 
+            = submit_button "Reset"
+          %br
+            
+          .form-space

@@ -1,9 +1,15 @@
-.prepend-1.prepend-top
-  %h2 New Comment
-.prepend-2
-  - form_for [@commentable, Comment.new] do |f|
-    .form_row
-      = f.text_area :content
-      = f.hidden_field :user_id, :value => current_user.id
-      %p= submit_button "Say it"
+.prepend-top
+%div.rounded-box.rounded-box-medium.centered
+  %div
+    %div
+      %div.rounded-box-largefont
+        %h2.prepend-1.prepend-top New Comment
+        .clear.large
+          - form_for [@commentable, Comment.new] do |f|
+            .form_row
+              = f.text_area :content
+              = f.hidden_field :user_id, :value => current_user.id
+              %p= submit_button "Say it"
+          .form-space
+          %br
 
