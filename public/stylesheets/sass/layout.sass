@@ -6,8 +6,10 @@ body
 
 a, a:focus, button:focus, input:focus, textarea:focus
   :outline none
+
 -#a img # this breaks a lot of the layout, please use classes
   :padding-right 10px
+
 button::-moz-focus-inner
   :border 0
   
@@ -142,21 +144,21 @@ a.rounded, div.pagination a
   :display block
   :margin 0px 0px 50px 0px
 
-
-  
 .tbs 
   :margin 40px auto 40px auto
 
 div.rounded-box, div.rounded-box div
   :background  url('/images/rounded.jpg')
-   
-div.rounded-box
+
+div.rounded-box-header, div.rounded-box-header div
+  :background url('/images/rounded_large.jpg')
+  
+div.rounded-box, div.rounded-box-header
   :padding 0px 0px 0px 0px
   :margin 0px 0px 0px 0px 
   :background-repeat no-repeat
   :background-position bottom left
   :height 1%
-
 
 .rounded-box-small
   :width 400px
@@ -166,26 +168,29 @@ div.rounded-box
 
 .rounded-box-full
   :width 775px
+
+.rounded-box-full-header
+  :width 930px
   
-div.rounded-box div
+div.rounded-box div, div.rounded-box-header div
   :margin 0px 0px 0px 13px
   :background-repeat no-repeat
   :background-position bottom right  
   :padding 0px 0px 13px 0px
   :width auto
  
-div.rounded-box div div 
+div.rounded-box div div, div.rounded-box-header div div 
   :background-position top right
   :margin 0px 0px 0px 0px 
   :padding 0px 0px 0px 0px
  
-div.rounded-box div div div 
+div.rounded-box div div div, div.rounded-box-header div div div 
   :margin 0px 13px 0px -13px
   :background-position top left
   :padding 13px 0px 0px 13px
  
 
-div.rounded-box div div div div
+div.rounded-box div div div div, div.rounded-box-header div div div div
   :padding 0px 0px 0px 0px
   :margin 0px 0px 0px 0px
   :background none
@@ -224,7 +229,7 @@ div.rounded-box div div div div
   
 .centered
   :position relative
-  :margin 40px auto 30px auto!important
+  :margin 40px auto 30px auto !important
 
 .centered2
   :margin 4px auto 20px auto
