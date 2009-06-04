@@ -5,7 +5,7 @@ body {
 a, a:focus, button:focus, input:focus, textarea:focus {
   outline: none; }
 
-a img {
+-#a img {
   padding-right: 10px; }
 
 button::-moz-focus-inner {
