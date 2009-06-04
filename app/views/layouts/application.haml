@@ -18,7 +18,6 @@
     <!-- [if lt IE 8]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     = stylesheet_link_tag 'base'
     = javascript_include_tag :defaults, 'jquery.corners.min'
-    = javascript_include_tag 'grantvote'
   %body
     .container
       .span-24#header
@@ -45,7 +44,7 @@
             -# if not current_user
               -#= link_to "Register", new_account_path, :class => "rounded", :alt => "Register a new account" 
               -#|
-              =# link_to "Log In", login_path, :class => "rounded", :alt => "Log in to your account"
+              -#= link_to "Log In", login_path, :class => "rounded", :alt => "Log in to your account"
             -# else 
             
             - if current_user 
