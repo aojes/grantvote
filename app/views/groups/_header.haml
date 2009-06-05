@@ -4,7 +4,7 @@
       - if controller.controller_name == "groups" and !group.nil?
         %h2= link_to user_defined_image(group, :display, :alt => "to group voting page", :title => "View Session"), group_grants_path(group)
       - elsif !group.nil?
-        %h2= link_to user_defined_image(group, :display, :alt => "to group home page"), group_path(group)
+        %h2= link_to user_defined_image(group, :display, :alt => "to group home page", :title => "View Group Homepage"), group_path(group)
       - else
         %h2 Nothing
     .span-14.append-1.last
@@ -16,21 +16,22 @@
 %br{:style => "clear: both"} 
 
 -# Jesse experimenting with the form background
--#.rounded-box-header.rounded-box-full-header.centered
-  %div
+-#
+  .rounded-box-header.rounded-box-full-header.centered
     %div
       %div
-        - if controller.controller_name == "groups" and !group.nil?
-          = link_to user_defined_image(group, :display, :alt => "to group voting page", :title => "View Session"), group_grants_path(group)
-        - elsif !group.nil?
-          = link_to user_defined_image(group, :display, :alt => "to group home page", :title => "View Group Homepage"), group_path(group)
-        - else 
-          %h2 Nothing 
-        %h2=h group.name
-        %h3=h group.purpose
-        %h3.flr{:style => "margin: 0 50px"}
-          == Pool #{number_to_currency(group.funds.floor, :precision => 0)}   
-    .clear
+        %div
+          - if controller.controller_name == "groups" and !group.nil?
+            = link_to user_defined_image(group, :display, :alt => "to group voting page", :title => "View Session"), group_grants_path(group)
+          - elsif !group.nil?
+            = link_to user_defined_image(group, :display, :alt => "to group home page", :title => "View Group Homepage"), group_path(group)
+          - else 
+            %h2 Nothing 
+          %h2=h group.name
+          %h3=h group.purpose
+          %h3.flr{:style => "margin: 0 50px"}
+            == Pool #{number_to_currency(group.funds.floor, :precision => 0)}   
+      .clear
 
 -# Katz work using gradient    
 -#
