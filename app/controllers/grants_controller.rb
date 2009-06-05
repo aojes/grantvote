@@ -36,6 +36,7 @@ class GrantsController < ApplicationController
         
           @search.conditions.or_group do |g|
             g.proposal_keywords = query
+           # FIXME g.or_name_keywords = query
           end 
         end
       end  
