@@ -1,16 +1,5 @@
 .span-24.last
   .span-14.prepend-1.append-1.last
-    - if @group.memberships.voters.count.zero?
-      %h3
-        .flr= button_to('Edit', edit_group_path(@group), :method => :get, :onclick => "this.blur();") if creator?(current_user, @group) 
-        Creator can edit this group until anyone pays dues
-      %br
-      %br
-    - else
-      - if @group.grants.count.zero?
-        %h2 Welcome
-      - else
-        %h2 Recent Awards
     .prepend-1
       - @grants_awarded.each do |grant|
         %h3<
@@ -42,26 +31,15 @@
       %strong= pluralize @group.comments.count, "Comment"
       %hr
       .last= render 'shared/comments', :comments => @group.comments
-  .span-6.prepend-1.prepend-top
-    .border-test
-      - if voting?(@group.id, current_user)
-        %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
-        %h3= button_to "New Grant", new_group_grant_path(@group), :method => :get
-      - elsif group_member?(@group.id, current_user)
-        %h3= button_to "Pay Dues", new_group_membership_path(@group), :method => :get
-        %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
-      - else
-        %h3= button_to "Join Group", new_group_membership_path(@group), :method => :get
-        %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
-    .border-test.prepend-top.last
-      - if @group.memberships.voters.count.zero?
-        %h3= pluralize @group.memberships.members.count, "Member"
-        - group_members(params[:id]).each do |m|
-          = link_to user_defined_image(m, :thumb, :alt => h(m.login), :title => h(m.login)), "/#{h(m.login)}"
-      - else
-        %h3= pluralize @group.memberships.voters.count, "Voter"
-        - group_voters(params[:id]).each do |v|
-          = link_to user_defined_image(v, :thumb, :alt => h(v.login), :title => h(v.login)), "/#{h(v.login)}"
+  .span-6.prepend-1.border-test
+    - if @group.memberships.voters.count.zero?
+      %h3= pluralize @group.memberships.members.count, "Member"
+      - group_members(params[:id]).each do |m|
+        = link_to user_defined_image(m, :thumb, :alt => h(m.login), :title => h(m.login)), "/#{h(m.login)}"
+    - else
+      %h3= pluralize @group.memberships.voters.count, "Voter"
+      - group_voters(params[:id]).each do |v|
+        = link_to user_defined_image(v, :thumb, :alt => h(v.login), :title => h(v.login)), "/#{h(v.login)}"
     -#.border-test.prepend-top= render 'shared/tipjoy', :group => @group.permalink          
     %br
     %br
