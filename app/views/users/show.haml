@@ -16,7 +16,7 @@
     %h3< 
       Cred
       %hr
-    = user_cred_images(@user, :medium)
+    = user_cred_images(@user, :thumb)
     .prepend-1
       %br
       = button_to 'Settings', edit_account_path, :method => :get      

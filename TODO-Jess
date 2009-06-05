@@ -4,7 +4,13 @@ link up group titles
 
 prioritize and limit membership pane on groups#index
 
+pronounce public profile from private panel
 
+change route from /users/:id to public profile on add/remove friend
+
+cross-link "You" from users controller to profile
+
+require current password to change login/email
 _________________
 defer 
   

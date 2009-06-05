@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :users, :has_many => [:comments, :grants, :votes] 
   map.resources :password_resets
-
+  map.resources :friendships
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
   map.resources :grants, :has_many => [:votes]         
   map.resources :payments, :new => { :express => :get }

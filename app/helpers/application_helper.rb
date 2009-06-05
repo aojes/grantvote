@@ -53,9 +53,14 @@ module ApplicationHelper
       request_token_tag + "</div></form>"
   end
   
-  def submit_button(name) 
-    %(<button type="submit" onclick="this.blur();"><span><em>) + name + 
-    %(</em></span></button>)
+  def submit_button(name, lite = false)
+    if lite 
+      %(<button type="submit"><span class="lite-span"><em class="lite-em">) + name + 
+      %(</em></span></button>)
+    else 
+      %(<button type="submit"><span><em>) + name + 
+      %(</em></span></button>)
+    end
   end
   
   def find_group(permalink)

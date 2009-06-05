@@ -7,7 +7,9 @@
         -# TODO link_to original size?
         %p= user_defined_image(@user, :medium, :alt => "#{h @user.login}")
     .span-5.prepend-top.last<
-      %h3.center=h @user.login  
+      %h3.center=h @user.login
+      - unless @user == current_user or current_user.friendships.exists?(:friend_id => @user)
+        %h6.center= button_to "Add Friend", friendships_path(:friend_id => @user), :method => :post  
     %br{:style => "clear: both"}
     - unless @user.profile.name.blank?
       %h6.quiet= h @user.profile.name 
@@ -20,8 +22,28 @@
     %h3< 
       Cred
       %hr
-    = user_cred_images(@user, :medium)
-    %br{:clear => :both}    
+    = user_cred_images(@user, :small)
+    %br{:clear => :both}
+    %h3.prepend-top<
+      Friends
+      %hr
+    %ul
+      - @user.friendships.each do |friendship|
+        %li<
+          =h friendship.friend.login
+          - if @user == current_user
+            (
+            = link_to "remove", friendship, :method => :delete
+            )
+    %br{:clear => :both}
+
+    %h3.prepend-top<
+      Friended by
+      %hr
+    %ul
+      - @user.inverse_friends.each do |inverse_friendship|
+        %li=h inverse_friendship.login
+        
     - if @user == current_user
       %br
       %br 
