@@ -1,4 +1,22 @@
-.rounded-box-header.rounded-box-full-header.centered
+.span-24
+  .prepend-top
+    .span-8.prepend-1{:style => "min-height: 160px"}
+      - if controller.controller_name == "groups" and !group.nil?
+        %h2= link_to user_defined_image(group, :display, :alt => "to group voting page", :title => "View Session"), group_grants_path(group)
+      - elsif !group.nil?
+        %h2= link_to user_defined_image(group, :display, :alt => "to group home page"), group_path(group)
+      - else
+        %h2 Nothing
+    .span-14.append-1.last
+      %h2{:style => "padding-right: 40px"}=h group.name
+      %h3{:style => "padding-right: 40px"}=h group.purpose
+      .flr.prepend-top
+        %h3{:style => "margin: 0 50px"}<
+          == Pool #{number_to_currency(group.funds.floor, :precision => 0)}
+%br{:style => "clear: both"} 
+
+-# Jesse experimenting with the form background
+-#.rounded-box-header.rounded-box-full-header.centered
   %div
     %div
       %div
@@ -13,6 +31,8 @@
         %h3.flr{:style => "margin: 0 50px"}
           == Pool #{number_to_currency(group.funds.floor, :precision => 0)}   
     .clear
+
+-# Katz work using gradient    
 -#
   .rwide.centered2
     .rwide-left
