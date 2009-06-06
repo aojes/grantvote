@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
   validates_presence_of :invitation_id, :message => 'is required'
   validates_uniqueness_of :invitation_id
   
+  MIN_NAME, MAX_NAME = [2, 26]
+  
+  validates_length_of :login, :in => MIN_NAME..MAX_NAME
+  
   before_create :set_invitation_limit
     
  

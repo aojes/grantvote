@@ -1,12 +1,12 @@
 .prepend-1.span-22.append-1.prepend-top
   .prepend-1.span-7.append-1
-    .span-2<
+    .span-3<
       - if @user == current_user
-        %p= link_to user_defined_image(@user, :medium, :alt => "#{h @user.login}"), account_path
+        %p= link_to user_defined_image(@user, :large, :alt => "#{h @user.login}"), home_path
       - else
         -# TODO link_to original size?
-        %p= user_defined_image(@user, :medium, :alt => "#{h @user.login}")
-    .span-5.prepend-top.last<
+        %p= user_defined_image(@user, :large, :alt => "#{h @user.login}")
+    .span-4.prepend-top.last<
       %h3.center=h @user.login
       -# unless @user == current_user or current_user.friendships.exists?(:friend_id => @user)
         %h6.center= button_to "Add Friend", friendships_path(:friend_id => @user), :method => :post  
@@ -55,9 +55,9 @@
       - current_user.inverse_friends.each do |inverse_friendship|
         - unless current_user.friendships.exists?(:friend_id => inverse_friendship)
           = link_to user_defined_image(inverse_friendship, :thumb, :alt => h(inverse_friendship.login), :title => h(inverse_friendship.login)), profile_path(h(inverse_friendship.login))
-      %br
-      %br
-      %br  
+    %br
+    %br
+    %br  
   .span-12.append-1.prepend-top.last
     - if @user.groups.count.zero? and @user == current_user
       %h3.prepend-top< 

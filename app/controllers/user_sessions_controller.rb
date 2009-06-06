@@ -17,7 +17,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "You have logged in."
-      redirect_back_or_default account_url
+      redirect_back_or_default home_path
     else
       render :action => :new
     end
@@ -26,7 +26,7 @@ class UserSessionsController < ApplicationController
   def destroy
     current_user_session.destroy
     flash[:notice] = "You have logged out."
-    redirect_back_or_default root_path # TODO for private production only
-                                       #      else new_user_session_path
+    redirect_back_or_default root_path 
+                                       
   end
 end
