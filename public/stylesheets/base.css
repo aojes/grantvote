@@ -5,9 +5,6 @@ body {
 a, a:focus, button:focus, input:focus, textarea:focus {
   outline: none; }
 
--#a img # this breaks a lot of the layout, please use classes {
-  padding-right: 10px; }
-
 button::-moz-focus-inner {
   border: 0; }
 
@@ -34,7 +31,7 @@ a.rounded, div.pagination a {
   border: none;
   white-space: nowrap;
   vertical-align: middle;
-  diplay: -moz-inline-box;
+  display: -moz-inline-box;
   display: inline-block;
   overflow: visible; }
 
@@ -159,11 +156,21 @@ div.rounded-box, div.rounded-box-header {
   background-position: bottom left;
   height: 1%; }
 
+.rounded-box-image {
+  width: 330px;
+  text-align: center; }
+
 .rounded-box-small {
   width: 400px; }
 
+.rounded-box-smaller {
+  width: 370px; }
+
 .rounded-box-medium {
-  width: 550px; }
+  width: 530px; }
+
+.rounded-box-medium2 {
+  width: 600px; }
 
 .rounded-box-full {
   width: 775px; }
@@ -227,7 +234,7 @@ div.rounded-box div div div div, div.rounded-box-header div div div div {
 
 .centered {
   position: relative;
-  margin: 40px auto 30px auto !important; }
+  margin: 40px auto 30px auto!important; }
 
 .centered2 {
   margin: 4px auto 20px auto; }
@@ -371,6 +378,26 @@ ul.invitations li span.title {
     height: 23px;
     line-height: 25px; }
 
+.rounded-box-mediumfont {
+  font-size: 14px; }
+  .rounded-box-mediumfont form {
+    margin: 0px 20px 0px 46px;
+    width: 80%; }
+    .rounded-box-mediumfont form p {
+      width: 440px;
+      padding: 0px 0px 0px 0px;
+      margin: 0px 0px 0px 0px; }
+    .rounded-box-mediumfont form label {
+      margin: 5px 10px 0px 0px; }
+    .rounded-box-mediumfont form input, .rounded-box-mediumfont form input:focus {
+      margin: 0px 0px 4px 0px;
+      padding: 4px 0px 0px 0px;
+      height: 23px;
+      line-height: 25px; }
+    .rounded-box-mediumfont form button {
+      clear: both;
+      margin: 0px 0px 0px 150px; }
+
 .fieldWithErrors {
   display: block; }
 
@@ -403,12 +430,16 @@ div.pagination {
   padding: 3px;
   margin: 40px auto 40px auto;
   text-align: center;
-  width: 90%;
+  width: 875px;
+  height: 64px;
+  display: block;
   border: 0;
-  background-color: #c9d9e1; }
+  /* :background-color #c9d9e1 */
+  background: url(/images/pagination.jpg) no-repeat top left; }
   div.pagination h3 {
     margin-bottom: 0em;
-    padding: 10px 0px 10px 0px;
+    /* :padding 10px 0px 10px 0px */
+    padding: 16px 0px 10px 0px;
     border: 0; }
   div.pagination a {
     border: 1px solid #eee;
@@ -421,7 +452,8 @@ div.pagination {
     div.pagination a:hover {
       border: 1px solid #eee;
       background-image: none;
-      background-color: #fff;
+      /* :background-color #fff */
+      background-color: #c9d9e1;
       color: #02293e; }
   div.pagination span.current_page {
     margin-right: 3px;

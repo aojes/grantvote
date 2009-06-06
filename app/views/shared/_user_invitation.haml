@@ -1,0 +1,12 @@
+.prepend-top
+-if current_user != nil
+  -if current_user.invitation_limit > 0 
+    %h3
+      = link_to 'Send invitation', '#', {:class=>'send_invite_link'}
+    %h5
+      You can still send an invite (
+      %span.limitleft
+        =h current_user.invitation_limit
+      left)
+    %br
+    = render 'invitations/new'

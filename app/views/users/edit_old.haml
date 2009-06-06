@@ -1,5 +1,5 @@
 .prepend-top
-%div.rounded-box.rounded-box-mediumfont.rounded-box-medium2.centered
+%div.rounded-box.rounded-box-medium.centered
   %div
     %div
       %div
@@ -8,10 +8,12 @@
           - form_for @user, :url => account_path, :html => {:multipart => true } do |f|
             = f.error_messages
             = render :partial => "form", :object => f
-            = submit_button "Update"
-            &nbsp;
+            .prepend-4
+              %br
+              &nbsp; &nbsp; &nbsp; 
+              = submit_button "Update"
+              &nbsp;
+              = link_to "Go Back", profile_path(h current_user.login)
+            .form-space
             %br
-            = link_to "Go Back", account_path
-          .form-space
-          %br
 

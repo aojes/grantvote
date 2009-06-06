@@ -1,22 +1,36 @@
-- form_for @group, :html => { :multipart => true } do |f|
-  .span-24
-    .prepend-top
-      .span-8.prepend-1
-        - if @group.photo.file?
-          %h2= link_to user_defined_image(@group, :display, :alt => h(@group.name)), group_grants_path(@group)
-        - else
-          %h2= link_to user_defined_image(@group, :display, :alt => h(@group.name)), group_grants_path(@group)
-      .span-14.append-1.last
-        .form_row
-          = f.text_field :name
-          name
-        .form_row
-          = f.text_field :purpose, :size => 60
-          purpose
-        .form_row
-          = f.file_field :photo
-          change photo
-        .form_row.prepend-top.prepend-1
-          = submit_button "Update"
-        = f.error_messages
-  %br{:style => "clear: both"}
+.prepend-1.append-1
+  .prepend-top
+  %div.rounded-box.rounded-box-image.push-2
+    %div
+      %div
+        %div
+          - if @group.photo.file?
+            %h2= link_to user_defined_image(@group, :display, :alt => h(@group.name)), group_grants_path(@group)
+          - else
+            %h2= link_to user_defined_image(@group, :display, :alt => h(@group.name)), group_grants_path(@group)
+
+  %div.rounded-box.rounded-box-medium.prepend-2.pull-2
+    %div
+      %div
+        %div.rounded-box-largefont
+          %h2.prepend-1.prepend-top New Group
+          .clear.large
+            - form_for @group, :html => { :multipart => true } do |f|
+              .prepend-1
+                = f.error_messages 
+              .span-14
+              .form_row.prepend-top
+                = f.label :name
+                = f.text_field :name, :size => 20
+              .form_row.prepend-top
+                = f.label :purpose
+                = f.text_field :purpose, :size => 50
+              .form_row.prepend-top
+                = f.label :photo
+                = f.file_field :photo
+              %br
+              .prepend-4
+                = submit_button 'Create Group'
+                %br
+                %br
+

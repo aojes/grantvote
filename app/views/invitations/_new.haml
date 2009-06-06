@@ -1,0 +1,8 @@
+= error_messages_for :invitation
+- form_for  Invitation.new do |f| 
+  .form_row
+    %h3 Email
+    = f.text_field :email
+    .clear
+    %br 
+    = submit_button "Send"

@@ -135,3 +135,23 @@ ul.invitations li span.title {
     float: none;
     height: 23px;
     line-height: 25px; }
+
+.rounded-box-mediumfont {
+  font-size: 14px; }
+  .rounded-box-mediumfont form {
+    margin: 0px 20px 0px 46px;
+    width: 80%; }
+    .rounded-box-mediumfont form p {
+      width: 440px;
+      padding: 0px 0px 0px 0px;
+      margin: 0px 0px 0px 0px; }
+    .rounded-box-mediumfont form label {
+      margin: 5px 10px 0px 0px; }
+    .rounded-box-mediumfont form input, .rounded-box-mediumfont form input:focus {
+      margin: 0px 0px 4px 0px;
+      padding: 4px 0px 0px 0px;
+      height: 23px;
+      line-height: 25px; }
+    .rounded-box-mediumfont form button {
+      clear: both;
+      margin: 0px 0px 0px 150px; }

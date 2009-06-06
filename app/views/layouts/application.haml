@@ -18,6 +18,10 @@
     <!-- [if lt IE 8]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     = stylesheet_link_tag 'base'
     = javascript_include_tag :defaults, 'jquery.corners.min'
+    -#include jquery calls only on pages where the elements exist to avoid js errors
+    - if current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{current_user.login}")  and current_user!=nil
+      = javascript_include_tag 'invitations'
+      
   %body
     .container
       .span-24#header
@@ -36,7 +40,7 @@
               - else
                 = show_link "Grants", {:controller => 'grants', :action => 'index'}, {:title => "Grants", :class => 'rounded'}
               = show_link "Leaders", {:controller => 'leaders', :action => 'index'}, {:title => "Leaders", :class => 'rounded'}            
-              - if current_page?(:controller => 'account', :action => 'index') or current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}")
+              - if current_page?(:controller => 'account', :action => 'index') || current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}")
                 %li.active<
                   = link_to "You",  profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
               - else 

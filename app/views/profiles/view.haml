@@ -25,7 +25,7 @@
         = link_to "remove friendship", friendship_path(@user), :method => :delete
       - else
         = link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post
-        
+    = render 'shared/user_invitation'
     %h3.prepend-top< 
       Cred
       %hr

@@ -5,9 +5,6 @@ body {
 a, a:focus, button:focus, input:focus, textarea:focus {
   outline: none; }
 
--#a img # this breaks a lot of the layout, please use classes {
-  padding-right: 10px; }
-
 button::-moz-focus-inner {
   border: 0; }
 
@@ -34,7 +31,7 @@ a.rounded, div.pagination a {
   border: none;
   white-space: nowrap;
   vertical-align: middle;
-  diplay: -moz-inline-box;
+  display: -moz-inline-box;
   display: inline-block;
   overflow: visible; }
 
@@ -159,11 +156,21 @@ div.rounded-box, div.rounded-box-header {
   background-position: bottom left;
   height: 1%; }
 
+.rounded-box-image {
+  width: 330px;
+  text-align: center; }
+
 .rounded-box-small {
   width: 400px; }
 
+.rounded-box-smaller {
+  width: 370px; }
+
 .rounded-box-medium {
-  width: 550px; }
+  width: 530px; }
+
+.rounded-box-medium2 {
+  width: 600px; }
 
 .rounded-box-full {
   width: 775px; }
@@ -227,7 +234,7 @@ div.rounded-box div div div div, div.rounded-box-header div div div div {
 
 .centered {
   position: relative;
-  margin: 40px auto 30px auto !important; }
+  margin: 40px auto 30px auto!important; }
 
 .centered2 {
   margin: 4px auto 20px auto; }

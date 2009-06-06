@@ -9,7 +9,7 @@ class InvitationsController < ApplicationController
         
     respond_to do |format|
      # format.html { redirect_to(invitations_url) }
-     format.html { redirect_to account_url  }
+     format.html { redirect_to profile_path(current_user.login)  }
     end
     
     else
@@ -19,6 +19,7 @@ class InvitationsController < ApplicationController
     
   end
   
+
   def new
     @page_title ="Grantvote"
     @invitation = Invitation.new
@@ -28,20 +29,28 @@ class InvitationsController < ApplicationController
   
    @invitation = Invitation.new(params[:invitation])
    @invitation.sender = current_user
-    if @invitation.save
-      if current_user 
+    if @invitation.save and params[:invitation] 
+      if current_user and params[:invitation] 
        Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+       
         flash[:notice] = "Thank you, invitation sent."
-       
-       redirect_to root_url
-       
+       respond_to do |format|
+        format.html { redirect_to profile_path(current_user.login)  }
+        format.js 
+       end
        else 
         flash[:notice] = "Thank you, we'll send you an invitation soon"
+        
         redirect_to root_url
        end
 
     else
-      render :action => 'index'
+      if  current_user
+       redirect_to root_url
+      else
+       render :action => :new
+      end
+    
     end
     
   end
@@ -64,11 +73,11 @@ class InvitationsController < ApplicationController
      Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
     respond_to do |format|
      # format.html { redirect_to(invitations_url) }
-     format.html { redirect_to account_url  }
+     format.html { redirect_to profile_path(current_user.login)  }
     end
   end
   
-
+  
   
   def self.send_all_invites
     

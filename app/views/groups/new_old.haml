@@ -1,0 +1,22 @@
+.span-24.prepend-top
+  - form_for @group, :html => { :multipart => true } do |f|
+    .span-22.prepend-1.append-1.last
+      %h2.prepend-1 New Group
+      .prepend-1= f.error_messages 
+      .span-6
+        = image_tag '/images/defaults/group_display.png'
+      .span-14
+        .form_row.prepend-top
+          = f.label :name
+          = f.text_field :name, :size => 20
+        .form_row.prepend-top
+          = f.label :purpose
+          = f.text_field :purpose, :size => 50
+        .form_row.prepend-top
+          = f.label :photo
+          = f.file_field :photo
+        .form_row.prepend-top
+          .prepend-4
+            = submit_button 'Create Group'
+            -#= link_to 'Back', groups_path
+
