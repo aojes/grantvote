@@ -28,28 +28,29 @@
             %h1.logo= link_to "Grantvote", root_path
         .span-10.append-2.prepend-top.nav.last
           - if current_user
-            %ul#nav-list.pull-1.prepend-top
-              = show_link "Groups", {:controller=>'groups', :action=>'index'}, {:title => "Groups", :class=>'rounded'}
+            %ul#nav-list.pull-2.prepend-top
+              = show_link "Home", {:controller => 'home', :action => 'show'}, {:title => "Home", :class => 'rounded'}
+              = show_link "Groups", {:controller => 'groups', :action => 'index'}, {:title => "Groups", :class => 'rounded'}
               - if params[:group_id] and current_page?(:controller => "grants", :action => "index")
-                %li.active= link_to "Grants", "/grants", {:title => "Grants", :class=>'rounded'}              
+                %li.active= link_to "Grants", "/grants", {:title => "Grants", :class => 'rounded'}              
               - else
-                = show_link "Grants", {:controller=>'grants', :action=>'index'}, {:title => "Grants", :class=>'rounded'}
-              = show_link "Leaders", {:controller=>'leaders', :action=>'index'}, {:title => "Leaders", :class=>'rounded'}            
-              - if current_page?(:controller=>'account', :action=>'index') or current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{current_user.login}")
-                %li.active
-                  = link_to "You",  account_path, {:title => "Your account", :class=>'rounded'}
+                = show_link "Grants", {:controller => 'grants', :action => 'index'}, {:title => "Grants", :class => 'rounded'}
+              = show_link "Leaders", {:controller => 'leaders', :action => 'index'}, {:title => "Leaders", :class => 'rounded'}            
+              - if current_page?(:controller => 'account', :action => 'index') or current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}")
+                %li.active<
+                  = link_to "You",  profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
               - else 
-                %li.normal
-                  = link_to "You", account_path, {:title => "Your account", :class=>'rounded'}
+                %li.normal<
+                  = link_to "You", profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
             
             -#= pluralize User.logged_in.count, "user" currently logged in
           .prepend-top.flr#login{:style => "position:relative; top: 3px"}
             
-            -# if not current_user
-              -#= link_to "Register", new_account_path, :class => "rounded", :alt => "Register a new account" 
-              -#|
-              -#= link_to "Log In", login_path, :class => "rounded", :alt => "Log in to your account"
-            -# else 
+            -#
+              - if not current_user
+                = link_to "Register", new_account_path, :class => "rounded", :alt => "Register a new account" 
+                |
+                = link_to "Log In", login_path, :class => "rounded", :alt => "Log in to your account"
             
             - if current_user 
               = link_to "Logout", user_session_path, :method => :delete, :class => "rounded", :alt => "log out"

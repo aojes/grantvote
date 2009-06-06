@@ -19,13 +19,12 @@
     - unless @user.profile.link.blank? or @user.profile.link == "http://"
       %h6.quiet= link_to h(@user.profile.link), h(@user.profile.link) if @user.profile.link.include?("http://")
     %h5.quiet=h @user.profile.detail if @user.profile.detail
-    
-    - if @user == current_user
-      .quiet== [ #{link_to 'viewing your public profile', account_path} ]
-    - elsif current_user.friendships.exists?(:user_id => current_user, :friend_id => @user)
-      = link_to "remove friendship", friendship_path(@user), :method => :delete
-    - else
-      = link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post
+    = link_to 'Settings', edit_account_path if current_user == @user
+    - unless @user == current_user
+      - if current_user.friendships.exists?(:user_id => current_user, :friend_id => @user)
+        = link_to "remove friendship", friendship_path(@user), :method => :delete
+      - else
+        = link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post
         
     %h3.prepend-top< 
       Cred
@@ -38,12 +37,7 @@
       %hr
     - @user.friendships.each do |friendship|
       - if friendship.friend.friendships.exists?(:friend_id => @user)
-        = link_to user_defined_image(friendship.friend, :thumb), profile_path(friendship.friend.login)
-      -#
-        - if @user == current_user
-          (
-          = link_to "remove", friendship, :method => :delete
-          )
+        = link_to user_defined_image(friendship.friend, :thumb, :alt => h(friendship.friend.login), :title => h(friendship.friend.login)), profile_path(friendship.friend.login)
 
     - if @user == current_user        
       %br{:clear => :both}
@@ -52,7 +46,7 @@
         %hr
       - current_user.friendships.each do |friendship|
         - unless friendship.friend.friendships.exists?(:friend_id => current_user)
-          = link_to user_defined_image(friendship.friend, :thumb), profile_path(h(friendship.friend.login))
+          = link_to user_defined_image(friendship.friend, :thumb, :alt => h(friendship.friend.login), :title => h(friendship.friend.login)), profile_path(h(friendship.friend.login))
           
       %br{:clear => :both}
       %h3.prepend-top<
@@ -60,7 +54,7 @@
         %hr
       - current_user.inverse_friends.each do |inverse_friendship|
         - unless current_user.friendships.exists?(:friend_id => inverse_friendship)
-          = link_to user_defined_image(inverse_friendship, :thumb), profile_path(h(inverse_friendship.login))
+          = link_to user_defined_image(inverse_friendship, :thumb, :alt => h(inverse_friendship.login), :title => h(inverse_friendship.login)), profile_path(h(inverse_friendship.login))
       %br
       %br
       %br  

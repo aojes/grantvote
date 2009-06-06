@@ -19,7 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :invitations
   map.send_invites '/send_invitations', :controller => "invitations", :action => "approve_invitations"
 
-  
+  map.home '/home', :controller => "home", :action => "show"
   map.leaders '/leaders', :controller => "leaders", :action => "index"
   map.profile ':permalink', :controller => "profiles", :action => "view"
   
