@@ -37,21 +37,33 @@
       Friends
       %hr
     - @user.friendships.each do |friendship|
-      = link_to user_defined_image(friendship.friend, :thumb), profile_path(friendship.friend.login)
+      - if friendship.friend.friendships.exists?(:friend_id => @user)
+        = link_to user_defined_image(friendship.friend, :thumb), profile_path(friendship.friend.login)
       -#
         - if @user == current_user
           (
           = link_to "remove", friendship, :method => :delete
           )
-          
-    %br{:clear => :both}
-    - if @user == current_user
-      %h3.prepend-top<
-        Friended by
-        %hr
-      - current_user.inverse_friends.each do |inverse_friend|
-        = link_to user_defined_image(inverse_friend, :thumb), profile_path(inverse_friend.login)
 
+    - if @user == current_user        
+      %br{:clear => :both}
+      %h3.prepend-top<
+        Following
+        %hr
+      - current_user.friendships.each do |friendship|
+        - unless friendship.friend.friendships.exists?(:friend_id => current_user)
+          = link_to user_defined_image(friendship.friend, :thumb), profile_path(h(friendship.friend.login))
+          
+      %br{:clear => :both}
+      %h3.prepend-top<
+        Followers
+        %hr
+      - current_user.inverse_friends.each do |inverse_friendship|
+        - unless current_user.friendships.exists?(:friend_id => inverse_friendship)
+          = link_to user_defined_image(inverse_friendship, :thumb), profile_path(h(inverse_friendship.login))
+      %br
+      %br
+      %br  
   .span-12.append-1.prepend-top.last
     - if @user.groups.count.zero? and @user == current_user
       %h3.prepend-top< 
