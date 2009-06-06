@@ -1,7 +1,7 @@
-.span-22.append-2.last
-  .span-7.prepend-1.append-1
+.span-22.append-2.last#join_panel
+  .span-6.prepend-1.append-1
     - if @group.memberships.voters.count.zero?
-      %h3
+      %h4
         .flr= button_to('Edit', edit_group_path(@group), :method => :get, :onclick => "this.blur();", :style => "margin-left: 12px") if creator?(current_user, @group) 
         Creator can edit this group until anyone pays dues
       %br

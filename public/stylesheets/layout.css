@@ -113,6 +113,14 @@ a.rounded, div.pagination a {
   border: 1px solid #999;
   padding: 4px; }
 
+#group_members {
+  position: relative;
+  top: -60px;
+  background-color: #ededed; }
+
+#join_panel {
+  background-color: #f3f3f3; }
+
 #green {
   width: 940px;
   min-height: 300px;

@@ -31,7 +31,7 @@
       %strong= pluralize @group.comments.count, "Comment"
       %hr
       .last= render 'shared/comments', :comments => @group.comments
-  .span-6.prepend-1.border-test
+  .span-6.prepend-1#group_members
     - if @group.memberships.voters.count.zero?
       %h3= pluralize @group.memberships.members.count, "Member"
       - group_members(params[:id]).each do |m|
