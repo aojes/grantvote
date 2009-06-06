@@ -41,7 +41,7 @@ class InvitationsController < ApplicationController
        end
 
     else
-      render :action => 'new'
+      render :action => 'index'
     end
     
   end
