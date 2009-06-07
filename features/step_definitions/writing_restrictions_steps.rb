@@ -25,7 +25,5 @@ Then /^I am not allowed to vote it into session$/ do
                   :grant => @new_grant, :cast => "yea")
   @new_grant.save.should == false
   
-  # ???
-  
 end
 

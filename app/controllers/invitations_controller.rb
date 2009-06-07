@@ -26,31 +26,27 @@ class InvitationsController < ApplicationController
   end
   
   def create
-  
-   @invitation = Invitation.new(params[:invitation])
-   @invitation.sender = current_user
+    @invitation = Invitation.new(params[:invitation])
+    @invitation.sender = current_user
     if @invitation.save and params[:invitation] 
       if current_user and params[:invitation] 
-       Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+        Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
        
         flash[:notice] = "Thank you, invitation sent."
-       respond_to do |format|
-        format.html { redirect_to profile_path(current_user.login)  }
-        format.js 
-       end
-       else 
+        respond_to do |format|
+          format.html { redirect_to profile_path(current_user.login)  }
+          format.js 
+        end
+      else 
         flash[:notice] = "Thank you, we'll send you an invitation soon"
         
         redirect_to root_url
-       end
-
-    else
-      if  current_user
-       redirect_to root_url
-      else
-       render :action => :new
       end
-    
+
+    elsif current_user
+       redirect_to root_url
+    else
+      render :action => :new
     end
     
   end

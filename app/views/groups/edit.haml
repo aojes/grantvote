@@ -1,24 +1,20 @@
-.prepend-1.append-1
-  .prepend-top
+.prepend-1.append-1.prepend-top
   %div.rounded-box.rounded-box-image.push-2
     %div
       %div
         %div
-          - if @group.photo.file?
-            %h2= link_to user_defined_image(@group, :display, :alt => h(@group.name)), group_grants_path(@group)
-          - else
-            %h2= link_to user_defined_image(@group, :display, :alt => h(@group.name)), group_grants_path(@group)
+          %h3.prepend-top<
+            = link_to user_defined_image(@group, :display, :alt => h(@group.name)), group_path
 
   %div.rounded-box.rounded-box-medium.prepend-2.pull-2
     %div
       %div
         %div.rounded-box-largefont
-          %h2.prepend-1.prepend-top New Group
+          %h2.prepend-1.prepend-top Edit Group
           .clear.large
             - form_for @group, :html => { :multipart => true } do |f|
               .prepend-1
                 = f.error_messages 
-              .span-14
               .form_row.prepend-top
                 = f.label :name
                 = f.text_field :name, :size => 20
@@ -30,7 +26,7 @@
                 = f.file_field :photo
               %br
               .prepend-4
-                = submit_button 'Create Group'
+                = submit_button 'Update'
                 %br
                 %br
 
