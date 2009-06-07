@@ -36,8 +36,11 @@ class UsersController < ApplicationController
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
    
-    new_email = params[:user][:email] != @user.email
-    new_login = params[:user][:login] != @user.login
+    email = params[:user][:email]
+    login = params[:user][:login]
+
+    new_email = !email.blank? and email != @user.email
+    new_login = !login.blank? and login != @user.login
     
     if new_email or new_login       
       if @user.valid_password?(params[:user][:password_confirm_vital])
