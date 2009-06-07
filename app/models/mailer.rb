@@ -1,10 +1,10 @@
 class Mailer < ActionMailer::Base
    default_url_options[:host] = "www.grantvote.com"
    def invitation(invitation, signup_url)
-    subject    'Invitation'
-    recipients invitation.email
-    from       'noreply@grantvote.com'
-    body       :invitation => invitation, :signup_url => signup_url
+    subject      'Invitation'
+    recipients   invitation.email
+    from         'noreply@grantvote.com'
+    body         :invitation => invitation, :signup_url => signup_url
     content_type "text/html"
     invitation.update_attribute(:sent_at, Time.now)
    end

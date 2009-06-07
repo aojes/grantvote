@@ -41,10 +41,11 @@ class User < ActiveRecord::Base
   MIN_NAME, MAX_NAME = [2, 26]
   
   validates_length_of :login, :in => MIN_NAME..MAX_NAME
-  
+
+  attr_accessor_with_default :password_confirm_vital, ''
+
   before_create :set_invitation_limit
-    
- 
+
 
   def deliver_password_reset_instructions!
     reset_perishable_token!

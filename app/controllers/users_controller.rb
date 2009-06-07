@@ -36,10 +36,24 @@ class UsersController < ApplicationController
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
    
-    if @user.update_attributes(params[:user])
-      flash[:notice] = "Updated profile. "
+    new_email = params[:user][:email] != @user.email
+    new_login = params[:user][:login] != @user.login
+    
+    if new_email or new_login       
+      if @user.valid_password?(params[:user][:password_confirm_vital])
+        if @user.update_attributes(params[:user])
+          flash[:notice] = "Updated profile."
+          redirect_to profile_path(@user.login)
+        end
+      else
+        render :action => :edit
+      end      
+    elsif not new_email and not new_login
+      if @user.update_attributes(params[:user])
+        flash[:notice] = "Updated profile. "
 
-      redirect_to profile_path(@user.login)
+        redirect_to profile_path(@user.login)
+      end
     else
       render :action => :edit
     end
