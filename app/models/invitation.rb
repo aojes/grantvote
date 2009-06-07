@@ -2,14 +2,12 @@ class Invitation < ActiveRecord::Base
   belongs_to :sender, :class_name => 'User'
   has_one :recipient, :class_name => 'User'
   
-  
   validates_format_of :email, 
     :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, 
     :on => :create 
   validates_uniqueness_of :email 
   validate :recipient_is_not_registered
   validate :sender_has_invitations, :if => :sender
-  
   
   before_create :generate_token
   before_create :decrement_sender_count, :if => :sender
@@ -19,17 +17,12 @@ class Invitation < ActiveRecord::Base
   def send_invitation_notice
   @invitations = Invitation.find(:all) 
    
-    @invitations.each do | i |
-      if i.sender_id.nil?
-      Mailer.deliver_invitation_request_notice(i)
-      end
-  
+    @invitations.each do | i | 
+      Mailer.deliver_invitation_request_notice(i) if i.sender_id.nil?
     end
-  
   end
   
 private
-  
   
   def recipient_is_not_registered
     errors.add :email, 'is already registered' if User.find_by_email(email)
@@ -48,9 +41,5 @@ private
   def decrement_sender_count
     sender.decrement! :invitation_limit
   end
-  
-
-  
-
   
 end

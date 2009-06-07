@@ -67,8 +67,9 @@
 %br{ :style => "clear:both" }        
 - if @groups_count > 0
   - if @search.page_count > 1
-    .pagination
-      %h3= page_links
+    .pagination{:style => "text-align: left"}
+      .prepend-6<
+        %h3= page_links
   - else 
     .tbs
       &nbsp;

@@ -1,5 +1,5 @@
 %h2.prepend-1.append-2 Group Voting Session
-.span-21.prepend-2.append-1.last  
+.span-21.prepend-2.append-1.last
   - @grants.each do |grant|
     - unless grant.user == current_user or grant.votes.count.zero?
       .span-14.append-1
@@ -22,12 +22,12 @@
         == <img alt="#{accessible_tally grant}" title="#{accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />
         %p= render 'shared/vote', :grant => grant 
       %hr
+.span-22.prepend-1.append-1.last
   - if @grants_count > 0
     - if @search.page_count > 1
-      .pagintion
-        %h3= page_links
+      .pagination{:style => "text-align: left"}
+        .prepend-7<
+          %h3= page_links
     - else
-      .tbs
-        &nbsp;
-        
+      .tbs &nbsp;
       %hr    

@@ -14,7 +14,7 @@ class GrantsController < ApplicationController
       @search = @group.grants.new_search(params[:search])
 
       @search.conditions.final = false
-      @search.per_page = 10
+      @search.per_page = 5
       @search.order_as = "ASC"
       @search.order_by = :created_at
     

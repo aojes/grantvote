@@ -18,14 +18,14 @@
             = simple_format h(grant.proposal), :style => "text-align: justify; line-height: 2; margin-right: -8px;"
         %br{ :style => "clear:both" }
         %hr        
-      - if @grants_awarded_count > 0
-        - if @search.page_count > 1
-          .pagination
+    - if @grants_awarded_count > 0
+      - if @search.page_count > 1
+        .pagination{:style => "text-align: left"}
+          .prepend-7<
             %h3= page_links
-        - else
-          .tbs
-            &nbsp;
-          %hr
+      - else
+        .tbs &nbsp;
+        %hr
     #comments
       .flr= link_to "Add Comment", new_group_comment_path(@group)
       %strong= pluralize @group.comments.count, "Comment"

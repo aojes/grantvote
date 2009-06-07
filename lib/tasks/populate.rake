@@ -7,7 +7,7 @@ namespace :db do
     
     [Group, Membership, Grant, Vote].each(&:delete_all)
 
-    Group.populate 20 do |g|
+    Group.populate 12 do |g|
       g.name = Populator.words(2..5).titleize
       g.purpose = Populator.words(5..10).titleize
       g.dues = 5
@@ -64,11 +64,11 @@ namespace :db do
     # set permalinks
     Group.find(:all).each(&:save!)
         
-    Grant.populate 50 do |g|
+    Grant.populate 250 do |g|
       g.user_id = [1, 2, 3, 4, 5]
       g.group_id = 1..5
       g.name = Faker::Name.name
-      g.proposal = Populator.sentences(2..10)
+      g.proposal = Populator.sentences(2..12)
       g.media = ""
       g.amount = 20..50
       g.awarded = [true, false, false]
