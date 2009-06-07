@@ -5,9 +5,10 @@
   = form.label :email 
   = form.text_field :email, :onclick => "$('#confirm_vital').show(); return false;"
 
-#confirm_vital.notice.rounded
-  .quiet To change your login or email address, you must re-enter your password:
-  = form.password_field :password_confirm_vital
+- if controller.controller_name == "users" and controller.action_name == "edit"
+  #confirm_vital.notice.rounded
+    .quiet To change your login or email address, you must re-enter your password:
+    = form.password_field :password_confirm_vital
 
 - if @user == current_user  
   - form.fields_for :profile do |p|
@@ -26,9 +27,4 @@
     .form_row
       = form.label :photo, @user.photo.file? ? "Change photo" : "Add photo"
       = form.file_field :photo 
-.form_row
-  = form.label :password, form.object.new_record? ? nil : "Change password" 
-  = form.password_field :password 
-.form_row
-  = form.label "Confirm password"
-  = form.password_field :password_confirmation 
+
