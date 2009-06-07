@@ -24,6 +24,13 @@ config.action_view.cache_template_loading            = true
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
 
+ActionMailer::Base.delivery_method = :sendmail
+#ActionMailer::Base.sendmail_settings = {  :location => '/usr/sbin/sendmail',  :arguments => '-i -t' } 
+ActionMailer::Base.raise_delivery_errors = true
+ActionMailer::Base.default_charset = "utf-8"
+ActionMailer::Base.perform_deliveries = true
+# ActionView:: Template or TemplateHandler ( register haml extension )
+
 # Enable threaded mode
 # config.threadsafe!
 
