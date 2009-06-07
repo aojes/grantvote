@@ -42,8 +42,11 @@ class UsersController < ApplicationController
     if new_email or new_login       
       if @user.valid_password?(params[:user][:password_confirm_vital])
         if @user.update_attributes(params[:user])
-          flash[:notice] = "Updated profile."
-          redirect_to profile_path(@user.login)
+          if @user.profile.update_attributes(:login => @user.login, 
+                                             :permalink => @user.login)
+            flash[:notice] = "Updated profile."
+            redirect_to profile_path(@user.login)
+          end
         end
       else
         render :action => :edit
