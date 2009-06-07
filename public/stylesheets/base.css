@@ -398,11 +398,9 @@ ul.invitations li span.title {
       clear: both;
       margin: 0px 0px 0px 150px; }
 
-#confirm_vital {
-  margin-left: 148px;
-  width: 265px;
-  display: none;
-  background-color: #ededed; }
+
+#change_login_and_email, #change_password, #change_profile_info_link {
+  display: none; }
 
 .fieldWithErrors {
   display: block; }

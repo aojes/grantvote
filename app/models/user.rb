@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
   validates_length_of :login, :in => MIN_NAME..MAX_NAME
 
   attr_accessor_with_default :password_confirm_vital, ''
+  attr_accessor_with_default :new_password, ''
+  attr_accessor_with_default :confirm_new_password, ''
 
   before_create :set_invitation_limit
 

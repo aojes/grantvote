@@ -36,31 +36,39 @@ class UsersController < ApplicationController
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
    
+    new_password = params[:user][:new_password]
+    confirmation = params[:user][:confirm_new_password]
+    if !new_password.blank? and new_password == confirmation
+      if @user.valid_password?(params[:user][:password])
+        @user.password = new_password
+      end
+    end
+    
     email = params[:user][:email]
     login = params[:user][:login]
-
-    new_email = !email.blank? and email != @user.email
-    new_login = !login.blank? and login != @user.login
+    
+    new_email = email != @user.email
+    new_login = login != @user.login
     
     if new_email or new_login       
       if @user.valid_password?(params[:user][:password_confirm_vital])
         if @user.update_attributes(params[:user])
-          if @user.profile.update_attributes(:login => @user.login, 
-                                             :permalink => @user.login)
+          if @user.profile.update_attributes(:login => @user.login, :permalink => @user.login)
             flash[:notice] = "Updated profile."
-            redirect_to profile_path(@user.login)
+            
+            redirect_to profile_path(@user.profile.login)
           end
+        else
+          render :action => :edit
         end
       else
         render :action => :edit
       end      
-    elsif not new_email and not new_login
-      if @user.update_attributes(params[:user])
-        flash[:notice] = "Updated profile. "
+    elsif @user.update_attributes(params[:user])
+      flash[:notice] = "Updated profile. "
 
-        redirect_to profile_path(@user.login)
-      end
-    else
+      redirect_to profile_path(@user.login)
+    else      
       render :action => :edit
     end
   end

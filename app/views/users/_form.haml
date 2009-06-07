@@ -9,7 +9,19 @@
   #confirm_vital.notice.rounded
     .quiet To change your login or email address, you must re-enter your password:
     = form.password_field :password_confirm_vital
-
+  #change_password_link
+    %h5= link_to_function "change password", "$('#change_password_link').hide(); $('#change_password').show(); return false;"
+  #change_password
+    .form_row
+      = form.label :password, "Current password"
+      = form.password_field :password
+    .form_row
+      = form.label :new_password, "New password"
+      = form.password_field :new_password
+    .form_row
+      = form.label :confirm_new_password, "Confirm password"
+      = form.password_field :confirm_new_password
+      
 - if @user == current_user  
   - form.fields_for :profile do |p|
     .form_row

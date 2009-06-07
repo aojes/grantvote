@@ -7,11 +7,56 @@
         .clear
           - form_for @user, :url => account_path, :html => {:multipart => true } do |f|
             = f.error_messages
-            = render :partial => "form", :object => f
+            #change_profile_info_link
+              %h5= link_to_function "Profile Info", "$('#change_login_and_email').hide(); $('#change_login_and_email_link').fadeIn(); $('#change_password_link').fadeIn(); $('#change_password').hide();  $('#change_profile_info_link').hide(); $('#change_profile_info').fadeIn(); return false;"
+            #change_profile_info
+              .center.quiet Change Profile Info
+              - f.fields_for :profile do |p|
+                .form_row
+                  = p.label :name, "Full name"
+                  = p.text_field :name
+                .form_row
+                  = p.label :location
+                  = p.text_field :location
+                .form_row
+                  = p.label :link
+                  = p.text_field :link
+                .form_row
+                  = p.label :detail, "About you"
+                  = p.text_field :detail    
+                .form_row
+                  = f.label :photo, @user.photo.file? ? "Change photo" : "Add photo"
+                  = f.file_field :photo
+            #change_login_and_email_link
+              %h5= link_to_function "Change Login Details", "$('#change_password_link').fadeIn(); $('#change_password').hide();  $('#change_profile_info_link').fadeIn(); $('#change_profile_info').hide(); $('#change_login_and_email_link').hide(); $('#change_login_and_email').fadeIn();  return false;"
+            #change_login_and_email
+              .center.quiet Change Login Details
+              .form_row
+                = f.label :login
+                = f.text_field :login
+              .form_row
+                = f.label :email 
+                = f.text_field :email
+              .form_row
+                = f.label :password
+                = f.password_field :password
+            #change_password_link               
+              %h5= link_to_function "Change Password", "$('#change_profile_info_link').fadeIn(); $('#change_profile_info').hide(); $('#change_login_and_email').hide(); $('#change_login_and_email_link').fadeIn(); $('#change_password_link').hide(); $('#change_password').fadeIn(); return false;"
+            #change_password
+              .center.quiet Change Password
+              .form_row
+                = f.label :password, "Current password"
+                = f.password_field :password
+              .form_row
+                = f.label :new_password, "New password"
+                = f.password_field :new_password
+              .form_row
+                = f.label :confirm_new_password, "Confirm password"
+                = f.password_field :confirm_new_password
             = submit_button "Update"
             &nbsp;
             %br
-            = link_to "Go Back", account_path
+            = link_to "Go Back", profile_path(current_user.login)
           .form-space
           %br
 
