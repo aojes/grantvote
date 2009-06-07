@@ -91,7 +91,7 @@ class Grant < ActiveRecord::Base
   def to_param
     permalink
   end
-  
+
   private  
     
     # try to keep the media objects from breaking the layout
@@ -99,27 +99,27 @@ class Grant < ActiveRecord::Base
     def adapt_objects
       unless media.blank?
         # strip as much HTML & JS as we can
-        self.media = Hpricot(media).at("object").to_html.
-                            gsub(/<script.*>.*<\/script>/, '')
+        self.media = Hpricot(media).at("object").to_html
+        media.gsub!(/<script.*>.*<\/script>/, '').to_s
         
         
-        a = self.media.include?("http://www.youtube.com/")
-        b = self.media.include?("http://www.youtube-nocookie.com/")
-        c = self.media.include?("http://www.viddler.com/")
-        d = self.media.include?("http://vimeo.com/")
-        e = self.media.include?("height=\"") or media.include?("width=\"")
+        a = media.include?("http://www.youtube.com/")
+        b = media.include?("http://www.youtube-nocookie.com/")
+        c = media.include?("http://www.viddler.com/")
+        d = media.include?("http://vimeo.com/")
+        e = media.include?("height=\"") or media.include?("width=\"")
         
         if a or b # YouTube
-          self.media.gsub!(/width=\"\d+\"/, 'width="425"')
-          self.media.gsub!(/height=\"\d+\"/, 'height="344"')
+          media.gsub!(/width=\"\d+\"/, 'width="425"')
+          media.gsub!(/height=\"\d+\"/, 'height="344"')
         elsif c   # Viddler
-          self.media.gsub!(/width=\"\d+\"/, 'width="437"')
-          self.media.gsub!(/height=\"\d+\"/, 'height="288"')
-          self.media.gsub!(/<param(\s)name=\"flashvars\"(\s)value=\"autoplay=t\"(\s)\/>/, '')
-          self.media.gsub!(/(\s)flashvars=\"autoplay=t\"/, '')
+          media.gsub!(/width=\"\d+\"/, 'width="437"')
+          media.gsub!(/height=\"\d+\"/, 'height="288"')
+          media.gsub!(/<param(\s)name=\"flashvars\"(\s)value=\"autoplay=t\"(\s)\/>/, '')
+          media.gsub!(/(\s)flashvars=\"autoplay=t\"/, '')
         elsif d   # Vimeo
-          self.media.gsub!(/width=\"\d+\"/, 'width="427"')
-          self.media.gsub!(/height=\"\d+\"/, 'height="240"')
+          media.gsub!(/width=\"\d+\"/, 'width="427"')
+          media.gsub!(/height=\"\d+\"/, 'height="240"')
        ##
        # will break audio objects
        #   
