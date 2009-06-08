@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
   attr_accessor_with_default :password_confirm_vital, ''
   attr_accessor_with_default :new_password, ''
   attr_accessor_with_default :confirm_new_password, ''
+  attr_accessor_with_default :current_password, ''
 
   before_create :set_invitation_limit
 

@@ -39,8 +39,9 @@ class UsersController < ApplicationController
     new_password = params[:user][:new_password]
     confirmation = params[:user][:confirm_new_password]
     if !new_password.blank? and new_password == confirmation
-      if @user.valid_password?(params[:user][:password])
+      if @user.valid_password?(params[:user][:current_password])
         @user.password = new_password
+        @user.password_confirmation = new_password
       end
     end
     

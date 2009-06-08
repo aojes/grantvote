@@ -38,15 +38,15 @@
                 = f.label :email 
                 = f.text_field :email
               .form_row
-                = f.label :password
-                = f.password_field :password
+                = f.label :password_confirm_vital, "Password"
+                = f.password_field :password_confirm_vital
             #change_password_link               
               %h5= link_to_function "Change Password", "$('#change_profile_info_link').fadeIn(); $('#change_profile_info').hide(); $('#change_login_and_email').hide(); $('#change_login_and_email_link').fadeIn(); $('#change_password_link').hide(); $('#change_password').fadeIn(); return false;"
             #change_password
               .center.quiet Change Password
               .form_row
-                = f.label :password, "Current password"
-                = f.password_field :password
+                = f.label :current_password, "Current password"
+                = f.password_field :current_password
               .form_row
                 = f.label :new_password, "New password"
                 = f.password_field :new_password

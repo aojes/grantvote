@@ -107,25 +107,22 @@ class Grant < ActiveRecord::Base
         b = media.include?("http://www.youtube-nocookie.com/")
         c = media.include?("http://www.viddler.com/")
         d = media.include?("http://vimeo.com/")
-        e = media.include?("height=\"") or media.include?("width=\"")
         
-        if a or b # YouTube
-          media.gsub!(/width=\"\d+\"/, 'width="425"')
-          media.gsub!(/height=\"\d+\"/, 'height="344"')
-        elsif c   # Viddler
-          media.gsub!(/width=\"\d+\"/, 'width="437"')
-          media.gsub!(/height=\"\d+\"/, 'height="288"')
-          media.gsub!(/<param(\s)name=\"flashvars\"(\s)value=\"autoplay=t\"(\s)\/>/, '')
-          media.gsub!(/(\s)flashvars=\"autoplay=t\"/, '')
-        elsif d   # Vimeo
-          media.gsub!(/width=\"\d+\"/, 'width="427"')
-          media.gsub!(/height=\"\d+\"/, 'height="240"')
-       ##
-       # will break audio objects
-       #   
-       # elsif e   # sensible catch all
-       #   media.gsub!(/width=\"\d+\"/, 'width="425"')
-       #   media.gsub!(/height=\"\d+\"/, 'height="300"')
+        if media.include?("height=") and media.include?("width=")
+          if a or b # YouTube
+            media.gsub!(/width=\"\d+\"/, 'width="425"')
+            media.gsub!(/height=\"\d+\"/, 'height="344"')
+          elsif c   # Viddler
+            media.gsub!(/width=\"\d+\"/, 'width="437"')
+            media.gsub!(/height=\"\d+\"/, 'height="288"')
+            media.gsub!(/<param(\s)name=\"flashvars\"(\s)value=\"autoplay=t\"(\s)\/>/, '')
+            media.gsub!(/(\s)flashvars=\"autoplay=t\"/, '')
+          elsif d   # Vimeo
+            media.gsub!(/width=\"\d+\"/, 'width="427"')
+            media.gsub!(/height=\"\d+\"/, 'height="240"')
+          end
+        else
+          self.media = ""
         end
       end      
       true 
