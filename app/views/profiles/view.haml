@@ -68,21 +68,30 @@
       %h3.prepend-top< 
         Groups
         %hr
-    - @user.groups.reverse.each do |g|
-      = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_path(g)
+      - @user.groups.reverse.each do |g|
+        = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_path(g)
     - if @user.grants.awarded.count > 0
       %h3.prepend-top< 
         Awards
         %hr
-    - @user.grants.awarded.reverse.each do |g|
-      = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g)
+      - @user.grants.awarded.reverse.each do |g|
+        = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g)
     - if @user.grants.session.count > 0
       %h3.prepend-top< 
         Sessions
         %hr
-    - @user.grants.session.reverse.each do |g|
-      - unless g.votes.count.zero?
-        = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g)
+      - @user.grants.session.reverse.each do |g|
+        - unless g.votes.count.zero?
+          = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g)
+    - if current_user == @user
+      - if @user.grants.detect {|g| g.votes.count.zero? }
+        %h3.prepend-top<
+          .flr{:style => "font-size: 12px; color: #888; position: relative; top: 4px;"} (private view)
+          Writeboard
+          %hr
+      - @user.grants.session.reverse.each do |g|
+        - if g.votes.count.zero? 
+          = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g)       
     %br
     %br
     %br       

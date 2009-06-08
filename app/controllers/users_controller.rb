@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def new
     @page_title = "Welcome to Grantvote"
-    #@user = User.new
+    # @user = User.new
     @user = User.new(:invitation_token => params[:invitation_token])
     @user.email = @user.invitation.email if @user.invitation
   end
