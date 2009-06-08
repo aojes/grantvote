@@ -19,7 +19,7 @@
     - unless @user.profile.link.blank? or @user.profile.link == "http://"
       %h6.quiet= link_to h(@user.profile.link), h(@user.profile.link) if @user.profile.link.include?("http://")
     %h5.quiet=h @user.profile.detail if @user.profile.detail
-    = link_to 'Settings', edit_account_path if current_user == @user
+    %h5= link_to 'Settings', edit_account_path if current_user == @user
     - unless @user == current_user
       - if current_user.friendships.exists?(:user_id => current_user, :friend_id => @user)
         = link_to "remove friendship", friendship_path(@user), :method => :delete
