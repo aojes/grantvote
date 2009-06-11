@@ -19,7 +19,8 @@ defer
     implement payment gateway (or use simple paypal 'pay now' buttons)
     make return pages from payment gateway / payments
     use https for payments (if gateway)
-         
+    track active users
+    
   normal workflow
     
     can promote general-purpose, company group with free voting membership on reg
@@ -39,7 +40,7 @@ defer
     replace 'link to pay dues' with suitable CTA on group session
     add 'mark as spam' or flag as inappropriate link on comments, etc.
     give users more profile page settings, or limit requests  
-    
+    look at other video sites.. streakr
       
 _________________
 business

@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
-  config.gem "searchlogic"
+  config.gem "searchlogic", :version => "~> 1.6.6"
   config.gem "populator"
   config.gem "faker"
   config.gem "haml"
