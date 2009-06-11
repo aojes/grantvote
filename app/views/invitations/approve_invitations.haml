@@ -1,6 +1,7 @@
 .prepend-1.prepend-top
   %h2 Manage Invitations
-  
+  %p
+    = link_to "Approve all requests" , approve_invites_path, {:method=>:put}
   %table 
     %tr
       %th Requested 

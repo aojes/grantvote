@@ -9,6 +9,15 @@ class Mailer < ActionMailer::Base
     invitation.update_attribute(:sent_at, Time.now)
    end
 
+   def invitation_from_admin(invitation, signup_url)
+    subject      'Invitation'
+    recipients   invitation.email
+    from         'noreply@grantvote.com'
+    body         :invitation => invitation, :signup_url => signup_url
+    content_type "text/html"
+    invitation.update_attribute(:sent_at, Time.now)
+   end
+
    def invitation_request_notice(invitation)
     subject    'New Request for Private Beta'
     recipients 'tefflox@gmail.com, bridgeutopia@gmail.com'

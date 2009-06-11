@@ -16,6 +16,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
   map.resources :grants, :has_many => [:votes]         
   map.resources :payments, :new => { :express => :get }
+
+  map.approve_invites '/approve_invites', :controller => "invitations", :action => "send_all_invites"
   map.resources :invitations
   map.send_invites '/send_invitations', :controller => "invitations", :action => "approve_invitations"
 

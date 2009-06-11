@@ -67,8 +67,8 @@ class InvitationsController < ApplicationController
 
     @invitation.sender = current_user
 
-    Mailer.deliver_invitation(@invitation, signup_url(@invitation.token) )
-
+    Mailer.deliver_invitation_from_admin(@invitation, signup_url(@invitation.token) )
+    flash[:notice] = "You have sent an invitation."
     respond_to do |format|
       # format.html { redirect_to(invitations_url) }
       format.html { redirect_to profile_path(current_user.login)  }
@@ -78,15 +78,19 @@ class InvitationsController < ApplicationController
 
 
   def send_all_invites
-
     Invitation.find(:all).each do | i |
       if i.sender_id.nil?
         @invitation = i
         @invitation.sender = current_user
-
-        Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+        
+        Mailer.deliver_invitation_from_admin(@invitation, signup_url(@invitation.token))
       end
+
     end
+      flash[:notice] = "You have approved all invitations."
+      respond_to do |format|
+      format.html { redirect_to profile_path(current_user.login)  }
+      end
   end
 
 end
