@@ -1,6 +1,6 @@
 .prepend-1.prepend-top
   %h2= "Grantvote Leaders"
-.span-20.prepend-2.append-2.last
+.span-20.prepend-1.append-2.last
   - @leaders.each_with_index do |leader, id|
     .span-2<
       = link_to user_defined_image(leader.user, :medium, :alt => h(leader.user.login)), profile_path(h leader.user.login)
@@ -16,6 +16,7 @@
   - if @search.page_count > 1
     .pagination
       %h3= page_links
-  - else 
+  - else
     .tbs
       &nbsp;
+

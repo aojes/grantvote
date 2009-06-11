@@ -1,5 +1,7 @@
-%h5.prepend-top
-  = link_to 'Invite a friend', '#invite', {:class => 'send_invite_link' }
-  %span.limitleft<
-    == (#{h current_user.invitation_limit} remaining)
-= render 'invitations/new'
+- if params[:permalink]==current_user.login and current_user.invitation_limit > 0
+  %h5.prepend-top
+    = link_to 'Invite a friend', '#invite', {:class => 'send_invite_link' }
+    %span.limitleft<
+      == (#{h current_user.invitation_limit} remaining)
+  = render 'invitations/new'
+
