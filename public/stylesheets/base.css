@@ -409,6 +409,11 @@ input.error, input#invitation_email {
   border: 1px solid #bbb;
   width: 200px; }
 
+label.error {
+  background: none;
+  border: none;
+  padding: 0; }
+
 .fieldWithErrors {
   display: block; }
 
