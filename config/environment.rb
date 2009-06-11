@@ -5,6 +5,7 @@ RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+require 'uri'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -49,10 +50,9 @@ Rails::Initializer.run do |config|
 end
 
 ActionMailer::Base.delivery_method = :sendmail
-#ActionMailer::Base.sendmail_settings = {  :location => '/usr/sbin/sendmail',  :arguments => '-i -t' } 
+#ActionMailer::Base.sendmail_settings = {  :location => '/usr/sbin/sendmail',  :arguments => '-i -t' }
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.default_charset = "utf-8"
 ActionMailer::Base.perform_deliveries = true
 # ActionView:: Template or TemplateHandler ( register haml extension )
-
 

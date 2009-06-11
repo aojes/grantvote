@@ -4,7 +4,7 @@
 - elsif params[:user_id]
   = render 'account'
 - else
-  .span-21.prepend-2.append-1.prepend-top.last
+  .span-21.prepend-1.append-1.prepend-top.last
     %h2 Recent Awards
 
   .span-20.prepend-2.append-2.last#search
@@ -21,14 +21,13 @@
       %br
   - @grants.each do |g|
     = render 'grant_index', :grant => g
-  
+
   .clear
   - if @grants_count > 0
     - if @search.page_count > 1
       .pagination{:style => "text-align: left"}
         .prepend-7<
           %h3= page_links
-    - else 
-      .tbs &nbsp;    
-    
+    - else
+      .tbs &nbsp;
 

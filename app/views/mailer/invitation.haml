@@ -1,5 +1,8 @@
 %h2 Greetings
 %p You may now register at Grantvote.
 %p
+  %strong
+    = @user
+  %span sent you an invitation.
   = link_to @signup_url, @signup_url, {:target=>'_blank'}
 

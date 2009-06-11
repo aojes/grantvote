@@ -12,9 +12,9 @@
         %h6.center= button_to "Add Friendship", friendships_path(:friend_id => @user), :method => :post  
     %br{:style => "clear: both"}
     - unless @user.profile.name.blank?
-      %h6.quiet= h @user.profile.name 
+      %h6.quiet= h @user.profile.name
     - unless @user.profile.location.blank?
-      %h6.quiet= h @user.profile.location 
+      %h6.quiet= h @user.profile.location
       -# TODO write helper method for links and breadcrumbs ...
     - unless @user.profile.link.blank? or @user.profile.link == "http://"
       %h6.quiet= link_to h(@user.profile.link), h(@user.profile.link) if @user.profile.link.include?("http://")
@@ -39,7 +39,7 @@
       - if friendship.friend.friendships.exists?(:friend_id => @user)
         = link_to user_defined_image(friendship.friend, :thumb, :alt => h(friendship.friend.login), :title => h(friendship.friend.login)), profile_path(friendship.friend.login)
 
-    - if @user == current_user        
+    - if @user == current_user
       %br{:clear => :both}
       %h3.prepend-top<
         Following
@@ -47,7 +47,7 @@
       - current_user.friendships.each do |friendship|
         - unless friendship.friend.friendships.exists?(:friend_id => current_user)
           = link_to user_defined_image(friendship.friend, :thumb, :alt => h(friendship.friend.login), :title => h(friendship.friend.login)), profile_path(h(friendship.friend.login))
-          
+
       %br{:clear => :both}
       %h3.prepend-top<
         Followers
@@ -57,27 +57,27 @@
           = link_to user_defined_image(inverse_friendship, :thumb, :alt => h(inverse_friendship.login), :title => h(inverse_friendship.login)), profile_path(h(inverse_friendship.login))
     %br
     %br
-    %br  
+    %br
   .span-12.append-1.prepend-top.last
     - if @user.groups.count.zero? and @user == current_user
-      %h3.prepend-top< 
+      %h3.prepend-top<
         Groups
         %hr
       %h3= link_to "Create or join a group!", groups_path
     - elsif @user.groups.count > 0
-      %h3.prepend-top< 
+      %h3.prepend-top<
         Groups
         %hr
       - @user.groups.reverse.each do |g|
         = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_path(g)
     - if @user.grants.awarded.count > 0
-      %h3.prepend-top< 
+      %h3.prepend-top<
         Awards
         %hr
       - @user.grants.awarded.reverse.each do |g|
         = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g)
     - if @user.grants.session.count > 0
-      %h3.prepend-top< 
+      %h3.prepend-top<
         Sessions
         %hr
       - @user.grants.session.reverse.each do |g|
@@ -90,8 +90,9 @@
           Writeboard
           %hr
       - @user.grants.session.reverse.each do |g|
-        - if g.votes.count.zero? 
-          = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g)       
+        - if g.votes.count.zero?
+          = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_grant_path(g.group, g)
     %br
     %br
-    %br       
+    %br
+
