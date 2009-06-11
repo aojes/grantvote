@@ -159,3 +159,10 @@ ul.invitations li span.title {
 
 #change_login_and_email, #change_password, #change_profile_info_link {
   display: none; }
+
+input.error, input#invitation_email {
+  background: none;
+  color: #333;
+  padding: 5px;
+  border: 1px solid #bbb;
+  width: 200px; }

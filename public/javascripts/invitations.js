@@ -7,7 +7,7 @@ $(document).ready( function(){
  
   
   $('#new_invitation').hide();
-  
+  $('#new_invitation').validate();
   $('.send_invite_link').click(function() {
   $('#new_invitation').animate({height: 'show', width: 'show', opacity: 'show'}, 'slow');
   $(this).hide();
