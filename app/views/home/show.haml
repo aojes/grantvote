@@ -1,2 +1,27 @@
-.prepend-1.span-22.append-1.prepend-top
-  %h2 User Home Page
+.container.showgrid.prepend-top
+  .prepend-1.span-14.append-1
+    %h3 group news and status updates
+    
+    / sort updates on timeline
+    
+  .span-7.append-1.last 
+    %h3 social news
+    
+    / show recent actions by friends
+
+    / sort following & followers by recent (image ?)
+
+
+
+
+
+
+
+
+-#  
+  %h3.prepend-top Following
+  - following_friendships(current_user).each do |following|
+    = link_to user_defined_image(following.friend, :thumb, :alt => h(following.friend.login), :title => h(following.friend.login)), profile_path(h(following.friend.login))
+  %h3.prepend-top Followers
+  - follower_friendships(current_user).each do |follower|
+    = link_to user_defined_image(follower, :thumb, :alt => h(follower.login), :title => h(follower.login)), profile_path(h(follower.login))

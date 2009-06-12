@@ -63,6 +63,19 @@ module ApplicationHelper
     end
   end
   
+  def following_friendships(user)
+    user.friendships.collect do |following|
+      following unless following.friend.friendships.exists?(:friend_id => user)
+    end.compact
+  end
+  
+  def follower_friendships(user)
+    user.inverse_friends.collect do |follower|
+      follower unless user.friendships.exists?(:friend_id => follower)
+    end.compact
+  end
+  
+  
   def find_group(permalink)
     Group.find_by_permalink(permalink)
   end
