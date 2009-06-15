@@ -8,7 +8,7 @@ $.fn.pause = function(duration) {
 
 $(document).ready( function(){
   $('.rounded').corners("3px");
-  $('div.pagination a').corners("4px");
+  $('div.pagination a, #group_members').corners("4px");
   $('#errorExplanation').corners("6px");
   $('.success').corners("6px");
   $('.notice').corners("6px");

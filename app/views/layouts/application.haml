@@ -21,6 +21,8 @@
     -# include jquery calls only on pages where the elements exist to avoid js errors
     - if current_user and current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{current_user.login}")
       = javascript_include_tag 'invitations'
+    - if current_user and current_page?(:controller => 'groups', :action=>'show')
+      = javascript_include_tag 'comments'
 
   %body
     .container

@@ -1,0 +1,25 @@
+jQuery.ajaxSetup({ 
+  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+})
+
+
+$(document).ready( function(){
+ 
+  
+  $('#new_comment').hide();
+  $('#new_comment').validate();
+  $('.new_comment_link').click(function() {
+  $('#new_comment').animate({height: 'show', width: 'show', opacity: 'show'}, 'slow');
+  $(this).hide();
+
+  });
+ $("#new_invitation").submitWithAjax = function() {
+  this.submit(function() {
+    $.post(this.action, $(this).serialize(), null, "script");
+    return false;
+  })
+  return this;
+};
+
+});
+
