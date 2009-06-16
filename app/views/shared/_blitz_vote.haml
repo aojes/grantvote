@@ -1,5 +1,5 @@
 - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
-  - if blitz_voter?(current_user)
+  - if blitz_voter?(current_user) and voting?(blitz)
     = f.radio_button :cast, "yea", :style => "position: relative; top: 2px"
     %strong.large.fancy_type Yea&nbsp;
     = submit_button "Vote"
@@ -9,5 +9,7 @@
     = f.hidden_field :grant_id, :value => 0
     = f.hidden_field :group_id, :value => 0
     = f.hidden_field :blitz_id, :value => blitz.id
-  - else
+  - elsif not blitz_voter?(current_user)
     %h4.quiet= link_to 'pay dues and vote', root_path
+  - else
+    %h4.quiet Thank you for voting!
