@@ -6,9 +6,12 @@
       - elsif !group.nil?
         %h2= link_to user_defined_image(group, :display, :alt => "to group home page", :title => "View Group Homepage"), group_path(group)
       - else
-        %h2 Nothing
+        %h2 &nbsp;
     .span-14.append-1.last
-      %h2{:style => "padding-right: 40px"}=h group.name
+      - if controller.controller_name == 'grants'
+        %h2{:style => "padding-right: 40px"}=link_to(h(group.name), group_path(group), :class => "group_header")
+      - else
+        %h2{:style => "padding-right: 40px"}=link_to(h(group.name), group_grants_path(group), :class => "group_header")
       %h3{:style => "padding-right: 40px"}=h group.purpose
       .flr.prepend-top
         %h2{:style => "margin: 0 50px"}<

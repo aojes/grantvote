@@ -247,6 +247,19 @@ div.rounded-box div div div div, div.rounded-box-header div div div div {
   font-style: italic;
   font-weight: bold; }
 
+a:hover {
+  color: blue;
+  background-color: #FFF79F; }
+
+a.group_header {
+  color: #82B039;
+  text-decoration: none;
+  underline: none; }
+  a.group_header:hover {
+    color: blue;
+    background-color: #FFF79F;
+    border-bottom: 2px solid blue; }
+
 legend {
   padding: .4em 1em; }
 
