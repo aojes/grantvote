@@ -29,6 +29,7 @@ class GrantsController < ApplicationController
       @page_title = "Grants on Grantvote"
 
       @search = Grant.new_search(params[:search])
+      # @search_blitzes = Blitz.new_search(params[:search])      
       
       if params[:search]
         if params[:search][:conditions]
@@ -45,8 +46,31 @@ class GrantsController < ApplicationController
       @search.conditions.final = true
       @search.conditions.awarded = true
       @search.per_page = 10
-
+      
       @grants, @grants_count = @search.all, @search.count
+      
+      @search_blitzes = Blitz.new_search(params[:search])
+      # @search_blitzes = Blitz.new_search(params[:search])      
+      
+      if params[:search]
+        if params[:search][:conditions]
+          query = params[:search][:conditions][:proposal_keywords].split
+        
+          @search_blitzes.conditions.or_group do |g|
+            g.proposal_keywords = query
+           # FIXME g.or_name_keywords = query
+          end 
+        end
+      end  
+      @search_blitzes.per_page = 10
+      @search_blitzes.order_by, @search.order_as = [:updated_at], 'DESC'
+      @search_blitzes.conditions.final = true
+      @search_blitzes.conditions.awarded = true
+      @search_blitzes.per_page = 10
+
+      @grants = @grants.concat(@search_blitzes.all).
+           sort {|a,b| a.updated_at <=> b.updated_at }
+      @grants_count += @search_blitzes.count
     end
     respond_to do |format|
       format.html # index.html.erb
