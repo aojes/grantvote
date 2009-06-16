@@ -13,7 +13,7 @@ set :repository, "git@github.com:tefflox/grantvote.git"
 set :shared_folders, %w{ assets }
 
 set :scm, "git"
-set :branch, "staging"
+set :branch, "master"
 
 #set :git_shallow_clone, 1
 #set :git_enable_submodules, 1
