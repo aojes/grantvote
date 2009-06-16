@@ -240,7 +240,13 @@ div.rounded-box div div div div, div.rounded-box-header div div div div {
 .centered2 {
   margin: 4px auto 20px auto; }
 
-@import url(styles.css);
+.fancy_type {
+  color: #222;
+  font-family: "Warnock Pro", "Goudy Old Style", "Palatino", "Book Antiqua", Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: bold; }
+
 legend {
   padding: .4em 1em; }
 
