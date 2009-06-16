@@ -6,8 +6,6 @@
     %strong.large.fancy_type &nbsp;Nay 
     = f.radio_button :cast, "nay", :style => "position: relative; top: 2px"
     = f.hidden_field :user_id, :value => current_user.id
-    = f.hidden_field :grant_id, :value => 0
-    = f.hidden_field :group_id, :value => 0
     = f.hidden_field :blitz_id, :value => blitz.id
 - elsif not blitz_voter?(current_user)    
   %h4.quiet= link_to 'pay dues and vote', root_path

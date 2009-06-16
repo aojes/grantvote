@@ -5,33 +5,31 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(params[:vote])
 
-    respond_to do |format|
-      if @vote.blitz
+    if @vote.blitz 
+      if @vote.save
+        flash[:notice] = @vote.blitz.final_message || 'Voted successfully.'
+        redirect_to blitz_path(@vote.blitz) 
+      else
+        flash[:notice] = @vote.blitz.limit_message || 
+                                    'Bleep, bloop. Please try again.'
+        redirect_to blitz_path(@vote.blitz) 
+      end
+    elsif @vote.group 
+      if @vote.group.solvent? 
         if @vote.save
-          flash[:notice] = @vote.blitz.final_message || 'Voted successfully.'
-          format.html { redirect_to blitz_path(@vote.blitz) }
+          flash[:notice] = @vote.group.final_message || 'Voted successfully.'
+          redirect_to group_grant_path(@vote.group, @vote.grant) 
         else
-          flash[:notice] = @vote.blitz.limit_message || 
-                                      'Bleep, bloop. Please try again.'
-          format.html { redirect_to blitz_path(@vote.blitz) }
-        end
-
-      elsif @vote.group and @vote.group.solvent?
-        if @vote.save
-          flash[:notice] = @vote.final_message || 'Voted successfully.'
-          format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
-        else
-          flash[:notice] = @vote.limit_message ||
+          flash[:notice] = @vote.group.limit_message ||
                                         'Bleep, bloop. Please try again.'
-          format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
+          redirect_to group_grant_path(@vote.group, @vote.grant) 
         end
-
-      elsif @vote.group
+      else
         flash[:notice] = 'Amount is too high to keep the group solvent. ' +
                           'This is due to the sum of existing session amounts.'
-        format.html { redirect_back_or_default :back }
+        redirect_back_or_default :back 
       end
-    end
+    end    
   end
   
 end

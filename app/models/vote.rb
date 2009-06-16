@@ -18,7 +18,7 @@ class Vote < ActiveRecord::Base
   def check_session_limit
     if grant
       if user == grant.user
-        allow_session?
+        allow_grant?
       end
     elsif blitz
       if user == blitz.user
@@ -27,13 +27,17 @@ class Vote < ActiveRecord::Base
     end
   end
   
-  def allow_session?
+  def allow_grant?
     group.grants.user_group_session(user.id, group.id).
       detect { |g| !g.votes.count.zero? }.nil?
   end  
   
   def allow_blitz?
-    user.blitz_interest == true and user.blitzes.session.count <= 1
+    user.blitz_interest == true && 
+    user.blitzes.session.count <= 1 &&
+    Blitz.find_all_by_final(false).reject! {|b| b.votes.count.zero? }. 
+          collect! {|b| b.amount }.sum + 
+                                  blitz.amount <= blitz.blitz_fund.general_pool
   end
   
   def check_grant_finalization

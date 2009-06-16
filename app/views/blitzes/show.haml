@@ -57,8 +57,7 @@
           - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
             = f.hidden_field :cast, :value => "yea"
             = f.hidden_field :user_id, :value => @blitz.user_id
-            -#= f.hidden_field :group_id, :value => @blitz.group_id
-            = f.hidden_field :grant_id, :value => @blitz.id
+            = f.hidden_field :blitz_id, :value => @blitz.id
             %span{:style => "padding-left: 7px"}
               = submit_button "Vote Into Session"
       - elsif not @blitz.user == current_user

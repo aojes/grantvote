@@ -19,7 +19,7 @@ class Blitz < ActiveRecord::Base
   
   validates_presence_of :name, :proposal, :amount
   validates_length_of :name, :in => MIN_NAME..MAX_NAME,
-              :message => "length can be #{MIN_NAME} to #{MAX_NAME} characters"
+              :message => "can be #{MIN_NAME} to #{MAX_NAME} characters"
   validates_numericality_of :amount, :only_integer => true, 
     :greater_than_or_equal_to => MIN_AWARD, 
     :message => "can be an integer value, greater than or equal to $#{MIN_AWARD}"
@@ -35,6 +35,7 @@ class Blitz < ActiveRecord::Base
   named_scope :session,  :conditions => {:final => false}
   named_scope :chronological, :order => "created_at ASC"
   
+ 
   def finalizable?
     votes.yea.count == self.votes_win or votes.nay.count == self.votes_win + 1
   end
