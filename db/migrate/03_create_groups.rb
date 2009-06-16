@@ -10,11 +10,11 @@ class CreateGroups < ActiveRecord::Migration
     end
     add_index :groups, :name
     add_index :groups, :purpose
+    add_index :groups, :permalink
   end
 
   def self.down
-    remove_index :groups, :name
-    remove_index :groups, :purpose
+
     drop_table :groups
   end
 end

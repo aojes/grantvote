@@ -1,0 +1,27 @@
+.span-21.prepend-1.append-1.prepend-top.last
+  %h2 Blitz Grants
+
+.span-20.prepend-2.append-2.last#search
+  .span-10.pull-1.prepend-top
+    %h3.quiet Commence voting!
+  .span-10.last
+    - form_for @search do |f|
+      - f.fields_for @search.conditions do |groups|
+        .form_row
+          %h6 Search awards
+          = groups.text_field :proposal_keywords, :class => "text buttonless_field"
+          = submit_button "Search"
+  .span-20.prepend-top.last
+    %br
+- @blitzes.each do |blitz|
+  = render 'blitz', :blitz => blitz if blitz.votes.count > 0 and not current_user == blitz.user
+
+.clear
+- if @blitzes_count > 0
+  - if @search.page_count > 1
+    .pagination{:style => "text-align: left"}
+      .prepend-7<
+        %h3= page_links
+  - else
+    .tbs &nbsp;
+

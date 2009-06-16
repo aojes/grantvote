@@ -3,6 +3,7 @@ class Vote < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
   belongs_to :grant
+  belongs_to :blitz, :foreign_key => 'grant_id'
   
   validates_presence_of   :user_id, :group_id, :grant_id, :cast
   validates_inclusion_of  :cast, :in => %w(yea nay)
@@ -15,11 +16,15 @@ class Vote < ActiveRecord::Base
   after_create :check_grant_finalization
   
   def check_session_limit
-    if user == grant.user
-      allow_session?
-    else
-      true
-    end       
+    if grant
+      if user == grant.user
+        allow_session?
+      end
+    elsif blitz
+      if user == blitz.user
+        allow_blitz?
+      end
+    end
   end
   
   def allow_session?
@@ -27,13 +32,22 @@ class Vote < ActiveRecord::Base
       detect { |g| !g.votes.count.zero? }.nil?
   end  
   
+  def allow_blitz?
+    # FIXME 
+    true
+  end
+  
   def check_grant_finalization
-    if grant.finalizable?
+    if grant and grant.finalizable?
       if grant.passes?
         grant.award!
       else
         grant.deny!
       end
+    elsif blitz
+      true
+    else
+      true
     end
   end  
   

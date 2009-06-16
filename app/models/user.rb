@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :groups, :through => :memberships
   has_many :grants
+  has_many :blitzes
   has_many :votes
   has_many :comments, :as => :commentable
   has_many :payments

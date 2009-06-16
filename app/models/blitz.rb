@@ -1,10 +1,8 @@
-class Grant < ActiveRecord::Base
+class Blitz < ActiveRecord::Base
   require "hpricot"
   
-  AWARD_THRESHOLD, AWARD_THRESHOLD_PCT = [0.500, 50]
-  
-  BLITZ_DUES = 5
-  MIN_AWARD, MIN_BLITZ_AWARD = [5, 10]
+  DUES = 5
+  MIN_AWARD = 10
   MIN_NAME, MAX_NAME = [2, 60]
   
   # GREEN, BLUE, RED, SCALE = ["E6EFC2", "DFF4FF", "FBE3E4", "DFDFDF"]
@@ -12,9 +10,9 @@ class Grant < ActiveRecord::Base
   SESSION_BAR_CHART_X, SESSION_BAR_CHART_Y  = [198, 32]
   AWARD_CHART_X, AWARD_CHART_Y = [92, 50]
   
-  belongs_to :group
   belongs_to :user
-  has_many :votes
+  belongs_to :blitz_fund
+  has_many :votes, :foreign_key => 'grant_id'
   has_many :comments, :as => :commentable
 
   has_permalink :name
@@ -39,7 +37,7 @@ class Grant < ActiveRecord::Base
               :message => "length can be #{MIN_NAME} to #{MAX_NAME} characters"
   validates_numericality_of :amount, :only_integer => true, 
     :greater_than_or_equal_to => MIN_AWARD, 
-    :message => "can be an integer value greater than or equal to $#{MIN_AWARD}"
+    :message => "can be an integer value, greater than or equal to $#{MIN_AWARD}"
   
   # TODO
   # validates_attachment_presence :photo <= this includes validations
@@ -48,40 +46,15 @@ class Grant < ActiveRecord::Base
   # before_save :adapt_links
   
   named_scope :awarded,  :conditions => {:awarded => true}
-  named_scope :defeated, :conditions => {:final => true, :awarded => false}
+  named_scope :denied, :conditions => {:final => true, :awarded => false}
   named_scope :session,  :conditions => {:final => false}
-  named_scope :user_group_session, lambda { |*args|
-    {  :conditions => 
-          { :user_id => args.first, :group_id => args.second, :final => false } 
-    }
-  }
   named_scope :chronological, :order => "created_at ASC"
-
-  def voters
-    group.memberships.voters.count
-  end
-
-  def vote_threshold
-    voters * AWARD_THRESHOLD 
-  end
-
-  def finalizable?
-    passes? || denies?
-  end
-
-  def passes?
-    votes.yea.count > vote_threshold
-  end
-
-  def denies?
-    votes.nay.count > vote_threshold
-  end
-
+  
   def award!
     transaction do
       update_attributes!(:final => true, :awarded => true)
-      group.deduct_funds!(amount)
-      group.memberships.find_by_user_id(user).cycle_membership!(amount)
+      # cycle pool
+      # cycle users
     end
   end
 

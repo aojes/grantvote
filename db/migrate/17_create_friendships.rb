@@ -10,7 +10,7 @@ class CreateFriendships < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :friendships, :user_id
+
     drop_table :friendships
   end
 end

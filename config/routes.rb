@@ -8,13 +8,15 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup/:invitation_token', :controller => 'users', :action => 'new'
   
   map.resource :user_session
-  map.resource :account, :controller => "users"
-  
+  map.resource :account, :controller => 'users'
+    
   map.resources :users, :has_many => [:comments, :grants, :votes] 
   map.resources :password_resets
   map.resources :friendships
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
+  map.resources :blitzes, :as => 'blitz', :has_many => [:votes]
   map.resources :grants, :has_many => [:votes]         
+
   map.resources :payments, :new => { :express => :get }
 
   map.approve_invites '/approve_invites', :controller => "invitations", :action => "send_all_invites"

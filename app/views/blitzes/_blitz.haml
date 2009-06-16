@@ -1,0 +1,50 @@
+.span-21.prepend-2.append-1.last  
+  .span-14.append-1
+    %h3<
+      %span.flr
+        = link_to user_defined_image(blitz.user, :small, :alt=> h(blitz.user.login), :title => h(blitz.user.login)), profile_path(h(blitz.user.login))
+      = h blitz.name
+    %h3== $#{blitz.amount}
+  .span-6.last 
+    = user_cred_images(blitz.user, :small, true)
+  .span-15
+    .span-3
+      = link_to user_defined_image(blitz, :medium, :alt => h(blitz.name)), blitz_path(blitz)
+      .span-2.prepend-top.last
+        &nbsp;
+    .span-11.last{:style => "text-align:justify"}
+      - if !blitz.media.blank?
+        = simple_format blitz.media
+        .large= simple_format h(blitz.proposal), :style => "line-height: 1.8; margin-right: -40px;"
+      - else
+        .large= simple_format h(blitz.proposal), :style => "line-height: 2"
+      - if blitz.votes.count.zero?
+        = button_to "Edit", edit_blitz_path(blitz), :method => :get
+      %br{:style => "clear: both"}
+      %br
+      %br
+  .span-5
+    = session_bar_chart_image blitz
+    .quiet
+      - if blitz.final
+        - if blitz.awarded
+          == &nbsp; Awarded #{blitz.updated_at.strftime("%B %d, %Y")} 
+          %br
+          == &nbsp; after #{distance_of_time_in_words(blitz.votes.first.created_at, blitz.votes.last.created_at)} in session
+        - else
+          == &nbsp; Denied #{blitz.updated_at.strftime("%B %d, %Y")} 
+          %br
+          == &nbsp; after #{distance_of_time_in_words(blitz.votes.first.created_at, blitz.votes.last.created_at)} in session
+  .span-5.center.last
+    - unless blitz.final or not current_user or voted?(blitz)
+      - if blitz.votes.count.zero?
+        %p
+          - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
+            = f.hidden_field :cast, :value => "yea"
+            = f.hidden_field :user_id, :value => blitz.user_id
+            = f.hidden_field :group_id, :value => blitz.group_id
+            = f.hidden_field :blitz_id, :value => blitz.id
+            %span{:style => "padding-left: 7px"}
+              = submit_button "Vote Into Session"
+      - elsif not blitz.user == current_user
+        .prepend-top= render 'shared/blitz_vote', :blitz => blitz

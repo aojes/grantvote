@@ -41,6 +41,7 @@
                 %li.active= link_to "Grants", "/grants", {:title => "Grants", :class => 'rounded'}
               - else
                 = show_link "Grants", {:controller => 'grants', :action => 'index'}, {:title => "Grants", :class => 'rounded'}
+              = show_link "Blitz", {:controller => 'blitzes', :action => 'index'}, {:title => "Blitz", :class => 'rounded'}                
               = show_link "Leaders", {:controller => 'leaders', :action => 'index'}, {:title => "Leaders", :class => 'rounded'}
               - if current_page?(:controller => 'account', :action => 'index') || current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}")
                 %li.active<

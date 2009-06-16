@@ -15,8 +15,7 @@ class CreateMemberships < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :memberships, :user_id
-    remove_index :memberships, :group_id
+
     drop_table :memberships
   end
 end

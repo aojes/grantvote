@@ -75,6 +75,9 @@ module ApplicationHelper
     end.compact
   end
   
+  def blitz_voter?(user)
+    user.blitz_interest == true
+  end
   
   def find_group(permalink)
     Group.find_by_permalink(permalink)
@@ -195,6 +198,38 @@ module ApplicationHelper
     end
     
   end
+
+  def session_bar_chart_image(grant)
+    votes_yea = grant.votes.yea.count
+    votes_nay = grant.votes.nay.count
+    session_voting_pool = (1 + grant.amount / Grant::BLITZ_DUES).to_f * 2
+    
+    green = (votes_yea / session_voting_pool).round(2) * 100
+      red = (votes_nay / session_voting_pool).round(2) * 100
+    scale = 100 # session_voting_pool < 100 ? "100" : session_voting_pool
+    ## ?
+    # scale == "100" ? blue = 100 - (green + red) : Group::AWARD_THRESHOLD_PCT
+    blue = 100 - green - red
+    chart_url = "http://chart.apis.google.com/chart?cht=bhs" +
+    "&amp;chs=#{Grant::SESSION_BAR_CHART_X}x#{Grant::SESSION_BAR_CHART_Y}" +
+    "&amp;chd=t:#{green}|#{blue}|#{red}|#{scale}" +
+    "&amp;chco=#{Grant::GREEN},#{Grant::BLUE},#{Grant::RED},#{Grant::SCALE}" +
+    "&amp;chf=bg,s,EDEDED"
+    accessible_tally(grant, chart_url, votes_yea, votes_nay, session_voting_pool)
+  end
+  
+  # for bar chart image alt & title attributes
+  def accessible_tally(grant, chart_url, yeas, nays, session_voting_pool)
+    votes = "#{yeas} Yea, #{nays} Nay, "
+    awaiting = (session_voting_pool - yeas - nays).to_i + 1
+    status = grant.final   ? 
+             grant.awarded ? 
+                 "Awarded" : "Denied" : "Awaiting #{awaiting}"
+    tally = votes + status
+    
+    %(<img alt="#{tally}" title="#{tally}" src="#{chart_url}" />)
+    
+  end   
   
   def session_bar_chart_url(grant)
     voters_count = grant.group.memberships.voters.count
@@ -213,8 +248,8 @@ module ApplicationHelper
     "&amp;chf=bg,s,EDEDED"
   end
   
-  # for bar chart image alt & title attributes
-  def accessible_tally(grant)
+  # FIXME delete ?
+  def _accessible_tally(grant)
     voters   = grant.group.memberships.voters.count
     yea      = grant.votes.yea.count
     nay      = grant.votes.nay.count
