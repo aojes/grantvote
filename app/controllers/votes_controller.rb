@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     @vote = Vote.new(params[:vote])
 
     respond_to do |format|
-      if @vote.group and @vote.group.solvent?
+      if @vote.group and @vote.group.solvent? # TODO pad the economic file
         if @vote.save
           flash[:notice] = @vote.final_message || "Voted successfully."
           format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
@@ -16,9 +16,9 @@ class VotesController < ApplicationController
           format.html { redirect_to group_grant_path(@vote.group, @vote.grant) }
         end
 
-      elsif @vote.blitz # params[:vote][:group_id].zero?
+      elsif @vote.blitz # TODO pad the economic file
         if @vote.save
-          flash[:notice] = "Voted successfully."
+          flash[:notice] = @vote.blitz.final_message || "Voted successfully."
           format.html { redirect_to blitz_path(@vote.blitz) }
         else
           flash[:notice] = "Bleep, bloop. Please try again."

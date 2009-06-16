@@ -33,8 +33,7 @@ class Vote < ActiveRecord::Base
   end  
   
   def allow_blitz?
-    # FIXME 
-    true
+    user.blitz_interest == true
   end
   
   def check_grant_finalization
@@ -45,9 +44,13 @@ class Vote < ActiveRecord::Base
         grant.deny!
       end
     elsif blitz
-      true
-    else
-      true
+      if blitz.finalizable?
+        if blitz.passes?
+          blitz.award!
+        else
+          blitz.deny!
+        end
+      end
     end
   end  
   

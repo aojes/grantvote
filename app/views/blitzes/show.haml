@@ -7,7 +7,7 @@
     - else
       .error Denied
   - else
-    .success= link_to "Blitz Session", blitzes_path
+    .success= link_to "Session Blitz", blitzes_path
 .span-21.prepend-2.append-1.last  
   .span-14.append-1
     %h3<
@@ -58,4 +58,4 @@
             %span{:style => "padding-left: 7px"}
               = submit_button "Vote Into Session"
       - elsif not @blitz.user == current_user
-        .prepend-top= render 'shared/vote', :grant => @blitz
+        .prepend-top= render 'shared/blitz_vote', :blitz => @blitz

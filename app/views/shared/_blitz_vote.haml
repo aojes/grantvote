@@ -1,6 +1,6 @@
 .center
   - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
-    - if blitz_voter?(current_user, blitz)
+    - if blitz_voter?(current_user)
       = f.radio_button :cast, "yea"
       %strong.large Yea
       = submit_button "Vote"

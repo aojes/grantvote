@@ -50,6 +50,12 @@ class User < ActiveRecord::Base
 
   before_create :set_invitation_limit
 
+  def cycle_interest!(amount)
+    update_attributes!(:blitz_rewards => (blitz_rewards + amount))
+    if blitz_contributes <= blitz_rewards
+      update_attributes!(:blitz_interest => false)
+    end
+  end
 
   def deliver_password_reset_instructions!
     reset_perishable_token!

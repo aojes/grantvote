@@ -11,6 +11,10 @@
           %h6 Search awards
           = groups.text_field :proposal_keywords, :class => "text buttonless_field"
           = submit_button "Search"
+    - if blitz_voter?(current_user)
+      %h3= link_to "Create a new blitz grant", new_blitz_path, :method => :get
+    - else
+      Pay blitz dues
   .span-20.prepend-top.last
     %br
 - @blitzes.each do |blitz|

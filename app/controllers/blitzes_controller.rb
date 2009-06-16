@@ -4,7 +4,7 @@ class BlitzesController < ApplicationController
   before_filter :verify_authenticity_token
   
   def index
-    @page_title = "Blitzvote Blitz"
+    @page_title = "Grantvote Blitz"
     @search = Blitz.new_search(params[:search])
 
     if params[:search]
@@ -65,7 +65,7 @@ class BlitzesController < ApplicationController
 
     respond_to do |format|
       if @blitz.update_attributes(params[:blitz])
-        flash[:notice] = 'Blitz updated. '
+        flash[:notice] = 'Updated blitz grant '
         format.html { redirect_to blitz_path(@blitz) }
       else
         format.html { render :action => "edit" }

@@ -50,17 +50,37 @@ class Blitz < ActiveRecord::Base
   named_scope :session,  :conditions => {:final => false}
   named_scope :chronological, :order => "created_at ASC"
   
+  def finalizable?
+    votes.yea.count == self.votes_win or votes.nay.count == self.votes_win + 1
+  end
+  
+  def passes?
+    votes.yea.count == self.votes_win
+  end 
+
   def award!
     transaction do
       update_attributes!(:final => true, :awarded => true)
-      # cycle pool
-      # cycle users
+      blitz_fund.deduct_funds!(amount)
+      user.cycle_interest!(amount)
     end
   end
 
   def deny!
     update_attributes!(:final => true, :awarded => false)
-  end   
+  end  
+  
+  def final_message
+    if finalizable?
+      if passes?
+        "Grant awarded!"
+      else
+        "Grant denied."
+      end
+    else
+      nil
+    end
+  end
   
   def to_param
     permalink
