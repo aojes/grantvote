@@ -11,8 +11,8 @@
       %h2{:style => "padding-right: 40px"}=h group.name
       %h3{:style => "padding-right: 40px"}=h group.purpose
       .flr.prepend-top
-        %h3{:style => "margin: 0 50px"}<
-          == Pool #{number_to_currency(group.funds.floor, :precision => 0)}
+        %h2{:style => "margin: 0 50px"}<
+          == Group Funds #{number_to_currency(group.funds.floor, :precision => 0)}
 %br{:style => "clear: both"} 
 
 -# Jesse experimenting with the form background

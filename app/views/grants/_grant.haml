@@ -34,7 +34,7 @@
       %br
       %br
   .span-5
-    == <img alt="#{accessible_tally(@grant)}" title="#{accessible_tally(@grant)}" src="#{session_bar_chart_url(@grant)}" />
+    == <img alt="#{group_accessible_tally(@grant)}" title="#{group_accessible_tally(@grant)}" src="#{session_bar_chart_url(@grant)}" />
     .quiet
       - if @grant.final
         - if @grant.awarded
