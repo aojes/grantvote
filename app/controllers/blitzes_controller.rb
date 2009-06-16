@@ -5,6 +5,7 @@ class BlitzesController < ApplicationController
   
   def index
     @page_title = "Grantvote Blitz"
+    @general_pool = BlitzFund.find_by_dues(Blitz::DUES).general_pool
     @search = Blitz.new_search(params[:search])
 
     if params[:search]

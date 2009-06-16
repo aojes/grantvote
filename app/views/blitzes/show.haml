@@ -1,13 +1,14 @@
-%h3.prepend-1.append-14.last<
-  - if @blitz.votes.count.zero?
-    .notice Preview
-  - elsif @blitz.final 
-    - if @blitz.awarded
-      .success Awarded
+.span-21.prepend-2.append-1.prepend-top.last 
+  %h3.prepend-1.append-14.last<
+    - if @blitz.votes.count.zero?
+      .notice Preview
+    - elsif @blitz.final 
+      - if @blitz.awarded
+        .success Awarded
+      - else
+        .error Denied
     - else
-      .error Denied
-  - else
-    .success= link_to "Session Blitz", blitzes_path
+      .success= link_to "View All Blitz Grants", blitzes_path
 .span-21.prepend-2.append-1.last  
   .span-14.append-1
     %h3<
