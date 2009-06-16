@@ -19,9 +19,11 @@
             %br
           = simple_format h(grant.proposal), :style => "line-height: 2"
       .span-5.last
-        == <img alt="#{accessible_tally grant}" title="#{accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />
+        == <img alt="#{group_accessible_tally grant}" title="#{group_accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />
         %p= render 'shared/vote', :grant => grant 
-      %hr
+    .span-21.prepend-top.last<
+      %hr      
+        
 .span-22.prepend-1.append-1.last
   - if @grants_count > 0
     - if @search.page_count > 1

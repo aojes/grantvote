@@ -15,7 +15,7 @@
     .span-11.last{:style => "text-align:justify"}
       - if !blitz.media.blank?
         = simple_format blitz.media
-        .large= simple_format h(blitz.proposal), :style => "line-height: 1.8; margin-right: -40px;"
+        .large= simple_format h(blitz.proposal), :style => "line-height: 2;"
       - else
         .large= simple_format h(blitz.proposal), :style => "line-height: 2"
       - if blitz.votes.count.zero?

@@ -7,10 +7,7 @@ class AddPhotoAttachments < ActiveRecord::Migration
     add_column :groups, :photo_file_name, :string
     add_column :groups, :photo_content_type, :string
     add_column :groups, :photo_file_size, :integer
-    
-    add_column :grants, :photo_file_name, :string
-    add_column :grants, :photo_content_type, :string
-    add_column :grants, :photo_file_size, :integer
+
   end
 
   def self.down
@@ -22,8 +19,5 @@ class AddPhotoAttachments < ActiveRecord::Migration
     remove_column :groups, :photo_content_type
     remove_column :groups, :photo_file_size
 
-    remove_column :grants, :photo_file_name
-    remove_column :grants, :photo_content_type
-    remove_column :grants, :photo_file_size
   end
 end

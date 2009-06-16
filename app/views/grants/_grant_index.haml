@@ -9,7 +9,7 @@
     = user_cred_images(grant.user, :small, true)
   .span-15
     .span-3
-      = link_to user_defined_image(grant, :medium, :alt => h(grant.name)), group_path(grant.group)
+      = link_to user_defined_image(grant.group, :medium, :alt => h(grant.group.name), :title => h(grant.group.name)), group_path(grant.group)
       .span-2.prepend-top.last
         &nbsp;
     .span-11.last{:style => "text-align:justify"}
