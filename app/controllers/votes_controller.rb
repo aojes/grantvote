@@ -21,7 +21,8 @@ class VotesController < ApplicationController
           flash[:notice] = @vote.blitz.final_message || "Voted successfully."
           format.html { redirect_to blitz_path(@vote.blitz) }
         else
-          flash[:notice] = "Bleep, bloop. Please try again."
+          flash[:notice] = @vote.blitz.limit_message || 
+                                      "Bleep, bloop. Please try again."
           format.html { redirect_to blitz_path(@vote.blitz) }
         end
         

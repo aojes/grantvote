@@ -82,6 +82,11 @@ class Blitz < ActiveRecord::Base
     end
   end
   
+  def limit_message
+    user.blitzes.session.count > 1 ?  
+      "You may only have one blitz grant in session at a time. " : nil
+  end  
+  
   def to_param
     permalink
   end

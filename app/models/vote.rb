@@ -33,7 +33,7 @@ class Vote < ActiveRecord::Base
   end  
   
   def allow_blitz?
-    user.blitz_interest == true
+    user.blitz_interest == true and user.blitzes.session.count <= 1
   end
   
   def check_grant_finalization
