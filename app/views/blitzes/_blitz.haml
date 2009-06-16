@@ -17,7 +17,7 @@
         = simple_format blitz.media
         .large= simple_format h(blitz.proposal), :style => "line-height: 2;"
       - else
-        .large= simple_format h(blitz.proposal), :style => "line-height: 2"
+        .large= simple_format h(blitz.proposal), :style => "line-height: 2;"
       - if blitz.votes.count.zero?
         = button_to "Edit", edit_blitz_path(blitz), :method => :get
       %br{:style => "clear: both"}

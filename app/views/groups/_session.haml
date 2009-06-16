@@ -21,7 +21,7 @@
             = grant.media
             %br
             %br
-          = simple_format h(grant.proposal), :style => "line-height: 2"
+          .large= simple_format h(grant.proposal), :style => "line-height: 2;"
       .span-5.last
         == <img alt="#{group_accessible_tally grant}" title="#{group_accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />
         %p= render 'shared/vote', :grant => grant
