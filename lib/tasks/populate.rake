@@ -5,7 +5,7 @@ namespace :db do
     require 'faker'
     
     
-    [Group, Membership, Grant, Vote].each(&:delete_all)
+    [Group, Membership, Grant, Blitz, Vote].each(&:delete_all)
 
     Group.populate 12 do |g|
       g.name = Populator.words(2..5).titleize
@@ -64,8 +64,8 @@ namespace :db do
     # set permalinks
     Group.find(:all).each(&:save!)
         
-    Grant.populate 250 do |g|
-      g.user_id = [1, 2, 3, 4, 5]
+    Grant.populate 40 do |g|
+      g.user_id = [3, 4, 5]
       g.group_id = 1..5
       g.name = Faker::Name.name
       g.proposal = Populator.sentences(2..12)
@@ -80,6 +80,7 @@ namespace :db do
         v.user_id = [3, 4, 5]
         v.grant_id = g.id
         v.group_id = 1..5
+        v.blitz_id = 0
         v.cast = ["yea", "nay"]
         v.created_at = 1.month.ago..Time.now
         v.updated_at = v.created_at
@@ -89,5 +90,31 @@ namespace :db do
     # set permalinks
     Grant.find(:all).each(&:save!)
     
+    Blitz.populate 40 do |b|
+      b.user_id = [3, 4, 5]
+      b.blitz_fund_id = 1
+      b.name = Faker::Name.name
+      b.proposal = Populator.sentences(4..9)
+      b.media = ""
+      b.amount = 10..37
+      b.votes_win = 1 + b.amount / 5
+      b.awarded = [true, false, false]
+      b.final = [true, true, false]
+
+      b.created_at = 1.year.ago..Time.now
+      b.updated_at = 1.week.ago..Time.now
+      Vote.populate 1 do |v|
+        v.user_id = [3, 4, 5]
+        v.blitz_id = b.id
+        v.grant_id = 0
+        v.group_id = 0
+        v.cast = 'yea'
+        v.created_at = 1.day.ago..Time.now
+        v.updated_at = v.created_at
+      end   
+    end
+
+    # set permalinks
+    Blitz.find(:all).each(&:save!)    
   end
 end

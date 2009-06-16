@@ -41,11 +41,11 @@ class GrantsController < ApplicationController
           end 
         end
       end  
-      @search.per_page = 10
+      @search.per_page = 5
       @search.order_by, @search.order_as = [:updated_at], 'DESC'
       @search.conditions.final = true
       @search.conditions.awarded = true
-      @search.per_page = 10
+
       
       @grants, @grants_count = @search.all, @search.count
       
@@ -62,11 +62,11 @@ class GrantsController < ApplicationController
           end 
         end
       end  
-      @search_blitzes.per_page = 10
+      @search_blitzes.per_page = 5
       @search_blitzes.order_by, @search.order_as = [:updated_at], 'DESC'
       @search_blitzes.conditions.final = true
       @search_blitzes.conditions.awarded = true
-      @search_blitzes.per_page = 10
+
 
       @grants = @grants.concat(@search_blitzes.all).
            sort {|a,b| a.updated_at <=> b.updated_at }

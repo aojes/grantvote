@@ -18,6 +18,7 @@ class BlitzesController < ApplicationController
       end
     end  
     @search.per_page = 10
+    @search.conditions.final = false
     @search.order_by, @search.order_as = [:updated_at], 'DESC'
     # @search.conditions.final = true
     # @search.conditions.awarded = true
