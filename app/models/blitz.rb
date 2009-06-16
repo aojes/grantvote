@@ -12,7 +12,7 @@ class Blitz < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :blitz_fund
-  has_many :votes, :foreign_key => 'grant_id'
+  has_many :votes
   has_many :comments, :as => :commentable
 
   has_permalink :name
