@@ -35,14 +35,17 @@
           == &nbsp; Denied #{blitz.updated_at.strftime("%B %d, %Y")} 
           %br
           == &nbsp; after #{distance_of_time_in_words(blitz.votes.first.created_at, blitz.votes.last.created_at)} in session
+      - elsif voted?(blitz)
+        %h4.center.prepend-top.quiet Thank you for voting!          
   .span-5.center.last
-    - unless blitz.final or not current_user or voted?(blitz)
+    - unless blitz.final or not current_user or not voting_blitz?(blitz)
       - if blitz.votes.count.zero?
         %p
           - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
             = f.hidden_field :cast, :value => "yea"
             = f.hidden_field :user_id, :value => blitz.user_id
             = f.hidden_field :group_id, :value => 0
+            = f.hidden_field :grant_id, :value => 0
             = f.hidden_field :blitz_id, :value => blitz.id
             %span{:style => "padding-left: 7px"}
               = submit_button "Vote Into Session"
