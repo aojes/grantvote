@@ -2,7 +2,7 @@
 - form_for  Invitation.new do |f| 
   .form_row
     %h3 Email
-    = f.text_field :email, :class=>'required email'
+    = f.text_field :email, :class=>'required email', :id=>'email_invitation'
     .clear
     %br 
     = submit_button "Send"

@@ -1,8 +1,4 @@
 .prepend-top
-  %h2.prepend-1.prepend-top New Comment
-  - form_for [@commentable, Comment.new] do |f|
-    .form_row
-      = f.text_area :content
-      = f.hidden_field :user_id, :value => current_user.id
-      %p= submit_button "Say it"
+  %h2.prepend-top New Comment
 
+    
