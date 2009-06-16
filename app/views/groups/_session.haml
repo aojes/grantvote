@@ -11,7 +11,7 @@
         = user_cred_images(grant.user, :small, true)   
       .span-15
         .span-3
-          = link_to user_defined_image(grant, :medium, :alt => h(grant.name)), group_grant_path(grant.group, grant)
+          (group grant icon)
         .span-11.last{:style => "text-align:justify"}
           - unless grant.media.blank?
             = grant.media

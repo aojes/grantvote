@@ -16,14 +16,6 @@
     &nbsp; amount
     %br
     %br
-    - if @grant
-      = user_defined_image(@grant, :large, :alt => h(@grant.name))
-      %br
-      %br
-    = form.file_field :photo
-    &nbsp; photo
-    %br
-    %br
     .small.quiet
       = form.text_field :media
       &nbsp; YouTube, Viddler, Vimeo

@@ -11,9 +11,6 @@ class CreateBlitzes< ActiveRecord::Migration
       t.boolean :awarded, :default => false, :null => false
       t.integer :amount, :default => 10, :null => false
       t.string :permalink
-      t.string :photo_file_name
-      t.string :photo_content_type
-      t.integer :photo_file_size
       t.timestamps
     end
 

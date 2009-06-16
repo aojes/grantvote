@@ -9,7 +9,7 @@
     = user_cred_images(blitz.user, :small, true)
   .span-15
     .span-3
-      = link_to user_defined_image(blitz, :medium, :alt => h(blitz.name)), blitz_path(blitz)
+      (blitz grant icon)
       .span-2.prepend-top.last
         &nbsp;
     .span-11.last{:style => "text-align:justify"}
@@ -48,5 +48,3 @@
               = submit_button "Vote Into Session"
       - elsif not blitz.user == current_user
         .prepend-top= render 'shared/blitz_vote', :blitz => blitz
-  .span-21.prepend-top.last<
-    %hr

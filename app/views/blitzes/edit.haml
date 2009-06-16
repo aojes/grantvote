@@ -18,15 +18,7 @@
         &nbsp; amount
         %br
         %br
-        - if @blitz
-          = user_defined_image(@blitz, :large, :alt => h(@blitz.name))
-          %br
-          %br
-        = f.file_field :photo
-        &nbsp; photo
-        %br
-        %br
-        .small.quiet
+        .small.quiet<
           = f.text_field :media
           &nbsp; YouTube, Viddler, Vimeo
     .span-18.prepend-2.prepend-top
