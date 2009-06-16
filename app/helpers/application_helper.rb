@@ -295,5 +295,11 @@ module ApplicationHelper
   def voting?(group_id, user)
     not Membership.find_by_user_id_and_group_id_and_interest(
                    user.id, group_id, true).nil?  
-  end       
+  end 
+  
+  def award_total
+    grant_awards = Grant.find_all_by_awarded(true).collect {|g| g.amount}.sum
+    blitz_awards = Blitz.find_all_by_awarded(true).collect {|b| b.amount}.sum
+    grant_awards + blitz_awards
+  end     
 end

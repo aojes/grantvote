@@ -1,7 +1,7 @@
 %h2.prepend-1.append-2 Group Voting Session
 .span-21.prepend-2.append-1.last
   - @grants.each do |grant|
-    - unless grant.user == current_user or grant.votes.count.zero? or voted?(grant)
+    - if show_grant?(grant)
       .span-14.append-1
         %h3<
           .flr= link_to user_defined_image(grant.user, :small, :alt=> "#{grant.user.login.capitalize}", :title => h(grant.user.login)), "/#{h(grant.user.login)}"
@@ -12,6 +12,10 @@
       .span-15
         .span-3
           (group grant icon)
+          %br
+          or review layout 
+          %br
+          for group grants
         .span-11.last{:style => "text-align:justify"}
           - unless grant.media.blank?
             = grant.media
@@ -21,9 +25,8 @@
       .span-5.last
         == <img alt="#{group_accessible_tally grant}" title="#{group_accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />
         %p= render 'shared/vote', :grant => grant
-    .span-21.prepend-top.last<
-      %hr      
-        
+      .span-21.prepend-top.last
+        %hr          
 .span-22.prepend-1.append-1.last
   - if @grants_count > 0
     - if @search.page_count > 1

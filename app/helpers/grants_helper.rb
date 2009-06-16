@@ -4,8 +4,8 @@ module GrantsHelper
     Vote.exists?(:grant_id => grant.id, :user_id => current_user.id)
   end
   
-  def award_total
-    Grant.find_all_by_awarded(true).collect {|g| g.amount}.sum
+  def show_grant?(grant)
+    !(voted?(grant) and grant.user == current_user and grant.votes.count.zero?)
   end
   
 end
