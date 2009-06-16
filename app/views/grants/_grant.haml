@@ -45,6 +45,8 @@
           == &nbsp; Denied #{@grant.updated_at.strftime("%B %d, %Y")} 
           %br
           == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
+      - elsif voted?(@grant)
+        %h4.center.prepend-top.quiet Thank you for voting!          
   .span-5.center.last
     - unless @grant.final or not current_user or voted?(@grant)
       - if @grant.votes.count.zero?
@@ -54,7 +56,8 @@
             = f.hidden_field :user_id, :value => @grant.user_id
             = f.hidden_field :group_id, :value => @grant.group_id
             = f.hidden_field :grant_id, :value => @grant.id
+            = f.hidden_field :blitz_id, :value => 0
             %span{:style => "padding-left: 7px"}
               = submit_button "Vote Into Session"
-      - elsif not @grant.user == current_user
-        .prepend-top= render 'shared/vote', :grant => @grant
+      - elsif !(@grant.user == current_user)
+        .prepend-top.center= render 'shared/vote', :grant => @grant

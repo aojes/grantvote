@@ -1,7 +1,7 @@
 module BlitzesHelper
  
   def voting_blitz?(blitz)
-    Vote.exists?(:blitz_id => blitz, :user_id => current_user).nil?
+    not Vote.exists?(:blitz_id => blitz, :user_id => current_user)
   end
  
   def show_blitz?(blitz)

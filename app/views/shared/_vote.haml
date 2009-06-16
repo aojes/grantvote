@@ -1,13 +1,12 @@
-.center
+- if voter?(params[:group_id])
   - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
-    - if voter?(params[:group_id])
-      = f.radio_button :cast, "yea", :style => "position: relative; top: 2px"
-      %strong.large.fancy_type Yea&nbsp;
-      = submit_button "Vote"
-      %strong.large.fancy_type &nbsp;Nay 
-      = f.radio_button :cast, "nay", :style => "position: relative; top: 2px"
-      = f.hidden_field :user_id, :value => current_user.id
-      = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
-      = f.hidden_field :grant_id, :value => grant.id
-    - else
-      %h4.quiet= link_to 'pay dues and vote', new_group_membership_path(grant.group)
+    = f.radio_button :cast, "yea", :style => "position: relative; top: 2px"
+    %strong.large.fancy_type Yea&nbsp;
+    = submit_button "Vote"
+    %strong.large.fancy_type &nbsp;Nay 
+    = f.radio_button :cast, "nay", :style => "position: relative; top: 2px"
+    = f.hidden_field :user_id, :value => current_user.id
+    = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
+    = f.hidden_field :grant_id, :value => grant.id
+- else
+   %h4.quiet= link_to 'pay dues and vote', new_group_membership_path(grant.group)
