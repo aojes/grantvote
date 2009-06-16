@@ -248,8 +248,7 @@ module ApplicationHelper
     "&amp;chf=bg,s,EDEDED"
   end
   
-  # FIXME delete ?
-  def _accessible_tally(grant)
+  def group_accessible_tally(grant)
     voters   = grant.group.memberships.voters.count
     yea      = grant.votes.yea.count
     nay      = grant.votes.nay.count
