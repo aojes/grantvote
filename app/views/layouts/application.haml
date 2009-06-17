@@ -23,6 +23,9 @@
       = javascript_include_tag 'invitations'
     - if current_user and current_page?(:controller => 'groups', :action=>'show')
       = javascript_include_tag 'comments'
+    - if current_user and current_page?(:controller => 'grants', :action=>'index') || current_page?(:controller => 'blitz', :action=>'index')
+      = javascript_include_tag 'jquery.qtip'
+      = javascript_include_tag 'tooltips'
 
   %body
     .container
