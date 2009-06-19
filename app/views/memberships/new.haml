@@ -1,4 +1,4 @@
-= render 'groups/header', :group => @group = find_group(params[:group_id]) || Group.find(params[:payment][:group_id])
+= render 'groups/header', :group => @group = find_group(params[:group_id]) || Group.find(params[:payment][:group_id]) || Group.find_by_permalink(session[:group_permalink])
 .span-24.prepend-top
   .span-20.prepend-2.append-2.last
     .span-10
@@ -6,7 +6,7 @@
       %p= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_payment_path
     - if watching?(@group.id, current_user)
       .span-10.last
-        %p TODO if not voting    
+        %p &nbsp;
     - else
       .span-10.last
         %h3 Watch Group
@@ -17,7 +17,7 @@
             = f.hidden_field :interest, :value => "false"
             = f.submit "Watch"
   .span-22.prepend-1.last{:style => "margin-bottom: 3em"}
-    = render 'shared/payment'
+    =# render 'shared/payment'
 
   -#
     .span-5

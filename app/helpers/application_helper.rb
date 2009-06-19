@@ -227,7 +227,7 @@ module ApplicationHelper
                  "Awarded" : "Denied" : "Awaiting #{awaiting}"
     tally = votes + status
     
-    %(<img alt="#{tally}" title="#{tally}" src="#{chart_url}" />)
+    %(<img alt="#{tally}" title="#{tally}" src="#{chart_url}" class="votes" />)
     
   end   
   

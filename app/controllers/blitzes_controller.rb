@@ -26,6 +26,7 @@ class BlitzesController < ApplicationController
     @search.per_page = 10
 
     @blitzes, @blitzes_count = @search.all, @search.count
+    session[:group_permalink] = 0 # set to 0 for blitz payment
     respond_to do |format|
       format.html # index.html.erb
     end    

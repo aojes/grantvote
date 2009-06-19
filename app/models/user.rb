@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :comments, :as => :commentable
   has_many :payments
+  has_many :payment_notifications
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
   belongs_to :invitation
   

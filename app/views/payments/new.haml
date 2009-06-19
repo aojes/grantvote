@@ -1,10 +1,26 @@
-- form_for @payment do |f|
-  = f.error_messages
-  = f.hidden_field :express_token
-  = f.hidden_field :express_payer_id
-  %h3
-    Name: 
-    =h @payment.first_name 
-    =h @payment.last_name
-  = f.submit "Complete Payment"
-  
+.prepend-top.prepend-1.append-1.last
+  .span-21.center
+    - if @group
+      %h2= @group.name
+      %h3= @group.purpose
+      %h5.fancy_type Voting and Grant-Writing Privileges
+      %h2 $5
+    - else
+      %h2 Grantvote Blitz
+      %h3 The Wild West of this Website
+      %h5.fancy_type Voting and Grant-Writing Privileges
+      %h2 $5      
+    %p
+      - form_for @payment do |f|
+        = f.error_messages
+        = f.hidden_field :express_token
+        = f.hidden_field :express_payer_id
+        = f.hidden_field :user_id, :value => current_user.id
+        = f.hidden_field :group_id, :value => session[:group_permalink] == 0 ? 0 : Group.find_by_permalink(session[:group_permalink]).id
+        = submit_button "Complete Payment"
+
+    -#.span-10.last
+      /Begin Official PayPal Seal
+      <a href="https://www.paypal.com/us/verified/pal=payments%40grantvote%2ecom" target="_blank"><img src="https://www.paypal.com/en_US/i/icon/verification_seal.gif" border="0" alt="Official PayPal Seal"></a>
+      /End Official PayPal Seal
+      

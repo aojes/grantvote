@@ -68,8 +68,10 @@
             .span-14.pull-3= flash_messages
           - else
             .span-14.pull-3.prepend-top= flash_messages
-      .span-24.last#content= yield
-    - if RAILS_ENV == "production"
+      .span-24.last#content
+        = yield
+        = render 'shared/debug' if RAILS_ENV == 'development'
+    - if RAILS_ENV == 'production'
       <script type="text/javascript">
       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
       document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

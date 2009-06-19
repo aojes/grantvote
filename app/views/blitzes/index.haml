@@ -6,7 +6,12 @@
 
 .span-20.prepend-2.append-2.last#search
   .span-10.pull-1.prepend-top
-    %h3.quiet Commence voting!
+    - if current_user.blitz_interest
+      %h3.quiet Commence voting!
+    - else
+      %h3.quiet Blitz Voting and Writing Privileges
+      = link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_payment_path    
+    
   .span-10.last
     - form_for @search do |f|
       - f.fields_for @search.conditions do |groups|

@@ -4,21 +4,42 @@ class Payment < ActiveRecord::Base
   
   MIN_PAY = 5
   
-  attr_accessor :card_number, :card_verification
+  # attr_accessor :card_number, :card_verification
   
-  validates_presence_of :amount, :full_name, :address_line_1, :city, :state
-  validates_presence_of :country, :zipcode
+  # validates_presence_of :amount, :full_name, :address_line_1, :city, :state
+  # validates_presence_of :country, :zipcode
   
-  validates_numericality_of :amount, :greater_than_or_equal_to => MIN_PAY, 
-    :message => "can be greater than or equal to $#{MIN_PAY}"  
+  # validates_numericality_of :amount, :greater_than_or_equal_to => MIN_PAY, 
+  #  :message => "can be greater than or equal to $#{MIN_PAY}"  
   
-  validate_on_create :validate_card
+  # validate_on_create :validate_card
   
   def purchase
     response = process_purchase
     transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response)
-    update_attribute(:updated_at, Time.now) if response.success?
-    response.success?
+    status = response.success?
+
+    if status 
+      if self.group_id.zero?
+        user.update_attributes(:blitz_interest => true, 
+                               :blitz_contributes => user.blitz_contributes + 5)
+        blitz_fund = BlitzFund.find_by_dues(5)
+        blitz_fund.update_attribute(:general_pool, blitz_fund.general_pool + 5)
+      else
+        membership = Membership.find_by_user_id_and_group_id(user, self.group_id)
+        if membership.nil?
+          user.memberships.create!(:group_id => self.group_id, 
+            :interest => true, :contributes => 5, :rewards => 0)
+        else
+          membership.update_attributes(:interest => true,
+                                     :contributes => membership.contributes + 5)
+          membership.group.update_attribute(:funds, membership.group.funds + 5)
+        end
+      end
+      update_attribute(:updated_at, Time.now)
+    end
+
+    status
   end
   
   def express_token=(token)
@@ -31,7 +52,7 @@ class Payment < ActiveRecord::Base
     end
   end
   
-  def price_in_cents
+  def price_in_cents    
     (amount * 100).round
   end
 
@@ -62,6 +83,8 @@ class Payment < ActiveRecord::Base
 
   def express_purchase_options
     {
+
+      :amount => 5,
       :ip => ip_address,
       :token => express_token,
       :payer_id => express_payer_id
