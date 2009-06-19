@@ -70,7 +70,9 @@
             .span-14.pull-3.prepend-top= flash_messages
       .span-24.last#content
         = yield
-        = render 'shared/debug' if RAILS_ENV == 'development'
+      - if RAILS_ENV == 'development'
+        .span-24.last
+          = render 'shared/debug'
     - if RAILS_ENV == 'production'
       <script type="text/javascript">
       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

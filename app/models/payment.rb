@@ -30,6 +30,8 @@ class Payment < ActiveRecord::Base
         if membership.nil?
           user.memberships.create!(:group_id => self.group_id, 
             :interest => true, :contributes => 5, :rewards => 0)
+          group = Group.find(self.group_id)
+          group.update_attribute(:funds, group.funds + 5)
         else
           membership.update_attributes(:interest => true,
                                      :contributes => membership.contributes + 5)
