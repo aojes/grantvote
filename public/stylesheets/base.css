@@ -116,6 +116,14 @@ a.rounded, div.pagination a {
   background-color: #ededed;
   border: 1px solid #ccc; }
 
+#verify a img {
+  padding: 0;
+  margin-right: -3px; }
+
+h3.profile_verify {
+  position: relative;
+  left: -10px; }
+
 #join_panel {
   /* :background-color #f3f3f3 */ }
 

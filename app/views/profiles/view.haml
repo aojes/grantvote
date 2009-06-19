@@ -58,26 +58,31 @@
     %br
     %br
     %br
-  .span-12.append-1.prepend-top.last
+  .span-12.append-1.prepend-top.last#verify
     - if @user.groups.count.zero? and @user == current_user
       %h3.prepend-top<
         Groups
         %hr
       %h3= link_to "Create or join a group!", groups_path
     - elsif @user.groups.count > 0
-      %h3.prepend-top<
+      %h3.prepend-top.profile_verify<
         Groups
         %hr
+      -#%span{:style => "padding-left: 5px"}
       - @user.groups.reverse.each do |g|
         = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_path(g)
+        - if g.memberships.find_by_user_id_and_interest(current_user.id, true)
+          = image_tag '/images/icons/silk/vcard.png', :alt => 'Voter', :title => 'Voter', :style => "position: relative; bottom: 38px; right: 52px"
+        - else
+          = image_tag '/images/icons/silk/magnifier.png', :alt => 'Watching', :title => 'Watching', :style => "position: relative; bottom: 36px; right: 54px"
     - if @user.grants.awarded.count > 0
-      %h3.prepend-top<
+      %h3.prepend-top.profile_verify<
         Awards
         %hr
       - @user.grants.awarded.reverse.each do |g|
         = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}"), group_grant_path(g.group, g) 
     - if @user.grants.session.count > 0
-      %h3.prepend-top<
+      %h3.prepend-top.profile_verify<
         Sessions
         %hr
       - @user.grants.session.reverse.each do |g|
@@ -85,7 +90,7 @@
           = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}"), group_grant_path(g.group, g)
     - if current_user == @user
       - if @user.grants.detect {|g| g.votes.count.zero? }
-        %h3.prepend-top<
+        %h3.prepend-top.profile_verify<
           .flr{:style => "font-size: 12px; color: #888; position: relative; top: 4px;"} (private view)
           Writeboard
           %hr
