@@ -75,14 +75,14 @@
         Awards
         %hr
       - @user.grants.awarded.reverse.each do |g|
-        (award)  
+        = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}"), group_grant_path(g.group, g) 
     - if @user.grants.session.count > 0
       %h3.prepend-top<
         Sessions
         %hr
       - @user.grants.session.reverse.each do |g|
         - unless g.votes.count.zero?
-          (session icon)
+          = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}"), group_grant_path(g.group, g)
     - if current_user == @user
       - if @user.grants.detect {|g| g.votes.count.zero? }
         %h3.prepend-top<
@@ -91,7 +91,7 @@
           %hr
       - @user.grants.session.reverse.each do |g|
         - if g.votes.count.zero?
-          (writeboard)
+          = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}"), group_grant_path(g.group, g)
     %br
     %br
     %br
