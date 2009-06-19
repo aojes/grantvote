@@ -20,30 +20,6 @@
       All Groups
   .span-4.last.quiet Top Members 
   
-  
--#
-  - if @groups_count > 0 
-    = #{@groups_count} groups found
-    %table
-      %tr
-        %th= order_by_link :id
-        %th= order_by_link :name
-        %th= order_by_link :purpose
-      - @groups.each do |group|
-        %tr
-          %td= group.id
-          %td= group.name 
-          %td= group.purpose 
-    Per page: 
-    = per_page_select
-    - if @search.page_count > 1
-      %br 
-      Page: 
-      = page_select
-  - else
-    No groups were returned
-
-
 - @groups.each do |group|
   .span-20.prepend-2.append-2.prepend-top.last
 

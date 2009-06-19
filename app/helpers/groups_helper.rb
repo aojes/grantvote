@@ -3,8 +3,7 @@ module GroupsHelper
   def top_contributors(group_id)
     top_members = Membership.find_all_by_group_id(group_id, 
                           :order => "contributes DESC", :limit => 3).
-                          collect {|u| u.user_id }
-    User.find(top_members)
+                          collect {|u| User.find(u.user_id) }
   end
   
   def grants_awarded
