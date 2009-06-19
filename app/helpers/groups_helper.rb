@@ -1,7 +1,7 @@
 module GroupsHelper
   
   def top_contributors(group_id)
-    top_members = Membership.find_all_by_group_id(group_id, 
+    top_members = Membership.find_all_by_group_id_and_interest(group_id, true,
                           :order => "contributes DESC", :limit => 3).
                           collect {|u| User.find(u.user_id) }
   end
