@@ -17,10 +17,10 @@ class VotesController < ApplicationController
     elsif @vote.group 
       if @vote.group.solvent? 
         if @vote.save
-          flash[:notice] = @vote.group.final_message || 'Voted successfully.'
+          flash[:notice] = @vote.final_message || 'Voted successfully.'
           redirect_to group_grant_path(@vote.group, @vote.grant) 
         else
-          flash[:notice] = @vote.group.limit_message ||
+          flash[:notice] = @vote.limit_message ||
                                         'Bleep, bloop. Please try again.'
           redirect_to group_grant_path(@vote.group, @vote.grant) 
         end

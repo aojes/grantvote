@@ -283,20 +283,6 @@ module ApplicationHelper
     end
   end
   
-  def group_member?(group_id, user)
-    not Membership.find_by_user_id_and_group_id(user.id, group_id).nil?
-  end
-  
-  def watching?(group_id, user)
-    Membership.exists?(:group_id => group_id, :user_id => user.id, 
-                                                :interest => false)
-  end
-  
-  def voting?(group_id, user)
-    not Membership.find_by_user_id_and_group_id_and_interest(
-                   user.id, group_id, true).nil?  
-  end 
-  
   def award_total
     grant_awards = Grant.find_all_by_awarded(true).collect {|g| g.amount}.sum
     blitz_awards = Blitz.find_all_by_awarded(true).collect {|b| b.amount}.sum

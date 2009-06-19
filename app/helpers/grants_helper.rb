@@ -5,7 +5,7 @@ module GrantsHelper
   end
   
   def show_grant?(grant)
-    !(voted?(grant) and grant.user == current_user and grant.votes.count.zero?)
+    not voted?(grant) and grant.votes.count.zero?
   end
   
 end
