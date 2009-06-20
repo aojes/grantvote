@@ -1,11 +1,32 @@
 $(document).ready( function(){
-  $('img[title]').qtip({ style: { name: 'cream', tip: true
+
+$.fn.qtip.styles.grantvotestyle = { 
+   width: 200,
+   background: '#eeeeee',
+   color: 'black',
+   textAlign: 'center',
+   border: {
+      width: 3,
+      radius: 5,
+      color: '#333333'
+   },
+  
+   name: 'light' 
+}
+
+
+  $('img[title]').qtip({ style: { name: 'grantvotestyle', tip: true
  }, position: {
       corner: {
          target: 'leftMiddle',
-         tooltip: 'bottomMiddle'
-      }
-   }
+         tooltip: 'bottomLeft'
+      },
+  // adjust: { scroll: true,  x: 30, y: 0 }
+   target: 'mouse',
+   adjust: { mouse: true }
+
+   },
+  show: { effect: { type: 'slide', length: '100' } }
  })
 
 
