@@ -26,7 +26,7 @@ class GrantsController < ApplicationController
                                             :order => "created_at ASC")
       @page_title = "Listing Grants"                                            
     else
-      @page_title = "Grants on Grantvote"
+      @page_title = "Recent Awards on Grantvote"
 
       @search = Grant.new_search(params[:search])
       # @search_blitzes = Blitz.new_search(params[:search])      
@@ -42,7 +42,7 @@ class GrantsController < ApplicationController
         end
       end  
       @search.per_page = 5
-      @search.order_by, @search.order_as = [:updated_at], 'DESC'
+      @search.order_by, @search.order_as = [:updated_at], 'ASC'
       @search.conditions.final = true
       @search.conditions.awarded = true
 
@@ -50,7 +50,6 @@ class GrantsController < ApplicationController
       @grants, @grants_count = @search.all, @search.count
       
       @search_blitzes = Blitz.new_search(params[:search])
-      # @search_blitzes = Blitz.new_search(params[:search])      
       
       if params[:search]
         if params[:search][:conditions]
@@ -63,13 +62,13 @@ class GrantsController < ApplicationController
         end
       end  
       @search_blitzes.per_page = 5
-      @search_blitzes.order_by, @search.order_as = [:updated_at], 'DESC'
+      @search_blitzes.order_by, @search.order_as = [:updated_at], 'ASC'
       @search_blitzes.conditions.final = true
       @search_blitzes.conditions.awarded = true
 
 
       @grants = @grants.concat(@search_blitzes.all).
-           sort {|a,b| a.updated_at <=> b.updated_at }
+                          sort {|a,b| b.updated_at <=> a.updated_at }
       @grants_count += @search_blitzes.count
     end
     respond_to do |format|

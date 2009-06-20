@@ -26,8 +26,12 @@
   - @grants.each do |g|
     - if g.class.name == "Grant"
       = render 'grant_index', :grant => g
+      .span-20.prepend-2.append-2.last<
+        %hr
     - else
       = render 'blitzes/blitz', :blitz => g
+      .span-20.prepend-2.append-2.last<
+        %hr
 
   .clear
   - if @grants_count > 0
