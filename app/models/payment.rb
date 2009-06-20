@@ -22,37 +22,39 @@ class Payment < ActiveRecord::Base
     status = response.success?
 
     if status 
-      if self.group_id.zero?
-
-        user.update_attributes(:blitz_interest => true, 
-                               :points => user.points + 1, 
+      transaction do
+        if self.group_id.zero?
+  
+          user.update_attributes!(:blitz_interest => true, 
+                                 :points => user.points + 1, 
                                :blitz_contributes => user.blitz_contributes + 5)
-        user.credit.update_attributes(:points => ( user.credit.points + 1 ),
-                                     :pebbles => ( user.credit.pebbles + 1) )
-        
-        blitz_fund = BlitzFund.find_by_dues(5)
-        blitz_fund.update_attribute(:general_pool, blitz_fund.general_pool + 5)
-
-      else
-        membership = Membership.
-                          find_by_user_id_and_group_id(user, self.group_id)
-        if membership.nil?
-          user.memberships.create!(:group_id => self.group_id, 
-            :interest => true, :contributes => 5, :rewards => 0)
-          user.update_attribute(:points, user.points + 1)
-          user.credit.update_attributes(:points => ( user.credit.points + 1 ),
-                                     :pebbles => ( user.credit.pebbles + 1) )
+          user.credit.update_attributes!(:points => ( user.credit.points + 1 ),
+                                       :pebbles => ( user.credit.pebbles + 1) )
           
-          group = Group.find(self.group_id)
-          group.update_attribute(:funds, group.funds + 5)
+          blitz_fund = BlitzFund.find_by_dues(5)
+          blitz_fund.update_attributes!(:general_pool => blitz_fund.general_pool + 5)
+  
         else
-          membership.update_attributes(:interest => true,
-                                     :contributes => membership.contributes + 5)
-          membership.group.update_attribute(:funds, membership.group.funds + 5)
-          membership.user.update_attribute(:points, membership.user.points + 1)
-          membership.user.credit.update_attributes(
-                                        :points => ( user.credit.points + 1 ),
-                                        :pebbles => ( user.credit.pebbles + 1) )
+          membership = Membership.
+                            find_by_user_id_and_group_id(user, self.group_id)
+          if membership.nil?
+            user.memberships.create!(:group_id => self.group_id, 
+              :interest => true, :contributes => 5, :rewards => 0)
+            user.update_attributes!(:points => user.points + 1)
+            user.credit.update_attributes!(:points => ( user.credit.points + 1 ),
+                                       :pebbles => ( user.credit.pebbles + 1) )
+            
+            group = Group.find(self.group_id)
+            group.update_attributes!(:funds => group.funds + 5)
+          else
+            membership.update_attributes!(:interest => true,
+                                       :contributes => membership.contributes + 5)
+            membership.group.update_attributes!(:funds => membership.group.funds + 5)
+            membership.user.update_attributes!(:points => membership.user.points + 1)
+            membership.user.credit.update_attributes!(
+                                          :points => ( user.credit.points + 1 ),
+                                          :pebbles => ( user.credit.pebbles + 1) )
+          end
         end
       end
       update_attribute(:updated_at, Time.now)
