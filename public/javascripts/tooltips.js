@@ -8,7 +8,7 @@ $.fn.qtip.styles.grantvotestyle = {
    border: {
       width: 3,
       radius: 5,
-      color: '#333333'
+      color: '#cccccc'
    },
   
    name: 'light' 
