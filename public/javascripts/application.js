@@ -5,6 +5,18 @@ $.fn.pause = function(duration) {
     return this;
 };
 
+$.fn.qtip.styles.grantvotestyle = { 
+    width: 200,
+    background: '#eeeeee',
+    color: 'black',
+    textAlign: 'center',
+    border: {
+      width: 3,
+      radius: 5,
+      color: '#cccccc' },
+  
+    name: 'light' 
+}
 
 $(document).ready( function(){
   $('.rounded').corners("3px");
@@ -17,5 +29,18 @@ $(document).ready( function(){
   $('#flash-notice').grow().highlight().pause(9000).shrink();
   $('#flash-warning').grow().highlight().pause(9000).shrink();
   $('#flash-error').grow().highlight().pause(9000).shrink();
+
+
+
+  $('img[title]').qtip({ style: { name: 'grantvotestyle', tip: true }, 
+    position: {
+        corner: {
+           target: 'leftMiddle',
+           tooltip: 'bottomLeft' },
+      // adjust: { scroll: true,  x: 30, y: 0 }
+      target: 'mouse',
+      adjust: { mouse: true } },
+    show: { effect: { type: 'slide', length: '100' } }
+   });
   
 });
