@@ -36,7 +36,6 @@
       %br
   .span-5
     = session_bar_chart_image @blitz
-    -#== <img alt="#{accessible_tally(@blitz)}" title="#{accessible_tally(@blitz)}" src="#{session_bar_chart_url(@blitz)}" />
     .quiet
       - if @blitz.final
         - if @blitz.awarded
@@ -47,18 +46,16 @@
           == &nbsp; Denied #{@blitz.updated_at.strftime("%B %d, %Y")} 
           %br
           == &nbsp; after #{distance_of_time_in_words(@blitz.votes.first.created_at, @blitz.votes.last.created_at)} in session
-      - elsif not @blitz.final
-        - if voted?(@blitz)
-          %h4.center.prepend-top.quiet Thank you for voting!           
+      - elsif voted_blitz?(@blitz)
+        %h4.center.prepend-top.quiet Thank you for voting!           
   .span-5.center.last
-    - unless @blitz.final or not current_user or voted?(@blitz)
-      - if @blitz.votes.count.zero?
-        %p
-          - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
-            = f.hidden_field :cast, :value => "yea"
-            = f.hidden_field :user_id, :value => @blitz.user_id
-            = f.hidden_field :blitz_id, :value => @blitz.id
-            %span{:style => "padding-left: 7px"}
-              = submit_button "Vote Into Session"
-      - elsif not @blitz.user == current_user
+    - if not ( @blitz.final and voted_blitz?(@blitz) )
+      - if @blitz.votes.count.zero? and @blitz.user == current_user
+        - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
+          = f.hidden_field :cast, :value => "yea"
+          = f.hidden_field :user_id, :value => @blitz.user_id
+          = f.hidden_field :blitz_id, :value => @blitz.id
+          %span{:style => "padding-left: 7px"}
+            = submit_button "Vote Into Session"
+      - else
         .prepend-top= render 'shared/blitz_vote', :blitz => @blitz
