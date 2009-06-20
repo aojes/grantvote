@@ -8,8 +8,7 @@
         %p= user_defined_image(@user, :large, :alt => "#{h @user.login}")
     .span-4.prepend-top.last<
       %h3.center=h @user.login
-      -# unless @user == current_user or current_user.friendships.exists?(:friend_id => @user)
-        %h6.center= button_to "Add Friendship", friendships_path(:friend_id => @user), :method => :post  
+
     %br{:style => "clear: both"}
     - unless @user.profile.name.blank?
       %h6.quiet= h @user.profile.name
@@ -20,16 +19,21 @@
       %h6.quiet= link_to h(@user.profile.link), h(@user.profile.link) if @user.profile.link.include?("http://")
     %h5.quiet=h @user.profile.detail if @user.profile.detail
     %h5= link_to 'Settings', edit_account_path if current_user == @user
-    - unless @user == current_user
-      - if current_user.friendships.exists?(:user_id => current_user, :friend_id => @user)
-        = link_to "remove friendship", friendship_path(@user), :method => :delete
-      - else
+    - unless @user == current_user 
+      - unless current_user.friendships.exists?(:user_id => current_user, :friend_id => @user)
         = link_to "Add Friendship", friendships_path(:friend_id => @user), :method => :post
+
     = render 'shared/user_invitation' 
     %h3.prepend-top< 
       Cred
       %hr
     = user_cred_images(@user, :small)
+    - unless current_user.credit.beads.zero?
+      - form_for :credit, :url => {:controller => :credits, :action => :update}, :html => { :id => 'give_credit', :method => :put } do |f|
+        .prepend-1.prepend-top.last
+          = f.hidden_field :beads, :value => 1
+          = f.hidden_field :user_id, :value => @user.id
+          = f.submit 'Give Bead'
     %br{:clear => :both}
 
     %h3.prepend-top<
@@ -55,6 +59,8 @@
       - current_user.inverse_friends.each do |inverse_friendship|
         - unless current_user.friendships.exists?(:friend_id => inverse_friendship)
           = link_to user_defined_image(inverse_friendship, :thumb, :alt => h(inverse_friendship.login), :title => h(inverse_friendship.login)), profile_path(h(inverse_friendship.login))
+    - if current_user.friendships.exists?(:user_id => current_user, :friend_id => @user)
+      = link_to "Remove Friendship", friendship_path(@user), :method => :delete          
     %br
     %br
     %br
