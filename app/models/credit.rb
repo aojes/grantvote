@@ -2,6 +2,8 @@ class Credit < ActiveRecord::Base
   belongs_to :user
   validates_uniqueness_of :user_id
   
+  before_update :conversions
+  
   VALUES = {
     :pebble =>  1,
     :bead   =>  3,
@@ -37,6 +39,48 @@ class Credit < ActiveRecord::Base
    }
   
   named_scope :leaders, :order => "points DESC", :limit => 100
+  
+  def conversions
+
+    if self.pebbles % 3 == 0 && !self.pebbles.zero?
+      self.beads   += 1 
+      self.pebbles -= 3
+    end
+    
+    if self.beads   % 3 == 0 && !self.beads.zero?
+      self.buttons += 1
+      self.beads   -= 3
+    end
+      
+    if self.buttons % 3 == 0 && !self.buttons.zero?
+      self.pens    += 1
+      self.buttons -= 3 
+    end
+ 
+    if self.pens    % 3 == 0 && !self.pens.zero?
+      self.ribbons += 1
+      self.pearls  += 1
+      self.shells  += 1
+      self.pens     = 1
+    end
+ 
+    if self.shells  % 3 == 0 && !self.shells.zero?
+      self.pearls  += 1
+      self.shells  -= 3
+    end
+ 
+    if self.pearls  % 3 == 0 && !self.pearls.zero?
+      self.ribbons += 1
+      self.pearls  -= 3
+    end
+ 
+    if self.ribbons % 3 == 0 && !self.ribbons.zero?
+      self.laurels += 1
+      self.ribbons -= 3
+    end
+    
+  end
+  
 end
 
 

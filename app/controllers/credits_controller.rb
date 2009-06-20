@@ -6,4 +6,5 @@ class CreditsController < ApplicationController
     @credit = Credit.new(params[:credit])
     
   end
+  
 end

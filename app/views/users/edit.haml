@@ -28,7 +28,7 @@
                   = f.label :photo, @user.photo.file? ? "Change photo" : "Add photo"
                   = f.file_field :photo
             #change_login_and_email_link
-              %h5= link_to_function "Change Login Details", "$('#change_password_link').fadeIn(); $('#change_password').hide();  $('#change_profile_info_link').fadeIn(); $('#change_profile_info').hide(); $('#change_login_and_email_link').hide(); $('#change_login_and_email').fadeIn();  return false;"
+              %h5= link_to_function "Login Details", "$('#change_password_link').fadeIn(); $('#change_password').hide();  $('#change_profile_info_link').fadeIn(); $('#change_profile_info').hide(); $('#change_login_and_email_link').hide(); $('#change_login_and_email').fadeIn();  return false;"
             #change_login_and_email
               .center.quiet Change Login Details
               .form_row
@@ -41,7 +41,7 @@
                 = f.label :password_confirm_vital, "Password"
                 = f.password_field :password_confirm_vital
             #change_password_link               
-              %h5= link_to_function "Change Password", "$('#change_profile_info_link').fadeIn(); $('#change_profile_info').hide(); $('#change_login_and_email').hide(); $('#change_login_and_email_link').fadeIn(); $('#change_password_link').hide(); $('#change_password').fadeIn(); return false;"
+              %h5= link_to_function "Password", "$('#change_profile_info_link').fadeIn(); $('#change_profile_info').hide(); $('#change_login_and_email').hide(); $('#change_login_and_email_link').fadeIn(); $('#change_password_link').hide(); $('#change_password').fadeIn(); return false;"
             #change_password
               .center.quiet Change Password
               .form_row
