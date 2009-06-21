@@ -2,6 +2,8 @@ class PaymentsController < ApplicationController
   before_filter :require_user
   before_filter :verify_authenticity_token
   
+  ssl_required :express, :new, :create if RAILS_ENV == 'production'
+  
   def express
     group_id = session[:group_permalink] == 0 ?
           0 : Group.find_by_permalink(session[:group_permalink]).id 
