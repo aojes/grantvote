@@ -55,13 +55,17 @@ module ApplicationHelper
   
   def submit_button(name, lite = false)
     if lite 
-      %(<button type="submit"><span class="lite-span"><em class="lite-em">) + name + 
+     # %(<button type="submit"><span class="lite-span"><em class="lite-em">) + name + 
+     # %(</em></span></button>)
+      %(<button class="lite" type="submit"><span><em>) + name + 
       %(</em></span></button>)
     else 
       %(<button type="submit"><span><em>) + name + 
       %(</em></span></button>)
     end
   end
+
+
   
   def following_friendships(user)
     user.friendships.collect do |following|

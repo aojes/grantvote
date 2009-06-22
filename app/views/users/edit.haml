@@ -53,7 +53,7 @@
               .form_row
                 = f.label :confirm_new_password, "Confirm password"
                 = f.password_field :confirm_new_password
-            = submit_button "Update"
+            = submit_button "Update", :lite=>'true'
             &nbsp;
             %br
             = link_to "Go Back", profile_path(current_user.login)
