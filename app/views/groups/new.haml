@@ -17,13 +17,13 @@
                 = f.error_messages 
               .form_row.prepend-top
                 = f.label :name
-                = f.text_field :name, :size => 20
+                = f.text_field :name, :size => 20, :class=>'required'
               .form_row.prepend-top
                 = f.label :purpose
-                = f.text_field :purpose, :size => 50
+                = f.text_field :purpose, :size => 50, :class=>'required'
               .form_row.prepend-top
                 = f.label :photo
-                = f.file_field :photo
+                = f.file_field :photo, :class=>'required'
               %br
               .prepend-4<
                 = submit_button 'Create Group'

@@ -29,7 +29,7 @@ $(document).ready( function(){
   $('#flash-notice').grow().highlight().pause(9000).shrink();
   $('#flash-warning').grow().highlight().pause(9000).shrink();
   $('#flash-error').grow().highlight().pause(9000).shrink();
-
+  $('#new_group').validate();
 
 
   $('img[title]').qtip({ style: { name: 'grantvotestyle', tip: true }, 
