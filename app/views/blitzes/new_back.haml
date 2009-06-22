@@ -1,0 +1,29 @@
+- form_for @blitz do |f|
+  .span-21.prepend-2.append-1.last
+    = f.error_messages    
+    - unless @blitz.name.blank?
+      %h2.append-2 Edit Blitz Grant
+    - else
+      %h2.append-2 New Blitz Grant
+    .span-11
+      = @blitz.media if @blitz.media
+      = f.text_area :proposal
+    .span-10.last
+      = f.text_field :name
+      &nbsp; name
+      %br
+      %br
+      = f.text_field :amount, :size => 4
+      &nbsp; amount
+      %br
+      %br
+      .small.quiet
+        = f.text_field :media
+        &nbsp; YouTube, Viddler, Vimeo
+  .prepend-4
+    %br
+    = f.submit "Preview"
+    %br
+    %br
+    %br    
+    

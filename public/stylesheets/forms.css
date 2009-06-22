@@ -131,6 +131,9 @@ ul.invitations li span.title {
     float: none;
     text-align: left;
     width: 100px; }
+  .rounded-box-largefont form label.left {
+    float: left;
+    width: 100px; }
   .rounded-box-largefont form input, .rounded-box-largefont form input:focus, .rounded-box-largefont form input.error {
     margin: 0px 0px 4px 0px;
     padding: 4px 0px 0px 0px;
@@ -139,6 +142,8 @@ ul.invitations li span.title {
     height: 23px;
     line-height: 25px;
     border: 1px solid #ccc; }
+  .rounded-box-largefont form input#blitz_media {
+    width: 400px; }
 
 .rounded-box-mediumfont {
   font-size: 14px; }

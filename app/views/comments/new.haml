@@ -4,8 +4,10 @@
     %div
       %div.rounded-box-largefont
         %h2.prepend-1.prepend-top New Comment
+        
         .clear.large
           - form_for [@commentable, Comment.new] do |f|
+            = f.error_messages
             .form_row
               = f.text_area :content
               = f.hidden_field :user_id, :value => current_user.id

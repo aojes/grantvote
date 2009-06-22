@@ -57,7 +57,8 @@ class BlitzesController < ApplicationController
       render :action => :new
     end
   end
-    
+  
+
   def edit
     @blitz = Blitz.find_by_permalink(params[:id])
     @page_title = "Editing " + @blitz.name

@@ -1,27 +1,52 @@
-- if @blitz.votes.count.zero?
-  - form_for :blitz, :url => {:action => :update}, :html => {:multipart => true, :method => :put} do |f|
-    .span-21.prepend-2.append-1.last
-      = f.error_messages    
-      - unless @blitz.name.blank?
-        %h2.append-2 Edit Blitz Grant
-      - else
-        %h2.append-2 New Blitz Grant
-      .span-11
-        = @blitz.media if @blitz.media
-        = f.text_area :proposal
-      .span-10.last
-        = f.text_field :name
-        &nbsp; name
-        %br
-        %br
-        = f.text_field :amount, :size => 4
-        &nbsp; amount
-        %br
-        %br
-        .small.quiet<
-          = f.text_field :media
-          &nbsp; YouTube, Viddler, Vimeo
-    .span-18.prepend-2.prepend-top
-      = submit_button "Preview"
-      %br
-      %br  
+.prepend-1.append-1.prepend-top
+  %div.rounded-box.rounded-box-image.pull-2
+    %div
+      %div
+        %div
+          %h3.prepend-top<
+            Hello, 
+            - @info = Profile.find_by_id(current_user)
+            -if @info.name.blank?
+              = current_user.login
+            -else
+              = current_user.name
+            %br 
+          %p
+            Preview of the video resized should go here
+
+  %div.rounded-box.rounded-box-medium.prepend-2.push-2
+    %div
+      %div
+        %div.rounded-box-largefont
+          - form_for :blitz, :url => {:action => :update}, :html => {:multipart => true, :method => :put} do |f|
+            .span-21.prepend-2.append-1.last
+              = f.error_messages    
+              - unless @blitz.name.blank?
+                %h2.append-2 Edit Blitz Grant
+              - else
+                %h2.append-2 New Blitz Grant
+              .span-10.last
+                %label.left Name
+                = f.text_field :name
+                
+                %br
+                %br
+                %label.left Amount
+                = f.text_field :amount, :size => 4
+                %br
+                %br
+                %small.quiet YouTube, Viddler, Vimeo
+                %br 
+                = f.text_field :media
+              .span-10
+                = @blitz.media if @blitz.media
+                = f.text_area :proposal
+
+               
+                  
+            .prepend-4
+              %br
+              = submit_button "Preview"
+              %br
+              %br    
+

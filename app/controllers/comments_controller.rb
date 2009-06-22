@@ -34,6 +34,7 @@ class CommentsController < ApplicationController
           redirect_to :id => nil  
       end
     else
+      flash[:notice] = 'Bleep, bloop.  Please try again.'
       render :action => 'new'
     end
   end
