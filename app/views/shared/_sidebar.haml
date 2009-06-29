@@ -1,0 +1,22 @@
+.prepend-top.sidebar-adjust
+  %div.rounded-box.sidebar
+    %div
+      %div
+        %div.rounded-box-largefont
+          %h2 Recent Grants with media
+          %ul 
+            -#only display those with media
+            -# for grant in Grant.all(:limit=>5, :conditions=>"media!=''",:order => "created_at DESC") 
+            - for grant in Grant.all(:limit=>5, :order => "created_at DESC")
+              %li 
+                .video-image
+                  = image_tag '/images/thumb_youtube.jpg'
+                %p
+                  %strong 
+                    =grant.name 
+                  %br 
+                  =truncate_words(grant.proposal)
+      
+
+            
+

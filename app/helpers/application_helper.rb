@@ -292,4 +292,10 @@ module ApplicationHelper
     blitz_awards = Blitz.find_all_by_awarded(true).collect {|b| b.amount}.sum
     grant_awards + blitz_awards
   end     
+
+  def truncate_words(text, length = 15, end_string = ' …')
+    words = text.split()
+    words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
+  end
+
 end

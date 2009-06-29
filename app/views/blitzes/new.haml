@@ -1,19 +1,5 @@
+= render 'shared/sidebar'
 .prepend-1.append-1.prepend-top
-  %div.rounded-box.rounded-box-image.pull-2
-    %div
-      %div
-        %div
-          %h3.prepend-top<
-            Hello, 
-            - @info = Profile.find_by_id(current_user)
-            -if @info.name.blank?
-              = current_user.login
-            -else
-              = current_user.name
-            %br 
-          %p
-            Guidelines on adding video should go here
-
   %div.rounded-box.rounded-box-medium.prepend-2.push-2
     %div
       %div
@@ -21,10 +7,12 @@
           - form_for @blitz do |f|
             .span-21.prepend-2.append-1.last
               = f.error_messages    
+              %br
               - unless @blitz.name.blank?
                 %h2.append-2 Edit Blitz Grant
               - else
                 %h2.append-2 New Blitz Grant
+  
               .span-10.last
                 %label.left Name
                 = f.text_field :name
