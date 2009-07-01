@@ -95,16 +95,16 @@ class Blitz < ActiveRecord::Base
         
         if media.include?("height=") and media.include?("width=")
           if a or b # YouTube
-            media.gsub!(/width=\"\d+\"/, 'width="425"')
-            media.gsub!(/height=\"\d+\"/, 'height="344"')
+            media.gsub!(/width=\"\d+\"/, 'width="437"')
+            media.gsub!(/height=\"\d+\"/, 'height="350"')
           elsif c   # Viddler
             media.gsub!(/width=\"\d+\"/, 'width="437"')
             media.gsub!(/height=\"\d+\"/, 'height="288"')
             media.gsub!(/<param(\s)name=\"flashvars\"(\s)value=\"autoplay=t\"(\s)\/>/, '')
             media.gsub!(/(\s)flashvars=\"autoplay=t\"/, '')
           elsif d   # Vimeo
-            media.gsub!(/width=\"\d+\"/, 'width="427"')
-            media.gsub!(/height=\"\d+\"/, 'height="240"')
+            media.gsub!(/width=\"\d+\"/, 'width="437"')
+            media.gsub!(/height=\"\d+\"/, 'height="246"')
           end
         else
           self.media = ""

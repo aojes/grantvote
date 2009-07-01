@@ -1,4 +1,4 @@
 #comments
-- @comments.reverse.each do |c|
-  .comment
-    =simple_format h(c.content)
+  - @comments.reverse.each do |c|
+    .comment
+      =simple_format h(c.content)

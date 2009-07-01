@@ -27,11 +27,10 @@
         .tbs &nbsp;
     #comments
       .flr= link_to "Add Comment", new_group_comment_path(@group)
-      -#.flr= link_to "Add Comment", '#addcomment', {:class => 'new_comment_link' }
       %strong= pluralize @group.comments.count, "Comment"
       %hr
-      = render 'shared/new_group_comment' 
       .last= render 'shared/comments', :comments => @group.comments
+
   .span-6.prepend-1#group_members
     - if @group.memberships.voters.count.zero?
       %br 
