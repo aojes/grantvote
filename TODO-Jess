@@ -1,5 +1,12 @@
+
+work on shared/sidebar
 _________________
 Open System - "Blitz"
+
+sample media: <object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+
+check "pay dues and vote" on blitz & grant#index
+check page length for extra white space on blitz#index & grants#index
 
 set user blitz_interest = true on dues paid in any amount
 
@@ -30,7 +37,8 @@ _________________
 defer 
   
   important
-  
+
+    add #awards to groups#index  
     implement payment gateway (or use simple paypal 'pay now' buttons)
     make return pages from payment gateway / payments
     use https for payments (if gateway)
@@ -38,6 +46,7 @@ defer
     
   normal workflow
     
+    work on comments    
     let creator set moderator, moderator set moderator
     add blitzes to profile
     use group image and blitz icon for writeboard
@@ -70,7 +79,7 @@ business
     
 _________________
 notes
-
+  
   don't destroy any data
   don't scale minimum award (at least not at first)
   is it a bad idea to put a few ads beneath the group voters images?

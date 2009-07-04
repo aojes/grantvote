@@ -28,7 +28,7 @@
 - @blitzes.each do |blitz|
   = render 'blitz', :blitz => blitz if show_blitz?(blitz)
 
-.clear
+<br style="clear: both;" />
 - if @blitzes_count > 0
   - if @search.page_count > 1
     .pagination{:style => "text-align: left"}

@@ -7,7 +7,7 @@
           %ul 
             -#only display those with media
             -# for grant in Grant.all(:limit=>5, :conditions=>"media!=''",:order => "created_at DESC") 
-            - for grant in Grant.all(:limit=>5, :order => "created_at DESC")
+            - Grant.all(:limit=>5, :order => "created_at DESC").each do |grant|
               %li 
                 .video-image
                   = image_tag '/images/thumb_youtube.jpg'
