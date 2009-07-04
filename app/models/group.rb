@@ -16,7 +16,7 @@ class Group < ActiveRecord::Base
   has_many :users, :through => :memberships
   has_many :comments, :as => :commentable  
 
-  has_permalink :name # TODO close loophole to fake permalkinks (group, grant)
+  has_permalink :name, :update => true
   
   validates_presence_of :name, :purpose # :dues
   validates_length_of :name, :in => MIN_NAME..MAX_NAME, 

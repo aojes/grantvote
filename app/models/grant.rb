@@ -17,7 +17,7 @@ class Grant < ActiveRecord::Base
   has_many :votes
   has_many :comments, :as => :commentable
 
-  has_permalink :name
+  has_permalink :name, :update => true
 
   validates_presence_of :name, :proposal, :amount
   validates_length_of :name, :in => MIN_NAME..MAX_NAME,
