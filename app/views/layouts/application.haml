@@ -7,7 +7,7 @@
       %title=h @page_title
     %meta{ "http-equiv" => "content-type", :content => "text/xhtml; charset=utf-8" }
     %meta{ :name => 'description', :content => "Grantvote helps people give and win financial support." }
-    %meta{ :name => 'keywords', :content => "grants, grant, money, funding, writing, winning, giving, financial, resource, network, community, philanthropy" }
+    %meta{ :name => 'keywords', :content => "grant, money, funding, writing, winning, giving, financial, resource, social, media, network, community, philanthropy" }
     %meta{ "http-equiv" => "imagetoolbar", :content => "no" }
     %meta{ :name => "distribution", :content => "all" }
     %meta{ :name => "robots", :content => "all" }
@@ -37,10 +37,10 @@
             %ul#nav-list.pull-2.prepend-top
               = show_link "Home", {:controller => 'home', :action => 'show'}, {:title => "Home", :class => 'rounded'}
               = show_link "Groups", {:controller => 'groups', :action => 'index'}, {:title => "Groups", :class => 'rounded'}
-              - if params[:group_id] and current_page?(:controller => "grants", :action => "index")
-                %li.active= link_to "Grants", "/grants", {:title => "Grants", :class => 'rounded'}
+              - if controller.controller_name == 'grants'
+                %li.active= link_to "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
               - else
-                = show_link "Grants", {:controller => 'grants', :action => 'index'}, {:title => "Grants", :class => 'rounded'}
+                = show_link "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
               = show_link "Blitz", {:controller => 'blitzes', :action => 'index'}, {:title => "Blitz", :class => 'rounded'}                
               = show_link "Leaders", {:controller => 'leaders', :action => 'index'}, {:title => "Leaders", :class => 'rounded'}
               - if current_page?(:controller => 'account', :action => 'index') || current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}")
@@ -67,9 +67,12 @@
             .span-14.pull-3.prepend-top= flash_messages
       .span-24.last#content
         = yield
-      - if RAILS_ENV == 'development'
-        .span-24.last
-          = render 'shared/debug'
+      .span-24.last#footer
+        &nbsp;
+      -#
+        - if RAILS_ENV == 'development'
+          .span-24.last
+            = render 'shared/debug'
     - if RAILS_ENV == 'production'
       <script type="text/javascript">
       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

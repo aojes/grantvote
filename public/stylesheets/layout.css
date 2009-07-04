@@ -75,10 +75,12 @@ a.rounded, div.pagination a {
 #content {
   background: white;
   padding-bottom: 60px;
-  min-height: 500px;
-  height: 500px;
+  min-height: 400px;
   height: auto !important;
   width: 950px; }
+
+#footer {
+  min-height: 80px; }
 
 #splash {
   background: #EAFFD6;

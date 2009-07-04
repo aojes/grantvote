@@ -1,21 +1,21 @@
 = render 'groups/header', :group => @group = find_group(params[:group_id]) || Group.find(params[:payment][:group_id]) || Group.find_by_permalink(session[:group_permalink])
 .span-24.prepend-top
-  .span-20.prepend-2.append-2.last
+  .span-20.prepend-2.append-2.prepend-top.last
     .span-10
-      %h3 Pay Dues
+      %h3 $5 Voting and Writing Dues
       %p= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_payment_path
     - if watching?(@group.id, current_user)
       .span-10.last
         %p &nbsp;
     - else
       .span-10.last
-        %h3 Watch Group
+        %h3 Watch Group Activity
         %p
           - form_for :membership, :url => { :controller => :memberships, :action => :create } do |f|
             = f.hidden_field :user_id, :value => current_user.id
             = f.hidden_field :group_id, :value => params[:group_id].nil? ? params[:payment][:group_id] : find_group_id(params[:group_id])
             = f.hidden_field :interest, :value => "false"
-            = f.submit "Watch"
+            = submit_button "Watch Group", :lite => true
   .span-22.prepend-1.last{:style => "margin-bottom: 3em"}
     =# render 'shared/payment'
 

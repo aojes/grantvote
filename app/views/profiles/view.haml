@@ -26,16 +26,18 @@
         = link_to "Add Friendship", friendships_path(:friend_id => @user), :method => :post
 
     = render 'shared/user_invitation' 
+    
     %h3.prepend-top< 
       Cred
       %hr
     = user_cred_images(@user, :small)
     - unless @user == current_user or current_user.credit.beads.zero?
       - form_for :credit, :url => {:controller => :credits, :action => :update}, :html => { :id => 'give_credit', :method => :put } do |f|
-        .prepend-1.prepend-top.last
+        .prepend-top.last
           = f.hidden_field :beads, :value => 1
           = f.hidden_field :user_id, :value => @user.id
-          = f.submit 'Give Bead'
+          &nbsp; &nbsp; &nbsp; 
+          = submit_button 'Give a Bead for a Shell', :lite => true
     %br{:clear => :both}
 
     %h3.prepend-top<
@@ -45,7 +47,7 @@
       - if friendship.friend.friendships.exists?(:friend_id => @user)
         = link_to user_defined_image(friendship.friend, :thumb, :alt => h(friendship.friend.login), :title => h(friendship.friend.login)), profile_path(friendship.friend.login)
 
-    - if @user == current_user
+    - if @user == current_user 
       %br{:clear => :both}
       %h3.prepend-top<
         Following
@@ -62,7 +64,8 @@
         - unless current_user.friendships.exists?(:friend_id => inverse_friendship)
           = link_to user_defined_image(inverse_friendship, :thumb, :alt => h(inverse_friendship.login), :title => h(inverse_friendship.login)), profile_path(h(inverse_friendship.login))
     - if current_user.friendships.exists?(:user_id => current_user, :friend_id => @user)
-      = link_to "Remove Friendship", friendship_path(@user), :method => :delete          
+      %p.prepend-top<
+        = link_to "Remove Friendship", friendship_path(@user), :method => :delete          
     %br
     %br
     %br
@@ -78,7 +81,7 @@
         %hr
       -#%span{:style => "padding-left: 5px"}
       - @user.groups.reverse.each do |g|
-        = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_path(g)
+        = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_path(g), :class => 'user-image'
         - if g.memberships.find_by_user_id_and_interest(current_user.id, true)
           = image_tag '/images/icons/silk/vcard.png', :alt => 'Voter', :title => 'Voter', :style => "position: relative; bottom: 38px; right: 52px"
         - else
@@ -88,14 +91,14 @@
         Awards
         %hr
       - @user.grants.awarded.reverse.each do |g|
-        = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g) 
+        = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image' 
     - if @user.grants.session.count > 0
       %h3.prepend-top.profile_verify<
         Sessions
         %hr
       - @user.grants.session.reverse.each do |g|
         - unless g.votes.count.zero?
-          = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g)
+          = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image'
     - if current_user == @user
       - if @user.grants.detect {|g| g.votes.count.zero? }
         %h3.prepend-top.profile_verify<
@@ -104,7 +107,7 @@
           %hr
       - @user.grants.session.reverse.each do |g|
         - if g.votes.count.zero?
-          = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g)
+          = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image'
     %br
     %br
     %br

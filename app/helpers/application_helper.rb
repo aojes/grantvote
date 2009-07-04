@@ -165,44 +165,6 @@ module ApplicationHelper
     prefix + path
   end 
   
-  def promote_cred(pebbles, beads, buttons, pens, shells, pearls, ribbons, laurels)
-    # TODO FIXME put this in the Credit model on after_create
-    if pebbles == 3
-      pebbles -= 3
-      beads += 1
-    end
-    
-    if beads == 3
-      beads -= 3
-      buttons += 1
-    end
-    
-    if buttons == 3
-      buttons -= 3
-      pens += 1
-    end
-
-    if shells == 3
-      shells -= 3
-      pearls += 1
-    end
-    
-    if pearls == 3
-      pearls -= 3
-      ribbons += 1
-    end
-    
-    if ribbons == 3
-      ribbons -= 3
-      laurels += 1
-    end    
-    
-    if laurels > 3
-      # Something nice
-    end
-    
-  end
-
   def session_bar_chart_image(grant)
     votes_yea = grant.votes.yea.count
     votes_nay = grant.votes.nay.count
@@ -224,7 +186,9 @@ module ApplicationHelper
   
   # for bar chart image alt & title attributes
   def accessible_tally(grant, chart_url, yeas, nays, session_voting_pool)
-    votes = "#{yeas} Yea, #{nays} Nay, "
+    votes_yea = "#{yeas} Yea, "
+    votes_nay = nays > 0 ? "#{nays} Nay, " : ''
+    votes = votes_yea + votes_nay
     awaiting = (session_voting_pool - yeas - nays).to_i + 1
     status = grant.final   ? 
              grant.awarded ? 
@@ -253,11 +217,13 @@ module ApplicationHelper
   end
   
   def group_accessible_tally(grant)
-    voters   = grant.group.memberships.voters.count
-    yea      = grant.votes.yea.count
-    nay      = grant.votes.nay.count
-    awaiting = voters - yea - nay
-    votes = "#{yea} Yea, #{nay} Nay, "  
+    voters    = grant.group.memberships.voters.count
+    yea       = grant.votes.yea.count
+    nay       = grant.votes.nay.count
+    awaiting  = voters - yea - nay
+    votes_yea = "#{yea} Yea, "
+    votes_nay = nay > 0 ? "#{nay} Nay, " : ''
+    votes = votes_yea + votes_nay
     status = grant.final   ? 
              grant.awarded ? 
                  "Awarded" : "Denied" : "Awaiting #{awaiting}"

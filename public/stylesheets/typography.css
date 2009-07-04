@@ -9,6 +9,10 @@ a:hover {
   color: blue;
   background-color: #FFF79F; }
 
+a.user-image {
+  outline: none;
+  background: none; }
+
 a.group_header {
   color: #82B039;
   text-decoration: none;
