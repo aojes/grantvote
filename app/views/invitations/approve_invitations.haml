@@ -12,7 +12,7 @@
       -if i.sender_id.nil? and i.id != 1
         %tr
           %td 
-            =distance_of_time_in_words(i.created_at, Time.now, true)
+            = distance_of_time_in_words(i.created_at, Time.now, true)
             ago 
           %td 
             =i.email

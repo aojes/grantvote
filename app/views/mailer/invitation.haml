@@ -1,13 +1,10 @@
-%h3 Greetings
-%p
-  %strong
-    = @user
-  sent you an invitation to join Grantvote.
-%p 
-  %strong
+%p<
+  %strong<
     Grantvote 
   helps people give and win financial support.
-%p 
-  Create and join groups based on shared interests. Grow your groups and their financial resources. Write a grant and let the voters of the group decide. Win the grant and it's yours, no strings attached.
-  = link_to @signup_url, @signup_url, {:target=>'_blank'}
+%p
+  %strong<
+    = @user.login
+  has invitated you.  Please visit the link to register.
+%p= link_to @signup_url, @signup_url
 

@@ -1,8 +1,6 @@
 = error_messages_for :invitation
 - form_for  Invitation.new do |f| 
   .form_row
-    %h3 Email
+    %h6.quiet Email
     = f.text_field :email, :class=>'required email', :id=>'email_invitation'
-    .clear
-    %br 
-    = submit_button "Send"
+    = submit_button "Send", :lite => true

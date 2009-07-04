@@ -30,9 +30,11 @@
         %h3= link_to h(group.name), group_path(group), :alt => h(group.name)
         == #{pluralize group.memberships.voters.count, "voter"}
         == | #{number_to_currency group.funds.floor, :precision => 0} pool 
+        == | #{pluralize group.grants.awarded.count, 'award'}
         == | #{pluralize voted_sessions(group.grants.session), "session"}
-        == | formed
-        = group.created_at.strftime "%B %Y"
+        -#
+          == | formed
+          = group.created_at.strftime "%B %Y"
       .span-12.last
         %span{:style => "position:relative; top: 4px"}
           %strong=h group.purpose

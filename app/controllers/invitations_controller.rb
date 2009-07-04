@@ -4,12 +4,12 @@ class InvitationsController < ApplicationController
 
   def index
     if current_user
-      # @page_title ="Manage Invitations"
-      # @invitations = Invitation.find(:all)
+      @page_title ="Manage Invitations"
+      @invitations = Invitation.find(:all)
 
       respond_to do |format|
         # format.html { redirect_to(invitations_url) }
-        format.html { redirect_to profile_path(current_user.login)  }
+        format.html #{ redirect_to profile_path(current_user.login)  }
       end
     else
       @page_title = "Grantvote"
@@ -25,18 +25,14 @@ class InvitationsController < ApplicationController
   def create
     @invitation = Invitation.new(params[:invitation])
     @invitation.sender = current_user
+    @invitation.news = true if current_user
     if @invitation.save and params[:invitation]
       if current_user and params[:invitation]
 
-        @p = Profile.find_by_id(current_user.id)
-        if @p.name.blank?
-          @user = @p.login
-        else
-          @user = @p.name
-        end
+        @user = current_user
         Mailer.deliver_invitation(@invitation, signup_url(@invitation.token), @user)
 
-        flash[:notice] = "Thank you, invitation sent."
+        flash[:notice] = "Invitation sent."
         respond_to do |format|
           format.html { redirect_to profile_path(current_user.login)  }
           format.js
@@ -53,15 +49,6 @@ class InvitationsController < ApplicationController
     end
   end
 
-  def approve_invitations
-
-    if current_user.id == 1
-      @invitation = Invitation.find(:all)
-    else
-      redirect_to root_url
-    end
-  end
-
   def send_invite
     @invitation  = Invitation.find(params[:id])
 
@@ -75,6 +62,15 @@ class InvitationsController < ApplicationController
     end
   end
 
+private
+  def approve_invitations
+
+    if current_user.id == 1
+      @invitation = Invitation.find(:all)
+    else
+      redirect_to root_url
+    end
+  end
 
 
   def send_all_invites
@@ -85,12 +81,11 @@ class InvitationsController < ApplicationController
         
         Mailer.deliver_invitation_from_admin(@invitation, signup_url(@invitation.token))
       end
-
     end
       flash[:notice] = "You have approved all invitations."
       respond_to do |format|
       format.html { redirect_to profile_path(current_user.login)  }
-      end
+    end
   end
 
 end

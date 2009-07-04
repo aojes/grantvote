@@ -1,7 +1,7 @@
 class Mailer < ActionMailer::Base
    default_url_options[:host] = "www.grantvote.com"
    def invitation(invitation, signup_url, user)
-    subject      'Invitation'
+    subject      'Invitation from a friend'
     recipients   invitation.email
     from         'noreply@grantvote.com'
     body         :invitation => invitation, :signup_url => signup_url, :user => user
