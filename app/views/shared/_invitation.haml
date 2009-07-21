@@ -1,5 +1,5 @@
 = error_messages_for :invitation
-- form_for :invitation, :url => {:controller => "invitations", :action => "create"} do |f|
+- form_for [:invitation, Invitation.new], :url => {:controller => "invitations", :action => "create"} do |f|
   .form_row
     %h2.email Email
     = f.text_field :email, :class => "text invitation_email_text"

@@ -15,12 +15,15 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 # config.action_mailer.raise_delivery_errors = false
-
-ActionMailer::Base.delivery_method = :sendmail
+config.gem "cwninja-inaction_mailer", 
+                :lib => 'inaction_mailer/force_load', 
+                :source => 'http://gems.github.com'
+#ActionMailer::Base.delivery_method = :sendmail
 #ActionMailer::Base.sendmail_settings = {  :location => '/usr/sbin/sendmail',  :arguments => '-i -t' } 
-ActionMailer::Base.raise_delivery_errors = false
-ActionMailer::Base.default_charset = "utf-8"
-ActionMailer::Base.perform_deliveries = false
+#ActionMailer::Base.raise_delivery_errors = false
+#ActionMailer::Base.default_charset = "utf-8"
+#ActionMailer::Base.perform_deliveries = false
+
 # ActionView:: Template or TemplateHandler ( register haml extension )
 
 config.after_initialize do

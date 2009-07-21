@@ -54,7 +54,7 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
-
+LiveValidations.use :jquery_validations
 ActionMailer::Base.delivery_method = :sendmail
 #ActionMailer::Base.sendmail_settings = {  :location => '/usr/sbin/sendmail',  :arguments => '-i -t' }
 ActionMailer::Base.raise_delivery_errors = true
