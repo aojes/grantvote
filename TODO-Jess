@@ -1,4 +1,4 @@
-BLITZ SEARCH IS BROKEN | UPGRADE TO SEARCHLOGIC 2
+upgrade to Searchlogic 2
 
 check "pay dues and vote" on blitz & grant#index
 
@@ -9,7 +9,7 @@ defer
   
   important 
     
-    private membership
+    private memberships
     leave group (put in terms no deduction from group pool)
     group moderation
     facebook-style links in plain text
@@ -43,12 +43,10 @@ _________________
 business
   
   write legal TOS
-  ask for hosting sponsorship
     
 _________________
 notes
   
-  don't destroy any data
   how might developing an API benefit us?
   500 error on /users for staging
   media sample: 

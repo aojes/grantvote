@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   acts_as_authentic
-  # acts_as_tagger FIXME
+  # acts_as_tagger defer_FIXME
   
   has_one  :profile
   has_one  :credit
@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
   has_many :comments, :as => :commentable
   has_many :payments
   has_many :payment_notifications
-  has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
+  has_many :sent_invitations, 
+             :class_name => 'Invitation', :foreign_key => 'sender_id'
   belongs_to :invitation
   
   accepts_nested_attributes_for :profile  

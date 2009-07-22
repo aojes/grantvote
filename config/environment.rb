@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.3' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -21,19 +21,25 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
+  config.gem "authlogic",   :version => "~> 2.1.1"
   config.gem "searchlogic", :version => "~> 1.6.6"
-  
-  #config.gem "binarylogic-searchlogic", 
-  #  :lib => 'searchlogic',
-  #  :source  => 'http://gems.github.com', 
-  #  :version => '~> 2.0.0'
+    #config.gem "binarylogic-searchlogic", 
+    #  :lib => 'searchlogic',
+    #  :source  => 'http://gems.github.com', 
+    #  :version => '~> 2.0.0'
+
+  config.gem "giraffesoft-resource_controller", 
+               :lib => "resource_controller",  
+               :version => "~> 0.6.5", 
+               :source => "git://github.com/giraffesoft/resource_controller.git"
+
+  config.gem "haml", :version => "~> 2.2.2"
+  config.gem "hpricot"
+  config.gem "activemerchant", :lib => "active_merchant"
+
 
   config.gem "populator"
   config.gem "faker"
-  config.gem "haml"
-  config.gem "cucumber"
-  config.gem "hpricot"
-  config.gem "activemerchant", :lib => "active_merchant"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -55,10 +61,10 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 LiveValidations.use :jquery_validations
-ActionMailer::Base.delivery_method = :sendmail
-#ActionMailer::Base.sendmail_settings = {  :location => '/usr/sbin/sendmail',  :arguments => '-i -t' }
-ActionMailer::Base.raise_delivery_errors = true
-ActionMailer::Base.default_charset = "utf-8"
-ActionMailer::Base.perform_deliveries = true
+# ActionMailer::Base.delivery_method = :sendmail
+# ActionMailer::Base.sendmail_settings = {  :location => '/usr/sbin/sendmail',  :arguments => '-i -t' }
+# ActionMailer::Base.raise_delivery_errors = true
+# ActionMailer::Base.default_charset = "utf-8"
+# ActionMailer::Base.perform_deliveries = true
 # ActionView:: Template or TemplateHandler ( register haml extension )
 
