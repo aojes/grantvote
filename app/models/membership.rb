@@ -1,7 +1,8 @@
 class Membership < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
-  
+  has_many :grants
+    
   validates_uniqueness_of :user_id, :scope => :group_id
   
   named_scope :voters,  :conditions => { :interest => true } 

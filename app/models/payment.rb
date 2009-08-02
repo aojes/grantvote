@@ -1,9 +1,10 @@
 class Payment < ActiveRecord::Base
+  
   belongs_to :user
   has_many :transactions, :class_name => "PaymentTransaction"
   
-  MIN_PAY = 5
-  
+  MIN_PAY, AMOUNT = 5
+ 
   # attr_accessor :card_number, :card_verification
   
   # validates_presence_of :amount, :full_name, :address_line_1, :city, :state

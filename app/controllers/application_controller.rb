@@ -49,6 +49,12 @@ class ApplicationController < ActionController::Base
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
-  
+    
+    def remit
+      @remit ||= begin
+        sandbox = !Rails.env.production?
+        Remit::API.new(FPS_ACCESS_KEY, FPS_SECRET_KEY, sandbox)
+      end
+    end  
   
 end

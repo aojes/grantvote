@@ -10,7 +10,7 @@ describe GroupsController do
       @group = Factory(:group)
       @group.memberships.create(:user => @user)
     end
-    describe "shouble be authenticated" do
+    describe "should be authenticated" do
       it "should fail if we are not authenticated" do
         controller.should_receive(:index)
         get :index

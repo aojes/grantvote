@@ -1,9 +1,10 @@
 Factory.define :membership do |m|
-  m.interest false
+  m.group { |g| g.association(:group) }
+  m.user { |g| g.association(:user) }
+
+  m.interest false # true for voting and writing privileges
   m.contributes 0
   m.rewards 0
 end
 
-Factory.define :invalid_group do |g|
-end
 

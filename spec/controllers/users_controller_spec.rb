@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe HomeController do
-  integrate_views
+describe UsersController do
+  #integrate_views
   
   describe "Authenticated examples" do
     before(:each) do
@@ -10,8 +10,6 @@ describe HomeController do
     end
     describe "should be authenticated" do
       it "should fail if we are not authenticated" do
-        get :show
-        response.should be_success
       end
     end
   end
@@ -19,9 +17,6 @@ describe HomeController do
   describe "Logged out examples" do
     describe "should not be authenticated" do
       it "should pass if we are not authenticated" do
-        controller.should_not_receive(:show)
-        get :show
-        response.should_not be_success
       end
     end
   end

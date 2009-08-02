@@ -5,3 +5,4 @@ end
 
 Factory.define :invalid_profile, :class => Profile do |u|
 end
+

@@ -14,6 +14,7 @@ class Grant < ActiveRecord::Base
   
   belongs_to :group
   belongs_to :user
+  belongs_to :membership
   has_many :votes
   has_many :comments, :as => :commentable
 

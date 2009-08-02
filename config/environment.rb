@@ -36,7 +36,7 @@ Rails::Initializer.run do |config|
   config.gem "haml", :version => "~> 2.2.2"
   config.gem "hpricot"
   config.gem "activemerchant", :lib => "active_merchant"
-
+  config.gem "remit"
 
   config.gem "populator"
   config.gem "faker"

@@ -1,0 +1,10 @@
+development: &sandbox
+  access_key: 1FWAJS581R4YW90Y2W82
+  secret_key: T0Pvibqy3erPUt3UD2I0YHHhzwaEIo3Sw6GEcAf7
+
+test:
+  <<: *sandbox
+
+production:
+  access_key: 1FWAJS581R4YW90Y2W82
+  secret_key: T0Pvibqy3erPUt3UD2I0YHHhzwaEIo3Sw6GEcAf7
