@@ -1,3 +1,5 @@
+does blitz session work on profile?
+
 upgrade to Searchlogic 2
 
 check "pay dues and vote" on blitz & grant#index
@@ -37,6 +39,8 @@ defer
     remove 'add comment' link for logged-out view
     add 'mark as spam' or flag as inappropriate link on comments, etc.
     make following/followers collapsible & set default
+    user location map via google maps (see www.obsidianportal.com/map)
+    user can choose a default avatar (historical or archetypal figures)
 
       
 _________________
