@@ -34,14 +34,14 @@ ActionMailer::Base.perform_deliveries = true
 # Enable threaded mode
 # config.threadsafe!
 
-config.after_initialize do
-  ActiveMerchant::Billing::Base.mode = :test
-  paypal_options = {
-    :login => "grantv_1243695073_biz_api1.gmail.com",
-    :password => "1243695084",
-    :signature => "AyB-j3GrLTPVJLRaSugnRkXHG7iOAxlkJirxjqbFn4umeMQWMNWvAQFs"
-  }
-  ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
-  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-  
-end
+#config.after_initialize do
+#  ActiveMerchant::Billing::Base.mode = :test
+#  paypal_options = {
+#    :login => "grantv_1243695073_biz_api1.gmail.com",
+#    :password => "1243695084",
+#    :signature => "AyB-j3GrLTPVJLRaSugnRkXHG7iOAxlkJirxjqbFn4umeMQWMNWvAQFs"
+#  }
+#  ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+#  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+#  
+#end

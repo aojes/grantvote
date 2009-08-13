@@ -7,7 +7,7 @@ class BlitzesController < ApplicationController
     @page_title = "Grantvote Blitz"
     @general_pool = BlitzFund.find_by_dues(Blitz::DUES).general_pool
     @search = Blitz.new_search(params[:search])
-
+    session[:group_id] = 0
     if params[:search]
       if params[:search][:conditions]
         query = params[:search][:conditions][:proposal_keywords].split

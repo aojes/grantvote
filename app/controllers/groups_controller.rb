@@ -29,6 +29,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find_by_permalink(params[:id])
+    session[:group_id] = @group.id
     @page_title = @group.name + " on Grantvote"  # TODO safe call ?
     @search = @group.grants.new_search(params[:search])
 

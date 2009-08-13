@@ -14,6 +14,10 @@ class Payment < ActiveRecord::Base
   #  :message => "can be greater than or equal to $#{MIN_PAY}"  
   
   # validate_on_create :validate_card
+
+  def payment
+  
+  end
   
   def purchase
     response = process_purchase

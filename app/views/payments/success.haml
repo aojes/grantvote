@@ -1,6 +1,9 @@
-%h2 Success!
-- if @group
-  %h3= link_to @group.name, group_path(@group)
-- else
-  %h3= link_to "Grantvote Blitz", blitzes_path
+.center.prepend-top
+  %h2 Success!
+  - if @group
+    .quiet.alt return to
+    %h3= link_to @group.name, group_path(@group)
+  - else
+    .quiet.alt return to
+    %h3= link_to "Grantvote Blitz", blitzes_path
 

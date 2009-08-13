@@ -39,8 +39,8 @@ config.gem "thoughtbot-factory_girl",
 config.gem "cucumber"
 config.gem "webrat"
 
-config.after_initialize do
-  ActiveMerchant::Billing::Base.mode = :test
-  ::STANDARD_GATEWAY = ActiveMerchant::Billing::BogusGateway.new
-  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::BogusGateway.new
-end
+#config.after_initialize do
+#  ActiveMerchant::Billing::Base.mode = :test
+#  ::STANDARD_GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+#  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+#end
