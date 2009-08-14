@@ -7,6 +7,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.new
     @payment.user_id = current_user
     @payment.group_id = session[:group_id]
+    @payment.amount = Payment::AMOUNT
     
     request = Remit::InstallPaymentInstruction::Request.new(  
       :payment_instruction => "MyRole == 'Caller' orSay 'Role does not match';",  
@@ -33,7 +34,7 @@ class PaymentsController < ApplicationController
         :caller_reference   => "#{@payment.id}-payment-#{Time.now.to_i}",
         :recipient_token    => @payment.recipient_token_id,
         :payment_reason     => "Blitz Writing and Voting Privileges",
-        :transaction_amount => '3.00',
+        :transaction_amount => Payment::AMOUNT_STR,
         :return_url         => 'http://localhost:3000/payments/finalize'
       }).url
     else
@@ -71,7 +72,7 @@ class PaymentsController < ApplicationController
           r.caller_token_id = @payment.caller_token_id
           r.recipient_token_id = @payment.recipient_token_id
           r.transaction_amount = Remit::RequestTypes::Amount.new(
-                                       :currency_code => 'USD', :amount => 3.00)
+                            :currency_code => 'USD', :amount => Payment::AMOUNT)
           r.charge_fee_to = 'Recipient' # Remit::ChargeFeeTo::RECIPIENT
           r.caller_reference = "#{@payment.id}-transaction-#{Time.now.to_i}"
           r.meta_data = "Blitz Writing and Voting Privileges"
@@ -80,12 +81,22 @@ class PaymentsController < ApplicationController
         payment_response = remit.pay(request)
       end
             
-      if payment_response.successful?
+      if payment_response.successful? && @payment.process_payment
         flash[:notice] = "Success!"
-        redirect_to blitzes_path
+        if @payment.group_id.zero?
+          redirect_to blitzes_path
+        else
+          group = Group.find(@payment.group_id)
+          redirect_to group_path(group)
+        end
       else
         flash[:notice] = "Unsuccessful."
-        redirect_to blitzes_path
+        if @payment.group_id.zero?
+          redirect_to blitzes_path
+        else
+          group = Group.find(@payment.group_id)
+          redirect_to group_path(group)
+        end
       end
     end
   end
@@ -97,49 +108,4 @@ private
     @remit ||= Remit::API.new(FPS_ACCESS_KEY, FPS_SECRET_KEY, @sandbox)
   end 
 end  
-# PAYPAL
-#   ssl_required :express, :new, :create if Rails.env.production?
-##  
-#  def express
-#    group_id = session[:group_permalink] == 0 ?
-#          0 : Group.find_by_permalink(session[:group_permalink]).id 
-#    response = EXPRESS_GATEWAY.setup_purchase( (Payment::MIN_PAY * 100),
-#      :user_id           => current_user.id,
-#      :group_id          => group_id,
-#      :ip                => request.remote_ip,
-#      :return_url        => new_payment_url,
-#      :cancel_return_url => group_id.zero? ? blitzes_url : groups_url
-#    )
-#    redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
-#  end
 
-#  def new
-##  # PAYPAL
-#    @page_title = "Express Payment"
-#    @payment = Payment.new(:express_token => params[:token])
-#    unless session[:group_permalink] == 0
-#      @group = Group.find_by_permalink(session[:group_permalink])
-#    end
-#  end
-
-#  def create
-#  # PAYPAL
-#    @payment = Payment.new(params[:payment])
-#    @payment.user_id = current_user.id
-#    @payment.group_id = session[:group_permalink] == 0 ? 
-#                    0 : Group.find_by_permalink(session[:group_permalink]).id
-#    @payment.amount = Payment::MIN_PAY
-#    @group = @payment.group_id.zero? ?
-#                    false : Group.find_by_permalink(session[:group_permalink])
-#    @payment.ip_address = request.remote_ip
-#    if @payment.save
-#      if @payment.purchase
-#        render :action => "success"
-#      else
-#        render :action => "failure"
-#      end
-#    else
-#      render 'new' 
-#    end
-#  end
-#end  

@@ -4,6 +4,8 @@ review bar chart graph for inaccuracy on final
 
 review blitz preview (button placement)
 
+adapt blitz views for variable dues
+
 review adapt_objects for resizing content (eg. vimeo in demo)
 
 make consistent alignment for " preview / session / awarded " panes
@@ -18,7 +20,8 @@ _________________
 defer 
   
   important 
-    
+  
+    save payment params
     private memberships
     leave group (put in terms no deduction from group pool)
     group moderation

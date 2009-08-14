@@ -4,6 +4,7 @@ class CreatePayments < ActiveRecord::Migration
       t.integer :user_id
       t.integer :group_id
       t.decimal :amount, :precision => 9, :scale => 2
+      t.boolean :success, :default => false, :null => false
       t.string  :caller_token_id
       t.string  :recipient_token_id
       t.string  :pipeline_token_id
