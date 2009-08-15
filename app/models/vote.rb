@@ -34,10 +34,10 @@ class Vote < ActiveRecord::Base
   
   def allow_blitz?
     user.blitz_interest == true && 
-    user.blitzes.session.count <= 1 &&
+    user.blitzes.session.detect {|b| !b.votes.count.zero? }.nil? &&
     Blitz.find_all_by_final(false).reject! {|b| b.votes.count.zero? }. 
-          collect! {|b| b.amount }.sum + 
-                                  blitz.amount <= blitz.blitz_fund.general_pool
+      collect! {|b| b.amount }.sum + 
+                               blitz.amount <= blitz.blitz_fund.general_pool
   end
   
   def check_grant_finalization

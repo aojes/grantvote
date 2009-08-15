@@ -13,10 +13,5 @@
           - leader.user.groups.slice(0..10).each do |group|
             = link_to user_defined_image(group, :thumb, :alt => h(group.name), :title => h(group.name)), group_path(group.permalink)
     %hr
-  - if @search.page_count > 1
-    .pagination
-      %h3= page_links
-  - else
-    .tbs
-      &nbsp;
+  %h4= will_paginate @leaders
 

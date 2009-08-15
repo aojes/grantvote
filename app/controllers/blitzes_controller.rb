@@ -10,7 +10,8 @@ class BlitzesController < ApplicationController
     session[:group_id] = 0
     
     @search = Blitz.search(params[:search])
-    @blitzes = @search.all.paginate(:page => params[:page])
+    @blitzes = @search.all.reject {|b| !(b.votes.count.zero? && b.awarded) }.
+      paginate(:page => params[:page])
 
     session[:group_permalink] = 0 # set to 0 for blitz payment
     respond_to do |format|
@@ -30,11 +31,11 @@ class BlitzesController < ApplicationController
   
   def create
     @blitz = current_user.blitzes.build(params[:blitz])
-    
-    ## FIXME
-    @blitz.blitz_fund_id = 1 # for DUES = 5
-    ##
-    @blitz.votes_win = 1 + @blitz.amount / 5
+
+    # TODO refactor to model & protect blitz votes
+    blitz_fund = BlitzFund.find_by_dues(Payment::AMOUNT)
+    @blitz.blitz_fund_id = blitz_fund.id
+    @blitz.votes_win = 1 + @blitz.amount / Payment::AMOUNT  
     
     if @blitz.save
       flash[:notice] =  "Created blitz grant "

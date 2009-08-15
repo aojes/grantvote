@@ -1,5 +1,4 @@
 class Grant < ActiveRecord::Base
-  require "hpricot"
   
   AWARD_THRESHOLD, AWARD_THRESHOLD_PCT = [0.500, 50]
   

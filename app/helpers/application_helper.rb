@@ -168,7 +168,8 @@ module ApplicationHelper
   def session_bar_chart_image(grant)
     votes_yea = grant.votes.yea.count
     votes_nay = grant.votes.nay.count
-    session_voting_pool = (1 + grant.amount / Blitz::DUES).to_f * 2
+                          # TODO consolidate this setting (see blitz controller)
+    session_voting_pool = (1 + grant.amount / Payment::AMOUNT).to_f * 2
     
     green = (votes_yea / session_voting_pool).round(2) * 100
       red = (votes_nay / session_voting_pool).round(2) * 100

@@ -5,13 +5,10 @@ class ProfilesController < ApplicationController
     @user = User.find_by_login(params[:permalink])
     @page_title = @user.login + ' on Grantvote'
     
-    ##
-    # group & blitz award count
-    # grant & blitz awards
-    # grant & blitz sessions
-    
+    # grant & blitz awards    ### TODO sort by updated_at
     @awards = @user.grants.awarded.concat(@user.blitzes.awarded)
-    
+
+    # grant & blitz sessions  ### 
     @session = @user.grants.session.reject {|g| g.votes.count.zero? }.
       concat(@user.blitzes.session.reject {|b| b.votes.count.zero? })
     

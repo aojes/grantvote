@@ -1,11 +1,9 @@
 class Blitz < ActiveRecord::Base
-  require "hpricot"
   
-  DUES = 5
+ # DUES = 5
   MIN_AWARD = 10
   MIN_NAME, MAX_NAME = [2, 60]
   
-  # GREEN, BLUE, RED, SCALE = ["E6EFC2", "DFF4FF", "FBE3E4", "DFDFDF"]
   GREEN, BLUE, RED, SCALE = ["66C966", "628BB5", "E57474", "E0E0E0"]
   SESSION_BAR_CHART_X, SESSION_BAR_CHART_Y  = [198, 32]
   AWARD_CHART_X, AWARD_CHART_Y = [92, 50]
@@ -35,7 +33,6 @@ class Blitz < ActiveRecord::Base
   named_scope :session,  :conditions => {:final => false}
   named_scope :chronological, :order => "created_at ASC"
   
- 
   def finalizable?
     votes.yea.count == self.votes_win or votes.nay.count == self.votes_win + 1
   end

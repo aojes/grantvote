@@ -4,10 +4,12 @@ class LeadersController < ApplicationController
   before_filter :require_user
   def index
     @page_title = "Grantvote Leaders"
-
-    @search = Credit.leaders.new_search(params[:search])
-    @search.per_page = 5
-    @leaders, @leaders_count = @search.all, @search.count
+    
+    @search = Credit.leaders.search(params[:search])
+    @leaders = @search.all.paginate(:page => params[:page], :per_page => 3)
+#    @search = Credit.leaders.new_search(params[:search])
+#    @search.per_page = 5
+#    @leaders, @leaders_count = @search.all, @search.count
   
   end
   
