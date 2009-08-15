@@ -7,21 +7,9 @@ class GroupsController < ApplicationController
   
   def index
     @page_title = "Search Groups"
-    @search = Group.new_search(params[:search])
-    
-    if params[:search]
-      if params[:search][:conditions]
-        query = params[:search][:conditions][:name_keywords].split
-      
-        @search.conditions.or_group do |g|
-          g.name_keywords = query
-          g.or_purpose_keywords = query
-        end 
-      end
-    end  
-    @search.per_page = 10
-    @search.order_by, @search.order_as = [:funds], 'DESC'
-    @groups, @groups_count = @search.all, @search.count
+    @search = Group.search(params[:search])
+    @groups = @search.all.paginate(:page => params[:page])
+
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -29,18 +17,9 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find_by_permalink(params[:id])
-    @page_title = @group.name + " on Grantvote"  # TODO safe call ?
-    @search = @group.grants.new_search(params[:search])
-
-    @search.conditions.final = true
-    @search.conditions.awarded = true
-    @search.per_page = 5
-    @search.order_as = "DESC"
-    @search.order_by = :updated_at
+    @page_title = @group.name + ' on Grantvote'
     
-    @grants_awarded = @search.all
-
-    @grants_awarded_count = @search.count
+    @grants = @group.grants.awarded.recent.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -97,16 +76,4 @@ class GroupsController < ApplicationController
     end
   end
 
-private
-
-#  def destroy
-#    @group = Group.find_by_permalink(params[:id])
-#    @group.destroy
-
-#    respond_to do |format|
-#      format.html { redirect_to(groups_url) }
-#      format.xml  { head :ok }
-#    end
-#  end
-  
 end

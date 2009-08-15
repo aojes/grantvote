@@ -16,11 +16,11 @@
       %h3.quiet Winning starts with a bit of research
     .span-10.last
       - form_for @search do |f|
-        - f.fields_for @search.conditions do |groups|
-          .form_row
-            %h6 Search awards
-            = groups.text_field :proposal_keywords, :class => "text buttonless_field"
-            = submit_button "Search"
+        .form_row
+          %h6 Search awards
+          = f.text_field :proposal_like, :class => "text buttonless_field"
+          = f.hidden_field :awarded, :value => true
+          = submit_button "Search"
     .span-20.prepend-top.last
       %br
   - @grants.each do |g|
@@ -34,11 +34,5 @@
         %hr
 
   .clear
-  - if @grants_count > 0
-    - if @search.page_count > 1
-      .pagination{:style => "text-align: left"}
-        .prepend-7<
-          %h3= page_links
-    - else
-      .tbs &nbsp;
+  %h4.pull-1= will_paginate @grants
 

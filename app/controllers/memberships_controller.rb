@@ -6,6 +6,7 @@ class MembershipsController < ApplicationController
     @page_title = "New Membership"
     @membership = Membership.new
     session[:group_id] = Group.find_by_permalink(params[:group_id]).id
+    session[:group_permalink] = params[:group_id]
   end
   
   def create

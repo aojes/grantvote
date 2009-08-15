@@ -34,8 +34,9 @@ class Grant < ActiveRecord::Base
   # before_save :adapt_links
   
   named_scope :awarded,  :conditions => {:awarded => true}
+  named_scope :recent, :order => "updated_at ASC"
   named_scope :defeated, :conditions => {:final => true, :awarded => false}
-  named_scope :session,  :conditions => {:final => false}
+  named_scope :session,  :conditions => {:final => false} # FIXME votes > 0 ?
   named_scope :user_group_session, lambda { |*args|
     {  :conditions => 
           { :user_id => args.first, :group_id => args.second, :final => false } 

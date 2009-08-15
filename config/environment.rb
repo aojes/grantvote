@@ -21,12 +21,18 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
-  config.gem "authlogic",   :version => "~> 2.1.1"
-  config.gem "searchlogic", :version => "~> 1.6.6"
-    #config.gem "binarylogic-searchlogic", 
-    #  :lib => 'searchlogic',
-    #  :source  => 'http://gems.github.com', 
-    #  :version => '~> 2.0.0'
+  config.gem "authlogic", :version => "~> 2.1.1"
+  
+  config.gem "binarylogic-searchlogic", 
+    :lib => 'searchlogic',
+    :source  => 'http://gems.github.com', 
+    :version => '~> 2.2.3'
+      # config.gem "searchlogic", :version => "~> 1.6.6"
+
+  config.gem "mislav-will_paginate",
+    :lib => 'will_paginate',
+    :source => 'http://gems.github.com',
+    :version => '~> 2.3.11'
 
   config.gem "giraffesoft-resource_controller", 
                :lib => "resource_controller",  

@@ -5,7 +5,11 @@
     -#%p.quiet We are working to make it better day by day!
   .span-10.last
     - form_for @search do |f|
-      - f.fields_for @search.conditions do |groups|
+      .form_row
+        %h6 Find a group
+        = f.text_field :name_like, :class => 'text buttonless_search'
+        = submit_button 'Search'
+      -# f.fields_for @search.conditions do |groups|
         .form_row
           %h6 Find a group
           = groups.text_field :name_keywords, :class => "text buttonless_field"
@@ -15,7 +19,7 @@
 .span-20.prepend-2.append-2
   .span-12.prepend-3.quiet
     - if params[:search]
-      == #{pluralize @groups_count, 'group'} found
+      == #{pluralize @groups.count, 'group'} found
     - else
       All Groups
   .span-4.last.quiet Top Members 
@@ -42,13 +46,5 @@
       - top_contributors(group.id).each do |c|
         = link_to user_defined_image(c, :small, :alt => "#{c.login}", :title => "#{c.login}"), profile_path(c.login)
     
-%br{ :style => "clear:both" }        
-- if @groups_count > 0
-  - if @search.page_count > 1
-    .pagination{:style => "text-align: left"}
-      .prepend-6<
-        %h3= page_links
-  - else 
-    .tbs
-      &nbsp;
-
+%br(clear='both')        
+%h4= will_paginate @groups

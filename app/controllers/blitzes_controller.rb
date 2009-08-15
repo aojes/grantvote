@@ -5,27 +5,13 @@ class BlitzesController < ApplicationController
   
   def index
     @page_title = "Grantvote Blitz"
-    @general_pool = BlitzFund.find_by_dues(Blitz::DUES).general_pool
-    @search = Blitz.new_search(params[:search])
-    session[:group_id] = 0
-    if params[:search]
-      if params[:search][:conditions]
-        query = params[:search][:conditions][:proposal_keywords].split
-      
-        @search.conditions.or_group do |g|
-          g.proposal_keywords = query
-          # FIXME g.or_name_keywords = query
-        end 
-      end
-    end  
-    @search.per_page = 10
-    @search.conditions.final = false
-    @search.order_by, @search.order_as = [:updated_at], 'DESC'
-    # @search.conditions.final = true
-    # @search.conditions.awarded = true
-    @search.per_page = 10
+    @general_pool = BlitzFund.find_by_dues(Payment::AMOUNT).general_pool
 
-    @blitzes, @blitzes_count = @search.all, @search.count
+    session[:group_id] = 0
+    
+    @search = Blitz.search(params[:search])
+    @blitzes = @search.all.paginate(:page => params[:page])
+
     session[:group_permalink] = 0 # set to 0 for blitz payment
     respond_to do |format|
       format.html # index.html.erb

@@ -7,7 +7,7 @@ namespace :db do
     
     [Group, Membership, Grant, Blitz, Vote].each(&:delete_all)
 
-    Group.populate 12 do |group|
+    Group.populate 32 do |group|
       group.name = Populator.words(3..5).titleize
       group.purpose = Populator.words(5..10).titleize
       group.dues = 5
@@ -67,38 +67,37 @@ namespace :db do
         grant.proposal = Populator.sentences(2..12)
         grant.media = ['', '', %(<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>)]
         grant.amount = 20..50
-        grant.awarded = [false, true]
-        grant.final = [false, true]
-        grant.created_at = 1.year.ago..Time.now
-        grant.updated_at = 1.week.ago..Time.now
+        grant.awarded = [true, true]
+        grant.final = [true, true]
+        grant.created_at = 1.year.ago..Time.now - 1.month
 
-        Vote.populate 1 do |v|
-          v.user_id = grant.user_id
-          v.grant_id = grant.id
-          v.group_id = group.id
-          v.blitz_id = 0
-          v.cast = "yea"
-          v.created_at = 1.month.ago..Time.now
-          v.updated_at = v.created_at
-        end
-        Vote.populate 1 do |v|
-          v.user_id = 4
-          v.grant_id = grant.id
-          v.group_id = group.id
-          v.blitz_id = 0
-          v.cast = "yea"
-          v.created_at = 1.month.ago..Time.now
-          v.updated_at = v.created_at
-        end
-        Vote.populate 1 do |v|
-          v.user_id = 3
-          v.grant_id = grant.id
-          v.group_id = group.id
-          v.blitz_id = 0
-          v.cast = "yea"
-          v.created_at = 1.month.ago..Time.now
-          v.updated_at = v.created_at
-        end     
+             Vote.populate 1 do |v|
+               v.user_id = grant.user_id
+               v.grant_id = grant.id
+               v.group_id = group.id
+               v.blitz_id = 0
+               v.cast = "yea"
+               v.created_at = 1.month.ago..Time.now
+               v.updated_at = v.created_at
+             end
+     #        Vote.populate 1 do |v|
+     #          v.user_id = 4
+     #          v.grant_id = grant.id
+     #          v.group_id = group.id
+     #          v.blitz_id = 0
+     #          v.cast = "yea"
+     #          v.created_at = 1.month.ago..Time.now
+     #          v.updated_at = v.created_at
+     #        end
+     #        Vote.populate 1 do |v|
+     #          v.user_id = 3
+     #          v.grant_id = grant.id
+     #          v.group_id = group.id
+     #          v.blitz_id = 0
+     #          v.cast = "yea"
+     #          v.created_at = 1.month.ago..Time.now
+     #          v.updated_at = v.created_at
+     #        end     
       end
     end
     
@@ -106,16 +105,20 @@ namespace :db do
     Group.find(:all).each(&:save!)
     Grant.find(:all).each(&:save!)
     
-    Blitz.populate 24 do |b|
+    #Grant.all.each do |grant|
+    #  grant.update_attributes(:updated_at => 9.months.ago..Time.now)
+    #end
+    
+    Blitz.populate 34 do |b|
       b.user_id = 5
       b.blitz_fund_id = 1
       b.name = Faker::Name.name
       b.proposal = Populator.sentences(4..9)
       b.media = ['', '', %(<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>)]
-      b.amount = 10..47
+      b.amount = 45..97
       b.votes_win = 1 + b.amount / 5
-      b.awarded = false
-      b.final = false
+      b.awarded = true
+      b.final = true
 
       b.created_at = 1.year.ago..Time.now
       b.updated_at = 1.week.ago..Time.now
@@ -140,6 +143,13 @@ namespace :db do
     end
 
     # set permalinks
-    Blitz.find(:all).each(&:save!)    
+    Blitz.find(:all).each(&:save!)  
+
+    [BlitzFund].each(&:delete_all)
+
+    BlitzFund.create!(:dues => 10, :general_pool => 1000)
+    BlitzFund.create!(:dues => 5,  :general_pool => 1000)
+    BlitzFund.create!(:dues => 3,  :general_pool => 1000)
+      
   end
 end

@@ -28,11 +28,4 @@
       .span-21.prepend-top.last
         %hr          
 .span-22.prepend-1.append-1.last
-  - if @grants_count > 0
-    - if @search.page_count > 1
-      .pagination{:style => "text-align: left"}
-        .prepend-7<
-          %h3= page_links
-    - else
-      .tbs &nbsp;
-
+  %h4= will_paginate @grants

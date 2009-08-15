@@ -1,7 +1,7 @@
 .span-24.last
   .span-14.prepend-1.append-1.last
     .prepend-1
-      - @grants_awarded.each do |grant|
+      - @grants.each do |grant|
         %h3<
           .flr= link_to user_defined_image(grant.user, :small, :alt => h(grant.user.login), :title => h(grant.user.login)), "/#{h(grant.user.login)}"
           =h grant.name
@@ -18,13 +18,8 @@
             .large= simple_format h(grant.proposal), :style => "text-align: justify; line-height: 2;"
         %br{ :style => "clear:both" }
         %hr        
-    - if @grants_awarded_count > 0
-      - if @search.page_count > 1
-        .pagination{:style => "text-align: left"}
-          .prepend-7<
-            %h3= page_links
-      - else
-        .tbs &nbsp;
+    %h4= will_paginate @grants
+
     #comments
       .flr= link_to "Add Comment", new_group_comment_path(@group)
       %strong= pluralize @group.comments.count, "Comment"

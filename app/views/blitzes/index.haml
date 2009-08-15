@@ -14,11 +14,19 @@
     
   .span-10.last
     - form_for @search do |f|
-      - f.fields_for @search.conditions do |groups|
-        .form_row
-          %h6 Search blitz grants
-          = groups.text_field :proposal_keywords, :class => "text buttonless_field"
-          = submit_button "Search"
+      .form_row
+        %h6 Search blitz grants
+        = f.text_field :proposal_like, :class => 'text buttonless_field'
+        =# f.select :age_greater_than, (0..100)
+        =# f.text_field :orders_total_greater_than
+        = submit_button 'Search'
+    -#  
+      - form_for @search do |f|
+        - f.fields_for @search.conditions do |groups|
+          .form_row
+            %h6 Search blitz grants
+            = groups.text_field :proposal_keywords, :class => "text buttonless_field"
+            = submit_button "Search"
     - if blitz_voter?(current_user)
       %h3= link_to "New Blitz Grant", new_blitz_path, :method => :get
     - else
@@ -28,12 +36,7 @@
 - @blitzes.each do |blitz|
   = render 'blitz', :blitz => blitz if show_blitz?(blitz)
 
-<br style="clear: both;" />
-- if @blitzes_count > 0
-  - if @search.page_count > 1
-    .pagination{:style => "text-align: left"}
-      .prepend-7<
-        %h3= page_links
-  - else
-    .tbs &nbsp;
+%br(clear="both")
+%h4.pull-1= will_paginate @blitzes
+
 
