@@ -1,22 +1,10 @@
-
-
 protect blitz votes...
 
-review bar chart graph for inaccuracy on final
+set vote padding left 7px
 
-review blitz preview (button placement)
+make consistent alignment for " preview / session / awarded " boxes
 
-adapt blitz views for variable dues
-
-review adapt_objects for resizing content (eg. vimeo in demo)
-
-make consistent alignment for " preview / session / awarded " panes
-
-upgrade to Searchlogic 2
-
-check "pay dues and vote" on blitz & grant#index
-
-prioritize and limit membership pane on groups#show
+make grants#new look nice
 
 _________________
 defer 
@@ -35,15 +23,21 @@ defer
     add group rss feeds
     look at other video sites.. streakr, blip.tv, 12seconds
     site comms (?)
+    review adapt_objects for resizing content (eg. vimeo in demo)    
     
   normal workflow
 
+    check "pay dues and vote" on blitz & grant#index fgrep "pay dues and vote"
+    prioritize and limit membership pane on groups#show
+    use flash.now where appropriate
     safeguard against double posting comments
+    review bar chart graph for inaccuracy on final (blitz only?)
+    check update blitz interest
     make surveys
     work on comments    
     let creator set moderator, moderator set moderator
-    add blitzes to profile
     use group image and blitz icon for writeboard
+    adapt blitz for variable dues
     sort friends recent first (?)
     work on shared/sidebar limit 3
     can promote general-purpose, company group with free voting membership on reg

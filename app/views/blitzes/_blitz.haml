@@ -4,7 +4,7 @@
       %span.flr
         = link_to user_defined_image(blitz.user, :small, :alt=> h(blitz.user.login), :title => h(blitz.user.login)), profile_path(h(blitz.user.login))
       = h blitz.name
-    %h3== $#{blitz.amount}
+    %h3(style="color: #609e17")== $#{blitz.amount}
   .span-6.last 
     = user_cred_images(blitz.user, :small, true)
   .span-15

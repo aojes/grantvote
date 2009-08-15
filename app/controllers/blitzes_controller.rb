@@ -10,8 +10,8 @@ class BlitzesController < ApplicationController
     session[:group_id] = 0
     
     @search = Blitz.search(params[:search])
-    @blitzes = @search.all.reject {|b| !(b.votes.count.zero? && b.awarded) }.
-      paginate(:page => params[:page])
+    @blitzes = @search.all.reject {|b| b.awarded }.
+      paginate(:page => params[:page], :per_page => 10)
 
     session[:group_permalink] = 0 # set to 0 for blitz payment
     respond_to do |format|

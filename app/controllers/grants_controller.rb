@@ -11,7 +11,7 @@ class GrantsController < ApplicationController
        @group = Group.find_by_permalink(params[:group_id])
        @page_title = "Voting Session for " + @group.name
        @grants = @group.grants.session.chronological.
-         paginate(:page => params[:page])
+         paginate(:page => params[:page], :per_page => 10)
                           
     elsif params[:user_id] # FIXME not used !
       @grants = Grant.find_all_by_user_id(params[:user_id], 

@@ -19,7 +19,8 @@ class GroupsController < ApplicationController
     @group = Group.find_by_permalink(params[:id])
     @page_title = @group.name + ' on Grantvote'
     
-    @grants = @group.grants.awarded.recent.paginate(:page => params[:page])
+    @grants = @group.grants.awarded.recent.
+      paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # show.html.erb

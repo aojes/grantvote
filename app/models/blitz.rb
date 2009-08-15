@@ -25,7 +25,7 @@ class Blitz < ActiveRecord::Base
   # TODO
   # validates_attachment_presence :photo <= this includes validations
     
-  before_save :adapt_objects
+  # before_save :adapt_objects
   # before_save :adapt_links
   
   named_scope :awarded,  :conditions => {:awarded => true}

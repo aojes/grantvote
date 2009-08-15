@@ -5,18 +5,14 @@
         %h3<
           .flr= link_to user_defined_image(grant.user, :small, :alt => h(grant.user.login), :title => h(grant.user.login)), "/#{h(grant.user.login)}"
           =h grant.name
-        %h5== #{number_to_currency grant.amount, :precision => 0}
-        .span-3.last
-          .span-3 (pie chart ?)
-          .span-3.prepend-top.last
-            &nbsp;
-        .span-10.last
-          - if not grant.media.blank?
+        %h5(style="color: #609e17")== #{number_to_currency grant.amount, :precision => 0}
+        .span-13.last
+          - if !grant.media.blank?
             = simple_format grant.media
             .large= simple_format h(grant.proposal), :style => "text-align: justify; line-height: 2;" 
           - else
             .large= simple_format h(grant.proposal), :style => "text-align: justify; line-height: 2;"
-        %br{ :style => "clear:both" }
+        %br(clear="both")
         %hr        
     %h4= will_paginate @grants
 

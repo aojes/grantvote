@@ -1,6 +1,5 @@
-= render 'shared/sidebar'
-.prepend-1.append-1.prepend-top
-  %div.rounded-box.rounded-box-medium.prepend-2.push-2
+.prepend-top.prepend-5
+  %div.rounded-box.rounded-box-medium
     %div
       %div
         %div.rounded-box-largefont
@@ -23,9 +22,9 @@
                 = f.text_field :amount, :size => 4
                 %br
                 %br
-                %small.quiet YouTube, Viddler, Vimeo
-                %br 
-                = f.text_field :media
+                /%small.quiet YouTube, Viddler, Vimeo
+                /%br 
+                /= f.text_field :media
               .span-10
                 = @blitz.media if @blitz.media
                 = f.text_area :proposal

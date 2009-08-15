@@ -65,10 +65,10 @@ namespace :db do
         grant.group_id = group.id
         grant.name = Faker::Name.name
         grant.proposal = Populator.sentences(2..12)
-        grant.media = ['', '', %(<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>)]
+        grant.media = ''
         grant.amount = 20..50
-        grant.awarded = [true, true]
-        grant.final = [true, true]
+        grant.awarded = true
+        grant.final = true
         grant.created_at = 1.year.ago..Time.now - 1.month
 
              Vote.populate 1 do |v|
@@ -114,11 +114,11 @@ namespace :db do
       b.blitz_fund_id = 1
       b.name = Faker::Name.name
       b.proposal = Populator.sentences(4..9)
-      b.media = ['', '', %(<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>)]
+      b.media = ''
       b.amount = 45..97
       b.votes_win = 1 + b.amount / 5
-      b.awarded = true
-      b.final = true
+      b.awarded = false
+      b.final = false
 
       b.created_at = 1.year.ago..Time.now
       b.updated_at = 1.week.ago..Time.now
