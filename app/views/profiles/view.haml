@@ -75,7 +75,7 @@
         Groups
         %hr
       %h3= link_to "Create or join a group!", groups_path
-    - elsif @user.groups.count > 0
+    - elsif !@user.groups.count.zero?
       %h3.prepend-top.profile_verify<
         Groups
         %hr
@@ -86,27 +86,37 @@
           = image_tag '/images/icons/silk/vcard.png', :alt => 'Voter', :title => 'Voter', :style => "position: relative; bottom: 38px; right: 52px"
         - else
           = image_tag '/images/icons/silk/magnifier.png', :alt => 'Watching', :title => 'Watching', :style => "position: relative; bottom: 36px; right: 54px"
-    - if @user.grants.awarded.count > 0
+    
+    - if !@awards.count.zero?
       %h3.prepend-top.profile_verify<
         Awards
         %hr
-      - @user.grants.awarded.reverse.each do |g|
-        = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image' 
-    - if @user.grants.session.count > 0
+      - @awards.each do |g|
+        - if g.class.name.eql?('Blitz')
+          = link_to g.name.slice(0, 5), blitz_path(g)
+        - else
+          = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image' 
+    
+    - if !@session.count.zero?
       %h3.prepend-top.profile_verify<
         Sessions
         %hr
-      - @user.grants.session.reverse.each do |g|
-        - unless g.votes.count.zero?
+      - @session.each do |g|
+        - if g.class.name.eql?('Blitz')
+          = link_to g.name.slice(0, 5), blitz_path(g)
+        - else
           = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image'
+    
     - if current_user == @user
-      - if @user.grants.detect {|g| g.votes.count.zero? }
+      - if !@writeboard.count.zero?
         %h3.prepend-top.profile_verify<
           .flr{:style => "font-size: 12px; color: #888; position: relative; top: 4px;"} (private view)
           Writeboard
           %hr
-      - @user.grants.session.reverse.each do |g|
-        - if g.votes.count.zero?
+      - @writeboard.each do |g|    
+        - if g.class.name.eql?('Blitz')
+          = link_to g.name.slice(0, 5), blitz_path(g)
+        - else
           = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image'
     %br
     %br

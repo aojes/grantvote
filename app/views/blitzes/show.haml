@@ -51,11 +51,12 @@
   .span-5.center.last
     - if not ( @blitz.final and voted_blitz?(@blitz) )
       - if @blitz.votes.count.zero? and @blitz.user == current_user
-        - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
-          = f.hidden_field :cast, :value => "yea"
-          = f.hidden_field :user_id, :value => @blitz.user_id
-          = f.hidden_field :blitz_id, :value => @blitz.id
-          %span{:style => "padding-left: 7px"}
-            = submit_button "Vote Into Session"
+        %p
+          - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
+            = f.hidden_field :cast, :value => "yea"
+            = f.hidden_field :user_id, :value => @blitz.user_id
+            = f.hidden_field :blitz_id, :value => @blitz.id
+            %span{:style => "padding-left: 7px"}
+              = submit_button "Vote Into Session"
       - else
         .prepend-top= render 'shared/blitz_vote', :blitz => @blitz
