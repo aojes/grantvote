@@ -5,9 +5,6 @@
   - else
     %h2.append-2 New Grant
   .span-11
-    = @grant.media if @grant.media
-    = form.text_area :proposal
-  .span-10.last
     = form.text_field :name
     &nbsp; name
     %br
@@ -17,5 +14,7 @@
     %br
     %br
     /.small.quiet== #{form.text_field :media} &nbsp; YouTube, Viddler, Vimeo
-
+  .span-11.last
+    = @grant.media if @grant.media
+    = form.text_area :proposal
 

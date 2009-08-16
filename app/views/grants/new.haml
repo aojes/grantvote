@@ -1,12 +1,28 @@
 = render 'groups/header', :group => @group = find_group(params[:group_id]) || Group.find(params[:grant][:group_id])
-- form_for [@group, @grant], :html => { :multipart => true } do |f|
-  = render 'form', :object => f
-  = f.hidden_field :user_id, :value => current_user.id
-  = f.hidden_field :group_id, :value => @group.id
-  .prepend-4
-    %br
-    = f.submit "Preview"
-    %br
-    %br
-    %br    
+.prepend-5
+  %div.rounded-box.rounded-box-medium
+    %div
+      %div
+        %div.rounded-box-largefont
+          - form_for [@group, @grant], :html => { :multipart => true } do |f|
+            = render 'form', :object => f
+            = f.hidden_field :user_id, :value => current_user.id
+            = f.hidden_field :group_id, :value => @group.id
+            .prepend-4
+              %br
+              = submit_button "Preview"
+              %br
+              %br
+
+-#
+  - form_for [@group, @grant], :html => { :multipart => true } do |f|
+    = render 'form', :object => f
+    = f.hidden_field :user_id, :value => current_user.id
+    = f.hidden_field :group_id, :value => @group.id
+    .prepend-4
+      %br
+      = f.submit "Preview"
+      %br
+      %br
+      %br    
     
