@@ -34,7 +34,7 @@ class PaymentsController < ApplicationController
         :caller_reference   => "#{@payment.id}-payment-#{Time.now.to_i}",
         :recipient_token    => @payment.recipient_token_id,
         :payment_reason     => "Blitz Writing and Voting Privileges",
-        :transaction_amount => Payment::AMOUNT_STR,
+        :transaction_amount => Payment::AMOUNT.to_s,
         :return_url         => 'http://localhost:3000/payments/finalize'
       }).url
     else

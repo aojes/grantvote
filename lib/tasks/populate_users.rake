@@ -5,9 +5,9 @@ namespace :db do
     [Invitation, User, Profile, Credit].each(&:delete_all)
  
       Invitation.create(:id=>'1', :email=>'foo@grantvote.com', :news=>'1', :sender_id=>'1', :sent_at=>Time.now)
-       User.create!(:id=>'1', :login => "foo", :email => "foo@grantvote.com", :points => 44,
-                   :password => "pass", :password_confirmation => "pass", :invitation_id=>'1', :invitation_limit=>'1000',
-                   :blitz_interest => true, :blitz_contributes => 5, :blitz_rewards => 0 )
+      User.create!(:id=>'1', :login => "foo", :email => "foo@grantvote.com", :points => 44,
+        :password => "pass", :password_confirmation => "pass", :invitation_id=>'1', :invitation_limit=>'1000',
+        :blitz_interest => false, :blitz_contributes => 0, :blitz_rewards => 0 )
      
       Profile.create!(:user_id => 1, :login => "foo")
       Credit.create!(:user_id => 1, :points => 44,

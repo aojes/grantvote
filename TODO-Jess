@@ -1,8 +1,10 @@
+validate and save payment params
+
 protect blitz votes...
 
 set vote padding left 7px
 
-make consistent alignment for " preview / session / awarded " boxes
+align "preview / session / awarded" boxes
 
 make grants#new look nice
 
@@ -10,8 +12,7 @@ _________________
 defer 
   
   important 
-  
-    save payment params
+
     private memberships
     leave group (put in terms no deduction from group pool)
     group moderation

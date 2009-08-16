@@ -165,11 +165,13 @@ module ApplicationHelper
     prefix + path
   end 
   
+  # For blitz grants
   def session_bar_chart_image(grant)
     votes_yea = grant.votes.yea.count
     votes_nay = grant.votes.nay.count
                           # TODO consolidate this setting (see blitz controller)
-    session_voting_pool = (1 + grant.amount / Payment::AMOUNT).to_f * 2
+    #session_voting_pool = (1 + grant.amount / Payment::AMOUNT).to_f * 2
+    session_voting_pool = grant.votes_win.to_f * 2 - 1
     
     green = (votes_yea / session_voting_pool).round(2) * 100
       red = (votes_nay / session_voting_pool).round(2) * 100
@@ -185,12 +187,12 @@ module ApplicationHelper
     accessible_tally(grant, chart_url, votes_yea, votes_nay, session_voting_pool)
   end
   
-  # for bar chart image alt & title attributes
+  # for blitz bar chart image alt & title attributes
   def accessible_tally(grant, chart_url, yeas, nays, session_voting_pool)
     votes_yea = "#{yeas} Yea, "
     votes_nay = nays > 0 ? "#{nays} Nay, " : ''
     votes = votes_yea + votes_nay
-    awaiting = (session_voting_pool - yeas - nays).to_i + 1
+    awaiting = (session_voting_pool - yeas - nays).to_i
     status = grant.final   ? 
              grant.awarded ? 
                  "Awarded" : "Denied" : "Awaiting #{awaiting}"
@@ -200,6 +202,7 @@ module ApplicationHelper
     
   end   
   
+  # For group grants
   def session_bar_chart_url(grant)
     voters_count = grant.group.memberships.voters.count
     voters       = voters_count.zero? ? 1 : voters_count
@@ -217,6 +220,7 @@ module ApplicationHelper
     "&amp;chf=bg,s,EDEDED"
   end
   
+  # For group grants
   def group_accessible_tally(grant)
     voters    = grant.group.memberships.voters.count
     yea       = grant.votes.yea.count

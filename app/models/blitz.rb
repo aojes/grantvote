@@ -32,7 +32,7 @@ class Blitz < ActiveRecord::Base
   named_scope :denied, :conditions => {:final => true, :awarded => false}
   named_scope :session,  :conditions => {:final => false}
   named_scope :chronological, :order => "created_at ASC"
-  
+    
   def finalizable?
     votes.yea.count == self.votes_win or votes.nay.count == self.votes_win + 1
   end

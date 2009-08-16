@@ -56,7 +56,7 @@
             = f.hidden_field :cast, :value => "yea"
             = f.hidden_field :user_id, :value => @blitz.user_id
             = f.hidden_field :blitz_id, :value => @blitz.id
-            %span{:style => "padding-left: 7px"}
+            %span{:style => "padding-left: 7px"}<
               = submit_button "Vote Into Session"
       - else
         .prepend-top= render 'shared/blitz_vote', :blitz => @blitz

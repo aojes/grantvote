@@ -35,7 +35,14 @@ class BlitzesController < ApplicationController
     # TODO refactor to model & protect blitz votes
     blitz_fund = BlitzFund.find_by_dues(Payment::AMOUNT)
     @blitz.blitz_fund_id = blitz_fund.id
-    @blitz.votes_win = 1 + @blitz.amount / Payment::AMOUNT  
+    
+    ##
+    # Loses!
+    # @blitz.votes_win = 1 + @blitz.amount / Payment::AMOUNT  
+    
+    current_voter_count = User.count(:conditions => {:blitz_interest => true})
+    
+    @blitz.votes_win = 1 + current_voter_count / 2
     
     if @blitz.save
       flash[:notice] =  "Created blitz grant "

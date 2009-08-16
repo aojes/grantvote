@@ -5,7 +5,7 @@ namespace :db do
     require 'faker'
     
     
-    [Group, Membership, Grant, Blitz, BlitzFund, Vote].each(&:delete_all)
+    [Group, Membership, Grant, Blitz, Vote].each(&:delete_all)
 
     Group.populate 32 do |group|
       group.name = Populator.words(3..5).titleize
@@ -111,12 +111,12 @@ namespace :db do
     
     Blitz.populate 34 do |b|
       b.user_id = 5
-      b.blitz_fund_id = 1
+      b.blitz_fund_id = 3
       b.name = Faker::Name.name
       b.proposal = Populator.sentences(4..9)
       b.media = ''
       b.amount = 45..97
-      b.votes_win = 1 + b.amount / 5
+      b.votes_win = 1 + b.amount / Payment::AMOUNT
       b.awarded = false
       b.final = false
 
@@ -145,18 +145,6 @@ namespace :db do
     # set permalinks
     Blitz.find(:all).each(&:save!)  
 
-    BlitzFund.populate 1 do |b|
-      b.dues = 10
-      b.general_pool = 1000
-    end
-    BlitzFund.populate 1 do |b|
-      b.dues = 5
-      b.general_pool = 1000
-    end
-    BlitzFund.populate 1 do |b|
-      b.dues = 3
-      b.general_pool = 1000
-    end
       
   end
 end
