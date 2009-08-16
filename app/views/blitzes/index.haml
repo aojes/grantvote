@@ -9,8 +9,8 @@
     - if current_user.blitz_interest
       %h3.quiet Commence voting!
     - else
-      %h3.quiet Blitz Voting and Writing Privileges
-      = link_to image_tag("http://g-ecx.images-amazon.com/images/G/01/cba/b/sg3.jpg"), :controller => :payments, :action => :new
+      %h3== Blitz Voting and Writing Dues are $#{Payment::AMOUNT}
+      %p.prepend-1= link_to image_tag("http://g-ecx.images-amazon.com/images/G/01/cba/b/sg3.jpg"), :controller => :payments, :action => :new
     
   .span-10.last
     - form_for @search do |f|
@@ -34,7 +34,7 @@
   .span-20.prepend-top.last
     %br
 - @blitzes.each do |blitz|
-  = render 'blitz', :blitz => blitz if show_blitz?(blitz)
+  = render 'blitz', :blitz => blitz
 
 %br(clear="both")
 %h4= will_paginate @blitzes

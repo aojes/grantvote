@@ -8,5 +8,5 @@
     = f.hidden_field :user_id, :value => current_user.id
     = f.hidden_field :blitz_id, :value => blitz.id
 - elsif not blitz_voter?(current_user)    
-  %h4.quiet= link_to 'pay dues and vote', root_path
+  .quiet= link_to 'Pay Blitz Voting &amp; Writing Dues', blitzes_path
 

@@ -80,15 +80,15 @@ namespace :db do
                v.created_at = 1.month.ago..Time.now
                v.updated_at = v.created_at
              end
-     #        Vote.populate 1 do |v|
-     #          v.user_id = 4
-     #          v.grant_id = grant.id
-     #          v.group_id = group.id
-     #          v.blitz_id = 0
-     #          v.cast = "yea"
-     #          v.created_at = 1.month.ago..Time.now
-     #          v.updated_at = v.created_at
-     #        end
+             Vote.populate 1 do |v|
+               v.user_id = 4
+               v.grant_id = grant.id
+               v.group_id = group.id
+               v.blitz_id = 0
+               v.cast = "nay"
+               v.created_at = 1.month.ago..Time.now
+               v.updated_at = v.created_at
+             end
      #        Vote.populate 1 do |v|
      #          v.user_id = 3
      #          v.grant_id = grant.id
@@ -105,9 +105,6 @@ namespace :db do
     Group.find(:all).each(&:save!)
     Grant.find(:all).each(&:save!)
     
-    #Grant.all.each do |grant|
-    #  grant.update_attributes(:updated_at => 9.months.ago..Time.now)
-    #end
     
     Blitz.populate 34 do |b|
       b.user_id = 5
@@ -116,7 +113,7 @@ namespace :db do
       b.proposal = Populator.sentences(4..9)
       b.media = ''
       b.amount = 45..97
-      b.votes_win = 1 + b.amount / Payment::AMOUNT
+      b.votes_win = 1 + User.count(:conditions => {:blitz_interest => true}) / 2
       b.awarded = false
       b.final = false
 
@@ -141,8 +138,29 @@ namespace :db do
         v.updated_at = v.created_at
       end   
     end
-
+    
+    Blitz.populate 12 do |b|
+      b.user_id = 3
+      b.blitz_fund_id = 3
+      b.name = Faker::Name.name
+      b.proposal = Populator.sentences(4..9)
+      b.media = ''
+      b.amount = 45..55
+      b.votes_win = 1 + User.count(:conditions => {:blitz_interest => true}) / 2
+      b.awarded = false
+      b.final = false
+      Vote.populate 1 do |v|
+        v.user_id = b.user_id
+        v.blitz_id = b.id
+        v.grant_id = 0
+        v.group_id = 0
+        v.cast = 'yea'
+        v.created_at = 1.day.ago..Time.now
+        v.updated_at = v.created_at
+      end 
+    end
     # set permalinks
+    
     Blitz.find(:all).each(&:save!)  
 
       

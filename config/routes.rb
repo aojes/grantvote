@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
   map.resources :blitzes, :as => 'blitz', :has_many => [:votes]
   map.resources :grants, :has_many => [:votes]         
-
+  map.resources :communications
   map.resources :payments, :collection => { :finalize => :get }
 
   map.approve_invites '/approve_invites', :controller => "invitations", :action => "send_all_invites"
@@ -27,7 +27,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.home '/home', :controller => "home", :action => "show"
   map.leaders '/leaders', :controller => "leaders", :action => "index"
-  map.profile ':permalink', :controller => "profiles", :action => "view"
+  map.profile ':permalink', :controller => "profiles", :action => "view"  
   
   map.connect ':controller/:action'
   map.connect ':controller/:action/:id'

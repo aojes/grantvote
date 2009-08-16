@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   
   def show
     @page_title = "Welcome"
-    
+    @communications = Communication.find_all_by_user_id(current_user.id).
+      reverse
   end
 end

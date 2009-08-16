@@ -1,6 +1,6 @@
-validate and save payment params
+site comms
 
-make grants#new look nice
+validate and save payment params (why is recipient token mostly not working?)
 
 review blitz#index layout (for use with smaller blitz icon than on the profile)
 
@@ -8,8 +8,7 @@ _________________
 defer 
   
   important 
-  
-    site comms (?)
+
     use blitz icon for writeboard and sessions
     leave group (put in terms no deduction from group pool)
     group moderation (allow creator & moderator to edit photo & purpose)
@@ -21,8 +20,6 @@ defer
     
   normal workflow
     
-    check "pay dues and vote" on blitz & grant#index fgrep "pay dues and vote"
-    prioritize and limit membership pane on groups#show
     use flash.now where appropriate
     safeguard against double posting comments
     limit comments on group page, maybe use ajax show more

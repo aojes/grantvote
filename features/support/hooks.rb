@@ -1,14 +1,19 @@
 Before('@login') do
   # This will only run before scenarios tagged above
+  
+      Invitation.create(:id=>'1', :email=>'foo@grantvote.com', :news=>'1', :sender_id=>'1', :sent_at=>Time.now)
+      User.create!(:id=>'1', :login => "foo", :email => "foo@grantvote.com", :points => 0,
+        :password => "pass", :password_confirmation => "pass", :invitation_id=>'1', :invitation_limit=>'5',
+        :blitz_interest => false, :blitz_contributes => 0, :blitz_rewards => 0 )
+     
+      Profile.create!(:user_id => 1, :login => "foo")
+      Credit.create!(:user_id => 1, :points => 0)  
 
-  @user = User.create!(:login => "foobar", :email => "foobar@grantvote.com",
-                    :password => "secret", :password_confirmation => "secret")
-  @user.create_profile(:user => @user, :login => @user.login)
-  visit path_to("/the homepage/i")
-  fill_in('Login', :with => @user.login)
-  fill_in('Password', :with => @user.password)
-  click_button("Login")
-  response.request.path.should == path_to("/the account page/i")
+  visit '/login'
+  fill_in('Username', :with => "foo")
+  fill_in('Password', :with => "pass")
+  click_button
+  #response.request.path.should == path_to("/the homepage/i")
 
 end
 

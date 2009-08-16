@@ -2,6 +2,13 @@
   .prepend-1.span-14.append-1
     %h3 group news and status updates
     
+    - form_for :communication, :url => {:controller => :communications, :action => :create } do |f|
+      = f.text_field :content, :class => 'text'
+      = f.hidden_field :user_id, :value => current_user.id
+      = submit_button "Update", true
+    - @communications.each do |c|
+      %h5= h c.content
+      %hr
     / sort updates on timeline
     
   .span-7.append-1.last 
