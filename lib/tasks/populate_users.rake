@@ -48,6 +48,7 @@ namespace :db do
       Profile.create!(:user_id => 5, :login => "loo")
       Credit.create!(:user_id => 5, :points => 26,
         :pebbles => 2, :beads => 2, :buttons => 1, :pearls => 1)
+
     
   end
 end

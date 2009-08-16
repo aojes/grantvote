@@ -1,10 +1,6 @@
 validate and save payment params
 
-protect blitz votes...
-
 set vote padding left 7px
-
-align "preview / session / awarded" boxes
 
 make grants#new look nice
 
@@ -12,19 +8,16 @@ _________________
 defer 
   
   important 
-
-    private memberships
+  
+    site comms (?)
+    use blitz icon for writeboard and sessions
     leave group (put in terms no deduction from group pool)
-    group moderation
+    group moderation (allow creator & moderator to edit photo & purpose)
     facebook-style links in plain text
     track active users     
     monitor searching / trending
     figure group comments more prominently (make forum?)
     enable users to delete their own comments
-    add group rss feeds
-    look at other video sites.. streakr, blip.tv, 12seconds
-    site comms (?)
-    review adapt_objects for resizing content (eg. vimeo in demo)    
     
   normal workflow
 
@@ -32,12 +25,10 @@ defer
     prioritize and limit membership pane on groups#show
     use flash.now where appropriate
     safeguard against double posting comments
-    review bar chart graph for inaccuracy on final (blitz only?)
-    check update blitz interest
+    limit comments on group page, maybe use ajax show more
+    add group rss feeds
     make surveys
-    work on comments    
     let creator set moderator, moderator set moderator
-    use group image and blitz icon for writeboard
     adapt blitz for variable dues
     sort friends recent first (?)
     work on shared/sidebar limit 3
@@ -46,6 +37,8 @@ defer
     add profile view count to user account page
     remove 'add comment' link for logged-out view
     add 'mark as spam' or flag as inappropriate link on comments, etc.
+    show "Group Awards" (?)
+    align "preview / session / awarded" boxes
     make following/followers collapsible & set default
     user location map via google maps (see www.obsidianportal.com/map)
     user can choose a default avatar (historical or archetypal figures)
@@ -64,3 +57,4 @@ notes
   media sample: 
     <object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object> 
 
+  look at other video sites.. streakr, blip.tv, 12seconds

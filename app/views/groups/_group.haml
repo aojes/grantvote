@@ -16,24 +16,26 @@
         %hr        
     %h4= will_paginate @grants
 
-    #comments
-      .flr= link_to "Add Comment", new_group_comment_path(@group)
-      %strong= pluralize @group.comments.count, "Comment"
-      %hr
-      .last= render 'shared/comments', :comments => @group.comments
 
   .span-6.prepend-1#group_members
     - if @group.memberships.voters.count.zero?
       %br 
       %h3= pluralize @group.memberships.members.count, "Member"
-      - group_members(params[:id]).each do |m|
+      - group_members(params[:id]).sort_by{rand}[0..17].each do |m|
         = link_to user_defined_image(m, :thumb, :alt => h(m.login), :title => h(m.login)), "/#{h(m.login)}"
     - else
       %br
-      %h3= pluralize @group.memberships.voters.count, "Voter"
-      - group_voters(params[:id]).each do |v|
-        = link_to user_defined_image(v, :thumb, :alt => h(v.login), :title => h(v.login)), "/#{h(v.login)}"
-    -#.border-test.prepend-top= render 'shared/tipjoy', :group => @group.permalink          
+      %div(style="position: relative; margin-left: -9px")
+        %h3= pluralize @group.memberships.voters.count, "Voter"
+        - group_voters(params[:id]).sort_by{rand}[0..17].each do |v|
+          = link_to user_defined_image(v, :thumb, :alt => h(v.login), :title => h(v.login)), "/#{h(v.login)}"
     %br
     %br
-    %br   
+
+  .span-7.last#comments
+    .flr= link_to "Add Comment", new_group_comment_path(@group)
+    %strong= pluralize @group.comments.count, "Comment"
+    %hr
+    .last= render 'shared/comments', :comments => @group.comments
+
+   
