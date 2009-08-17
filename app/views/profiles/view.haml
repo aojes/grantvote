@@ -43,10 +43,9 @@
     %h3.prepend-top<
       Friends
       %hr
-    - @user.friendships.each do |friendship|
-      - if friendship.friend.friendships.exists?(:friend_id => @user)
-        = link_to user_defined_image(friendship.friend, :thumb, :alt => h(friendship.friend.login), :title => h(friendship.friend.login)), profile_path(friendship.friend.login)
-
+    - mutual_friendships(@user).each do |m|
+      = link_to user_defined_image(m.friend, :thumb, :alt => m.friend.login, :title => m.friend.login), profile_path(m.friend.login)
+    
     - if @user == current_user 
       %br{:clear => :both}
       %h3.prepend-top<

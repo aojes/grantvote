@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :blitzes
   has_many :votes
   has_many :comments, :as => :commentable
+  has_many :communications
   has_many :payments
   has_many :payment_notifications
   has_many :sent_invitations, 

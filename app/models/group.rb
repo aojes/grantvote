@@ -37,8 +37,8 @@ class Group < ActiveRecord::Base
         :large   => "92x92#", 
         :display => "256x256>" 
       },
-   :url  => "/assets/groups/:id/:style/:basename.:extension",
-   :path => ":rails_root/public/assets/groups/:id/:style/:basename.:extension"
+    :url  => "/assets/groups/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/assets/groups/:id/:style/:basename.:extension"
    
   validates_attachment_size :photo, :less_than => MAX_FILE_SIZE
   validates_attachment_content_type :photo, 

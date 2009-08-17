@@ -13,12 +13,15 @@ Before('@login') do
   fill_in('Username', :with => "foo")
   fill_in('Password', :with => "pass")
   click_button
+  
+  @user = User.find_by_login("foo")
   #response.request.path.should == path_to("/the homepage/i")
 
 end
 
 Before('@group') do
-  @group = Group.create!(:name => "foobar", :purpose => "foobar", :dues => 2,
+  @group = Group.create!(:name => "group", :purpose => "group purpose", 
+                    :dues => 3,
                     :photo_file_size => 1, :photo_content_type => 'image/png', 
                     :photo_file_name => "photo.png")
 end

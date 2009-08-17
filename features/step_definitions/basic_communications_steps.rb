@@ -15,3 +15,14 @@ Then /^I should see my comment on the page$/ do
   response.should contain("basic update")
 end
 
+Then /^I should see my avatar by the comment$/ do
+  response.should have_selector("img")
+end
+
+Then /^I should be able to delete the comment$/ do
+  response.should contain("delete")
+  click_link("delete")
+  response.should be_success
+  response.should_not contain("basic update")
+end
+

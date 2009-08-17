@@ -10,4 +10,6 @@ Feature: basic comms
     When I enter some text
     Then I press Update
     Then I should see my comment on the page
-  
+    And I should see my avatar by the comment 
+    And I should be able to delete the comment 
+

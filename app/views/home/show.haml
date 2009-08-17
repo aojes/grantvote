@@ -6,9 +6,16 @@
       = f.text_field :content, :class => 'text'
       = f.hidden_field :user_id, :value => current_user.id
       = submit_button "Update", true
+    
     - @communications.each do |c|
-      %h5= h c.content
+      .span-2<
+        = link_to user_defined_image(c.user, :small, :alt => c.user.login, :title => c.user.login), profile_path(c.user.login)
+      .span-10.large
+        = h c.content
+      .span-2.last
+        = link_to "delete", c, :method => :delete
       %hr
+    
     / sort updates on timeline
     
   .span-7.append-1.last 
@@ -18,12 +25,19 @@
 
     / sort following & followers by recent (image ?)
 
+    - activities(current_user).each do |a|
+      .span-7.last
+        %p
+          .span-1<
+            = link_to user_defined_image(a.user, :thumb, :alt => a.user.login), profile_path(a.user.login)
+          .span-1   
+            = activity_link(a, true)
+          .span-5.last
+            = link_to a.user.login, profile_path(a.user.login)
+            = group_message(a) || grant_message(a)
+            = activity_link(a)
 
-
-
-
-
-
+      
 
 -#  
   %h3.prepend-top Following

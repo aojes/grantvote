@@ -64,9 +64,13 @@ module ApplicationHelper
       %(</em></span></button>)
     end
   end
-
-
   
+  def mutual_friendships(user)
+    user.friendships.map do |friendship|
+      friendship if friendship.friend.friendships.exists?(:friend_id => user)
+    end.compact
+  end
+    
   def following_friendships(user)
     user.friendships.collect do |following|
       following unless following.friend.friendships.exists?(:friend_id => user)

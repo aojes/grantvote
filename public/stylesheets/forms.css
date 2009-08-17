@@ -36,7 +36,7 @@ button span {
   background: url('/images/button.png') 0px 0px no-repeat; }
 
 /* button span.lite-span
- * /*:padding-left 12px
+ * /*:padding-left 12px    
  * /*:background url('/images/button.png') 0px 80px no-repeat */
 button.lite span {
   padding-left: 12px;

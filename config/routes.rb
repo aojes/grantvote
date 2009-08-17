@@ -1,6 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :comments
-
 
   # map.root :controller => "user_sessions", :action => "new"
   #map.root :controller => "home"
@@ -18,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
   map.resources :blitzes, :as => 'blitz', :has_many => [:votes]
   map.resources :grants, :has_many => [:votes]         
+  map.resources :comments
   map.resources :communications
   map.resources :payments, :collection => { :finalize => :get }
 
