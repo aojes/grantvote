@@ -104,7 +104,7 @@ class PaymentsController < ApplicationController
 private
 
   def remit
-    @sandbox ||= !Rails.env.production?
+    @sandbox = true # ||= !Rails.env.production?
     @remit ||= Remit::API.new(FPS_ACCESS_KEY, FPS_SECRET_KEY, @sandbox)
   end
 end
