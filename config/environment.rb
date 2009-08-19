@@ -37,7 +37,7 @@ Rails::Initializer.run do |config|
   config.gem "giraffesoft-resource_controller",
     :lib => "resource_controller",
     :version => "~> 0.6.5",
-    :source => "git://gems.github.com/giraffesoft/resource_controller.git"
+    :source => "http://gems.github.com/giraffesoft/resource_controller.git"
 
   config.gem "haml", :version => "~> 2.2.2"
   config.gem "hpricot"
