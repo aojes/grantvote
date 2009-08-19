@@ -38,9 +38,9 @@ Rails::Initializer.run do |config|
 
   config.gem "giraffesoft-resource_controller",
     :lib => "resource_controller",
-    :version => "~> 0.6.5",
+    :version => "~> 0.6.5"
 
-  config.gem "haml", :version => "~> 2.2.2"
+  config.gem "haml"
   config.gem "hpricot"
   #config.gem "activemerchant", :lib => "active_merchant"
   config.gem "remit"
