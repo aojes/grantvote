@@ -3,11 +3,11 @@ namespace :db do
   task :populate => :environment do
     require 'populator'
     require 'faker'
-    
-    
+
+
     [Group, Membership, Grant, Blitz, Vote].each(&:delete_all)
 
-    Group.populate 32 do |group|
+    Group.populate 12 do |group|
       group.name = Populator.words(3..5).titleize
       group.purpose = Populator.words(5..10).titleize
       group.dues = 5
@@ -22,7 +22,7 @@ namespace :db do
         m.public = true
         m.contributes = 20
         m.rewards = 10
-      end      
+      end
       Membership.populate 1 do |m|
         m.user_id = 2
         m.group_id = group.id
@@ -31,7 +31,7 @@ namespace :db do
         m.public = true
         m.contributes = 20
         m.rewards = 10
-      end      
+      end
       Membership.populate 1 do |m|
         m.user_id = 3
         m.group_id = group.id
@@ -40,27 +40,9 @@ namespace :db do
         m.public = true
         m.contributes = 20
         m.rewards = 10
-      end      
-      Membership.populate 1 do |m|
-        m.user_id = 4
-        m.group_id = group.id
-        m.interest = true
-        m.role = "basic"
-        m.public = true
-        m.contributes = 20
-        m.rewards = 10
-      end      
-      Membership.populate 1 do |m|
-        m.user_id = 5
-        m.group_id = group.id
-        m.interest = true
-        m.role = "basic"
-        m.public = true
-        m.contributes = 20
-        m.rewards = 10
       end
 
-      Grant.populate 12 do |grant|
+      Grant.populate 6 do |grant|
         grant.user_id = 5
         grant.group_id = group.id
         grant.name = Faker::Name.name
@@ -71,49 +53,71 @@ namespace :db do
         grant.final = true
         grant.created_at = 1.year.ago..Time.now - 1.month
 
-             Vote.populate 1 do |v|
-               v.user_id = grant.user_id
-               v.grant_id = grant.id
-               v.group_id = group.id
-               v.blitz_id = 0
-               v.cast = "yea"
-               v.created_at = 1.month.ago..Time.now
-               v.updated_at = v.created_at
-             end
-             Vote.populate 1 do |v|
-               v.user_id = 4
-               v.grant_id = grant.id
-               v.group_id = group.id
-               v.blitz_id = 0
-               v.cast = "nay"
-               v.created_at = 1.month.ago..Time.now
-               v.updated_at = v.created_at
-             end
-     #        Vote.populate 1 do |v|
-     #          v.user_id = 3
-     #          v.grant_id = grant.id
-     #          v.group_id = group.id
-     #          v.blitz_id = 0
-     #          v.cast = "yea"
-     #          v.created_at = 1.month.ago..Time.now
-     #          v.updated_at = v.created_at
-     #        end     
+        Vote.populate 1 do |v|
+          v.user_id = grant.user_id
+          v.grant_id = grant.id
+          v.group_id = group.id
+          v.blitz_id = 0
+          v.cast = "yea"
+          v.created_at = 1.month.ago..Time.now
+          v.updated_at = v.created_at
+        end
+        Vote.populate 1 do |v|
+          v.user_id = 4
+          v.grant_id = grant.id
+          v.group_id = group.id
+          v.blitz_id = 0
+          v.cast = "nay"
+          v.created_at = 1.month.ago..Time.now
+          v.updated_at = v.created_at
+        end
+      end
+
+      Grant.populate 6 do |grant|
+        grant.user_id = 5
+        grant.group_id = group.id
+        grant.name = Faker::Name.name
+        grant.proposal = Populator.sentences(2..12)
+        grant.media = ''
+        grant.amount = 20..50
+        grant.awarded = false
+        grant.final = false
+        grant.created_at = 1.year.ago..Time.now - 1.month
+
+        Vote.populate 1 do |v|
+          v.user_id = 4
+          v.grant_id = grant.id
+          v.group_id = group.id
+          v.blitz_id = 0
+          v.cast = "yea"
+          v.created_at = 1.month.ago..Time.now
+          v.updated_at = v.created_at
+        end
+        Vote.populate 1 do |v|
+          v.user_id = 5
+          v.grant_id = grant.id
+          v.group_id = group.id
+          v.blitz_id = 0
+          v.cast = "nay"
+          v.created_at = 1.month.ago..Time.now
+          v.updated_at = v.created_at
+        end
       end
     end
-    
+
     # set permalinks
     Group.find(:all).each(&:save!)
     Grant.find(:all).each(&:save!)
-    
-    
-    Blitz.populate 34 do |b|
-      b.user_id = 5
+
+
+    Blitz.populate 12 do |b|
+      b.user_id = [4, 3]
       b.blitz_fund_id = 3
       b.name = Faker::Name.name
       b.proposal = Populator.sentences(4..9)
       b.media = ''
       b.amount = 45..97
-      b.votes_win = 1 + User.count(:conditions => {:blitz_interest => true}) / 2
+      b.votes_win = 1 + User.count(:conditions => {:blitz_interest => true}) / Payment::DIVIDEND
       b.awarded = false
       b.final = false
 
@@ -136,9 +140,9 @@ namespace :db do
         v.cast = 'nay'
         v.created_at = 1.day.ago..Time.now
         v.updated_at = v.created_at
-      end   
+      end
     end
-    
+
     Blitz.populate 12 do |b|
       b.user_id = 3
       b.blitz_fund_id = 3
@@ -157,12 +161,13 @@ namespace :db do
         v.cast = 'yea'
         v.created_at = 1.day.ago..Time.now
         v.updated_at = v.created_at
-      end 
+      end
     end
     # set permalinks
-    
-    Blitz.find(:all).each(&:save!)  
 
-      
+    Blitz.find(:all).each(&:save!)
+
+
   end
 end
+
