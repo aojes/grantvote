@@ -35,7 +35,7 @@ class PaymentsController < ApplicationController
         :recipient_token    => @payment.recipient_token_id,
         :payment_reason     => "Blitz Writing and Voting Privileges",
         :transaction_amount => Payment::AMOUNT.to_s,
-        :return_url         => 'http://localhost:3000/payments/finalize'
+        :return_url         => "http://#{host}/payments/finalize"
       }).url
     else
       redirect_back_or_default :back
@@ -107,5 +107,10 @@ private
     @sandbox = true # ||= !Rails.env.production?
     @remit ||= Remit::API.new(FPS_ACCESS_KEY, FPS_SECRET_KEY, @sandbox)
   end
+
+  def host
+    Rails.env.production? ? "www.grantvote.com" : "localhost:3000"
+  end
+
 end
 
