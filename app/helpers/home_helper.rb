@@ -3,7 +3,7 @@ module HomeHelper
   def activities(user, list = [])
     mutual_friendships(user).each do |m|
       # new blitzes
-      m.friend.blitzes.session.collect! do |b| 
+      m.friend.blitzes.session.collect! do |b|
         list << b if !b.votes.count.zero? && b.votes.find_by_user_id(user).nil?
       end
       # won blitzes
@@ -15,18 +15,19 @@ module HomeHelper
         list << g.memberships.find_by_user_id(m.friend)
       end
     end
-    list
+    @list = list.sort {|a,b| b.updated_at <=> a.updated_at }.
+              paginate(:page => params[:page], :per_page => 6)
   end
 
   def group_message(membership)
     if membership.class.name == 'Membership'
-      'joined' 
+      'joined'
       # TODO add more logic for creating groups, promotions etc
     else
       nil
     end
   end
-  
+
   def grant_message(grant)
     if grant.awarded and grant.final
       'won'
@@ -36,12 +37,12 @@ module HomeHelper
       nil
     end
   end
-  
+
   def activity_link(instance, photo = false)
     if photo
       case instance.class.name.downcase
         when 'membership'
-          link_to user_defined_image(instance.group, :thumb, 
+          link_to user_defined_image(instance.group, :thumb,
             :alt => instance.group.name), group_path(instance)
         when 'grant'
           link_to user_defined_image(instance, :thumb, :alt => instance.name),
@@ -49,7 +50,7 @@ module HomeHelper
         when 'blitz'
           link_to 'Blitz Icon', blitz_path(instance)
       end
-    else  
+    else
       case instance.class.name.downcase
         when 'membership'
           link_to(instance.group.name, group_path(instance))
@@ -58,6 +59,7 @@ module HomeHelper
         when 'grant'
           link_to(instance.name, group_grant_path(instance.group, instance))
       end
-    end 
+    end
   end
 end
+

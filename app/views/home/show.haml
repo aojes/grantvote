@@ -1,12 +1,12 @@
 .container.showgrid.prepend-top
   .prepend-1.span-14.append-1
     %h3 group news and status updates
-    
+
     - form_for :communication, :url => {:controller => :communications, :action => :create } do |f|
       = f.text_field :content, :class => 'text'
       = f.hidden_field :user_id, :value => current_user.id
       = submit_button "Update", true
-    
+
     - @communications.each do |c|
       .span-2<
         = link_to user_defined_image(c.user, :small, :alt => c.user.login, :title => c.user.login), profile_path(c.user.login)
@@ -15,34 +15,36 @@
       .span-2.last
         = link_to "delete", c, :method => :delete
       %hr
-    
+
     / sort updates on timeline
-    
-  .span-7.append-1.last 
+
+  .span-7.append-1.last
     %h3 social news
-    
+
     / show recent actions by friends
 
     / sort following & followers by recent (image ?)
 
-    - activities(current_user).each do |a|
+    - activities(current_user).each do |a| # activities(user) returns @list
       .span-7.last
         %p
           .span-1<
             = link_to user_defined_image(a.user, :thumb, :alt => a.user.login), profile_path(a.user.login)
-          .span-1   
+          .span-1
             = activity_link(a, true)
           .span-5.last
             = link_to a.user.login, profile_path(a.user.login)
             = group_message(a) || grant_message(a)
             = activity_link(a)
+/ will change this to simple 'next' and 'previous' sort of like gmail
+= will_paginate @list
 
-      
 
--#  
+-#
   %h3.prepend-top Following
   - following_friendships(current_user).each do |following|
     = link_to user_defined_image(following.friend, :thumb, :alt => h(following.friend.login), :title => h(following.friend.login)), profile_path(h(following.friend.login))
   %h3.prepend-top Followers
   - follower_friendships(current_user).each do |follower|
     = link_to user_defined_image(follower, :thumb, :alt => h(follower.login), :title => h(follower.login)), profile_path(h(follower.login))
+
