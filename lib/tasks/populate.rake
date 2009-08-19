@@ -41,9 +41,18 @@ namespace :db do
         m.contributes = 20
         m.rewards = 10
       end
+      Membership.populate 1 do |m|
+        m.user_id = 4
+        m.group_id = group.id
+        m.interest = true
+        m.role = "basic"
+        m.public = true
+        m.contributes = 20
+        m.rewards = 10
+      end
 
       Grant.populate 6 do |grant|
-        grant.user_id = 5
+        grant.user_id = 4
         grant.group_id = group.id
         grant.name = Faker::Name.name
         grant.proposal = Populator.sentences(2..12)
@@ -63,7 +72,7 @@ namespace :db do
           v.updated_at = v.created_at
         end
         Vote.populate 1 do |v|
-          v.user_id = 4
+          v.user_id = 3
           v.grant_id = grant.id
           v.group_id = group.id
           v.blitz_id = 0
@@ -74,7 +83,7 @@ namespace :db do
       end
 
       Grant.populate 6 do |grant|
-        grant.user_id = 5
+        grant.user_id = 3
         grant.group_id = group.id
         grant.name = Faker::Name.name
         grant.proposal = Populator.sentences(2..12)
@@ -85,7 +94,7 @@ namespace :db do
         grant.created_at = 1.year.ago..Time.now - 1.month
 
         Vote.populate 1 do |v|
-          v.user_id = 4
+          v.user_id = 3
           v.grant_id = grant.id
           v.group_id = group.id
           v.blitz_id = 0
@@ -94,7 +103,7 @@ namespace :db do
           v.updated_at = v.created_at
         end
         Vote.populate 1 do |v|
-          v.user_id = 5
+          v.user_id = 4
           v.grant_id = grant.id
           v.group_id = group.id
           v.blitz_id = 0
