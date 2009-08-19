@@ -9,6 +9,8 @@ class PaymentsController < ApplicationController
     @payment.group_id = session[:group_id]
     @payment.amount = Payment::AMOUNT
 
+    @remit = initialize_remit
+
     request = Remit::InstallPaymentInstruction::Request.new(
       :payment_instruction => "MyRole == 'Caller' orSay 'Role does not match';",
       :caller_reference => Time.now.to_i.to_s,
@@ -16,7 +18,7 @@ class PaymentsController < ApplicationController
       :token_type => "SingleUse"
     )
 
-    install_caller_response = remit.install_payment_instruction(request)
+    install_caller_response = @remit.install_payment_instruction(request)
     @payment.caller_token_id = install_caller_response.token_id
 
     request = Remit::InstallPaymentInstruction::Request.new(
@@ -26,11 +28,11 @@ class PaymentsController < ApplicationController
       :token_type => "SingleUse"
     )
 
-    install_recipient_response = remit.install_payment_instruction(request)
+    install_recipient_response = @remit.install_payment_instruction(request)
     @payment.recipient_token_id = install_recipient_response.token_id
 
     if @payment.save
-      redirect_to remit.get_single_use_pipeline({
+      redirect_to @remit.get_single_use_pipeline({
         :caller_reference   => "#{@payment.id}-payment-#{Time.now.to_i}",
         :recipient_token    => @payment.recipient_token_id,
         :payment_reason     => "Blitz Writing and Voting Privileges",
@@ -78,7 +80,7 @@ class PaymentsController < ApplicationController
           r.meta_data = "Blitz Writing and Voting Privileges"
         end
 
-        payment_response = remit.pay(request)
+        payment_response = initialize_remit.pay(request)
       end
 
       if payment_response.successful? && @payment.process_payment
@@ -103,13 +105,13 @@ class PaymentsController < ApplicationController
 
 private
 
-  def remit
+  def initialize_remit
     @sandbox = true # ||= !Rails.env.production?
-    @remit ||= Remit::API.new(FPS_ACCESS_KEY, FPS_SECRET_KEY, @sandbox)
+    @init ||= Remit::API.new(FPS_ACCESS_KEY, FPS_SECRET_KEY, @sandbox)
   end
 
   def host
-    Rails.env.production? ? "www.grantvote.com" : "localhost:3000"
+    @host ||= Rails.env.production? ? "www.grantvote.com" : "localhost:3000"
   end
 
 end
