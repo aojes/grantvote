@@ -22,29 +22,30 @@
       == #{pluralize @groups.count, 'group'} found
     - else
       All Groups
-  .span-4.last.quiet Top Members 
-  
+  .span-4.last.quiet Top Members
+
 - @groups.each do |group|
   .span-20.prepend-2.append-2.prepend-top.last
 
-    .span-3{:style => "min-height: 102px"}
+    .span-3(style="min-height: 102px")
       = link_to user_defined_image(group, :large, :alt => "visit group"), group_path(group)
     .span-12
-      .span-12.last{:style => "margin-right: 1em"} 
+      .span-12.last(style="margin-right: 1em")
         %h3= link_to h(group.name), group_path(group), :alt => h(group.name)
-        == #{pluralize group.memberships.voters.count, "voter"}
-        == | #{number_to_currency group.funds.floor, :precision => 0} pool 
+        = pluralize group.memberships.voters.count, "voter"
+        == | #{number_to_currency group.funds.floor, :precision => 0} pool
         == | #{pluralize group.grants.awarded.count, 'award'}
         == | #{pluralize voted_sessions(group.grants.session), "session"}
         -#
           == | formed
           = group.created_at.strftime "%B %Y"
       .span-12.last
-        %span{:style => "position:relative; top: 4px"}
+        %span(style="position:relative; top: 4px")
           %strong=h group.purpose
-    .span-4.last{:style => "position:relative; top: 12px"}
+    .span-4.last(style="position:relative; top: 12px")
       - top_contributors(group.id).each do |c|
-        = link_to user_defined_image(c, :small, :alt => "#{c.login}", :title => "#{c.login}"), profile_path(c.login)
-    
-%br(clear='both')        
+        = link_to user_defined_image(c, :small, :alt => c.login, :title => c.login), profile_path(c.login)
+
+%br(clear='both')
 %h4= will_paginate @groups
+

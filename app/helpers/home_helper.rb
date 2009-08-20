@@ -43,7 +43,7 @@ module HomeHelper
       case instance.class.name.downcase
         when 'membership'
           link_to user_defined_image(instance.group, :thumb,
-            :alt => instance.group.name), group_path(instance)
+            :alt => instance.group.name), group_path(instance.group)
         when 'grant'
           link_to user_defined_image(instance, :thumb, :alt => instance.name),
             group_grant_path(instance.group, instance)
@@ -53,7 +53,7 @@ module HomeHelper
     else
       case instance.class.name.downcase
         when 'membership'
-          link_to(instance.group.name, group_path(instance))
+          link_to(instance.group.name, group_path(instance.group))
         when 'blitz'
           link_to(instance.name, blitz_path(instance))
         when 'grant'
