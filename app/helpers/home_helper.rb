@@ -48,7 +48,8 @@ module HomeHelper
           link_to user_defined_image(instance, :thumb, :alt => instance.name),
             group_grant_path(instance.group, instance)
         when 'blitz'
-          link_to 'Blitz Icon', blitz_path(instance)
+          # link_to 'Blitz Icon', blitz_path(instance)
+          link_to image_tag('/images/icons/blitz_32.png'), blitz_path(instance)
       end
     else
       case instance.class.name.downcase

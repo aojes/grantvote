@@ -1,6 +1,5 @@
 .container.showgrid.prepend-top
-  .prepend-1.span-14.append-1
-    %h3 group news and status updates
+  .prepend-1.span-14.append-1.colgroup
 
     - form_for :communication, :url => {:controller => :communications, :action => :create } do |f|
       = f.text_field :content, :class => 'text'
@@ -15,14 +14,10 @@
       .span-2.last
         = link_to "delete", c, :method => :delete
       %hr
-
     / sort updates on timeline
 
   .span-7.append-1.last
-    %h3 social news
-
     / show recent actions by friends
-
     / sort following & followers by recent (image ?)
 
     - activities(current_user).each do |a| # activities(user) returns @list
@@ -46,5 +41,5 @@
     = link_to user_defined_image(following.friend, :thumb, :alt => h(following.friend.login), :title => h(following.friend.login)), profile_path(h(following.friend.login))
   %h3.prepend-top Followers
   - follower_friendships(current_user).each do |follower|
-    = link_to user_defined_image(follower, :thumb, :alt => h(follower.login), :title => h(follower.login)), profile_path(h(follower.login))
+    = link_to user_defined_image(follower, :thumb, :alt => h(follower.login), :title => follower.login), profile_path(follower.login)
 

@@ -22,3 +22,4 @@ class CreateCredits < ActiveRecord::Migration
     drop_table :credits
   end
 end
+

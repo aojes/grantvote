@@ -1,15 +1,15 @@
-.span-21.prepend-2.append-1.last  
+.span-21.prepend-2.append-1.last
   .span-14.append-1
     %h3<
       %span.flr
         = link_to user_defined_image(blitz.user, :small, :alt=> h(blitz.user.login), :title => h(blitz.user.login)), profile_path(h(blitz.user.login))
       = h blitz.name
     %h3(style="color: #609e17")== $#{blitz.amount}
-  .span-6.last 
+  .span-6.last
     = user_cred_images(blitz.user, :small, true)
   .span-15
     .span-3
-      (blitz grant icon)
+      = image_tag('/images/icons/blitz_75.png')
       .span-2.prepend-top.last
         &nbsp;
     .span-11.last{:style => "text-align:justify"}
@@ -28,15 +28,15 @@
     .quiet
       - if blitz.final
         - if blitz.awarded
-          == &nbsp; Awarded #{blitz.updated_at.strftime("%B %d, %Y")} 
+          == &nbsp; Awarded #{blitz.updated_at.strftime("%B %d, %Y")}
           %br
           == &nbsp; after #{distance_of_time_in_words(blitz.votes.first.created_at, blitz.votes.last.created_at)} in session
         - else
-          == &nbsp; Denied #{blitz.updated_at.strftime("%B %d, %Y")} 
+          == &nbsp; Denied #{blitz.updated_at.strftime("%B %d, %Y")}
           %br
           == &nbsp; after #{distance_of_time_in_words(blitz.votes.first.created_at, blitz.votes.last.created_at)} in session
       - if not blitz.user == current_user and voted_blitz?(blitz)
-        %h4.prepend-top.center.quiet Thank you for voting!         
+        %h4.prepend-top.center.quiet Thank you for voting!
   .span-5.center.last
     - unless blitz.final or not current_user or not voting_blitz?(blitz)
       - if blitz.votes.count.zero?
@@ -51,3 +51,4 @@
               = submit_button "Vote Into Session"
       - elsif !(blitz.user == current_user)
         .prepend-top.center= render 'shared/blitz_vote', :blitz => blitz
+

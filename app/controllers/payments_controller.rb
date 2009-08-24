@@ -83,7 +83,7 @@ class PaymentsController < ApplicationController
         payment_response = initialize_remit.pay(request)
       end
 
-      if payment_response.successful? && @payment.process_payment
+      if payment_response.successful? && @payment.process_payment!
         flash[:notice] = "Success!"
         if @payment.group_id.zero?
           redirect_to blitzes_path
@@ -107,7 +107,8 @@ private
 
   def initialize_remit
     @sandbox = true # ||= !Rails.env.production?
-    @init ||= Remit::API.new(FPS_ACCESS_KEY, FPS_SECRET_KEY, @sandbox)
+    # @init ||=
+    Remit::API.new(FPS_ACCESS_KEY, FPS_SECRET_KEY, @sandbox)
   end
 
   def host

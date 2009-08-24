@@ -119,7 +119,7 @@ namespace :db do
     Grant.find(:all).each(&:save!)
 
 
-    Blitz.populate 12 do |b|
+    Blitz.populate 42 do |b|
       b.user_id = [4, 3]
       b.blitz_fund_id = 3
       b.name = Faker::Name.name
@@ -127,8 +127,8 @@ namespace :db do
       b.media = ''
       b.amount = 45..97
       b.votes_win = 1 + User.count(:conditions => {:blitz_interest => true}) / Payment::DIVIDEND
-      b.awarded = false
-      b.final = false
+      b.awarded = [false, true]
+      b.final = [false, true]
 
       b.created_at = 1.year.ago..Time.now
       b.updated_at = 1.week.ago..Time.now
