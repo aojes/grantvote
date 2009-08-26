@@ -4,7 +4,7 @@ module HomeHelper
     mutual_friendships(user).each do |m|
       # new blitzes
       m.friend.blitzes.session.collect! do |b|
-        list << b if !b.votes.count.zero? && b.votes.find_by_user_id(user).nil?
+        list << b if b.votes.find_by_user_id(user).nil?
       end
       # won blitzes
       m.friend.blitzes.awarded.each do |b|

@@ -7,10 +7,10 @@
           .flr= link_to user_defined_image(grant.user, :small, :alt=> "#{grant.user.login.capitalize}", :title => h(grant.user.login)), "/#{h(grant.user.login)}"
           = h grant.name
         %h3== $#{grant.amount.to_i.to_s}
-      .span-6.last 
-        = user_cred_images(grant.user, :small, true)   
+      .span-6.last
+        = user_cred_images(grant.user, :small, true)
       .span-15
-        .span-3 
+        .span-3
           &nbsp;
         .span-12.pull-1.last{:style => "text-align:justify"}
           - unless grant.media.blank?
@@ -22,6 +22,7 @@
         == <img alt="#{group_accessible_tally grant}" title="#{group_accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />
         %p= render 'shared/vote', :grant => grant
       .span-21.prepend-top.last
-        %hr          
+        %hr
 .span-22.prepend-1.last
   %h4= will_paginate @grants
+

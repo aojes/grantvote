@@ -7,6 +7,7 @@ class CreateBlitzes< ActiveRecord::Migration
       t.string :name
       t.text :proposal
       t.text :media
+      t.boolean :session, :default => false, :null => false
       t.boolean :final, :default => false, :null => false
       t.boolean :awarded, :default => false, :null => false
       t.integer :amount, :default => 10, :null => false
@@ -15,6 +16,7 @@ class CreateBlitzes< ActiveRecord::Migration
     end
 
     add_index :blitzes, :user_id
+    add_index :blitzes, :session
     add_index :blitzes, :permalink
   end
 
@@ -23,3 +25,4 @@ class CreateBlitzes< ActiveRecord::Migration
     drop_table :blitzes
   end
 end
+

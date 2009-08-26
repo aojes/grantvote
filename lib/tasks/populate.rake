@@ -58,6 +58,7 @@ namespace :db do
         grant.proposal = Populator.sentences(2..12)
         grant.media = ''
         grant.amount = 20..50
+        grant.session = false
         grant.awarded = true
         grant.final = true
         grant.created_at = 1.year.ago..Time.now - 1.month
@@ -89,6 +90,7 @@ namespace :db do
         grant.proposal = Populator.sentences(2..12)
         grant.media = ''
         grant.amount = 20..50
+        grant.session = true
         grant.awarded = false
         grant.final = false
         grant.created_at = 1.year.ago..Time.now - 1.month
@@ -120,15 +122,16 @@ namespace :db do
 
 
     Blitz.populate 42 do |b|
-      b.user_id = [4, 3]
+      b.user_id = 5
       b.blitz_fund_id = 3
       b.name = Faker::Name.name
       b.proposal = Populator.sentences(4..9)
       b.media = ''
       b.amount = 45..97
       b.votes_win = 1 + User.count(:conditions => {:blitz_interest => true}) / Payment::DIVIDEND
-      b.awarded = [false, true]
-      b.final = [false, true]
+      b.session = true
+      b.awarded = false
+      b.final = false
 
       b.created_at = 1.year.ago..Time.now
       b.updated_at = 1.week.ago..Time.now
@@ -159,7 +162,8 @@ namespace :db do
       b.proposal = Populator.sentences(4..9)
       b.media = ''
       b.amount = 45..55
-      b.votes_win = 1 + User.count(:conditions => {:blitz_interest => true}) / 2
+      b.votes_win = 1 + User.count(:conditions => {:blitz_interest => true}) / Payment::DIVIDEND
+      b.session = true
       b.awarded = false
       b.final = false
       Vote.populate 1 do |v|

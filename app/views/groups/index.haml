@@ -35,7 +35,7 @@
         = pluralize group.memberships.voters.count, "voter"
         == | #{number_to_currency group.funds.floor, :precision => 0} pool
         == | #{pluralize group.grants.awarded.count, 'award'}
-        == | #{pluralize voted_sessions(group.grants.session), "session"}
+        == | #{pluralize group.grants.session.count, "session"}
         -#
           == | formed
           = group.created_at.strftime "%B %Y"

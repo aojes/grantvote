@@ -1,10 +1,10 @@
 class GrantsController < ApplicationController
   require 'searchlogic'
-  
+
   # require user for private production
   before_filter :require_user# , :only => [:new, :create, :update]
   before_filter :verify_authenticity_token
-  
+
   def index
     if params[:group_id]
 
@@ -12,26 +12,26 @@ class GrantsController < ApplicationController
        @page_title = "Voting Session for " + @group.name
        @grants = @group.grants.session.chronological.
          paginate(:page => params[:page], :per_page => 10)
-                          
+
     elsif params[:user_id] # FIXME not used !
-      @grants = Grant.find_all_by_user_id(params[:user_id], 
+      @grants = Grant.find_all_by_user_id(params[:user_id],
                                             :order => "created_at ASC")
-      @page_title = "Listing Grants"                                            
+      @page_title = "Listing Grants"
     else # Grants#index
       @page_title = "Recent Awards on Grantvote"
-      
-      @search = Blitz.search(params[:search])      
+
+      @search = Blitz.search(params[:search])
       search_params = params[:search] ? params[:search][:proposal_like] : nil
       if search_params && !search_params.blank?
-       # abandon searchlogic ?   
+       # abandon searchlogic ?
         # we need to search both Blitz and Grant awards
         #
-        # 
-        # @search  = Grant.search(params[:search])    
-        # @search = Blitz.search(params[:search])  
+        #
+        # @search  = Grant.search(params[:search])
+        # @search = Blitz.search(params[:search])
         @grants = @search.all.paginate(:page => params[:page], :per_page => 10)
       else
-  
+
         grants  = Grant.find_all_by_awarded(true)
         blitzes = Blitz.find_all_by_awarded(true)
 
@@ -42,22 +42,22 @@ class GrantsController < ApplicationController
     end
     respond_to do |format|
       format.html # index.html.erb
-    end    
+    end
   end
-  
+
   def show
     @grant = Grant.find_by_permalink(params[:id])
     @page_title = @grant.name + " on Grantvote"
   end
-  
+
   def new
     @page_title = "New Grant"
     @grant = Grant.new
   end
-  
+
   def create
     @grant = current_user.grants.build(params[:grant])
-    
+
     if @grant.save
       flash[:notice] =  "Grant created. "
       redirect_to group_grant_path(@grant.group, @grant)
@@ -65,12 +65,12 @@ class GrantsController < ApplicationController
       render :action => :new
     end
   end
-    
+
   def edit
     @grant = Grant.find_by_permalink(params[:id])
     @page_title = "Editing " + @grant.name
   end
-  
+
   def update
     @grant = Grant.find_by_permalink(params[:id])
 
@@ -83,6 +83,6 @@ class GrantsController < ApplicationController
       end
     end
   end
-  
+
 end
 
