@@ -1,19 +1,15 @@
 .prepend-top
 .span-20.prepend-2.append-2#search
   .span-10.pull-1.prepend-top
-    %h3.quiet Find groups based on your interests
-    -#%p.quiet We are working to make it better day by day!
+    %h3.quiet(style='position:relative; top:10px;') Find groups based on your interests
+
   .span-10.last
-    - form_for @search do |f|
+    - form_tag groups_path, :method => :get do
       .form_row
         %h6 Find a group
-        = f.text_field :name_like, :class => 'text buttonless_search'
+        = text_field_tag :search, params[:search], :class => 'text buttonless_field'
         = submit_button 'Search'
-      -# f.fields_for @search.conditions do |groups|
-        .form_row
-          %h6 Find a group
-          = groups.text_field :name_keywords, :class => "text buttonless_field"
-          = submit_button "Search"
+
     %h3= link_to "Create a new group", new_group_path, :method => :get
 
 .span-20.prepend-2.append-2

@@ -13,13 +13,12 @@
 
   .span-20.prepend-2.append-2.last#search
     .span-10.pull-1.prepend-top
-      %h3.quiet Winning starts with a bit of research
+      %h3.quiet(style='position:relative; top: 8px;') Winning starts with a bit of research
     .span-10.last
-      - form_for @search do |f|
+      - form_tag grants_path, :method => :get do
         .form_row
           %h6 Search awards
-          = f.text_field :proposal_like, :class => "text buttonless_field"
-          = f.hidden_field :awarded, :value => true
+          = text_field_tag :search, params[:search], :class => 'text buttonless_field'
           = submit_button "Search"
     .span-20.prepend-top.last
       %br

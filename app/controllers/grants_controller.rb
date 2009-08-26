@@ -1,5 +1,4 @@
 class GrantsController < ApplicationController
-  require 'searchlogic'
 
   # require user for private production
   before_filter :require_user# , :only => [:new, :create, :update]
@@ -16,20 +15,17 @@ class GrantsController < ApplicationController
     elsif params[:user_id] # FIXME not used !
       @grants = Grant.find_all_by_user_id(params[:user_id],
                                             :order => "created_at ASC")
-      @page_title = "Listing Grants"
+      @page_title = 'Listing Grants'
     else # Grants#index
-      @page_title = "Recent Awards on Grantvote"
+      @page_title = 'Recent Awards on Grantvote'
 
-      @search = Blitz.search(params[:search])
-      search_params = params[:search] ? params[:search][:proposal_like] : nil
-      if search_params && !search_params.blank?
-       # abandon searchlogic ?
-        # we need to search both Blitz and Grant awards
-        #
-        #
-        # @search  = Grant.search(params[:search])
-        # @search = Blitz.search(params[:search])
-        @grants = @search.all.paginate(:page => params[:page], :per_page => 10)
+      unless params[:search].blank?
+        @grants = Grant.search(
+                    params[:search],
+                    :match_mode    => :boolean,
+                    :field_weights => { :name => 12, :proposal => 10},
+                    :conditions    => { :awarded => true}
+                  ).paginate(:page => params[:page], :per_page => 10)
       else
 
         grants  = Grant.find_all_by_awarded(true)

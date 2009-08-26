@@ -1,14 +1,19 @@
 class GroupsController < ApplicationController
-  require 'searchlogic'
-  
+
   # require user for private production
   before_filter :require_user #, :except => [:index, :show]
   before_filter :verify_authenticity_token
-  
+
   def index
-    @page_title = "Search Groups"
-    @search = Group.search(params[:search])
-    @groups = @search.all.paginate(:page => params[:page], :per_page => 10)
+    @page_title = 'Search Groups'
+
+    @groups = Group.search(
+                params[:search],
+                :match_mode    => :boolean,
+                :field_weights => { :name => 20, :purpose => 10 }
+              ).paginate(:page => params[:page], :per_page => 10)
+
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,7 +23,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find_by_permalink(params[:id])
     @page_title = @group.name + ' on Grantvote'
-    
+
     @grants = @group.grants.awarded.recent.
       paginate(:page => params[:page], :per_page => 10)
 
@@ -46,7 +51,7 @@ class GroupsController < ApplicationController
       else
         format.html { redirect_back_or_default :back }
       end
-    end                      
+    end
   end
 
   def create
@@ -63,7 +68,7 @@ class GroupsController < ApplicationController
       end
     end
   end
-  
+
   def update
     @group = Group.find_by_permalink(params[:id])
 
@@ -78,3 +83,4 @@ class GroupsController < ApplicationController
   end
 
 end
+

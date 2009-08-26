@@ -15,7 +15,9 @@ tmp
 db/*.sql
 db/*.sqlite3
 db/schema.rb
+db/sphinx/*
 sql_backup/*
 vendor/rails
 vendor/extensions
 public/.htaccess
+

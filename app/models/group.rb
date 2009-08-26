@@ -16,6 +16,12 @@ class Group < ActiveRecord::Base
   has_many :users, :through => :memberships
   has_many :comments, :as => :commentable
 
+  define_index do
+    indexes purpose
+    indexes :name, :sortable => true
+    indexes comments.content, :as => :comment_content
+  end
+
   has_permalink :name, :update => true
 
   validates_presence_of :name, :purpose # :dues
@@ -45,6 +51,13 @@ class Group < ActiveRecord::Base
                       :content_type => ['image/jpeg', 'image/png', 'image/gif']
   ## defer
   # validates_attachment_presence :photo SET EDIT BEFORE PUBLIC
+
+  named_scope :name_or_purpose_like, lambda { |*args|
+    {
+      :conditions => ["name LIKE ? OR purpose LIKE ?", "#{args[0]}%", "#{args[0]}%"]
+    }
+  }
+
 
   def solvent?
     funds >= grants.session.sum(:amount)

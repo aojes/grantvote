@@ -6,7 +6,6 @@ class Grant < ActiveRecord::Base
   MIN_AWARD, MIN_BLITZ_AWARD = [5, 10]
   MIN_NAME, MAX_NAME = [2, 60]
 
-  # GREEN, BLUE, RED, SCALE = ["E6EFC2", "DFF4FF", "FBE3E4", "DFDFDF"]
   GREEN, BLUE, RED, SCALE = ["66C966", "628BB5", "E57474", "E0E0E0"]
   SESSION_BAR_CHART_X, SESSION_BAR_CHART_Y  = [198, 32]
   AWARD_CHART_X, AWARD_CHART_Y = [92, 50]
@@ -15,7 +14,11 @@ class Grant < ActiveRecord::Base
   belongs_to :user
   belongs_to :membership
   has_many :votes
-  has_many :comments, :as => :commentable
+
+  define_index do
+    indexes :name
+    indexes proposal
+  end
 
   has_permalink :name, :update => true
 
@@ -30,7 +33,7 @@ class Grant < ActiveRecord::Base
   # before_save :adapt_links
 
   named_scope :awarded,  :conditions => {:awarded => true}
-  named_scope :recent, :order => "updated_at ASC"
+  named_scope :recent,   :order => "updated_at ASC"
   named_scope :defeated, :conditions => {:final => true, :awarded => false}
   named_scope :session,  :conditions => {:final => false, :session => true}
   named_scope :writeboard,  :conditions => {:final => false, :session => false}

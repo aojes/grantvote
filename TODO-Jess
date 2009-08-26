@@ -1,3 +1,5 @@
+set session values for grants!
+
 site comms & testing
 
 validate and save payment params (why does the recipient token often not work?)
