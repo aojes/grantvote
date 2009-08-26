@@ -9,7 +9,7 @@
     - @communications.each do |c|
       .span-2<
         = link_to user_defined_image(c.user, :small, :alt => c.user.login, :title => c.user.login), profile_path(c.user.login)
-      .span-10.large
+      .span-10
         = h c.content
       .span-2.last
         = link_to "delete", c, :method => :delete if c.user == current_user
