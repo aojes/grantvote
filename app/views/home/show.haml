@@ -12,10 +12,10 @@
       .span-10.large
         = h c.content
       .span-2.last
-        = link_to "delete", c, :method => :delete
+        = link_to "delete", c, :method => :delete if c.user == current_user
       %hr
     / sort updates on timeline
-
+    = will_paginate @communications
   .span-7.append-1.last
     / show recent actions by friends
     / sort following & followers by recent (image ?)

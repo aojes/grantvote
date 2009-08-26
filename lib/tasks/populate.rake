@@ -5,7 +5,7 @@ namespace :db do
     require 'faker'
 
 
-    [Group, Membership, Grant, Blitz, Vote].each(&:delete_all)
+    [Group, Membership, Grant, Blitz, Vote, Communication].each(&:delete_all)
 
     Group.populate 12 do |group|
       group.name = Populator.words(3..5).titleize
@@ -180,7 +180,11 @@ namespace :db do
 
     Blitz.find(:all).each(&:save!)
 
-
+    Communication.populate 21 do |c|
+      c.user_id = [1, 2, 3]
+      c.content = Populator.sentences 1
+      c.created_at = 1.month.ago..Time.now
+    end
   end
 end
 

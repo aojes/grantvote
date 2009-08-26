@@ -78,7 +78,6 @@
       %h3.prepend-top.profile_verify<
         Groups
         %hr
-      -#%span{:style => "padding-left: 5px"}
       - @user.groups.reverse.each do |g|
         = link_to user_defined_image(g, :small, :alt => "#{h g.name}", :title => "#{h g.name}"), group_path(g), :class => 'user-image'
         - if g.memberships.find_by_user_id_and_interest(current_user, true)
@@ -92,7 +91,7 @@
         %hr
       - @awards.each do |g|
         - if g.class.name.eql?('Blitz')
-          = link_to image_tag('/images/icons/blitz_48.png', :alt => h(g.name), :title => h(g.name), :style => "position: relative; margin-right: 16px"), blitz_path(g)
+          = link_to image_tag('/images/icons/blitz_48.png', :alt => h(g.name), :title => h(g.name), :style => "position: relative; margin-right: 16px"), blitz_path(g), :class => 'user-image'
         - else
           = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image'
 
@@ -102,7 +101,7 @@
         %hr
       - @session.each do |g|
         - if g.class.name.eql?('Blitz')
-          = link_to image_tag('/images/icons/blitz_48.png', :alt => h(g.name), :title => h(g.name), :style => "position: relative; margin-right: 16px"), blitz_path(g)
+          = link_to image_tag('/images/icons/blitz_48.png', :alt => h(g.name), :title => h(g.name), :style => "position: relative; margin-right: 16px"), blitz_path(g), :class => 'user-image'
         - else
           = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image'
 
@@ -114,7 +113,7 @@
           %hr
       - @writeboard.each do |g|
         - if g.class.name.eql?('Blitz')
-          = link_to image_tag('/images/icons/blitz_48.png', :alt => h(g.name), :title => h(g.name), :style => "position: relative; margin-right: 16px"), blitz_path(g)
+          = link_to image_tag('/images/icons/blitz_48.png', :alt => h(g.name), :title => h(g.name), :style => "position: relative; margin-right: 16px"), blitz_path(g), :class => 'user-image'
         - else
           = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image'
     %br

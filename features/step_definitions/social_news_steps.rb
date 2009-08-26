@@ -1,6 +1,6 @@
 Given /^I have a friend$/ do
   Invitation.create(:id => 2, :email => 'bar@grantvote.com',
-    :news => true, :sender_id => 37, :sent_at => Time.now)
+    :news => true, :sender_id => rand(1000), :sent_at => Time.now)
   User.create!(:id => 2, :login => "bar", :email => "bar@grantvote.com",
     :points => 1, :password => "pass", :password_confirmation => "pass",
     :invitation_id => 2, :invitation_limit => 5, :blitz_interest => true,

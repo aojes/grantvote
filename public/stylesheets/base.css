@@ -296,9 +296,9 @@ a.group_header {
   text-decoration: none;
   underline: none; }
   a.group_header:hover {
-    color: #004B73;
+    color: blue;
     background-color: #FFF79F;
-    border-bottom: 2px solid #004B73; }
+    border-bottom: 1px dotted blue; }
 
 legend {
   padding: .4em 1em; }

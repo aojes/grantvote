@@ -61,8 +61,8 @@ class Vote < ActiveRecord::Base
   end
 
   def limit_message
-    !group.grants.user_group_session(user.id, group.id).zero? ?
-          'You may have only one grant in session per group.' : nil
+    !group.grants.user_group_session(user.id, group.id).count.zero? ?
+                'You may have only one grant in session per group.' : nil
   end
 
   def solvent_fund?

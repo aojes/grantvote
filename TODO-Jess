@@ -1,10 +1,6 @@
-site comms
+site comms & testing
 
-'view session' shows up for writeboard --- fix
-
-validate and save payment params (why is recipient token mostly not working?)
-
-review blitz#index layout (for use with smaller blitz icon than on the profile)
+validate and save payment params (why does the recipient token often not work?)
 
 _________________
 defer
@@ -22,6 +18,9 @@ defer
 
   normal workflow
 
+    fix a img to get rid of yellow highlight on transparent udf images
+    review blitz#index layout (for use with smaller blitz icon than on the profile)
+    'view session' shows up when only writeboard grants exist
     use flash.now where appropriate
     safeguard against double posting comments
     limit comments on group page, maybe use ajax show more
