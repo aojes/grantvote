@@ -3,8 +3,8 @@
   .form_row
     %h2.email Email
     = f.text_field :email, :class => "text invitation_email_text"
-    %button#invitation_submit{'type'=>'submit', 'name'=>'commit'} Submit
+    %button#invitation_submit{'type'=>'submit', 'name'=>'commit', :style => 'position:relative; left: 80px;'} Submit
   .form_row{:style => "color: #444"}
     = f.check_box :news, {:style => "position:relative; top: 0px;"}, "true", "false"
     Check to also subscribe to Grantvote news and product updates.
-  
+
