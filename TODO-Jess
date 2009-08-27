@@ -3,6 +3,7 @@ set session values for grants! (?)
 site comms & testing
 
 ajaxify group comments
+
 _________________
 defer
 
@@ -12,7 +13,6 @@ defer
     group moderation (allow creator & moderator to edit photo & purpose)
     track active users
     monitor searching / trending
-    enable users to delete their own comments
 
   normal workflow
 
