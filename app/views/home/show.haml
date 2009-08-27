@@ -13,7 +13,7 @@
           .span-2<
             = link_to user_defined_image(c.user, :small, :alt => c.user.login, :title => c.user.login), profile_path(c.user.login)
           .span-11
-            = h c.content
+            = hreffer(h c.content)
             %br
             .time_ago= distance_of_time_in_words_to_now(c.created_at) + ' ago'
           .span-1.last

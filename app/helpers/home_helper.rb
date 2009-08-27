@@ -1,5 +1,11 @@
 module HomeHelper
 
+  def hreffer(status_update)
+    status_update.split.each do |m|
+      m.gsub!(URL_REGEXP, "<a target=\"_blank\" href=\"#{m}\">#{m}</a>")
+    end.join(' ').to_s
+  end
+
   def activities(user, list = [])
     mutual_friendships(user).each do |m|
       # new blitzes
