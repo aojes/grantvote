@@ -3,8 +3,8 @@ class Payment < ActiveRecord::Base
   belongs_to :user
   has_many :transactions, :class_name => "PaymentTransaction"
 
-  AMOUNT = 3
-  DIVIDEND = AMOUNT - 1
+  AMOUNT = 4.85
+  DIVIDEND = AMOUNT - 0.85
 
   ##
   # typical response params (for payment on Amazon with credit card)

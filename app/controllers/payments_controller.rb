@@ -12,23 +12,23 @@ class PaymentsController < ApplicationController
     @remit = initialize_remit
 
     request = Remit::InstallPaymentInstruction::Request.new(
-      :payment_instruction => "MyRole == 'Caller' orSay 'Role does not match';",
-      :caller_reference => Time.now.to_i.to_s,
-      :token_friendly_name => "Grantvote Caller Token",
-      :token_type => "SingleUse"
+      :payment_instruction  => "MyRole == 'Caller' orSay 'Role does not match';",
+      :caller_reference     => Time.now.to_i.to_s,
+      :token_friendly_name  => "Grantvote Caller Token",
+      :token_type           => "SingleUse"
     )
 
-    install_caller_response = @remit.install_payment_instruction(request)
+    install_caller_response  = @remit.install_payment_instruction(request)
     @payment.caller_token_id = install_caller_response.token_id
 
     request = Remit::InstallPaymentInstruction::Request.new(
-      :payment_instruction => "MyRole == 'Recipient' orSay 'Role does not match';",
-      :caller_reference => Time.now.to_i.to_s,
-      :token_friendly_name => "Grantvote Payment Receipt",
-      :token_type => "SingleUse"
+      :payment_instruction  => "MyRole == 'Recipient' orSay 'Role does not match';",
+      :caller_reference     => Time.now.to_i.to_s,
+      :token_friendly_name  => "Grantvote Payment Receipt",
+      :token_type           => "SingleUse"
     )
 
-    install_recipient_response = @remit.install_payment_instruction(request)
+    install_recipient_response  = @remit.install_payment_instruction(request)
     @payment.recipient_token_id = install_recipient_response.token_id
 
     if @payment.save
@@ -58,14 +58,14 @@ class PaymentsController < ApplicationController
         if @payment.save
 
           request = returning Remit::Pay::Request.new do |r|
-            r.sender_token_id = params[:tokenID]
-            r.caller_token_id = @payment.caller_token_id
+            r.sender_token_id    = params[:tokenID]
+            r.caller_token_id    = @payment.caller_token_id
             r.recipient_token_id = @payment.recipient_token_id
             r.transaction_amount = Remit::RequestTypes::Amount.new(
                             :currency_code => 'USD', :amount => Payment::AMOUNT)
-            r.charge_fee_to = 'Recipient' # Remit::ChargeFeeTo::RECIPIENT
-            r.caller_reference = "#{@payment.id}-transaction-#{Time.now.to_i}"
-            r.meta_data = "Blitz Writing and Voting Privileges"
+            r.charge_fee_to      = 'Recipient'
+            r.caller_reference   = "#{@payment.id}-transaction-#{Time.now.to_i}"
+            r.meta_data          = "Blitz Writing and Voting Privileges"
           end
 
           payment_response = initialize_remit.pay(request)
@@ -91,6 +91,9 @@ class PaymentsController < ApplicationController
       end
     else
       # process unhandled payment
+      flash[:warning] = 'Transaction failed.' +
+                        'Please try again, or contact support.'
+      redirect_to profile_path(current_user)
     end
   end
 

@@ -10,6 +10,7 @@ class CreateComments < ActiveRecord::Migration
     end
       add_index :comments, :commentable_id
       add_index :comments, :commentable_type
+      add_index :comments, :content
       add_index :comments, :user_id
   end
 
@@ -17,3 +18,4 @@ class CreateComments < ActiveRecord::Migration
     drop_table :comments
   end
 end
+
