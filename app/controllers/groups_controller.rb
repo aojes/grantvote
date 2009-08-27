@@ -6,14 +6,16 @@ class GroupsController < ApplicationController
 
   def index
     @page_title = 'Search Groups'
-
-    @groups = Group.search(
-                params[:search],
-                :match_mode    => :boolean,
-                :field_weights => { :name => 20, :purpose => 10 }
-              ).paginate(:page => params[:page], :per_page => 10)
-
-
+    unless params[:search].blank?
+      @groups = Group.search(
+                  params[:search],
+                  :match_mode    => :boolean,
+                  :field_weights => { :name => 20, :purpose => 10 }
+                ).paginate(:page => params[:page], :per_page => 10)
+    else
+      @groups = Group.all.sort_by(&:funds).
+        paginate(:page => params[:page], :per_page => 10)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
