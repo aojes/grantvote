@@ -44,62 +44,53 @@ class PaymentsController < ApplicationController
     end
   end
 
-
-
-  ##
-  # Check, validate, and store the sender token to capture the payment, or
-  # charge the transaction immediately. Think of the sender token as being
-  # similar to a credit card authorization.
-  #
   def finalize
-    #
-    #
-    #
-    # if response.successful? # response.valid? && response.successful?
 
-      # store the sender token to use it later, or just use immediately to
-      # charge the transaction as follows:
-      # pipeline_response = Remit::PipelineResponse.new(url, "my secret key")
+    pipeline_response = Remit::PipelineResponse.new(request.url, FPS_SECRET_KEY)
+    if pipeline_response.valid? && pipeline_response.successful?
 
-    payment_id = params[:callerReference].split('-').first.to_i
-    @payment = Payment.find(payment_id)
-    if @payment
+      payment_id = params[:callerReference].split('-').first.to_i
+      @payment = Payment.find(payment_id)
+      if @payment
 
-      @payment.pipeline_token_id = params[:tokenID]
+        @payment.pipeline_token_id = params[:tokenID]
 
-      if @payment.save
+        if @payment.save
 
-        request = returning Remit::Pay::Request.new do |r|
-          r.sender_token_id = params[:tokenID]
-          r.caller_token_id = @payment.caller_token_id
-          r.recipient_token_id = @payment.recipient_token_id
-          r.transaction_amount = Remit::RequestTypes::Amount.new(
+          request = returning Remit::Pay::Request.new do |r|
+            r.sender_token_id = params[:tokenID]
+            r.caller_token_id = @payment.caller_token_id
+            r.recipient_token_id = @payment.recipient_token_id
+            r.transaction_amount = Remit::RequestTypes::Amount.new(
                             :currency_code => 'USD', :amount => Payment::AMOUNT)
-          r.charge_fee_to = 'Recipient' # Remit::ChargeFeeTo::RECIPIENT
-          r.caller_reference = "#{@payment.id}-transaction-#{Time.now.to_i}"
-          r.meta_data = "Blitz Writing and Voting Privileges"
+            r.charge_fee_to = 'Recipient' # Remit::ChargeFeeTo::RECIPIENT
+            r.caller_reference = "#{@payment.id}-transaction-#{Time.now.to_i}"
+            r.meta_data = "Blitz Writing and Voting Privileges"
+          end
+
+          payment_response = initialize_remit.pay(request)
         end
 
-        payment_response = initialize_remit.pay(request)
-      end
-
-      if payment_response.successful? && @payment.process_payment!
-        flash[:notice] = "Success!"
-        if @payment.group_id.zero?
-          redirect_to blitzes_path
+        if payment_response.successful? && @payment.process_payment!
+          flash[:notice] = "Success!"
+          if @payment.group_id.zero?
+            redirect_to blitzes_path
+          else
+            group = Group.find(@payment.group_id)
+            redirect_to group_path(group)
+          end
         else
-          group = Group.find(@payment.group_id)
-          redirect_to group_path(group)
-        end
-      else
-        flash[:notice] = "Unsuccessful."
-        if @payment.group_id.zero?
-          redirect_to blitzes_path
-        else
-          group = Group.find(@payment.group_id)
-          redirect_to group_path(group)
+          flash[:notice] = "Unsuccessful."
+          if @payment.group_id.zero?
+            redirect_to blitzes_path
+          else
+            group = Group.find(@payment.group_id)
+            redirect_to group_path(group)
+          end
         end
       end
+    else
+      # process unhandled payment
     end
   end
 
@@ -107,7 +98,6 @@ private
 
   def initialize_remit
     @sandbox = true # ||= !Rails.env.production?
-    # @init ||=
     Remit::API.new(FPS_ACCESS_KEY, FPS_SECRET_KEY, @sandbox)
   end
 
