@@ -8,14 +8,17 @@ namespace :db do
     BlitzFund.populate 1 do |b|
       b.dues = 10
       b.general_pool = 1000
+      b.awards = 2345
     end
     BlitzFund.populate 1 do |b|
       b.dues = 4.85
       b.general_pool = 1000
+      b.awards = 2345
     end
     BlitzFund.populate 1 do |b|
       b.dues = 3
       b.general_pool = 1000
+      b.awards = 1234
     end
   end
 end

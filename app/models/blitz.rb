@@ -43,7 +43,7 @@ class Blitz < ActiveRecord::Base
   def award!
     transaction do
       update_attributes!(:final => true, :awarded => true)
-      blitz_fund.deduct_funds!(amount)
+      blitz_fund.cycle!(amount)
       user.cycle_interest!(amount)
     end
   end

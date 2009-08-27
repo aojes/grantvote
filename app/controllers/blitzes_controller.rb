@@ -5,7 +5,9 @@ class BlitzesController < ApplicationController
 
   def index
     @page_title = 'Grantvote Blitz'
-    @general_pool = BlitzFund.find_by_dues(Payment::AMOUNT).general_pool
+    blitz_fund = BlitzFund.find_by_dues(Payment::AMOUNT)
+    @awards = blitz_fund.awards
+    @general_pool = blitz_fund.general_pool
 
     session[:group_id] = 0
     session[:group_permalink] = 0 # set to 0 for blitz payment
