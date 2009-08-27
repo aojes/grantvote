@@ -35,7 +35,7 @@ class PaymentsController < ApplicationController
       redirect_to @remit.get_single_use_pipeline({
         :caller_reference   => "#{@payment.id}-payment-#{Time.now.to_i}",
         :recipient_token    => @payment.recipient_token_id,
-        :payment_reason     => "Blitz Writing and Voting Privileges",
+        :payment_reason     => payment_reason,
         :transaction_amount => Payment::AMOUNT.to_s,
         :return_url         => "http://#{host}/payments/finalize"
       }).url
@@ -70,7 +70,7 @@ class PaymentsController < ApplicationController
                             :currency_code => 'USD', :amount => Payment::AMOUNT)
             r.charge_fee_to      = 'Recipient'
             r.caller_reference   = "#{@payment.id}-transaction-#{Time.now.to_i}"
-            r.meta_data          = "Blitz Writing and Voting Privileges"
+            r.meta_data          = payment_reason
           end
 
           payment_response = initialize_remit.pay(request)
@@ -96,7 +96,7 @@ class PaymentsController < ApplicationController
       end
     else
       # process unhandled payment
-      flash[:warning] = 'Transaction failed.' +
+      flash[:warning] = 'Transaction failed or canceled.' +
                         'Please try again, or contact support.'
       redirect_to profile_path(current_user)
     end
@@ -113,5 +113,12 @@ private
     @host ||= Rails.env.production? ? "www.grantvote.com" : "localhost:3000"
   end
 
+  def payment_reason
+    if session[:group_id].zero?
+      'Blitz Writing and Voting Privileges'
+    else
+      "Group Voting and Writing Dues: #{Group.find(session[:group_id]).name}"
+    end
+  end
 end
 
