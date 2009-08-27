@@ -23,7 +23,8 @@
     %h5= link_to 'Settings', edit_account_path if current_user == @user
     - unless @user == current_user
       - unless current_user.friendships.exists?(:user_id => current_user, :friend_id => @user)
-        = link_to "Add Friendship", friendships_path(:friend_id => @user), :method => :post
+        = link_to image_tag('/images/icons/plus.png', :style => 'position:relative; top: 10px;'), friendships_path(:friend_id => @user), :method => :post
+        = link_to "Friendship", friendships_path(:friend_id => @user), :method => :post
 
     = render 'shared/user_invitation'
 
@@ -64,7 +65,8 @@
           = link_to user_defined_image(inverse_friendship, :thumb, :alt => h(inverse_friendship.login), :title => h(inverse_friendship.login)), profile_path(h(inverse_friendship.login))
     - if current_user.friendships.exists?(:user_id => current_user, :friend_id => @user)
       %p.prepend-top<
-        = link_to "Remove Friendship", friendship_path(@user), :method => :delete
+        = link_to "Friendship", friendship_path(@user), :method => :delete, :confirm => 'Remove friendship?'
+        = link_to image_tag('/images/icons/blue_arrows.png', :style => 'position:relative; top: 10px;'), friendship_path(@user), :method => :delete, :confirm => 'Remove friendship?'
     %br
     %br
     %br

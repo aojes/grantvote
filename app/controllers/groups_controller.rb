@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
                   :field_weights => { :name => 20, :purpose => 10 }
                 ).paginate(:page => params[:page], :per_page => 10)
     else
-      @groups = Group.all.sort_by(&:funds).
+      @groups = Group.all.sort{ |a,b| b.funds <=> a.funds }.
         paginate(:page => params[:page], :per_page => 10)
     end
 
