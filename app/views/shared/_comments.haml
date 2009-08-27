@@ -1,7 +1,11 @@
 - comments.reverse.each do |c|
   .last
-    .fll(style="padding-right: 14px")= link_to user_defined_image(c.user, :small, :alt => h(c.user.login), :title => h(c.user.login)), profile_path(c.user.login)
+    .fll(style="padding-right: 14px; display: block;")<
+      = link_to user_defined_image(c.user, :small, :alt => h(c.user.login), :title => h(c.user.login)), profile_path(c.user.login)
+    .flr.time_ago(style='position:relative; top: 4px;')<
+      = distance_of_time_in_words_to_now(c.created_at) + ' ago'
     %strong= link_to c.user.login, profile_path(c.user.login)
-    .quiet.small= distance_of_time_in_words_to_now(c.created_at) << " ago"
-    = simple_format h(c.content)
+    %br
+    = hreffer h(c.content), false
   %hr
+

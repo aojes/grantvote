@@ -65,6 +65,16 @@ module ApplicationHelper
     end
   end
 
+  def hreffer(status_update, follow = true)
+    status_update.split.each do |m|
+      if follow
+        m.gsub!(URL_REGEXP, "<a target=\"_blank\" href=\"#{m}\">#{m}</a>")
+      else
+        m.gsub!(URL_REGEXP, "<a target=\"_blank\" rel=\"nofollow\" href=\"#{m}\">#{m}</a>")
+      end
+    end.join(' ').to_s
+  end
+
   def mutual_friendships(user)
     user.friendships.map do |friendship|
       friendship if friendship.friend.friendships.exists?(:friend_id => user)

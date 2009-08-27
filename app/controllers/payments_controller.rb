@@ -45,6 +45,11 @@ class PaymentsController < ApplicationController
   end
 
   def finalize
+    # case params[:status]
+    #   when "SA", "SB", "SC" then successful payment
+    #   when "A" then aborted payment
+    #   else unhandled_payment
+    # end
 
     pipeline_response = Remit::PipelineResponse.new(request.url, FPS_SECRET_KEY)
     if pipeline_response.valid? && pipeline_response.successful?

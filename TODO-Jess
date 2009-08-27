@@ -1,21 +1,17 @@
-set session values for grants!
+set session values for grants! (?)
 
 site comms & testing
 
-validate and save payment params (why does the recipient token often not work?)
-
+ajaxify group comments
 _________________
 defer
 
   important
 
-    use blitz icon for writeboard and sessions
     leave group (put in terms no deduction from group pool)
     group moderation (allow creator & moderator to edit photo & purpose)
-    facebook-style links in plain text
     track active users
     monitor searching / trending
-    figure group comments more prominently (make forum?)
     enable users to delete their own comments
 
   normal workflow
@@ -31,11 +27,8 @@ defer
     let creator set moderator, moderator set moderator
     adapt blitz for variable dues
     sort friends recent first (?)
-    work on shared/sidebar limit 3
     can promote general-purpose, company group with free voting membership on reg
     various hideousness in Opera browser
-    live-action search results
-    add profile view count to user account page
     remove 'add comment' link for logged-out view
     add 'mark as spam' or flag as inappropriate link on comments, etc.
     show "Group Awards" (?)
