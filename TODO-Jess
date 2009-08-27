@@ -1,6 +1,4 @@
-set session values for grants! (?)
-
-site comms & testing
+set session values for grants! (forgot what I meant by that)
 
 ajaxify group comments
 
@@ -9,10 +7,9 @@ defer
 
   important
 
-    leave group (put in terms no deduction from group pool)
+    leave group (no deduction from group pool)
     group moderation (allow creator & moderator to edit photo & purpose)
-    track active users
-    monitor searching / trending
+    Site Comms ticket
 
   normal workflow
 
@@ -31,6 +28,8 @@ defer
     various hideousness in Opera browser
     add 'mark as spam' or flag as inappropriate link on comments, etc.
     show "Group Awards" (?)
+    track active users
+    monitor searching / trending
     align "preview / session / awarded" boxes
     make following/followers collapsible & set default
     user location map via google maps (see www.obsidianportal.com/map)

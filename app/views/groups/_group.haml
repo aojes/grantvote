@@ -5,7 +5,7 @@
         %h3<
           .flr= link_to user_defined_image(grant.user, :small, :alt => h(grant.user.login), :title => h(grant.user.login)), "/#{h(grant.user.login)}"
           =h grant.name
-        %h5(style="color: #609e17")== #{number_to_currency grant.amount, :precision => 0}
+        %h3(style="color: #609e17")== #{number_to_currency grant.amount, :precision => 0}
         .span-13.last
           - if !grant.media.blank?
             = simple_format grant.media
