@@ -103,7 +103,7 @@ a.rounded, div.pagination a {
   text-align: center; }
 
 .status_update {
-  font-size: 125%; }
+  font-size: 15px; }
   .status_update hr {
     color: white;
     background-color: white;
@@ -384,7 +384,7 @@ textarea#status_update_field {
   height: 42px;
   border: 3px solid #cccccc;
   padding: 5px;
-  font-family: Tahoma, sans-serif; }
+  font-size: 14px; }
 
 input.invitation_email_text {
   background: #FFF; }

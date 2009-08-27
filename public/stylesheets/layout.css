@@ -103,7 +103,7 @@ a.rounded, div.pagination a {
   text-align: center; }
 
 .status_update {
-  font-size: 125%; }
+  font-size: 15px; }
   .status_update hr {
     color: white;
     background-color: white;

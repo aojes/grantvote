@@ -13,7 +13,7 @@ class HomeController < ApplicationController
           friendship.friend.communications
         end
       end.concat(current_user.communications).compact.flatten.
-        sort_by(&:created_at).
+        sort_by(&:created_at).reverse.
           paginate(:page => params[:page], :per_page => 5)
 
   end

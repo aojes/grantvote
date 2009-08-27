@@ -1,5 +1,5 @@
-.container.showgrid.prepend-top
-  .prepend-1.span-14.append-1.colgroup
+.prepend-top
+  .prepend-1.span-14.append-1
 
     - form_for :communication, :url => {:controller => :communications, :action => :create } do |f|
       = f.text_area :content, :class => 'text', :id => 'status_update_field'
