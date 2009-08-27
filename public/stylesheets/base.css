@@ -102,6 +102,14 @@ a.rounded, div.pagination a {
 .center {
   text-align: center; }
 
+.status_update {
+  font-size: 125%; }
+  .status_update hr {
+    color: white;
+    background-color: white;
+    border-bottom: 1px dashed #bdbdbd;
+    padding-top: 4px; }
+
 .rounded {
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;
@@ -338,7 +346,7 @@ button span {
   background: url('/images/button.png') 0px 0px no-repeat; }
 
 /* button span.lite-span
- * /*:padding-left 12px    
+ * /*:padding-left 12px
  * /*:background url('/images/button.png') 0px 80px no-repeat */
 button.lite span {
   padding-left: 12px;
@@ -371,9 +379,15 @@ button.lite em {
   background: url('/images/search_glass_gray.png') 5px 5px no-repeat;
   padding-left: 23px !important; }
 
+textarea#status_update_field {
+  width: 538px;
+  height: 42px;
+  border: 3px solid #cccccc;
+  padding: 5px;
+  font-family: Tahoma, sans-serif; }
+
 input.invitation_email_text {
-  background: #FFF;
-  width: 200px; }
+  background: #FFF; }
 
 input.invitation_email_text:focus {
   background: #FFF;

@@ -10,10 +10,10 @@ a, a:focus, button:focus, input:focus, textarea:focus
 
 button::-moz-focus-inner
   :border 0
-  
+
 h2
   :color #82b039
-  
+
 h1.logo a
   :width 310px
   :height 97px
@@ -37,7 +37,7 @@ a.rounded, div.pagination a
   :display -moz-inline-box
   :display inline-block
   :overflow visible
-  
+
 .nav
   :color #ededed
   #login
@@ -53,12 +53,12 @@ a.rounded, div.pagination a
     :color #004B73
     :background-color #d1e1ea
     :padding 2px 4px
-  
+
   #nav-list ul
     :list-style none
     :padding 0
     :margin 0
-  
+
   #nav-list li
     :float left
     :margin 0 0.2em
@@ -99,24 +99,32 @@ a.rounded, div.pagination a
   :border-top 1px solid #888
 
 .ballot
- 
+
 .flr
   :float right
 
 .fll
   :float left
-  
-.clear 
+
+.clear
   :clear both
-  
+
 .center
   :text-align center
-  
-.rounded 
+
+.status_update
+  :font-size 125%
+  hr
+    :color white
+    :background-color white
+    :border-bottom 1px dashed #bdbdbd
+    :padding-top 4px
+
+.rounded
   :-webkit-border-radius 4px
   :-khtml-border-radius 4px
   :-moz-border-radius 4px
-  :border-radius 4px  
+  :border-radius 4px
 
 .border-test
   :border 1px solid #999
@@ -127,7 +135,7 @@ a.rounded, div.pagination a
   :top -60px
   :background-color #ededed
   :border 1px solid #ccc
-  
+
 #verify a img
   :padding 0
   :margin-right -3px
@@ -135,20 +143,20 @@ a.rounded, div.pagination a
 h3.profile_verify
   :position relative
   :left -10px
-  
+
 #join_panel
   /*:background-color #f3f3f3
 
 #green
-  :width 940px 
-  :min-height 300px 
+  :width 940px
+  :min-height 300px
   :background url('/images/green_mid_rpt.jpg') 0 0 repeat-y
   :margin 30px 0px 0px 27px
 
 #green-top
   :background url('/images/green_mid_top.jpg') 0 0 no-repeat
-  :width 940px 
-  :height 20px 
+  :width 940px
+  :height 20px
   :display block
   :margin 0px 0px 0px 0px
   :float left
@@ -156,12 +164,12 @@ h3.profile_verify
 #green-bottom
   :clear both
   :background url('/images/green_mid_btm.jpg') no-repeat bottom left
-  :width 940px 
-  :height 20px 
+  :width 940px
+  :height 20px
   :display block
   :margin 0px 0px 50px 0px
 
-.tbs 
+.tbs
   :margin 40px auto 40px auto
 
 div.rounded-box, div.rounded-box div
@@ -169,10 +177,10 @@ div.rounded-box, div.rounded-box div
 
 div.rounded-box-header, div.rounded-box-header div
   :background url('/images/rounded_large.jpg')
-  
+
 div.rounded-box, div.rounded-box-header
   :padding 0px 0px 0px 0px
-  :margin 0px 0px 0px 0px 
+  :margin 0px 0px 0px 0px
   :background-repeat no-repeat
   :background-position bottom left
   :height 1%
@@ -180,17 +188,17 @@ div.rounded-box, div.rounded-box-header
 .rounded-box-image
   :width 330px
   :text-align center
-  
+
 .rounded-box-small
   :width 400px
-  
+
 .rounded-box-smaller
   :width 370px
 
 .sidebar
   :width 350px
   :float left
-  h2 
+  h2
     :padding 10px 0px 0px 15px
     :font-size 14px
     :color #333
@@ -206,15 +214,15 @@ div.rounded-box, div.rounded-box-header
       :height 100px
       :padding 5px 5px 5px 5px
       :float left
-      :width 130px 
-    p 
+      :width 130px
+    p
       :height 100px
       :padding 0px 5px 5px 5px
 
 
 .sidebar-adjust
   :padding-left 20px
-  
+
 .rounded-box-medium
   :width 530px
 
@@ -223,27 +231,27 @@ div.rounded-box, div.rounded-box-header
 
 .rounded-box-full
   :width 775px
-  
+
 .rounded-box-full-header
   :width 930px
-  
+
 div.rounded-box div, div.rounded-box-header div
   :margin 0px 0px 0px 13px
   :background-repeat no-repeat
-  :background-position bottom right  
+  :background-position bottom right
   :padding 0px 0px 13px 0px
   :width auto
- 
-div.rounded-box div div, div.rounded-box-header div div 
+
+div.rounded-box div div, div.rounded-box-header div div
   :background-position top right
-  :margin 0px 0px 0px 0px 
+  :margin 0px 0px 0px 0px
   :padding 0px 0px 0px 0px
- 
-div.rounded-box div div div, div.rounded-box-header div div div 
+
+div.rounded-box div div div, div.rounded-box-header div div div
   :margin 0px 13px 0px -13px
   :background-position top left
   :padding 13px 0px 0px 13px
- 
+
 
 div.rounded-box div div div div, div.rounded-box-header div div div div
   :padding 0px 0px 0px 0px
@@ -259,7 +267,7 @@ div.rounded-box div div div div, div.rounded-box-header div div div div
   :background url('/images/light_blue_mid.jpg') repeat top left
   :height 290px
   :width 900px
-  
+
 .rwide-left
   :background url('/images/light_blue_left.jpg') no-repeat top left
   :height 290px
@@ -274,22 +282,18 @@ div.rounded-box div div div div, div.rounded-box-header div div div div
   :width 20px
   :display block
   :float right
-  
-.group-details 
+
+.group-details
   :margin 10px 0px 0px 0px
 
-.group-image 
+.group-image
   :padding 10px 0px 0px 20px
   :float left
-  
+
 .centered
   :position relative
   :margin 40px auto 30px auto!important
 
 .centered2
   :margin 4px auto 20px auto
-
-  
-  
-  
 

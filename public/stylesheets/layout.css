@@ -102,6 +102,14 @@ a.rounded, div.pagination a {
 .center {
   text-align: center; }
 
+.status_update {
+  font-size: 125%; }
+  .status_update hr {
+    color: white;
+    background-color: white;
+    border-bottom: 1px dashed #bdbdbd;
+    padding-top: 4px; }
+
 .rounded {
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;

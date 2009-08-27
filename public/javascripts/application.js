@@ -1,11 +1,12 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
+
 $.fn.pause = function(duration) {
     $(this).animate({ dummy: 1 }, duration);
     return this;
 };
 
-$.fn.qtip.styles.grantvotestyle = { 
+$.fn.qtip.styles.grantvotestyle = {
     width: 200,
     background: '#eeeeee',
     color: 'black',
@@ -14,8 +15,8 @@ $.fn.qtip.styles.grantvotestyle = {
       width: 3,
       radius: 5,
       color: '#cccccc' },
-  
-    name: 'light' 
+
+    name: 'light'
 }
 
 $(document).ready( function(){
@@ -32,7 +33,7 @@ $(document).ready( function(){
   $('#new_group').validate();
 
 
-  $('img[title]').qtip({ style: { name: 'grantvotestyle', tip: true }, 
+  $('img[title]').qtip({ style: { name: 'grantvotestyle', tip: true },
     position: {
         corner: {
            target: 'leftMiddle',
@@ -42,5 +43,6 @@ $(document).ready( function(){
       adjust: { mouse: true } },
     show: { effect: { type: 'slide', length: '100' } }
    });
-  
+
 });
+
