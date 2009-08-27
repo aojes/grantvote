@@ -65,16 +65,6 @@ module ApplicationHelper
     end
   end
 
-  def submit_button_tag(name, lite = false)
-    if lite
-      %(<button class="lite" type="submit"><span><em>) + name +
-      %(</em></span></button>)
-    else
-      %(<button type="submit"><span><em>) + name +
-      %(</em></span></button>)
-    end
-  end
-
   def mutual_friendships(user)
     user.friendships.map do |friendship|
       friendship if friendship.friend.friendships.exists?(:friend_id => user)

@@ -180,8 +180,8 @@ namespace :db do
 
     Blitz.find(:all).each(&:save!)
 
-    Communication.populate 21 do |c|
-      c.user_id = [1, 2, 3]
+    Communication.populate 50 do |c|
+      c.user_id = [1, 2, 3, 4, 5]
       c.content = Populator.sentences 1
       c.created_at = 1.month.ago..Time.now
     end
