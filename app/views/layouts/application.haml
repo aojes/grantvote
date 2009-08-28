@@ -23,6 +23,8 @@
       = javascript_include_tag 'invitations'
     - if current_user and current_page?(:controller => 'groups', :action=>'show')
       = javascript_include_tag 'comments'
+    = javascript_include_tag 'jquery.bottomlesspagination.js'
+    
 
   %body
     .container

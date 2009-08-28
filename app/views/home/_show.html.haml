@@ -1,0 +1,17 @@
+
+      .status_update
+        %hr
+        - @communications.each do |c|
+          .span-2<
+            = link_to user_defined_image(c.user, :small, :alt => c.user.login, :title => c.user.login), profile_path(c.user.login)
+          .span-11
+            = hreffer(h c.content)
+            %br
+            .time_ago= distance_of_time_in_words_to_now(c.created_at) + ' ago'
+          .span-1.last
+          - if c.user == current_user
+            = link_to image_tag('/images/icons/blue_arrows.png'), c, :method => :delete, :confirm => 'Delete comment?'
+          %hr
+
+      = will_paginate @communications
+  

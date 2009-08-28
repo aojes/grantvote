@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @page_title = 'Grantvote'
   end
 
-  def show
+  def show    
     @page_title = 'Welcome'
 
     @communications = current_user.friendships.map do |friendship|
