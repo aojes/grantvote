@@ -59,8 +59,8 @@ class Group < ActiveRecord::Base
   }
 
 
-  def solvent?
-    funds >= grants.session.sum(:amount)
+  def solvent?(amount)
+    funds >= grants.session.sum(:amount) + amount
   end
 
   def deduct_funds!(amount)

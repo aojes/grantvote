@@ -1,4 +1,6 @@
-set session values for grants! (forgot what I meant by that)
+allow leave group (no deduction from group pool)
+
+allow delete writeboard grants
 
 ajaxify group comments
 
@@ -7,7 +9,6 @@ defer
 
   important
 
-    leave group (no deduction from group pool)
     group moderation (allow creator & moderator to edit photo & purpose)
     Site Comms ticket
 

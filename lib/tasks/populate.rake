@@ -162,7 +162,7 @@ namespace :db do
       b.proposal = Populator.sentences(4..9)
       b.media = ''
       b.amount = 45..55
-      b.votes_win = 1 + User.count(:conditions => {:blitz_interest => true}) / Payment::DIVIDEND
+      b.votes_win = User.count(:conditions => {:blitz_interest => true}) / Blitz::DIVISOR
       b.session = true
       b.awarded = false
       b.final = false

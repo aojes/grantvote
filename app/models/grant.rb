@@ -67,14 +67,20 @@ class Grant < ActiveRecord::Base
 
   def award!
     transaction do
-      update_attributes!(:final => true, :awarded => true)
+      update_attributes!(:final => true, :awarded => true, :session => false)
       group.deduct_funds!(amount)
       group.memberships.find_by_user_id(user).cycle_membership!(amount)
     end
   end
 
   def deny!
-    update_attributes!(:final => true, :awarded => false)
+    update_attributes!(:final => true, :awarded => false, :session => false)
+  end
+
+  def session_reset
+    if session and votes.count.zero?
+      update_attributes!(:session => false)
+    end
   end
 
   def to_param

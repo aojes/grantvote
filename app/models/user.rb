@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
 
   before_create :set_invitation_limit
 
+  named_scope :blitz_voters, :conditions => { :blitz_interest => true }
+
   def cycle_interest!(amount)
     update_attributes!(:blitz_rewards => (blitz_rewards + amount))
     if blitz_contributes <= blitz_rewards

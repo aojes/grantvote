@@ -180,36 +180,33 @@ module ApplicationHelper
   end
 
   # For blitz grants
-  def session_bar_chart_image(grant)
-    votes_yea = grant.votes.yea.count
-    votes_nay = grant.votes.nay.count
-                          # TODO consolidate this setting (see blitz controller)
-    #session_voting_pool = (1 + grant.amount / Payment::AMOUNT).to_f * 2
-    session_voting_pool = grant.votes_win.to_f * 2 - 1
+  def session_bar_chart_image(blitz)
+    votes_yea = blitz.votes.yea.count
+    votes_nay = blitz.votes.nay.count
+
+    session_voting_pool = (blitz.votes_win * Blitz::DIVISOR).ceil.to_f
 
     green = (votes_yea / session_voting_pool).round(2) * 100
       red = (votes_nay / session_voting_pool).round(2) * 100
-    scale = 100 # session_voting_pool < 100 ? "100" : session_voting_pool
-    ## ?
-    # scale == "100" ? blue = 100 - (green + red) : Group::AWARD_THRESHOLD_PCT
-    blue = 100 - green - red
-    chart_url = "http://chart.apis.google.com/chart?cht=bhs" +
-    "&amp;chs=#{Grant::SESSION_BAR_CHART_X}x#{Grant::SESSION_BAR_CHART_Y}" +
-    "&amp;chd=t:#{green}|#{blue}|#{red}|#{scale}" +
-    "&amp;chco=#{Grant::GREEN},#{Grant::BLUE},#{Grant::RED},#{Grant::SCALE}" +
-    "&amp;chf=bg,s,EDEDED"
-    accessible_tally(grant, chart_url, votes_yea, votes_nay, session_voting_pool)
+    scale = 100
+     blue = scale - green - red
+    chart_url = 'http://chart.apis.google.com/chart?cht=bhs' +
+      "&amp;chs=#{Grant::SESSION_BAR_CHART_X}x#{Grant::SESSION_BAR_CHART_Y}" +
+      "&amp;chd=t:#{green}|#{blue}|#{red}|#{scale}" +
+      "&amp;chco=#{Grant::GREEN},#{Grant::BLUE},#{Grant::RED},#{Grant::SCALE}" +
+      '&amp;chf=bg,s,EDEDED'
+    accessible_tally(blitz, chart_url, votes_yea, votes_nay, session_voting_pool)
   end
 
   # for blitz bar chart image alt & title attributes
-  def accessible_tally(grant, chart_url, yeas, nays, session_voting_pool)
+  def accessible_tally(blitz, chart_url, yeas, nays, session_voting_pool)
     votes_yea = "#{yeas} Yea, "
     votes_nay = nays > 0 ? "#{nays} Nay, " : ''
     votes = votes_yea + votes_nay
     awaiting = (session_voting_pool - yeas - nays).to_i
-    status = grant.final   ?
-             grant.awarded ?
-                 "Awarded" : "Denied" : "Awaiting #{awaiting}"
+    status = blitz.final   ?
+             blitz.awarded ?
+                 'Awarded' : 'Denied' : "Awaiting #{awaiting}"
     tally = votes + status
 
     %(<img alt="#{tally}" title="#{tally}" src="#{chart_url}" class="votes" />)

@@ -16,14 +16,12 @@ class Vote < ActiveRecord::Base
   after_create :check_grant_finalization
 
   def check_session_limit
-    if grant
-      if user == grant.user
-        allow_grant?
-      end
-    elsif blitz
-      if user == blitz.user
-        allow_blitz?
-      end
+    if grant and grant.votes.count.zero? and user == grant.user
+      allow_grant? and grant.update_attributes!(:session => true)
+    elsif blitz and blitz.votes.count.zero? and user == blitz.user
+      allow_blitz? and blitz.update_attributes!(:session => true)
+    else
+      true
     end
   end
 
@@ -33,9 +31,7 @@ class Vote < ActiveRecord::Base
   end
 
   def allow_blitz?
-    user.blitz_interest == true &&
-    user.blitzes.session.zero?  &&
-    solvent_fund?
+    user.blitz_interest and user.blitzes.session.count.zero? and solvent_fund?
   end
 
   def check_grant_finalization

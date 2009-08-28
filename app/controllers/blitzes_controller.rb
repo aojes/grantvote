@@ -57,9 +57,7 @@ class BlitzesController < ApplicationController
     # Loses!
     # @blitz.votes_win = 1 + @blitz.amount / Payment::AMOUNT
 
-    current_voter_count = User.count(:conditions => {:blitz_interest => true})
-
-    @blitz.votes_win = 1 + current_voter_count / 2
+    @blitz.votes_win = Blitz.set_votes_win
 
     if @blitz.save
       flash[:notice] =  "Created blitz grant "

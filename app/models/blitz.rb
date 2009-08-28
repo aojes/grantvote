@@ -1,12 +1,13 @@
 class Blitz < ActiveRecord::Base
 
- # DUES = 5
-  MIN_AWARD = 10
+  MIN_AWARD = 20
   MIN_NAME, MAX_NAME = [2, 60]
 
   GREEN, BLUE, RED, SCALE = ["66C966", "628BB5", "E57474", "E0E0E0"]
   SESSION_BAR_CHART_X, SESSION_BAR_CHART_Y  = [198, 32]
   AWARD_CHART_X, AWARD_CHART_Y = [92, 50]
+
+  DIVISOR = 1.6
 
   belongs_to :user
   belongs_to :blitz_fund
@@ -24,7 +25,7 @@ class Blitz < ActiveRecord::Base
               :message => "can be #{MIN_NAME} to #{MAX_NAME} characters"
   validates_numericality_of :amount, :only_integer => true,
     :greater_than_or_equal_to => MIN_AWARD,
-    :message => "can be an integer value, greater than or equal to $#{MIN_AWARD}"
+    :message => "can be an integer value, upwards from $#{MIN_AWARD}"
 
   named_scope :awarded,  :conditions => {:awarded => true}
   named_scope :denied, :conditions => {:final => true, :awarded => false}
@@ -32,8 +33,15 @@ class Blitz < ActiveRecord::Base
   named_scope :writeboard,  :conditions => {:final => false, :session => false}
   named_scope :chronological, :order => "created_at ASC"
 
+  def self.set_votes_win
+    current_voter_count = User.count(:conditions => {:blitz_interest => true})
+    tally = (current_voter_count / DIVISOR).to_i
+    tally < 3 ? 3 : tally
+  end
+
   def finalizable?
-    votes.yea.count == votes_win or votes.nay.count == votes_win # + 1
+    votes.yea.count == votes_win or
+    votes.nay.count == (votes_win * DIVISOR).ceil.to_i - votes_win
   end
 
   def passes?
@@ -42,31 +50,43 @@ class Blitz < ActiveRecord::Base
 
   def award!
     transaction do
-      update_attributes!(:final => true, :awarded => true)
+      update_attributes!(:final => true, :awarded => true, :session => false)
       blitz_fund.cycle!(amount)
       user.cycle_interest!(amount)
     end
   end
 
   def deny!
-    update_attributes!(:final => true, :awarded => false)
+    update_attributes!(:final => true, :awarded => false, :session => false)
+  end
+
+  def session_reset
+    if session and votes.count.zero?
+      update_attributes!(:session => false)
+    end
   end
 
   def final_message
     if finalizable?
       if passes?
-        "Grant awarded!"
+        'Grant awarded!'
       else
-        "Grant denied."
+        'Grant denied.'
       end
     else
       nil
     end
   end
 
+  # TODO test!
   def limit_message
-    user.blitzes.session.count > 1 ?
-      "You may only have one blitz grant in session at a time. " : nil
+    !user.blitzes.session.count.zero? ?
+      'You may only have one blitz grant in session at a time. ' : nil
+  end
+
+  def bootstrap
+    voters = User.blitz_voters.count
+    voters < 5 ? 'Please wait until a few more people join up ' : nil
   end
 
   def to_param
