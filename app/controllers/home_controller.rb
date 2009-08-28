@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @page_title = 'Grantvote'
   end
 
-  def show    
+  def show
     @page_title = 'Welcome'
 
     @communications = current_user.friendships.map do |friendship|
@@ -15,6 +15,10 @@ class HomeController < ApplicationController
       end.concat(current_user.communications).compact.flatten.
         sort_by(&:created_at).reverse.
           paginate(:page => params[:page], :per_page => 5)
+          
+     if request.xhr?
+     	render :layout => false;
+     end
 
   end
 
