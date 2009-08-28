@@ -11,7 +11,7 @@ class VotesController < ApplicationController
         redirect_to blitz_path(@vote.blitz)
       else
         flash[:notice] = @vote.blitz.limit_message || @vote.blitz.bootstrap ||
-                                    'Bleep, bloop. Please try again.'
+              @vote.blitz.solvency_message || 'Bleep, bloop. Please try again.'
         @vote.blitz.session_reset
         redirect_to blitz_path(@vote.blitz)
       end

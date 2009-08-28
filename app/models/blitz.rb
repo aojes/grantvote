@@ -89,6 +89,12 @@ class Blitz < ActiveRecord::Base
     voters < 5 ? 'Please wait until a few more people join up ' : nil
   end
 
+  def solvency_message
+    Blitz.session.collect(&:amount).sum + amount > blitz_fund.general_pool ?
+      'Please try again later. ' +
+      'Total amounts exceed the maximum allowance for the blitz fund.' : nil
+  end
+
   def to_param
     permalink
   end
