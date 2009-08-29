@@ -1,4 +1,4 @@
-- comments.reverse.each do |c|
+- comments.each do |c|
   .last
     .fll(style="padding-right: 14px; display: block;")<
       = link_to user_defined_image(c.user, :small, :alt => h(c.user.login), :title => h(c.user.login)), profile_path(c.user.login)

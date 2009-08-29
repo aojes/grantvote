@@ -16,7 +16,7 @@ module HomeHelper
       end
     end
     @list = list.sort {|a,b| b.updated_at <=> a.updated_at }.
-              paginate(:page => params[:page], :per_page => 6)
+         paginate(:page => params[:news], :per_page => 9)
   end
 
   def group_message(membership)

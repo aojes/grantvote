@@ -14,11 +14,7 @@ class HomeController < ApplicationController
         end
       end.concat(current_user.communications).compact.flatten.
         sort_by(&:created_at).reverse.
-          paginate(:page => params[:page], :per_page => 5)
-          
-     if request.xhr?
-     	render :layout => false;
-     end
+          paginate(:page => params[:page], :per_page => 20)
 
   end
 

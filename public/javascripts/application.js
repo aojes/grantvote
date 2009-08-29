@@ -43,8 +43,8 @@ $(document).ready( function(){
       adjust: { mouse: true } },
     show: { effect: { type: 'slide', length: '100' } }
    });
-   
-   $.bottomlessPagination({objName:'rows', callback:function(){
+
+ /*  $.bottomlessPagination({objName:'rows', callback:function(){
   		//highlight current row
   		$(".results li").hover(function() {
     		$(this).addClass("hover");
@@ -52,7 +52,7 @@ $(document).ready( function(){
     	$(this).removeClass("hover");
   		});
 	}});
-
+ **/
 
 });
 

@@ -21,7 +21,7 @@
             = link_to image_tag('/images/icons/blue_arrows.png'), c, :method => :delete, :confirm => 'Delete comment?'
           %hr
 
-      = will_paginate @communications
+      = will_paginate @communications, :page_links => false, :previous_label => '&laquo; Back'
   .span-7.append-1.last
 
     - activities(current_user).each do |a| # activities(user) returns @list
@@ -36,5 +36,5 @@
             = group_message(a) || grant_message(a)
             = activity_link(a)
 / will change this to simple 'next' and 'previous' sort of like gmail
-= will_paginate @list
+= will_paginate @list, :page_links => false, :param_name => :news, :previous_label => '&laquo; Back'
 

@@ -23,8 +23,7 @@
       = javascript_include_tag 'invitations'
     - if current_user and current_page?(:controller => 'groups', :action=>'show')
       = javascript_include_tag 'comments'
-    = javascript_include_tag 'jquery.bottomlesspagination.js'
-    
+    /= javascript_include_tag 'jquery.bottomlesspagination'
 
   %body
     .container
@@ -43,7 +42,7 @@
                 %li.active= link_to "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
               - else
                 = show_link "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
-              = show_link "Blitz", {:controller => 'blitzes', :action => 'index'}, {:title => "Blitz", :class => 'rounded'}                
+              = show_link "Blitz", {:controller => 'blitzes', :action => 'index'}, {:title => "Blitz", :class => 'rounded'}
               = show_link "Leaders", {:controller => 'leaders', :action => 'index'}, {:title => "Leaders", :class => 'rounded'}
               - if current_page?(:controller => 'account', :action => 'index') || current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}")
                 %li.active<
