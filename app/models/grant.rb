@@ -70,11 +70,21 @@ class Grant < ActiveRecord::Base
       update_attributes!(:final => true, :awarded => true, :session => false)
       group.deduct_funds!(amount)
       group.memberships.find_by_user_id(user).cycle_membership!(amount)
+      user.notifications.create!(
+        :event   => 'Win',
+        :url     => 'url baby!'
+      )
     end
   end
 
   def deny!
-    update_attributes!(:final => true, :awarded => false, :session => false)
+    transaction do
+      update_attributes!(:final => true, :awarded => false, :session => false)
+      user.notifications.create!(
+        :event   => 'Loss',
+        :url     => 'url baby!'
+      )
+    end
   end
 
   def session_reset

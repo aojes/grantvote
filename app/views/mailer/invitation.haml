@@ -1,10 +1,10 @@
 %p<
-  %strong<
-    Grantvote 
+  %strong Grantvote
   helps people give and win financial support.
 %p
-  %strong<
-    = @user.login
+  %strong= @user.login
+  - unless @user.profile.name.blank?
+    == (#{@user.profile.name})
   has invitated you.  Please visit the link to register.
 %p= link_to @signup_url, @signup_url
 

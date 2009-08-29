@@ -1,3 +1,5 @@
+payment on blitz is assigning the wrong user id (bar != 1)
+
 allow leave group (no deduction from group pool)
 
 allow delete writeboard grants

@@ -20,7 +20,7 @@ class Mailer < ActionMailer::Base
 
    def invitation_request_notice(invitation)
     subject    'New Request for Private Beta'
-    recipients 'tefflox@gmail.com, bridgeutopia@gmail.com'
+    recipients 'tefflox@gmail.com'
     from       'noreply@grantvote.com'
     body       :invitation => invitation
     content_type "text/html"
