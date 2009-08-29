@@ -5,7 +5,7 @@ class CreateBlitzes< ActiveRecord::Migration
       t.integer :blitz_fund_id
       t.integer :votes_win
       t.string :name
-      t.text :proposal
+      t.text :proposal, :limit => 15000
       t.text :media
       t.boolean :session, :default => false, :null => false
       t.boolean :final, :default => false, :null => false

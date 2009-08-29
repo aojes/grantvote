@@ -4,7 +4,7 @@ class CreateGrants < ActiveRecord::Migration
       t.integer :user_id
       t.integer :group_id, :default => 0, :null => false
       t.string :name
-      t.text :proposal
+      t.text :proposal, :limit => 15000
       t.text :media
       t.boolean :session, :default => false, :null => false
       t.boolean :final, :default => false, :null => false
