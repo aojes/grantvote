@@ -18,7 +18,7 @@ class CreateGrants < ActiveRecord::Migration
     add_index :grants, :session
     add_index :grants, :permalink
     add_index :grants, :name
-    add_index :grants, :proposal
+    #add_index :grants, :proposal
   end
 
   def self.down
