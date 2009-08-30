@@ -16,8 +16,9 @@ class Grant < ActiveRecord::Base
   has_many :votes
 
   define_index do
-    indexes :name
     indexes proposal
+    indexes awarded
+    indexes :name
   end
 
   has_permalink :name, :update => true
