@@ -98,7 +98,7 @@ class PaymentsController < ApplicationController
       # process unhandled payment
       flash[:warning] = 'Transaction failed or canceled.' +
                         'Please try again, or contact support.'
-      redirect_to profile_path(current_user)
+      redirect_to profile_path(current_user.login)
     end
   end
 

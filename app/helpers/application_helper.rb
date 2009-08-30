@@ -75,6 +75,15 @@ module ApplicationHelper
     end.join(' ').to_s
   end
 
+  def mutual_friendship?(user_one, user_two)
+    user_one.friendships.exists?(:friend_id => user_two) &&
+    user_two.friendships.exists?(:friend_id => user_one)
+  end
+
+  def user_one_follows_user_two?(user_one, user_two)
+    user_one.friendships.exists?(:friend_id => user_two)
+  end
+
   def mutual_friendships(user)
     user.friendships.map do |friendship|
       friendship if friendship.friend.friendships.exists?(:friend_id => user)

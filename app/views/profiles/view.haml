@@ -32,13 +32,22 @@
       Cred
       %hr
     = user_cred_images(@user, :small)
-    - unless @user == current_user or current_user.credit.beads.zero?
+    - if mutual_friendship?(@user, current_user) and not ( @user == current_user or current_user.credit.beads.zero? )
       - form_for :credit, :url => {:controller => :credits, :action => :update}, :html => { :id => 'give_credit', :method => :put } do |f|
         .prepend-top.last
           = f.hidden_field :beads, :value => 1
           = f.hidden_field :user_id, :value => @user.id
           &nbsp; &nbsp; &nbsp;
-          = submit_button 'Give a Bead for a Shell', :lite => true
+          = submit_button 'Give a bead?', :lite => true
+    - if user_one_follows_user_two?(current_user, @user) and not @user == current_user and not @user.credit.buttons.zero?
+      - form_for :credit, :url => {:controller => :credits, :action => :update}, :html => { :id => 'give_credit', :method => :put } do |f|
+        .prepend-top.last
+          = f.hidden_field :shells, :value => 1
+          = f.hidden_field :beads, :value => 1
+          = f.hidden_field :pebbles, :value => 1
+          = f.hidden_field :user_id, :value => @user.id
+          &nbsp; &nbsp; &nbsp;
+          = submit_button 'Borrow a button?', :lite => true
     %br{:clear => :both}
 
     %h3.prepend-top<

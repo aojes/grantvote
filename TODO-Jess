@@ -1,19 +1,29 @@
-allow leave group (no deduction from group pool)
+allow leave group (make intermediate page) (delete membership?)
 
 add payment transaction models for notifier (observer)
+
+test cred conversions
+
+show only top 5 cred on profile
 
 review charts
 
 terms of service
 
+move following & followers to homepage ?
 _________________
 defer
 
   important
+
     test payments, fix payments (receiver token)
     Site Comms ticket
+    "borrow a button" ? shell + bead : must be friend or follow
+      "user borrowed a button" on social news
+      "user gave bead" on social news
 
   normal workflow
+
 
     fix a img to get rid of yellow highlight on transparent udf images
     review blitz#index layout (for use with smaller blitz icon than on the profile)
@@ -25,6 +35,7 @@ defer
     add group rss feeds
     make surveys
     group moderation (allow edit photo & purpose if funds == 0)
+    adapt color of pen cred to match site color scheme
     let creator set moderator, moderator set moderator
     adapt blitz for variable dues
     sort friends recent first (?)

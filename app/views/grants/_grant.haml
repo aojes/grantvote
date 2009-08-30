@@ -12,7 +12,7 @@
   .span-14.append-1
     %h3<
       %span.flr
-        = link_to user_defined_image(@grant.user, :small, :alt=> h(@grant.user.login), :title => h(@grant.user.login)), "/#{h @grant.user.login}"
+        = link_to user_defined_image(@grant.user, :small, :alt=> h(@grant.user.login), :title => h(@grant.user.login)), profile_path(@grant.user.login)
       = h @grant.name
     %h3== $#{@grant.amount}
   .span-6.last

@@ -13,7 +13,7 @@
   .span-14.append-1
     %h3<
       %span.flr
-        = link_to user_defined_image(@blitz.user, :small, :alt=> h(@blitz.user.login), :title => h(@blitz.user.login)), "/#{h @blitz.user.login}"
+        = link_to user_defined_image(@blitz.user, :small, :alt=> h(@blitz.user.login), :title => h(@blitz.user.login)), profile_path(@blitz.user.login)
       = h @blitz.name
     %h3== $#{@blitz.amount}
   .span-6.last
