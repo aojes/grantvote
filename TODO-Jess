@@ -1,17 +1,16 @@
-payment on blitz is assigning the wrong user id (bar != 1)
-
 allow leave group (no deduction from group pool)
 
-allow delete writeboard grants
+add payment transaction models for notifier (observer)
 
-ajaxify group comments
+review charts
+
+terms of service
 
 _________________
 defer
 
   important
-
-    group moderation (allow creator & moderator to edit photo & purpose)
+    test payments, fix payments (receiver token)
     Site Comms ticket
 
   normal workflow
@@ -21,9 +20,11 @@ defer
     'view session' shows up when only writeboard grants exist
     use flash.now where appropriate
     safeguard against double posting comments
+    touch up grants#new (make it look more like blitz#new (use small photo))
     limit comments on group page, maybe use ajax show more
     add group rss feeds
     make surveys
+    group moderation (allow edit photo & purpose if funds == 0)
     let creator set moderator, moderator set moderator
     adapt blitz for variable dues
     sort friends recent first (?)

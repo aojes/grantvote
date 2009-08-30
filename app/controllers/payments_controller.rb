@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
 
   def new
     @payment = Payment.new
-    @payment.user_id = current_user
+    @payment.user_id = current_user.id
     @payment.group_id = session[:group_id]
     @payment.amount = Payment::AMOUNT
 

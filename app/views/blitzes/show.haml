@@ -31,6 +31,7 @@
         .large= simple_format h(@blitz.proposal), :style => "line-height: 1.8; margin-right: -40px;"
       - if @blitz.votes.count.zero?
         = button_to "Edit", edit_blitz_path(@blitz), :method => :get
+        .prepend-top.prepend-4= link_to 'delete', @blitz, :method => :delete, :confirm => 'Delete blitz?'
       %br(clear="both")
       %br
       %br

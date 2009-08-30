@@ -80,5 +80,16 @@ class GrantsController < ApplicationController
     end
   end
 
+  def destroy
+    @grant = Grant.find_by_permalink(params[:id])
+    @group = @grant.group
+    @grant.destroy
+
+    respond_to do |format|
+      flash[:notice] = 'Adios.'
+      format.html { redirect_to @group }
+    end
+  end
+
 end
 

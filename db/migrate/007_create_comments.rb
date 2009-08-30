@@ -2,7 +2,7 @@ class CreateComments < ActiveRecord::Migration
   def self.up
     create_table :comments do |t|
       t.integer :user_id
-      t.text :content
+      t.text :content, :limit => 3000
       t.integer :commentable_id
       t.string :commentable_type
 

@@ -20,7 +20,7 @@ Then /^I should see my avatar by the comment$/ do
 end
 
 Then /^I should be able to delete the comment$/ do
-  response.should contain("delete")
+  response.should have_selector("img.delete")
   click_link("delete")
   response.should be_success
   response.should_not contain("basic update")

@@ -15,21 +15,6 @@ class BlitzesController < ApplicationController
                  !b.votes.
                  count(:conditions => {:user_id => current_user.id}).zero?
                end.paginate(:page => params[:page], :per_page => 10)
-#    @blitzes = Blitz.search(
-#                 params[:search],
-#                 :match_mode    => :boolean,
-#                 :field_weights => { :name => 12, :proposal => 10 }
-#               ).reject { |b| b.awarded }.reject do |b|
-#                   !b.votes.
-#                     count(:conditions => {:user_id => current_user.id}).zero?
-#                 end.paginate(:page => params[:page], :per_page => 10)
-#    @search = Blitz.search(params[:search])
-#    @blitzes = @search.all.reject { |b| b.awarded }.
-#      reject do |b|
-#        !b.votes.
-#        count(:conditions => {:user_id => current_user.id}).zero?
-#      end.paginate(:page => params[:page], :per_page => 10)
-
 
     respond_to do |format|
       format.html # index.html.erb
@@ -83,6 +68,16 @@ class BlitzesController < ApplicationController
       else
         format.html { render :action => "edit" }
       end
+    end
+  end
+
+  def destroy
+    @blitz = Blitz.find_by_permalink(params[:id])
+    @blitz.destroy
+
+    respond_to do |format|
+      flash[:notice] = 'Adios.'
+      format.html { redirect_to blitzes_path }
     end
   end
 

@@ -18,7 +18,7 @@
             .time_ago= distance_of_time_in_words_to_now(c.created_at) + ' ago'
           .span-1.last
           - if c.user == current_user
-            = link_to image_tag('/images/icons/blue_arrows.png'), c, :method => :delete, :confirm => 'Delete comment?'
+            = link_to image_tag('/images/icons/blue_arrows.png', :class => 'delete'), c, :method => :delete, :confirm => 'Delete comment?'
           %hr
 
       = will_paginate @communications, :page_links => false, :previous_label => '&laquo; Back'

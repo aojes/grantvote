@@ -2,7 +2,7 @@ class CreatePaymentTransactions < ActiveRecord::Migration
   def self.up
     create_table :payment_transactions do |t|
       t.integer :payment_id
-      
+      t.boolean :success
 #      t.string :action
 #      t.integer :amount
 #      t.boolean :success
@@ -18,3 +18,4 @@ class CreatePaymentTransactions < ActiveRecord::Migration
     drop_table :payment_transactions
   end
 end
+
