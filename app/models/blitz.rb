@@ -13,10 +13,11 @@ class Blitz < ActiveRecord::Base
   belongs_to :blitz_fund
   has_many :votes
 
-  #  define_index do
-  #    indexes proposal
-  #    indexes :name
-  #  end
+  define_index do
+    indexes proposal
+    indexes awarded
+    indexes :name
+  end
 
   has_permalink :name, :update => true
 

@@ -25,6 +25,11 @@ class GrantsController < ApplicationController
                     :match_mode    => :boolean,
                     :field_weights => { :name => 20, :proposal => 10},
                     :with          => { :awarded => true }
+                  ).concat(Blitz.search(
+                      params[:search],
+                      :match_mode    => :boolean,
+                      :field_weights => { :name => 20, :proposal => 10},
+                      :with          => { :awarded => true })
                   ).paginate(:page => params[:page], :per_page => 10)
       else
 
