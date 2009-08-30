@@ -43,7 +43,7 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot"
   # config.gem "activemerchant", :lib => "active_merchant"
   config.gem "remit"
-
+  config.gem "javan-whenever", :lib => false, :src => "http://gems.github.com"
   config.gem "populator"
   config.gem "faker"
 
