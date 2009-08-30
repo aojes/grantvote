@@ -19,12 +19,12 @@ class GrantsController < ApplicationController
     else # Grants#index
       @page_title = 'Recent Awards on Grantvote'
 
-      unless params[:search].blank?
+      if !params[:search].blank?
         @grants = Grant.search(
                     params[:search],
                     :match_mode    => :boolean,
-                    :field_weights => { :name => 12, :proposal => 10},
-                    :conditions    => { :awarded => true}
+                    :field_weights => { :name => 20, :proposal => 10},
+                    :with          => { :awarded => true }
                   ).paginate(:page => params[:page], :per_page => 10)
       else
 
