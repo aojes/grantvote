@@ -123,12 +123,22 @@ module ApplicationHelper
   end
 
   def user_cred_images(user, size = "small", limit = nil)
-    compilation = user_cred_image_url_set(user.credit.pebbles, user.credit.beads, user.credit.buttons, user.credit.pens, user.credit.shells, user.credit.pearls, user.credit.ribbons, user.credit.laurels, size)
-    if limit
-      compilation.values_at(0..3).join
+    compilation = user_cred_image_url_set(user.credit.pebbles,
+                                          user.credit.beads,
+                                          user.credit.buttons,
+                                          user.credit.pens,
+                                          user.credit.shells,
+                                          user.credit.pearls,
+                                          user.credit.ribbons,
+                                          user.credit.laurels, size)
+    if controller.controller_name.eql?("leaders")
+      compilation.values_at(0..12).join   # for profile view
+    elsif limit # FIXME
+      compilation.values_at(0..3).join   # for vote view
     else
-      compilation.values_at(0..23).join
+      compilation.values_at(0..4).join   # for profile view
     end
+
   end
 
   def user_cred_image_url_set(p, b, bu, pe, sh, per, r, l, size)

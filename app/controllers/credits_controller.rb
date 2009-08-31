@@ -14,17 +14,14 @@ class CreditsController < ApplicationController
              :buttons => (current_user.credit.buttons   + 1) )                &&
            current_user.update_attributes(:points => current_user.points - 1) &&
            @receiver.user.credit.update_attributes(
-             :pebbles => (@receiver.user.credit.pebbles + 2),
-             :beads   => (@receiver.user.credit.beads   + 1),
-             :shells  => (@receiver.user.credit.shells  + 1),
+             :pearls  => (@receiver.user.credit.pearls  + 1),
              :buttons => (@receiver.user.credit.buttons - 1) )
         ) ||
 
         (
            current_user.credit.update_attributes(
              :beads   => (current_user.credit.beads   - 1),
-             :shells  => (current_user.credit.shells  + 1),
-             :pebbles => (current_user.credit.pebbles + 1) )                  &&
+             :shells  => (current_user.credit.shells  + 1) )                  &&
            current_user.update_attributes(:points => current_user.points + 1) &&
            @receiver.user.credit.update_attributes(
              :beads   => (@receiver.user.credit.beads + 1) )

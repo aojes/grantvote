@@ -5,6 +5,8 @@ add payment transaction models for notifier (observer)
 test cred conversions
 
 show only top 5 cred on profile
+  (don't compile all cred images)
+  (fix borrow-back loophole, so 2 people can't game it)
 
 review charts
 
