@@ -48,7 +48,7 @@ class GrantsController < ApplicationController
 
   def show
     @grant = Grant.find_by_permalink(params[:id])
-    @page_title = @grant.name + " on Grantvote"
+    @page_title = @grant.name + ' on Grantvote'
   end
 
   def new
