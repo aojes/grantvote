@@ -24,11 +24,23 @@ config.action_view.cache_template_loading            = true
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
 
-ActionMailer::Base.delivery_method = :sendmail
-#ActionMailer::Base.sendmail_settings = {  :location => '/usr/sbin/sendmail',  :arguments => '-i -t' } 
+ActionMailer::Base.delivery_method = :smtp #:sendmail
+##ActionMailer::Base.sendmail_settings = {  :location => '/usr/sbin/sendmail',  :arguments => '-i -t' }
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.default_charset = "utf-8"
 ActionMailer::Base.perform_deliveries = true
+
+  ActionMailer::Base.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address        => 'smtp.gmail.com',
+    :port           => 587,
+    :domain         => 'grantvote.com',
+    :authentication => :plain,
+    :user_name      => 'support@grantvote.com',
+    :password       => 'big-upside09'
+  }
+
+
 # ActionView:: Template or TemplateHandler ( register haml extension )
 
 # Enable threaded mode
@@ -43,5 +55,6 @@ ActionMailer::Base.perform_deliveries = true
 #  }
 #  ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
 #  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-#  
+#
 #end
+

@@ -109,7 +109,7 @@ namespace :db do
           v.grant_id = grant.id
           v.group_id = group.id
           v.blitz_id = 0
-          v.cast = "nay"
+          v.cast = "yea"
           v.created_at = 1.month.ago..Time.now
           v.updated_at = v.created_at
         end
