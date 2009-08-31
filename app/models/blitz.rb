@@ -16,7 +16,7 @@ class Blitz < ActiveRecord::Base
   define_index do
     indexes proposal
     indexes awarded
-    indexes :name
+    indexes :name, :sortable => true
   end
 
   has_permalink :name, :update => true
