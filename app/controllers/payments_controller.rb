@@ -13,7 +13,7 @@ class PaymentsController < ApplicationController
 
     request = Remit::InstallPaymentInstruction::Request.new(
       :payment_instruction  => "MyRole == 'Caller' orSay 'Role does not match';",
-      :caller_reference     => "#{Time.now.to_i + rand(1000)}",
+      :caller_reference     => "c#{Time.now.to_i}",
       :token_friendly_name  => "Grantvote Caller Token",
       :token_type           => "SingleUse"
     )
@@ -23,7 +23,7 @@ class PaymentsController < ApplicationController
 
     request = Remit::InstallPaymentInstruction::Request.new(
       :payment_instruction  => "MyRole == 'Recipient' orSay 'Role does not match';",
-      :caller_reference     => "#{Time.now.to_i + rand(1000)}",
+      :caller_reference     => "r#{Time.now.to_i}",
       :token_friendly_name  => "Grantvote Payment Receipt",
       :token_type           => "SingleUse"
     )

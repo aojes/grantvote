@@ -14,7 +14,7 @@
       %span.flr
         = link_to user_defined_image(@grant.user, :small, :alt=> h(@grant.user.login), :title => h(@grant.user.login)), profile_path(@grant.user.login)
       = h @grant.name
-    %h3== $#{@grant.amount}
+    %h3(style="color: #609e17;")== $#{@grant.amount}
   .span-6.last
     = user_cred_images(@grant.user, :small, true)
   .span-15

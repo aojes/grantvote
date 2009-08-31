@@ -9,7 +9,7 @@ class CreateGrants < ActiveRecord::Migration
       t.boolean :session, :default => false, :null => false
       t.boolean :final, :default => false, :null => false
       t.boolean :awarded, :default => false, :null => false
-      t.integer :amount, :default => 5, :null => false
+      t.integer :amount, :default => 10, :null => false
       t.string :permalink
       t.timestamps
     end
