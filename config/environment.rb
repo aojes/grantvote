@@ -47,6 +47,7 @@ Rails::Initializer.run do |config|
   config.gem "ambethia-smtp-tls",
     :lib => "smtp-tls",
     :source => "http://gems.github.com/"
+  config.gem "tlsmail"
   config.gem "populator"
   config.gem "faker"
 

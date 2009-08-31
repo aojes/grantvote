@@ -24,20 +24,24 @@ config.action_view.cache_template_loading            = true
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
 
-config.action_mailer.delivery_method       = :smtp #:sendmail
-config.action_mailer.raise_delivery_errors = true
-config.action_mailer.default_charset       = "utf-8"
-config.action_mailer.perform_deliveries    = true
+require 'tlsmail'
+Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.perform_deliveries = true
+ActionMailer::Base.default_charset = "utf-8"
 
-config.action_mailer.smtp_settings = {
-    #:enable_starttls_auto => true,
-    :address        => 'smtp.gmail.com',
-    :port           => 587,
-    :domain         => 'grantvote.com',
-    :authentication => :plain,
-    :user_name      => 'support@grantvote.com',
-    :password       => 'big-upside09'
-  }
+ActionMailer::Base.raise_delivery_errors = true
+
+ActionMailer::Base.smtp_settings = {
+  :domain          => "support@grantvote.com",
+  :address         => 'smtp.gmail.com',
+
+  :port            => 587,
+  :tls             => true,
+  :authentication  => :plain,
+  :user_name       => 'support',
+  :password        => 'big-upside09'
+}
 
 
 # ActionView:: Template or TemplateHandler ( register haml extension )
