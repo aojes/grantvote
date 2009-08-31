@@ -44,6 +44,9 @@ Rails::Initializer.run do |config|
   # config.gem "activemerchant", :lib => "active_merchant"
   config.gem "remit"
   config.gem "javan-whenever", :lib => false, :src => "http://gems.github.com"
+  config.gem "ambethia-smtp-tls",
+    :lib => "smtp-tls",
+    :source => "http://gems.github.com/"
   config.gem "populator"
   config.gem "faker"
 
