@@ -11,7 +11,7 @@ class CreateCredits < ActiveRecord::Migration
       t.integer :beads, :default => 0, :null => false
       t.integer :buttons, :default => 0, :null => false
       t.integer :pens, :default => 0, :null => false
-
+      t.datetime :last_exchange_at
       t.timestamps
     end
     add_index :credits, :user_id

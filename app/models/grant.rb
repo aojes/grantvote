@@ -2,7 +2,7 @@ class Grant < ActiveRecord::Base
 
   AWARD_THRESHOLD, AWARD_THRESHOLD_PCT = [0.500, 50]
 
-  MIN_AWARD = 10
+  MIN_AWARD = 4
   MIN_NAME, MAX_NAME = [2, 60]
 
   GREEN, BLUE, RED, SCALE = ["66C966", "628BB5", "E57474", "E0E0E0"]

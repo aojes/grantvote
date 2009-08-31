@@ -11,20 +11,20 @@ class CreditsController < ApplicationController
     @receiver = Credit.new(params[:credit])
     if (   params[:credit][:pebbles]                                          &&
            current_user.credit.update_attributes(
-             :buttons => (current_user.credit.buttons   + 1) )                &&
-           current_user.update_attributes(:points => current_user.points - 1) &&
+             :buttons => (current_user.credit.buttons   + 1),
+             :last_exchange_at => Time.now )                                  &&
            @receiver.user.credit.update_attributes(
              :pearls  => (@receiver.user.credit.pearls  + 1),
-             :buttons => (@receiver.user.credit.buttons - 1) )
-        ) ||
-
-        (
+             :buttons => (@receiver.user.credit.buttons - 1),
+             :last_exchange_at => Time.now                    )
+        )  ||  (
            current_user.credit.update_attributes(
              :beads   => (current_user.credit.beads   - 1),
-             :shells  => (current_user.credit.shells  + 1) )                  &&
-           current_user.update_attributes(:points => current_user.points + 1) &&
+             :shells  => (current_user.credit.shells  + 1),
+             :last_exchange_at => Time.now      )                             &&
            @receiver.user.credit.update_attributes(
-             :beads   => (@receiver.user.credit.beads + 1) )
+             :beads   => (@receiver.user.credit.beads + 1),
+             :last_exchange_at => Time.now        )
         )
 
       flash[:notice] = 'Success! Helping your fellow Grantvoter.'

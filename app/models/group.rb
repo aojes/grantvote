@@ -4,8 +4,6 @@ class Group < ActiveRecord::Base
 
   MIN_NAME, MAX_NAME = [2, 140]
   MIN_PURPOSE, MAX_PURPOSE = [3, 200]
-  DUES = 5
-  MIN_DUES, MAX_DUES = [5, 5] # defer
 
   MAX_FILE_SIZE = 5.megabytes
 
