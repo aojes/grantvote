@@ -7,6 +7,8 @@ test cred conversions
 show only top 5 cred on profile
   (don't compile all cred images)
   (fix borrow-back loophole, so 2 people can't game it)
+  (allow by points?)
+  = allow one per day (by credit updated_at or last_exchange_at)
 
 review charts
 
