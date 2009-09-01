@@ -92,7 +92,7 @@ class GrantsController < ApplicationController
     @grant.destroy
 
     respond_to do |format|
-      flash[:notice] = 'Adios.'
+      flash[:notice] = 'Grant deleted.'
       format.html { redirect_to @group }
     end
   end

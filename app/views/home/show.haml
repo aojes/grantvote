@@ -11,7 +11,7 @@
         %hr
         - @communications.each do |c|
           .span-2<
-            = link_to user_defined_image(c.user, :small, :alt => c.user.login, :title => c.user.login), profile_path(c.user.login)
+            = link_to user_defined_image(c.user, :small, :alt => c.user.login), profile_path(c.user.login)
           .span-11
             = link_to c.user.login, profile_path(c.user.login), :class => 'homepage userlink'
             = hreffer(h c.content)

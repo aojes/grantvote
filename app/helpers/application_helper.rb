@@ -72,6 +72,12 @@ module ApplicationHelper
     end.join(' ').to_s
   end
 
+  def grant_hreffer(proposal)
+    proposal.split(/(\n\n){1}/).each do |m|
+      m.gsub!(URL_REGEXP, "<a target=\"_blank\" href=\"#{m}\">#{m}</a>")
+    end.join(' ').to_s
+  end
+
   def mutual_friendship?(user_one, user_two)
     user_one.friendships.exists?(:friend_id => user_two) &&
     user_two.friendships.exists?(:friend_id => user_one)
