@@ -51,7 +51,7 @@ namespace :db do
         m.rewards = 10
       end
 
-      Grant.populate 6 do |grant|
+      Grant.populate 12 do |grant|
         grant.user_id = 4
         grant.group_id = group.id
         grant.name = Faker::Name.name
@@ -83,7 +83,7 @@ namespace :db do
         end
       end
 
-      Grant.populate 6 do |grant|
+      Grant.populate 12 do |grant|
         grant.user_id = 3
         grant.group_id = group.id
         grant.name = Faker::Name.name

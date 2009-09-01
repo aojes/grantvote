@@ -27,9 +27,9 @@ Rails::Initializer.run do |config|
 
   config.gem "authlogic", :version => "~> 2.1.1"
 
-  # config.gem "binarylogic-searchlogic",
-  #   :lib => 'searchlogic',
-  #   :version => '~> 2.2.3'
+  config.gem "binarylogic-searchlogic",
+    :lib => 'searchlogic',
+    :version => '~> 2.2.3'
 
   config.gem "mislav-will_paginate",
     :lib => 'will_paginate',
