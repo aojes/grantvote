@@ -21,12 +21,12 @@ class Blitz < ActiveRecord::Base
 
   has_permalink :name, :update => true
 
-  validates_presence_of :name, :proposal, :amount
+  validates_presence_of :name, :proposal, :amount, :message => "cannot be blank"
   validates_length_of :name, :in => MIN_NAME..MAX_NAME,
               :message => "can be #{MIN_NAME} to #{MAX_NAME} characters"
   validates_numericality_of :amount, :only_integer => true,
     :greater_than_or_equal_to => MIN_AWARD,
-    :message => "can be an integer value, upwards from $#{MIN_AWARD}"
+    :message => "can be an integer value, upwards from #{MIN_AWARD}"
 
   named_scope :awarded,  :conditions => {:awarded => true}
   named_scope :denied, :conditions => {:final => true, :awarded => false}
@@ -64,10 +64,6 @@ class Blitz < ActiveRecord::Base
   def deny!
     transaction do
       update_attributes!(:final => true, :awarded => false, :session => false)
-      user.notifications.create!(
-        :event   => 'Loss',
-        :url     => 'url baby!'
-      )
     end
   end
 

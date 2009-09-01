@@ -16,7 +16,7 @@
       .flr.prepend-top
         %h2{:style => "margin: 0 50px"}<
           == Group Funds #{number_to_currency(group.funds.floor, :precision => 0)}
-%br{:style => "clear: both"} 
+%br{:style => "clear: both"}
 
 -# Jesse experimenting with the form background
 -#
@@ -28,15 +28,15 @@
             = link_to user_defined_image(group, :display, :alt => "to group voting page", :title => "View Session"), group_grants_path(group)
           - elsif !group.nil?
             = link_to user_defined_image(group, :display, :alt => "to group home page", :title => "View Group Homepage"), group_path(group)
-          - else 
-            %h2 Nothing 
+          - else
+            %h2 Nothing
           %h2=h group.name
           %h3=h group.purpose
           %h3.flr{:style => "margin: 0 50px"}
-            == Pool #{number_to_currency(group.funds.floor, :precision => 0)}   
+            == Pool #{number_to_currency(group.funds.floor, :precision => 0)}
       .clear
 
--# Katz work using gradient    
+-# Katz work using gradient
 -#
   .rwide.centered2
     .rwide-left
@@ -47,12 +47,13 @@
         - elsif !group.nil?
           .group-image
             = link_to user_defined_image(group, :display, :alt => "to group home page", :title => "View Group Homepage"), group_path(group)
-        - else 
-          %h2 Nothing 
+        - else
+          %h2 Nothing
       .span-14.last
         .group-details
           %h2=h group.name
           %h3=h group.purpose
           %h3.flr{:style => "margin: 0 50px"}
-            == Pool #{number_to_currency(group.funds.floor, :precision => 0)}   
+            == Pool #{number_to_currency(group.funds.floor, :precision => 0)}
     .rwide-right
+

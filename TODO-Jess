@@ -1,12 +1,8 @@
-clean up grants#grant preview
-
-allow leave group (make intermediate page) (delete membership?)
-
 add payment transaction models for notifier (observer)
 
-don't notify on loss
-
 review charts
+
+touch up grants#new (make it look more like blitz#new (use small photo))
 
 terms of service
 
@@ -16,6 +12,7 @@ defer
 
   important
 
+    allow leave group (make intermediate page) (delete membership?)
     Site Comms ticket
 
   normal workflow
@@ -25,7 +22,6 @@ defer
     'view session' shows up when only writeboard grants exist
     use flash.now where appropriate
     safeguard against double posting comments
-    touch up grants#new (make it look more like blitz#new (use small photo))
     limit comments on group page, maybe use ajax show more
     add group rss feeds
     make surveys
@@ -38,9 +34,8 @@ defer
     various hideousness in Opera browser
     add 'mark as spam' or flag as inappropriate link on comments, etc.
     show "Group Awards" (?)
-    track active users
     monitor searching / trending
-    align "preview / session / awarded" boxes
+    add social news on credit exchange
     make following/followers collapsible & set default
     user location map via google maps (see www.obsidianportal.com/map)
     user can choose a default avatar (historical or archetypal figures)

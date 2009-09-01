@@ -34,7 +34,10 @@
 
     .span-7.last#comments(style='position:relative; top:-2em;')
       - if current_user
-        .flr= link_to "Add Comment", new_group_comment_path(@group)
+        - if voter?(params[:id])
+          .flr= link_to "Add Comment", new_group_comment_path(@group)
+        - else
+          .flr= link_to "Add Comment", new_group_membership_path(@group)
       %strong= pluralize @group.comments.count, "Comment"
       %hr
       .last= render 'shared/comments', :comments => @comments

@@ -1,9 +1,7 @@
 .span-21.prepend-2.append-1.last
-  = form.error_messages    
-  - unless @grant.name.blank?
+  = form.error_messages
+  - if not @grant.name.blank?
     %h2.append-2 Edit Grant
-  - else
-    %h2.append-2 New Grant
   .span-11
     = form.text_field :name
     &nbsp; name

@@ -13,6 +13,7 @@
           .span-2<
             = link_to user_defined_image(c.user, :small, :alt => c.user.login, :title => c.user.login), profile_path(c.user.login)
           .span-11
+            = link_to c.user.login, profile_path(c.user.login), :class => 'homepage userlink'
             = hreffer(h c.content)
             %br
             .time_ago= distance_of_time_in_words_to_now(c.created_at) + ' ago'
@@ -30,7 +31,7 @@
             .span-1<
               = link_to user_defined_image(a.user, :thumb, :alt => a.user.login), profile_path(a.user.login)
             .span-1<
-              = activity_link(a, true)
+              = activity_link(a, :photo => true)
             .span-5.last<
               = link_to a.user.login, profile_path(a.user.login)
               = group_message(a) || grant_message(a)

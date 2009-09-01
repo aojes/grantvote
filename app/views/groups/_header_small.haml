@@ -1,0 +1,10 @@
+.span-24.last
+  .prepend-top
+    .span-8.prepend-1{:style => "min-height: 160px"}
+      %h2= link_to user_defined_image(group, :large, :alt => "to group voting page", :title => "View Session"), group_grants_path(group)
+    .span-14.append-1.last
+      %h2{:style => "padding-right: 40px"}=link_to(h(group.name), group_path(group), :class => "group_header")
+      %h3{:style => "padding-right: 40px"}=h group.purpose
+      %h2{:style => "margin: 0 50px"}<
+        == Group Funds #{number_to_currency(group.funds.floor, :precision => 0)}
+

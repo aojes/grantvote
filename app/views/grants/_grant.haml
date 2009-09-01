@@ -18,11 +18,7 @@
   .span-6.last
     = user_cred_images(@grant.user, :small, true)
   .span-15
-    .span-3
-      (group grant icon)
-      .span-2.prepend-top.last
-        &nbsp;
-    .span-11.last{:style => "text-align:justify"}
+    .span-14.last{:style => "text-align:justify"}
       - if @grant.media.blank?
         .large= simple_format h(@grant.proposal), :style => "line-height: 2"
       - else

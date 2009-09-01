@@ -35,9 +35,6 @@ button span {
   padding-left: 12px;
   background: url('/images/button.png') 0px 0px no-repeat; }
 
-/* button span.lite-span
- * /*:padding-left 12px
- * /*:background url('/images/button.png') 0px 80px no-repeat */
 button.lite span {
   padding-left: 12px;
   background: url('/images/button.png') 0px -80px no-repeat; }
@@ -58,13 +55,6 @@ button.lite em {
   padding-right: 12px;
   background: url('/images/button.png') 100% -80px no-repeat; }
 
-/* button em.lite-em
- * /*:color #222
- * /*:font-size 12pt
- * /*:font-style normal
- * /*:font-weight normal
- * /*:padding-right 12px
- * /*:background url('/images/button.png') 100% 80px no-repeat */
 .buttonless_field {
   background: url('/images/search_glass_gray.png') 5px 5px no-repeat;
   padding-left: 23px !important; }
@@ -196,3 +186,4 @@ label.error {
   background: none;
   border: none;
   padding: 0; }
+
