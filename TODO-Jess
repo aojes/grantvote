@@ -4,13 +4,7 @@ allow leave group (make intermediate page) (delete membership?)
 
 add payment transaction models for notifier (observer)
 
-test cred conversions
-
-show only top 5 cred on profile
-  (don't compile all cred images)
-  (fix borrow-back loophole, so 2 people can't game it)
-  (allow by points?)
-  = allow one per day (by credit updated_at or last_exchange_at)
+don't notify on loss
 
 review charts
 
@@ -22,14 +16,9 @@ defer
 
   important
 
-    test payments, fix payments (receiver token)
     Site Comms ticket
-    "borrow a button" ? shell + bead : must be friend or follow
-      "user borrowed a button" on social news
-      "user gave bead" on social news
 
   normal workflow
-
 
     fix a img to get rid of yellow highlight on transparent udf images
     review blitz#index layout (for use with smaller blitz icon than on the profile)
