@@ -14,7 +14,7 @@
             .large= simple_format h(grant.proposal), :style => "text-align: justify; line-height: 2;"
         %br(clear="both")
         %hr
-    %h4= will_paginate @grants
+    = will_paginate @grants
 
   .span-7
     .span-6.prepend-1.last#group_members
@@ -40,5 +40,7 @@
           .flr= link_to "Add Comment", new_group_membership_path(@group)
       %strong= pluralize @group.comments.count, "Comment"
       %hr
-      .last= render 'shared/comments', :comments => @comments
+      .last<
+        = render 'shared/comments', :comments => @comments
+        %span(style="position:relative; bottom: 20px")= will_paginate @comments, :page_links => false, :param_name => :comments, :previous_label => '&laquo; Prev'
 

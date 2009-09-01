@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
     @grants = @group.grants.awarded.recent.
       paginate(:page => params[:page], :per_page => 10)
     @comments = @group.comments.reverse.
-                         paginate(:page => params[:cpage], :per_page => 12)
+                         paginate(:page => params[:comments], :per_page => 8)
 
     respond_to do |format|
       format.html

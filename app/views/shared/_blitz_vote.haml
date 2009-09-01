@@ -3,10 +3,10 @@
     = f.radio_button :cast, "yea", :style => "position: relative; top: 2px"
     %strong.large.fancy_type Yea&nbsp;
     = submit_button "Vote"
-    %strong.large.fancy_type &nbsp;Nay 
+    %strong.large.fancy_type &nbsp;Nay
     = f.radio_button :cast, "nay", :style => "position: relative; top: 2px"
     = f.hidden_field :user_id, :value => current_user.id
     = f.hidden_field :blitz_id, :value => blitz.id
-- elsif not blitz_voter?(current_user)    
-  .quiet= link_to 'Pay Blitz Voting &amp; Writing Dues', blitzes_path
+- elsif not blitz_voter?(current_user)
+  %span(style="position:relative; left: 4px;")= link_to image_tag('/images/amazon_pay_now.gif'), :controller => :payments, :action => :new
 

@@ -21,8 +21,8 @@
       .span-5.last
         == <img alt="#{group_accessible_tally grant}" title="#{group_accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />
         %p= render 'shared/vote', :grant => grant
-      .span-21.prepend-top.last
+      .span-21.prepend-top.last<
         %hr
-.span-22.prepend-1.last
-  %h4= will_paginate @grants
+.span-22.last<
+  = will_paginate @grants
 
