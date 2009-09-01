@@ -19,7 +19,7 @@
               .form_row(style="position: relative; left: 423px; bottom: 50px")
                 = f.label :amount
                 = f.text_field :amount, :style => "width: 60px"
-              %div(style="position: relative; bottom: 50px;")<
+              %div(style="position: relative; bottom: 48px;")<
                 = f.text_area :proposal, :style => "width: 475px"
               = f.hidden_field :user_id, :value => current_user.id
               = f.hidden_field :group_id, :value => @group.id
