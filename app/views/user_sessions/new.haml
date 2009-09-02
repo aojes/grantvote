@@ -3,7 +3,7 @@
   %div
     %div
       %div.rounded-box-largefont
-        %h2.prepend-1.prepend-top Sign in
+        %h2.prepend-1.prepend-top Welcome back!
         .clear.large
           - form_for @user_session, :url => user_session_path do |f|
             %p
@@ -15,13 +15,12 @@
               = f.label :password
               = f.password_field :password
             %p
+              %strong Remember me
               = f.check_box :remember_me
-            %strong Remember me
-            %p
-              = submit_button "Log In"
+            = submit_button "Log In"
+            %br
+            = link_to "Forgot your password?", new_password_reset_path, :class => "small quiet"
             .form-space
-            %p
-              = link_to "Forgot your password?", new_password_reset_path, :class => "small quiet"
             %br
             %br
 
