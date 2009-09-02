@@ -1,6 +1,16 @@
 class Notifier < ActionMailer::Base
 
   default_url_options[:host] = "www.grantvote.com"
+
+  def test_email(recipient_address)
+    recipients    recipient_address
+    from          "Grantvote <support@grantvote.com>"
+    subject       "test"
+    sent_on       Time.now
+    body          :url => "http://www.grantvote.com"
+    content_type  "text/html"
+  end
+
   def welcome_email(user)
     recipients    user.email
     from          "Grantvote <support@grantvote.com>"
