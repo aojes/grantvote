@@ -16,7 +16,7 @@
         %hr
     = will_paginate @grants
 
-  .span-7
+  .span-7.last
     .span-6.prepend-1.last#group_members
       - if @group.memberships.voters.count.zero?
         %br
@@ -30,9 +30,9 @@
           - group_voters(params[:id]).sort_by{rand}[0..17].each do |v|
             = link_to user_defined_image(v, :thumb, :alt => h(v.login), :title => h(v.login)), "/#{h(v.login)}"
       %br
-      %br
-
-    .span-7.last#comments(style='position:relative; top:-2em;')
+    .span-6.prepend-1.last(style='position:relative; top:-3em;')
+      .flr= socialite(:url => group_url(@group), :title => "Grantvote &raquo; #{h @group.name}")
+    .span-7.last#comments(style='position:relative; top:-1.5em;')
       - if current_user
         - if voter?(params[:id])
           .flr= link_to "Add Comment", new_group_comment_path(@group)
