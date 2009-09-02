@@ -123,7 +123,7 @@ namespace :db do
 
     Blitz.populate 42 do |b|
       b.user_id = 5
-      b.blitz_fund_id = 3
+      b.blitz_fund_id = 1
       b.name = Faker::Name.name
       b.proposal = Populator.sentences(4..9)
       b.media = ''
@@ -156,18 +156,27 @@ namespace :db do
     end
 
     Blitz.populate 12 do |b|
-      b.user_id = 3
-      b.blitz_fund_id = 3
+      b.user_id = [3, 4, 5]
+      b.blitz_fund_id = 1
       b.name = Faker::Name.name
       b.proposal = Populator.sentences(4..9)
       b.media = ''
       b.amount = 45..55
       b.votes_win = User.count(:conditions => {:blitz_interest => true}) / Blitz::DIVISOR
-      b.session = true
-      b.awarded = false
-      b.final = false
+      b.session = false
+      b.awarded = true
+      b.final = true
       Vote.populate 1 do |v|
         v.user_id = b.user_id
+        v.blitz_id = b.id
+        v.grant_id = 0
+        v.group_id = 0
+        v.cast = 'yea'
+        v.created_at = 1.day.ago..Time.now
+        v.updated_at = v.created_at
+      end
+      Vote.populate 1 do |v|
+        v.user_id = 2
         v.blitz_id = b.id
         v.grant_id = 0
         v.group_id = 0

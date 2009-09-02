@@ -47,10 +47,10 @@
           == &nbsp; Denied #{@blitz.updated_at.strftime("%B %d, %Y")}
           %br
           == &nbsp; after #{distance_of_time_in_words(@blitz.votes.first.created_at, @blitz.votes.last.created_at)} in session
-      - elsif voted_blitz?(@blitz)
+      - elsif current_user and voted_blitz?(@blitz)
         %h4.center.prepend-top.quiet Thank you for voting!
   .span-5.center.last
-    - if not ( @blitz.final and voted_blitz?(@blitz) )
+    - if current_user and not ( @blitz.final and voted_blitz?(@blitz) )
       - if @blitz.votes.count.zero? and @blitz.user == current_user
         %p
           - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|

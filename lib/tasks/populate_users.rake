@@ -7,7 +7,7 @@ namespace :db do
     #Invitation.create(:id=>'1', :email=>'foo@grantvote.com', :news=>'1', :sender_id=>'1', :sent_at=>Time.now)
     User.create!(:id=>'1', :login => "foo", :email => "foo@grantvote.com", :points => 44,
       :password => "pass", :password_confirmation => "pass",
-      :blitz_interest => false, :blitz_contributes => 0, :blitz_rewards => 0 )
+      :blitz_interest => true, :blitz_contributes => 0, :blitz_rewards => 0 )
 
     Profile.create!(:user_id => 1, :login => "foo")
     Credit.create!(:user_id => 1, :points => 44,
@@ -16,7 +16,7 @@ namespace :db do
     #Invitation.create(:id=>'2', :email=>'bar1@grantvote.com', :news=>'1', :sender_id=>'1', :sent_at=>Time.now)
     User.create!(:id=>'2', :login => "bar", :email => "bar@grantvote.com", :points => 23,
                   :password => "pass", :password_confirmation => "pass",
-                  :blitz_interest => false, :blitz_contributes => 0, :blitz_rewards => 0 )
+                  :blitz_interest => true, :blitz_contributes => 0, :blitz_rewards => 0 )
 
     Profile.create!(:user_id => 2, :login => "bar")
     Credit.create!(:user_id => 2, :points => 23,
@@ -25,7 +25,7 @@ namespace :db do
     #Invitation.create(:id=>'3',:email=>'baz1@grantvote.com', :news=>'0', :sender_id=>'1', :sent_at=>Time.now)
     User.create!(:id=>'3',:login => "baz", :email => "baz@grantvote.com", :points => 41,
                   :password => "pass", :password_confirmation => "pass",
-                  :blitz_interest => false, :blitz_contributes => 5, :blitz_rewards => 20 )
+                  :blitz_interest => true, :blitz_contributes => 5, :blitz_rewards => 20 )
 
     Profile.create!(:user_id => 3, :login => "baz")
     Credit.create!(:user_id => 3, :points => 41,
@@ -34,7 +34,7 @@ namespace :db do
     #Invitation.create(:id=>'4',:email=>'wii1@grantvote.com', :news=>'0', :sender_id=>'1', :sent_at=>Time.now)
     User.create!(:id=>'4',:login => "wii", :email => "wii@grantvote.com", :points => 17,
                   :password => "pass", :password_confirmation => "pass",
-                  :blitz_interest => false, :blitz_contributes => 5, :blitz_rewards => 20 )
+                  :blitz_interest => true, :blitz_contributes => 5, :blitz_rewards => 20 )
 
     Profile.create!(:user_id => 4, :login => "wii")
     Credit.create!(:user_id => 4, :points => 17,
@@ -43,7 +43,7 @@ namespace :db do
     #Invitation.create(:id=>'5',:email=>'loo1@grantvote.com', :news=>'0', :sender_id=>'1', :sent_at=>Time.now)
     User.create!(:id=>'5',:login => "loo", :email => "loo@grantvote.com", :points => 26,
                   :password => "pass", :password_confirmation => "pass",
-                  :blitz_interest => false, :blitz_contributes => 0, :blitz_rewards => 0 )
+                  :blitz_interest => true, :blitz_contributes => 0, :blitz_rewards => 0 )
 
     Profile.create!(:user_id => 5, :login => "loo")
     Credit.create!(:user_id => 5, :points => 26,

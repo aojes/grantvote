@@ -1,2 +1,4 @@
-%h3= @notice.event
+- if @notice.event.eql?('Win')
+  %h3 You Won!
+%p= @notice.url
 

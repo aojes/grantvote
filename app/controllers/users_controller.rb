@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user.build_credit(:user => @user, :pebbles => 1)
     if @user.save
       flash[:notice] = "Account created. Welcome! "
-      redirect_back_or_default profile_path(@user)
+      redirect_to profile_path(@user)
     else
       render :action => :new
     end

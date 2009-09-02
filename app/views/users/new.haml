@@ -8,7 +8,6 @@
           .clear.large
             - form_for @user, :url => account_path, :html => {:multipart => true} do |f|
               = f.error_messages
-              -#= f.hidden_field :invitation_token
               .form_row
                 = f.label :login
                 = f.text_field :login

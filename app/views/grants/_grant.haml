@@ -42,7 +42,7 @@
           == &nbsp; Denied #{@grant.updated_at.strftime("%B %d, %Y")}
           %br
           == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
-      - if not @grant.user == current_user and voted?(@grant)
+      - if current_user and not @grant.user == current_user and voted?(@grant)
         %h4.prepend-top.center.quiet Thank you for voting!
   .span-5.center.last
     - unless @grant.final or not current_user or voted?(@grant)

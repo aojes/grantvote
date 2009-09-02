@@ -12,7 +12,7 @@ class Notifier < ActionMailer::Base
   def event_notice(notification)
     recipients    notification.user.email
     from          "Grantvote <support@grantvote.com>"
-    subject       "Test" # TODO
+    subject       "Notification"
     sent_on       Time.now
     body          :notice => notification
     content_type  "text/html"

@@ -56,7 +56,7 @@ class Blitz < ActiveRecord::Base
       user.cycle_interest!(amount)
       user.notifications.create!(
         :event   => 'Win',
-        :url     => 'url baby!'
+        :url     => "http://www.grantvote.com/blitz/#{permalink}"
       )
     end
   end

@@ -72,7 +72,8 @@ class Grant < ActiveRecord::Base
       group.memberships.find_by_user_id(user).cycle_membership!(amount)
       user.notifications.create!(
         :event   => 'Win',
-        :url     => 'url baby!'
+        :url     => "http://www.grantvote.com" +
+                    "/groups/#{group.permalink}/grants/#{permalink}"
       )
     end
   end
