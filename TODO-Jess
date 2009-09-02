@@ -12,6 +12,7 @@ defer
 
   normal workflow
 
+    make hunch topic (grantvote fundable pledgie donorschoose)
     fix a img to get rid of yellow highlight on transparent udf images
     review blitz#index layout (for use with smaller blitz icon than on the profile)
     'view session' shows up when only writeboard grants exist
