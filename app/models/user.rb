@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
   has_many :payments
   has_many :payment_notifications
   has_many :notifications
-  has_many :sent_invitations,
-             :class_name => 'Invitation', :foreign_key => 'sender_id'
-  belongs_to :invitation
+  #has_many :sent_invitations,
+             #:class_name => 'Invitation', :foreign_key => 'sender_id'
+  #belongs_to :invitation
 
   accepts_nested_attributes_for :profile
 
@@ -40,19 +40,20 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo,
                        :content_type => ['image/jpeg', 'image/gif', 'image/png']
 
-  validates_presence_of :invitation_id, :message => 'is required'
-  validates_uniqueness_of :invitation_id
+  #validates_presence_of :invitation_id, :message => 'is required'
+  #validates_uniqueness_of :invitation_id
 
-  MIN_NAME, MAX_NAME = [2, 26]
+  MIN_NAME, MAX_NAME = [3, 26]
 
-  validates_length_of :login, :in => MIN_NAME..MAX_NAME
+  validates_length_of :login, :in => MIN_NAME..MAX_NAME,
+                      :message => 'can be 1 to 26 characters'
 
   attr_accessor_with_default :password_confirm_vital, ''
   attr_accessor_with_default :new_password, ''
   attr_accessor_with_default :confirm_new_password, ''
   attr_accessor_with_default :current_password, ''
 
-  before_create :set_invitation_limit
+  # before_create :set_invitation_limit
 
   named_scope :blitz_voters, :conditions => { :blitz_interest => true }
 

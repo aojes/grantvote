@@ -2,20 +2,21 @@ ActionController::Routing::Routes.draw do |map|
 
   # map.root :controller => "user_sessions", :action => "new"
   #map.root :controller => "home"
-  map.root :controller => "invitations"
+  map.root :controller => :groups
   map.login '/login', :controller => "user_sessions", :action => "new"
   #map.register '/register', :controller => 'users', :action => 'create'
-  map.signup '/signup/:invitation_token', :controller => 'users', :action => 'new'
-  
+  map.signup '/signup', :controller => 'users', :action => 'new'
+  #'/signup/:invitation_token', :controller => 'users', :action => 'new'
+
   map.resource :user_session
   map.resource :account, :controller => 'users'
-    
-  map.resources :users, :has_many => [:comments, :grants, :votes] 
+
+  map.resources :users, :has_many => [:comments, :grants, :votes]
   map.resources :password_resets
   map.resources :friendships
   map.resources :groups, :has_many => [:comments, :memberships, :grants]
   map.resources :blitzes, :as => 'blitz', :has_many => [:votes]
-  map.resources :grants, :has_many => [:votes]         
+  map.resources :grants, :has_many => [:votes]
   map.resources :comments
   map.resources :communications
   map.resources :payments, :collection => { :finalize => :get }
@@ -26,12 +27,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.home '/home', :controller => "home", :action => "show"
   map.leaders '/leaders', :controller => "leaders", :action => "index"
-  map.profile ':permalink', :controller => "profiles", :action => "view"  
-  
+  map.profile ':permalink', :controller => "profiles", :action => "view"
+
   map.connect ':controller/:action'
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -50,7 +51,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
@@ -75,3 +76,4 @@ ActionController::Routing::Routes.draw do |map|
   # map.connect ':controller/:action/:id'
   # map.connect ':controller/:action/:id.:format'
 end
+

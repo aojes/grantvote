@@ -2,9 +2,9 @@
 %html{ html_attrs }
   %head
     - if @page_title.nil?
-      %title== (#{controller.controller_name}: #{controller.action_name})
+      %title Grantvote
     - else
-      %title=h @page_title
+      %title= h(@page_title)
     %meta{ "http-equiv" => "content-type", :content => "text/xhtml; charset=utf-8" }
     %meta{ :name => 'description', :content => "Grantvote helps people give and win financial support." }
     %meta{ :name => 'keywords', :content => "grant, money, funding, writing, winning, giving, financial, resource, social, media, network, community, philanthropy" }
@@ -19,12 +19,11 @@
     = stylesheet_link_tag 'base'
     = javascript_include_tag :defaults, 'jquery.corners.min', 'jquery.qtip', 'jquery.validate.pack'
     -# include jquery calls only on pages where the elements exist to avoid js errors
-    - if current_user and current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{current_user.login}")
-      = javascript_include_tag 'invitations'
-    - if current_user and current_page?(:controller => 'groups', :action=>'show')
-      = javascript_include_tag 'comments'
-    /= javascript_include_tag 'jquery.bottomlesspagination'
-
+      -# if current_user and current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{current_user.login}")
+        -#= javascript_include_tag 'invitations'
+      -# if current_user and current_page?(:controller => 'groups', :action=>'show')
+        -#= javascript_include_tag 'comments'
+      -#= javascript_include_tag 'jquery.bottomlesspagination'
   %body
     .container
       .span-24#header
@@ -34,47 +33,38 @@
           - else
             %h1.logo= link_to "Grantvote", root_path
         .span-10.append-2.prepend-top.nav.last
-          - if current_user
-            %ul#nav-list.pull-2.prepend-top
-              = show_link "Home", {:controller => 'home', :action => 'show'}, {:title => "Home", :class => 'rounded'}
-              = show_link "Groups", {:controller => 'groups', :action => 'index'}, {:title => "Groups", :class => 'rounded'}
-              - if controller.controller_name == 'grants'
-                %li.active= link_to "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
-              - else
-                = show_link "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
-              = show_link "Blitz", {:controller => 'blitzes', :action => 'index'}, {:title => "Blitz", :class => 'rounded'}
-              = show_link "Leaders", {:controller => 'leaders', :action => 'index'}, {:title => "Leaders", :class => 'rounded'}
-              - if current_page?(:controller => 'account', :action => 'index') || current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}")
-                %li.active<
-                  = link_to "You",  profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
-              - else
+          %ul#nav-list.pull-2.prepend-top
+            = show_link "Home", {:controller => 'home', :action => 'show'}, {:title => "Home", :class => 'rounded'}
+            = show_link "Groups", {:controller => 'groups', :action => 'index'}, {:title => "Groups", :class => 'rounded'}
+            - if controller.controller_name == 'grants'
+              %li.active= link_to "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
+            - else
+              = show_link "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
+            = show_link "Blitz", {:controller => 'blitzes', :action => 'index'}, {:title => "Blitz", :class => 'rounded'}
+            = show_link "Leaders", {:controller => 'leaders', :action => 'index'}, {:title => "Leaders", :class => 'rounded'}
+            - if current_user && (current_page?(:controller => 'account', :action => 'index') || current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}"))
+              %li.active<
+                = link_to "You",  profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
+            - else
+              - if current_user
                 %li.normal<
                   = link_to "You", profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
 
             -#= pluralize User.logged_in.count, "user" currently logged in
-          .prepend-top.flr#login{:style => "position:relative; top: 3px"}
-
-            -#
-              - if not current_user
-                = link_to "Register", new_account_path, :class => "rounded", :alt => "Register a new account"
-                |
-                = link_to "Log In", login_path, :class => "rounded", :alt => "Log in to your account"
-
-            - if current_user
+          .prepend-top.flr#login{:style => "position:relative; top: 4px"}
+            - if !current_user
+              = link_to "Register", new_account_path, :class => "rounded", :alt => "Register a new account"
+              |
+              = link_to "Log In", login_path, :class => "rounded", :alt => "Log in to your account"
+            - else
               = link_to "Logout", user_session_path, :method => :delete, :class => "rounded", :alt => "log out", :style => "position: relative; top: 2px"
-          - if current_user and (flash[:notice] or flash[:warning] or flash[:error])
+          - if (flash[:notice] or flash[:warning] or flash[:error])
             .span-14.pull-3= flash_messages
-          - else
-            .span-14.pull-3.prepend-top= flash_messages
       .span-24.last#content
         = yield
       .span-24.last#footer
         &nbsp;
-      -#
-        - if RAILS_ENV == 'development'
-          .span-24.last
-            = render 'shared/debug'
-    - if RAILS_ENV == 'production'
+    - if Rails.env.production?
       <script type="text/javascript">
       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
       document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

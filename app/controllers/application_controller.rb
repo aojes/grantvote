@@ -5,12 +5,12 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  filter_parameter_logging :password, :password_confirmation, :new_password, 
+  filter_parameter_logging :password, :password_confirmation, :new_password,
               :confirm_new_password, :current_password, :password_confirm_vital
-   
+
   helper_method :current_user_session, :current_user
   include SslRequirement
-    
+
   private
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
@@ -25,8 +25,8 @@ class ApplicationController < ActionController::Base
     def require_user
       unless current_user
         store_location
-        flash[:notice] = "You must be logged in to access this page"
-        redirect_to root_path # TODO root_path for private production only!
+        flash[:notice] = "You must be logged in to access the requested page"
+        redirect_to new_user_path # TODO root_path for private production only!
                               #      else redirect to login_path
         return false
       end
@@ -49,5 +49,6 @@ class ApplicationController < ActionController::Base
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
-    
+
 end
+

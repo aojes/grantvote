@@ -1,6 +1,6 @@
 class BlitzesController < ApplicationController
 
-  before_filter :require_user # for all private beta
+  before_filter :require_user, :except => [:index, :show]
   before_filter :verify_authenticity_token
 
   def index
@@ -11,10 +11,15 @@ class BlitzesController < ApplicationController
 
     session[:group_id] = 0
     session[:group_permalink] = 0 # set to 0 for blitz payment
-    @blitzes = Blitz.session.reject do |b|
-                 !b.votes.
-                 count(:conditions => {:user_id => current_user.id}).zero?
-               end.paginate(:page => params[:page], :per_page => 10)
+
+    if current_user
+      @blitzes = Blitz.session.reject do |b|
+                   !b.votes.
+                   count(:conditions => {:user_id => current_user.id}).zero?
+                 end.paginate(:page => params[:page], :per_page => 10)
+    else
+      @blitzes = Blitz.session.paginate(:page => params[:page], :per_page => 10)
+    end
 
     respond_to do |format|
       format.html # index.html.erb

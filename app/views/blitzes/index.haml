@@ -1,6 +1,6 @@
 .span-21.prepend-1.append-1.prepend-top.last
   .span-20.last
-    - if blitz_voter?(current_user)
+    - if current_user && blitz_voter?(current_user)
       %h3.flr(style='position:relative; top: 12px;')<
         = link_to "New Blitz Grant", new_blitz_path, :method => :get
     .span-8.last
@@ -10,9 +10,10 @@
 
 .span-20.prepend-2.append-2.last#search
   .span-10.pull-1.prepend-top
-    - unless current_user.blitz_interest
+    - if current_user && !current_user.blitz_interest
       %h3== Blitz Voting and Writing Dues are $#{Payment::AMOUNT}
-      %p.prepend-1= link_to image_tag("http://g-ecx.images-amazon.com/images/G/01/cba/b/sg3.jpg"), :controller => :payments, :action => :new
+      .quiet Contributes $4 to the Blitz Fund (non refundable)
+      .prepend-1.prepend-top= link_to image_tag("http://g-ecx.images-amazon.com/images/G/01/cba/b/sg3.jpg"), :controller => :payments, :action => :new
 
   .span-10.last
     &nbsp;
@@ -22,4 +23,10 @@
   = render 'blitz', :blitz => blitz
 
 .clear= will_paginate @blitzes
+.span-22.prepend-2
+  .prepend-top(style="position:relative; top: 140px")= link_to image_tag("http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png", :alt => "Creative Commons License", :style => "border-width:0" ),  "http://creativecommons.org/licenses/by-sa/3.0/us/", :rel => "license"
+  /%br
+  /%span(xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type")Written Text of Grants and Blitz Grants licensed under a
+  /%br
+  /= link_to 'Creative Commons Attribution-Share Alike 3.0 United States License', 'http://creativecommons.org/licenses/by-sa/3.0/us/', :rel => "license"
 

@@ -33,3 +33,11 @@
 
   .clear= will_paginate @grants
 
+
+  .span-22.prepend-2
+    .prepend-top(style="position:relative; top: 140px")= link_to image_tag("http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png", :alt => "Creative Commons License", :style => "border-width:0" ),  "http://creativecommons.org/licenses/by-sa/3.0/us/", :rel => "license"
+    /%br
+    /%span(xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type")Written Text of Grants and Blitz Grants licensed under a
+    /%br
+    /= link_to 'Creative Commons Attribution-Share Alike 3.0 United States License', 'http://creativecommons.org/licenses/by-sa/3.0/us/', :rel => "license"
+

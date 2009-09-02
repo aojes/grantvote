@@ -3,11 +3,10 @@
     = f.radio_button :cast, "yea", :style => "position: relative; top: 2px"
     %strong.large.fancy_type Yea&nbsp;
     = submit_button "Vote"
-    %strong.large.fancy_type &nbsp;Nay 
+    %strong.large.fancy_type &nbsp;Nay
     = f.radio_button :cast, "nay", :style => "position: relative; top: 2px"
     = f.hidden_field :user_id, :value => current_user.id
     = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
     = f.hidden_field :grant_id, :value => grant.id
     = f.hidden_field :blitz_id, :value => 0
-- else
-  .quiet= link_to 'Pay Group Voting &amp; Writing Dues', new_group_membership_path(grant.group)
+

@@ -1,7 +1,7 @@
 class GrantsController < ApplicationController
 
   # require user for private production
-  before_filter :require_user# , :only => [:new, :create, :update]
+  before_filter :require_user, :except => [:index, :show]
   before_filter :verify_authenticity_token
 
   def index

@@ -1,11 +1,11 @@
-.span-21.prepend-2.append-1.last  
+.span-21.prepend-2.append-1.last
   .span-14.append-1
     %h3<
       %span.flr
         = link_to user_defined_image(grant.user, :small, :alt=> h(grant.user.login), :title => h(grant.user.login)), profile_path(h(grant.user.login))
       = h grant.name
     %h3(style="color: #609e17")== $#{grant.amount}
-  .span-6.last 
+  .span-6.last
     = user_cred_images(grant.user, :small, true)
   .span-15
     .span-3
@@ -28,12 +28,13 @@
     .quiet
       - if grant.final
         - if grant.awarded
-          == &nbsp; Awarded #{grant.updated_at.strftime("%B %d, %Y")} 
+          == &nbsp; Awarded #{grant.updated_at.strftime("%B %d, %Y")}
           %br
           == &nbsp; after #{distance_of_time_in_words(grant.votes.first.created_at, grant.votes.last.created_at)} in session
         - else
-          == &nbsp; Denied #{grant.updated_at.strftime("%B %d, %Y")} 
+          == &nbsp; Denied #{grant.updated_at.strftime("%B %d, %Y")}
           %br
           == &nbsp; after #{distance_of_time_in_words(grant.votes.first.created_at, grant.votes.last.created_at)} in session
-      - if not grant.user == current_user and voted?(grant)
+      - if current_user and not grant.user == current_user and voted?(grant)
         %h4.prepend-top.center.quiet Thank you for voting!
+

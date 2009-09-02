@@ -1,5 +1,5 @@
 class InvitationsController < ApplicationController
-  before_filter :require_user, :except => [:index, :new, :create]
+  before_filter :require_user#, :except => [:index, :new, :create]
   before_filter :verify_authenticity_token
 
   def index
@@ -78,7 +78,7 @@ private
       if i.sender_id.nil?
         @invitation = i
         @invitation.sender = current_user
-        
+
         Mailer.deliver_invitation_from_admin(@invitation, signup_url(@invitation.token))
       end
     end

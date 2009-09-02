@@ -17,8 +17,9 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.friendships.find_by_friend_id(params[:id])
     @friendship.destroy
     flash[:notice] = 'Removed friendship'
-    
+
     redirect_to profile_path(current_user.login)
   end
 
 end
+

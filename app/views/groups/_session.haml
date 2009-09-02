@@ -9,15 +9,8 @@
         %h3(style='color: #82b039;')== $#{grant.amount.to_i.to_s}
       .span-6.last
         = user_cred_images(grant.user, :small, true)
-      .span-15
-        .span-3
-          &nbsp;
-        .span-12.pull-1.last{:style => "text-align:justify"}
-          - unless grant.media.blank?
-            = grant.media
-            %br
-            %br
-          .large= simple_format h(grant.proposal), :style => "line-height: 2;"
+      .span-14.append-1(style="text-align: justify;")
+        .large= simple_format h(grant.proposal), :style => "line-height: 2;"
       .span-5.last
         == <img alt="#{group_accessible_tally grant}" title="#{group_accessible_tally grant}" src="#{session_bar_chart_url(grant)}" />
         %p= render 'shared/vote', :grant => grant

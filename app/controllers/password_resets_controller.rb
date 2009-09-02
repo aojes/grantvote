@@ -38,7 +38,7 @@ class PasswordResetsController < ApplicationController
   end
 
   private
-  
+
     def load_user_using_perishable_token
       @user = User.find_using_perishable_token(params[:id])
       unless @user
@@ -49,6 +49,6 @@ class PasswordResetsController < ApplicationController
         redirect_to root_url
       end
     end
-  
+
 end
 

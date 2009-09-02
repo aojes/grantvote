@@ -1,7 +1,5 @@
 class LeadersController < ApplicationController
 
-  # require user for private production
-  before_filter :require_user
   def index
     @page_title = "Grantvote Leaders"
 

@@ -2,7 +2,7 @@
   .span-6.prepend-1.append-1
     - if @group.memberships.voters.count.zero?
       %h4
-        .flr= button_to('Edit', edit_group_path(@group), :method => :get, :onclick => "this.blur();", :style => "margin-left: 12px") if creator?(current_user, @group) 
+        .flr= button_to('Edit', edit_group_path(@group), :method => :get, :onclick => "this.blur();", :style => "margin-left: 12px") if creator?(current_user, @group)
         Creator can edit this group until anyone pays dues
       %br
       %br
@@ -12,18 +12,20 @@
       - else
         %h2 Recent Awards
   .span-8.last
-    - if voting?(@group.id, current_user)
-      .span-4
-        %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
-      .span-4.last
-        %h3= button_to "New Grant", new_group_grant_path(@group), :method => :get
-    - elsif group_member?(@group.id, current_user)
-      .span-4
-        %h3= button_to "Pay Dues", new_group_membership_path(@group), :method => :get
-      .span-4.last  
-        %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
-    - else
-      .span-4
-        %h3= button_to "Join Group", new_group_membership_path(@group), :method => :get
-      .span-4.last
-        %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
+    - if current_user
+      - if voting?(@group.id, current_user)
+        .span-4
+          %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
+        .span-4.last
+          %h3= button_to "New Grant", new_group_grant_path(@group), :method => :get
+      - elsif group_member?(@group.id, current_user)
+        .span-4
+          %h3= button_to "Pay Dues", new_group_membership_path(@group), :method => :get
+        .span-4.last
+          %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
+      - else
+        .span-4
+          %h3= button_to "Join Group", new_group_membership_path(@group), :method => :get
+        .span-4.last
+          %h3= button_to "View Session", group_grants_path(@group), :method => :get unless @group.grants.count.zero?
+
