@@ -51,4 +51,10 @@
               = submit_button "Vote Into Session"
       - elsif !(blitz.user == current_user)
         .prepend-top.center= render 'shared/blitz_vote', :blitz => blitz
+    - else
+      .prepend-top
+        = link_to 'Login', login_path
+        or
+        = link_to 'Register', new_user_path
+        to vote.
 

@@ -1,4 +1,4 @@
-- if voter?(params[:group_id])
+- if current_user and voter?(params[:group_id])
   - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
     = f.radio_button :cast, "yea", :style => "position: relative; top: 2px"
     %strong.large.fancy_type Yea&nbsp;
@@ -9,4 +9,9 @@
     = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
     = f.hidden_field :grant_id, :value => grant.id
     = f.hidden_field :blitz_id, :value => 0
+- else
+  = link_to 'Login', login_path
+  or
+  = link_to 'Sign up', new_user_path
+  to vote.
 
