@@ -11,8 +11,8 @@
 .span-20.prepend-2.append-2.last#search
   .span-10.pull-1.prepend-top
     - if current_user && !current_user.blitz_interest
-      %h3== Blitz Voting and Writing Dues are $#{Payment::AMOUNT}
-      .quiet Contributes $4 to the Blitz Fund (non refundable)
+      %h3== Blitz Voting and Writing Dues are #{number_to_currency(Payment::AMOUNT, :precision => 2)}
+      .quiet== Contributes #{number_to_currency(Payment::AMOUNT, :precision => 2)} to the Blitz Fund (non refundable)
       .prepend-1.prepend-top= link_to image_tag("http://g-ecx.images-amazon.com/images/G/01/cba/b/sg3.jpg"), :controller => :payments, :action => :new
 
   .span-10.last

@@ -3,8 +3,8 @@ class Payment < ActiveRecord::Base
   belongs_to :user
   has_many :transactions, :class_name => "PaymentTransaction"
 
-  AMOUNT = 4.85
-  DIVIDEND = 4.00
+  AMOUNT = 5.00
+  DIVIDEND = 5.00
 
   ##
   # typical response params (for payment on Amazon with credit card)
@@ -18,7 +18,7 @@ class Payment < ActiveRecord::Base
 
   def process_payment! # FIXME handle failed updates when payment succeeds
 
-    if status = update_attributes!(:success => true)
+    if update_attributes!(:success => true)
       transaction do
         if group_id.zero? # Blitz payment
 
@@ -72,6 +72,8 @@ class Payment < ActiveRecord::Base
         end
         update_attributes!(:updated_at => Time.now)
       end
+    else
+      nil
     end
   end
 

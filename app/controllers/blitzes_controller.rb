@@ -5,7 +5,7 @@ class BlitzesController < ApplicationController
 
   def index
     @page_title = 'Grantvote Blitz'
-    blitz_fund = BlitzFund.find_by_dues(Payment::AMOUNT)
+    blitz_fund = BlitzFund.find_or_create_by_dues(Payment::AMOUNT)
     @awards = blitz_fund.awards
     @general_pool = blitz_fund.general_pool
 
