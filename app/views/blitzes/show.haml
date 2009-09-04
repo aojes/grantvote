@@ -148,6 +148,6 @@
           or
           = link_to 'Register', new_user_path
           to vote.
-      - if @blitz.awarded or @blitz.session
+      - if @blitz.awarded
         .prepend-top= socialite(:url => blitz_url(@blitz), :title => "Grantvote &raquo; #{h @blitz.name}")
 

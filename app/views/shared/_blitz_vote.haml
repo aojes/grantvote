@@ -8,10 +8,10 @@
       = f.radio_button :cast, "nay", :style => "position: relative; top: 2px"
       = f.hidden_field :user_id, :value => current_user.id
       = f.hidden_field :blitz_id, :value => blitz.id
-    .prepend-top= socialite(:url => blitz_url(blitz), :title => "Grantvote Blitz &raquo; #{h blitz.name}")
+    /.prepend-top= socialite(:url => blitz_url(blitz), :title => "Grantvote Blitz &raquo; #{h blitz.name}")
   - elsif not blitz_voter?(current_user)
     %span(style="position:relative; left: 4px;")= link_to image_tag('/images/amazon_pay_now.gif'), :controller => :payments, :action => :new
-    .prepend-top= socialite(:url => blitz_url(blitz), :title => "Grantvote Blitz &raquo; #{h blitz.name}")
+    /.prepend-top= socialite(:url => blitz_url(blitz), :title => "Grantvote Blitz &raquo; #{h blitz.name}")
 - else
   = link_to 'Login', login_path
   or
