@@ -15,7 +15,7 @@ class VotesController < ApplicationController
         @vote.blitz.session_reset
         redirect_to blitz_path(@vote.blitz)
       end
-    elsif @vote.group and @vote.group.solvent?(@vote.grant.amount)
+    elsif @vote.group and @vote.group.solvent?(@vote.grant)
       if @vote.save
         flash[:notice] = @vote.final_message || 'Voted successfully.'
         redirect_to group_grant_path(@vote.group, @vote.grant)
