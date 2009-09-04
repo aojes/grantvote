@@ -10,8 +10,10 @@
     = f.hidden_field :grant_id, :value => grant.id
     = f.hidden_field :blitz_id, :value => 0
 - else
-  = link_to 'Login', login_path
-  or
-  = link_to 'Sign up', new_user_path
-  to vote.
+  .prepend-top
+    &nbsp; &nbsp;
+    = link_to 'Login', login_path
+    or
+    = link_to 'Sign up', new_user_path
+    to vote.
 

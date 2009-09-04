@@ -1,61 +1,126 @@
-%h3.prepend-1.append-14.last<
-  - if @grant.votes.count.zero?
-    .notice Preview
-  - elsif @grant.final
-    - if @grant.awarded
-      .success Awarded
-    - else
-      .error Denied
-  - else
-    .success= link_to "Group Session", group_grants_path(@grant.group)
-.span-21.prepend-2.append-1.last
-  .span-14.append-1
-    %h3<
-      %span.flr
-        = link_to user_defined_image(@grant.user, :small, :alt=> h(@grant.user.login), :title => h(@grant.user.login)), profile_path(@grant.user.login)
-      = h @grant.name
-    %h3(style="color: #609e17;")== $#{@grant.amount}
-  .span-6.last
-    = user_cred_images(@grant.user, :small, true)
-  .span-15
-    .span-14.last{:style => "text-align:justify"}
-      - if @grant.media.blank?
-        .large= simple_format h(@grant.proposal), :style => "line-height: 2"
+- if @grant.votes.count.zero? and current_user == @grant.user
+  %h3.prepend-1.append-14.last<
+    - if @grant.votes.count.zero?
+      .notice Preview
+    - elsif @grant.final
+      - if @grant.awarded
+        .success Awarded
       - else
-        = simple_format @grant.media
-        .large= simple_format h(@grant.proposal), :style => "line-height: 1.8; margin-right: -40px;"
-      - if @grant.votes.count.zero?
-        = button_to "Edit", edit_group_grant_path(@grant.group, @grant), :method => :get
-        .prepend-top.prepend-4= link_to 'delete', @grant, :method => :delete, :confirm => 'Delete grant?'
-      %br{:style => "clear: both"}
-      %br
-      %br
-  .span-5
-    == <img alt="#{group_accessible_tally(@grant)}" title="#{group_accessible_tally(@grant)}" src="#{session_bar_chart_url(@grant)}" />
-    .quiet
-      - if @grant.final
-        - if @grant.awarded
-          == &nbsp; Awarded #{@grant.updated_at.strftime("%B %d, %Y")}
-          %br
-          == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
+        .error Denied
+    - else
+      .success= link_to "Group Session", group_grants_path(@grant.group)
+  .span-21.prepend-2.append-1.last
+    .span-14.append-1
+      %h3<
+        %span.flr
+          = link_to user_defined_image(@grant.user, :small, :alt=> h(@grant.user.login), :title => h(@grant.user.login)), profile_path(@grant.user.login)
+        = h @grant.name
+      %h3(style="color: #609e17;")== $#{@grant.amount}
+    .span-6.last
+      = user_cred_images(@grant.user, :small, true)
+    .span-15
+      .span-14.last{:style => "text-align:justify"}
+        - if @grant.media.blank?
+          .large= simple_format h(@grant.proposal), :style => "line-height: 2"
         - else
-          == &nbsp; Denied #{@grant.updated_at.strftime("%B %d, %Y")}
-          %br
-          == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
-      - if current_user and not @grant.user == current_user and voted?(@grant)
-        %h4.prepend-top.center.quiet Thank you for voting!
-  .span-5.center.last
-    - unless @grant.final or not current_user or voted?(@grant)
+          = simple_format @grant.media
+          .large= simple_format h(@grant.proposal), :style => "line-height: 1.8; margin-right: -40px;"
+        - if @grant.votes.count.zero?
+          = button_to "Edit", edit_group_grant_path(@grant.group, @grant), :method => :get
+          .prepend-top.prepend-4= link_to 'delete', @grant, :method => :delete, :confirm => 'Delete grant?'
+        %br{:style => "clear: both"}
+        %br
+        %br
+    .span-5
+      == <img alt="#{group_accessible_tally(@grant)}" title="#{group_accessible_tally(@grant)}" src="#{session_bar_chart_url(@grant)}" />
+      .quiet
+        - if @grant.final
+          - if @grant.awarded
+            == &nbsp; Awarded #{@grant.updated_at.strftime("%B %d, %Y")}
+            %br
+            == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
+          - else
+            == &nbsp; Denied #{@grant.updated_at.strftime("%B %d, %Y")}
+            %br
+            == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
+        - if current_user and not @grant.user == current_user and voted?(@grant)
+          %h4.prepend-top.center.quiet Thank you for voting!
+    .span-5.center.last
+      - unless @grant.final or not current_user or voted?(@grant)
+        - if @grant.votes.count.zero?
+          %p
+            - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
+              = f.hidden_field :cast, :value => "yea"
+              = f.hidden_field :user_id, :value => @grant.user_id
+              = f.hidden_field :group_id, :value => @grant.group_id
+              = f.hidden_field :grant_id, :value => @grant.id
+              = f.hidden_field :blitz_id, :value => 0
+              %span{:style => "padding-left: 7px"}
+                = submit_button "Vote Into Session"
+        - else
+          - if !(@grant.user == current_user)
+            .prepend-top.center= render 'shared/vote', :grant => @grant
+
+- else
+  - if not @grant.votes.count.zero?
+    %h3.prepend-1.append-14.last<
       - if @grant.votes.count.zero?
-        %p
-          - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
-            = f.hidden_field :cast, :value => "yea"
-            = f.hidden_field :user_id, :value => @grant.user_id
-            = f.hidden_field :group_id, :value => @grant.group_id
-            = f.hidden_field :grant_id, :value => @grant.id
-            = f.hidden_field :blitz_id, :value => 0
-            %span{:style => "padding-left: 7px"}
-              = submit_button "Vote Into Session"
-      - elsif !(@grant.user == current_user)
-        .prepend-top.center= render 'shared/vote', :grant => @grant
+        .notice Preview
+      - elsif @grant.final
+        - if @grant.awarded
+          .success Awarded
+        - else
+          .error Denied
+      - else
+        .success= link_to "Group Session", group_grants_path(@grant.group)
+    .span-21.prepend-2.append-1.last
+      .span-14.append-1
+        %h3<
+          %span.flr
+            = link_to user_defined_image(@grant.user, :small, :alt=> h(@grant.user.login), :title => h(@grant.user.login)), profile_path(@grant.user.login)
+          = h @grant.name
+        %h3(style="color: #609e17;")== $#{@grant.amount}
+      .span-6.last
+        = user_cred_images(@grant.user, :small, true)
+      .span-15
+        .span-14.last{:style => "text-align:justify"}
+          - if @grant.media.blank?
+            .large= simple_format h(@grant.proposal), :style => "line-height: 2"
+          - else
+            = simple_format @grant.media
+            .large= simple_format h(@grant.proposal), :style => "line-height: 1.8; margin-right: -40px;"
+          - if @grant.votes.count.zero?
+            = button_to "Edit", edit_group_grant_path(@grant.group, @grant), :method => :get
+            .prepend-top.prepend-4= link_to 'delete', @grant, :method => :delete, :confirm => 'Delete grant?'
+          %br{:style => "clear: both"}
+          %br
+          %br
+      .span-5
+        == <img alt="#{group_accessible_tally(@grant)}" title="#{group_accessible_tally(@grant)}" src="#{session_bar_chart_url(@grant)}" />
+        .quiet
+          - if @grant.final
+            - if @grant.awarded
+              == &nbsp; Awarded #{@grant.updated_at.strftime("%B %d, %Y")}
+              %br
+              == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
+            - else
+              == &nbsp; Denied #{@grant.updated_at.strftime("%B %d, %Y")}
+              %br
+              == &nbsp; after #{distance_of_time_in_words(@grant.votes.first.created_at, @grant.votes.last.created_at)} in session
+          - if current_user and not @grant.user == current_user and voted?(@grant)
+            %h4.prepend-top.center.quiet Thank you for voting!
+      .span-5.center.last
+        - unless @grant.final or not current_user or voted?(@grant)
+          - if @grant.votes.count.zero?
+            %p
+              - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
+                = f.hidden_field :cast, :value => "yea"
+                = f.hidden_field :user_id, :value => @grant.user_id
+                = f.hidden_field :group_id, :value => @grant.group_id
+                = f.hidden_field :grant_id, :value => @grant.id
+                = f.hidden_field :blitz_id, :value => 0
+                %span{:style => "padding-left: 7px"}
+                  = submit_button "Vote Into Session"
+          - elsif !(@grant.user == current_user)
+            .prepend-top.center= render 'shared/vote', :grant => @grant
 

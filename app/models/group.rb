@@ -59,7 +59,7 @@ class Group < ActiveRecord::Base
 
   def solvent?(grant)
     if grant.votes.count.zero?
-      funds >= grant.group.grants.session.sum(:amount) + amount
+      funds >= grant.group.grants.session.sum(:amount) + grant.amount
     else
       funds >= grant.group.grants.session.sum(:amount)
     end
