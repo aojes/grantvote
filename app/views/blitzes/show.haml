@@ -70,9 +70,84 @@
           to vote.
       - if @blitz.awarded or @blitz.session
         .prepend-top= socialite(:url => blitz_url(@blitz), :title => "Grantvote &raquo; #{h @blitz.name}")
+
+
+- elsif @blitz.votes.count.zero? and !(current_user == @blitz.user)
+  .prepend-2.prepend-top
+    %h2 Private View
+    %h5 Can't get there from here.
+
+
 - else
-  - if @blitz.votes.count.zero? and !(current_user == @blitz.user)
-    .prepend-2.prepend-top
-      %h2 Private View
-      %h4 Can't get there from here.
+  .span-21.prepend-2.append-1.prepend-top.last
+    %h3.prepend-1.append-14.last<
+      - if @blitz.votes.count.zero?
+        .notice Preview
+      - elsif @blitz.final
+        - if @blitz.awarded
+          .success Awarded
+        - else
+          .error Denied
+      - else
+        = link_to "View All Blitz Grants", blitzes_path
+  .span-21.prepend-2.append-1.prepend-top.last
+    .span-14.append-1
+      %h3<
+        %span.flr
+          = link_to user_defined_image(@blitz.user, :small, :alt=> h(@blitz.user.login), :title => h(@blitz.user.login)), profile_path(@blitz.user.login)
+        = h @blitz.name
+      %h3(style="color: #609e17")== $#{@blitz.amount}
+    .span-6.last
+      = user_cred_images(@blitz.user, :small, true)
+    .span-15
+      .span-3
+        = image_tag('/images/icons/blitz_75.png')
+        .span-2.prepend-top.last
+          &nbsp;
+      .span-11.last{:style => "text-align:justify"}
+        - if @blitz.media.blank?
+          .large= simple_format h(@blitz.proposal), :style => "line-height: 2"
+        - else
+          = simple_format @blitz.media
+          .large= simple_format h(@blitz.proposal), :style => "line-height: 1.8; margin-right: -40px;"
+        - if @blitz.votes.count.zero?
+          = button_to "Edit", edit_blitz_path(@blitz), :method => :get
+          .prepend-top.prepend-4= link_to 'delete', @blitz, :method => :delete, :confirm => 'Delete blitz?'
+        %br(clear="both")
+        %br
+        %br
+    .span-5
+      = session_bar_chart_image @blitz
+      .quiet
+        - if @blitz.final
+          - if @blitz.awarded
+            == &nbsp; Awarded #{@blitz.updated_at.strftime("%B %d, %Y")}
+            %br
+            == &nbsp; after #{distance_of_time_in_words(@blitz.votes.first.created_at, @blitz.votes.last.created_at)} in session
+          - else
+            == &nbsp; Denied #{@blitz.updated_at.strftime("%B %d, %Y")}
+            %br
+            == &nbsp; after #{distance_of_time_in_words(@blitz.votes.first.created_at, @blitz.votes.last.created_at)} in session
+        - elsif current_user and voted_blitz?(@blitz)
+          %h4.center.prepend-top.quiet Thank you for voting!
+    .span-5.center.last
+      - if current_user and not ( @blitz.final and voted_blitz?(@blitz) )
+        - if @blitz.votes.count.zero? and @blitz.user == current_user
+          %p
+            - form_for :vote, :url => {:controller => "votes", :action => "create"} do |f|
+              = f.hidden_field :cast, :value => "yea"
+              = f.hidden_field :user_id, :value => @blitz.user_id
+              = f.hidden_field :blitz_id, :value => @blitz.id
+              %span{:style => "padding-left: 7px"}<
+                = submit_button "Vote Into Session"
+        - else
+          .prepend-top= render 'shared/blitz_vote', :blitz => @blitz
+      - elsif !current_user
+        .prepend-top
+          = link_to 'Login', login_path
+          or
+          = link_to 'Register', new_user_path
+          to vote.
+      - if @blitz.awarded or @blitz.session
+        .prepend-top= socialite(:url => blitz_url(@blitz), :title => "Grantvote &raquo; #{h @blitz.name}")
 
