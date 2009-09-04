@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
     @group = Group.find_by_permalink(params[:id])
     @page_title = @group.name + ' on Grantvote'
 
-    @grants = @group.grants.awarded.recent.
+    @grants = @group.grants.awarded.recent.reverse.
       paginate(:page => params[:page], :per_page => 10)
     @comments = @group.comments.reverse.
                          paginate(:page => params[:comments], :per_page => 8)

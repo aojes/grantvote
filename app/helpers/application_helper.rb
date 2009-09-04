@@ -248,10 +248,15 @@ module ApplicationHelper
     votes_yea    = grant.votes.yea.count
     votes_nay    = grant.votes.nay.count
 
-    green = ((votes_yea.to_f / voters.to_f) * 100).to_i
-      red = ((votes_nay.to_f / voters.to_f) * 100).to_i
-    scale = voters < 100 ? "100" : voters
-    scale == "100" ? blue = 100 - (green + red) : Group::AWARD_THRESHOLD_PCT
+    green = ((votes_yea.to_f / voters.to_f).round(2) * 100)
+    if green >= 100.0
+      green = (votes_yea / (voters + 1).to_f).round(2) * 100
+    end
+      red = ((votes_nay.to_f / voters.to_f).round(2) * 100)
+    scale = 100
+     blue = scale - green - red
+    #scale = 100 ### voters < 100 ? "100" : voters
+    #scale == "100" ? blue = 100 - (green + red) : Group::AWARD_THRESHOLD_PCT
     "http://chart.apis.google.com/chart?cht=bhs" +
     "&amp;chs=#{Grant::SESSION_BAR_CHART_X}x#{Grant::SESSION_BAR_CHART_Y}" +
     "&amp;chd=t:#{green}|#{blue}|#{red}|#{scale}" +
