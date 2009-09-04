@@ -57,6 +57,16 @@ class User < ActiveRecord::Base
 
   named_scope :blitz_voters, :conditions => { :blitz_interest => true }
 
+  after_create :add_admin_friendships
+
+  def add_admin_friendships
+    transaction do
+      jesse = User.find(28)
+      friendships.create!(:friend_id => jesse.id)
+      jesse.friendships.create!(:friend_id => self.id)
+    end
+  end
+
   def cycle_interest!(amount)
     update_attributes!(:blitz_rewards => (blitz_rewards + amount))
     if blitz_contributes <= blitz_rewards

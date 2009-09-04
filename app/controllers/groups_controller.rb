@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   before_filter :verify_authenticity_token
 
   def index
-    @page_title = 'Search Groups'
+    @page_title = 'Grantvote'
     unless params[:search].blank?
       @groups = Group.search(
                   params[:search],
