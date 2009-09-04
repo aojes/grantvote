@@ -61,4 +61,11 @@
               = submit_button "Vote Into Session"
       - else
         .prepend-top= render 'shared/blitz_vote', :blitz => @blitz
+    - else
+      .prepend-top
+        = link_to 'Login', login_path
+        or
+        = link_to 'Register', new_user_path
+        to vote.
+      .prepend-top= socialite(:url => blitz_url(@blitz), :title => "Grantvote &raquo; #{h @blitz.name}")
 
