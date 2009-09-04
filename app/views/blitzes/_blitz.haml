@@ -49,12 +49,14 @@
             = f.hidden_field :blitz_id, :value => blitz.id
             %span{:style => "padding-left: 7px"}
               = submit_button "Vote Into Session"
-      - elsif !(blitz.user == current_user)
-        .prepend-top.center= render 'shared/blitz_vote', :blitz => blitz
+      - else
+        - if !(blitz.user == current_user)
+          .prepend-top.center= render 'shared/blitz_vote', :blitz => blitz
     - else
-      .prepend-top
-        = link_to 'Login', login_path
-        or
-        = link_to 'Register', new_user_path
-        to vote.
+      - if !current_user
+        .prepend-top
+          = link_to 'Login', login_path
+          or
+          = link_to 'Register', new_user_path
+          to vote.
 
