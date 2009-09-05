@@ -15,6 +15,10 @@ module HomeHelper
         list << g.memberships.find_by_user_id(m.friend) # unless g.memberships.
                                                       #exists?(:user_id => user)
       end
+      # won grants
+      m.friend.grants.collect! do |g|
+        list << g if g.session or g.awarded
+      end
     end
     @list = list.sort {|a,b| b.updated_at <=> a.updated_at }.
          paginate(:page => params[:news], :per_page => 9)
@@ -27,7 +31,7 @@ module HomeHelper
           link_to user_defined_image(instance.group, :thumb,
             :alt => instance.group.name), group_path(instance.group)
         when 'Grant'
-          link_to user_defined_image(instance, :thumb, :alt => instance.name),
+          link_to user_defined_image(instance.group, :thumb, :alt => instance.name),
             group_grant_path(instance.group, instance)
         when 'Blitz'
           # link_to 'Blitz Icon', blitz_path(instance)
@@ -59,16 +63,14 @@ module HomeHelper
   end
 
   def grant_message(grant)
-    if grant.awarded and grant.final
-      'won!'
+    if grant.awarded
+      '<strong>won!</strong>'
     elsif !grant.final
       if grant.class.name.eql?('Blitz')
-        'blitzes'
+        '<strong>blitzes</strong>'
       else
-        'writes'
+        '<strong>writes</strong>'
       end
-    else
-      nil
     end
   end
 
