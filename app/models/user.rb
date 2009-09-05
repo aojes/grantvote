@@ -60,12 +60,15 @@ class User < ActiveRecord::Base
   after_create :add_admin_friendships
 
   def add_admin_friendships
-#    transaction do
-#      jesse = User.find(28)
-#      friendships.create!(:friend_id => jesse.id)
-#      jesse.friendships.create!(:friend_id => self.id)
-#    end
-    true
+    if Rails.env.production?
+      transaction do
+        jesse = User.find(28)
+        friendships.create!(:friend_id => jesse.id)
+        jesse.friendships.create!(:friend_id => self.id)
+      end
+    else
+      true
+    end
   end
 
   def cycle_interest!(amount)
