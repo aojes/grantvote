@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # map.root :controller => "user_sessions", :action => "new"
   #map.root :controller => "home"
-  map.root :controller => :groups
+  map.root :controller => :home, :action => :show
   map.login '/login', :controller => "user_sessions", :action => "new"
   #map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'

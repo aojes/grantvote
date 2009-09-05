@@ -1,41 +1,51 @@
-.span-24.prepend-top
-  .span-14.prepend-1.append-1.last
+- if current_user
+  .span-24.prepend-top
+    .span-14.prepend-1.append-1.last
 
-    - form_for :communication, :url => {:controller => :communications, :action => :create } do |f|
-      = f.text_area :content, :class => 'text', :id => 'status_update_field'
-      = f.hidden_field :user_id, :value => current_user.id
-      .flr.clear= submit_button "Update", true
-      %br(clear='both')
-    .prepend-top
-      .status_update
-        %hr
-        - @communications.each do |c|
-          .span-2<
-            = link_to user_defined_image(c.user, :small, :alt => c.user.login), profile_path(c.user.login)
-          .span-11
-            = link_to c.user.login, profile_path(c.user.login), :class => 'homepage userlink'
-            = hreffer(h c.content)
-            %br
-            .time_ago= distance_of_time_in_words_to_now(c.created_at) + ' ago'
-          .span-1.last
-          - if c.user == current_user
-            = link_to image_tag('/images/icons/blue_arrows.png', :class => 'delete'), c, :method => :delete, :confirm => 'Delete comment?'
+      - form_for :communication, :url => {:controller => :communications, :action => :create } do |f|
+        = f.text_area :content, :class => 'text', :id => 'status_update_field'
+        = f.hidden_field :user_id, :value => current_user.id
+        .flr.clear= submit_button "Update", true
+        %br(clear='both')
+      .prepend-top
+        .status_update
           %hr
-    %span(style="position:relative; bottom: 24px")<
-      = will_paginate @communications, :page_links => false, :previous_label => '&laquo; Prev'
-  .span-8.last
-    .span-7.append-1
-      - activities(current_user).each do |a| # activities() returns @list
-        .span-7.last
-          %p
-            .span-1<
-              = link_to user_defined_image(a.user, :thumb, :alt => a.user.login), profile_path(a.user.login)
-            .span-1<
-              = activity_link(a, :photo => true)
-            .span-5.last<
-              = link_to a.user.login, profile_path(a.user.login)
-              = group_message(a) || grant_message(a)
-              = activity_link(a)
-    .span-7.append-1.last(style="position:relative; bottom: 24px")<
-      = will_paginate @list, :page_links => false, :param_name => :news, :previous_label => '&laquo; Prev'
+          - @communications.each do |c|
+            .span-2<
+              = link_to user_defined_image(c.user, :small, :alt => c.user.login), profile_path(c.user.login)
+            .span-11
+              = link_to c.user.login, profile_path(c.user.login), :class => 'homepage userlink'
+              = hreffer(h c.content)
+              %br
+              .time_ago= distance_of_time_in_words_to_now(c.created_at) + ' ago'
+            .span-1.last
+            - if c.user == current_user
+              = link_to image_tag('/images/icons/blue_arrows.png', :class => 'delete'), c, :method => :delete, :confirm => 'Delete comment?'
+            %hr
+      %span(style="position:relative; bottom: 24px")<
+        = will_paginate @communications, :page_links => false, :previous_label => '&laquo; Prev'
+    .span-8.last
+      .span-7.append-1
+        - activities(current_user).each do |a| # activities() returns @list
+          .span-7.last
+            %p
+              .span-1<
+                = link_to user_defined_image(a.user, :thumb, :alt => a.user.login), profile_path(a.user.login)
+              .span-1<
+                = activity_link(a, :photo => true)
+              .span-5.last<
+                = link_to a.user.login, profile_path(a.user.login)
+                = group_message(a) || grant_message(a)
+                = activity_link(a)
+      .span-7.append-1.last(style="position:relative; bottom: 24px")<
+        = will_paginate @list, :page_links => false, :param_name => :news, :previous_label => '&laquo; Prev'
+
+- else
+  .prepend-top.center
+    <object width="640" height="505"><param name="movie" value="http://www.youtube.com/v/H81npC19UD0&hl=en&fs=1&rel=0&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/H81npC19UD0&hl=en&fs=1&rel=0&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="505"></embed></object>
+  .prepend-top.center
+    %h2<
+      =link_to 'Log in', login_path
+      or
+      =link_to 'Sign up', new_user_path
 

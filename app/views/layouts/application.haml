@@ -30,27 +30,27 @@
     .container
       .span-24#header
         .span-8.append-4
-          - if current_user
-            %h1.logo= link_to "Grantvote", home_path
-          - else
-            %h1.logo= link_to "Grantvote", root_path
+          %h1.logo= link_to "Grantvote", root_path
         .span-10.append-2.prepend-top.nav.last
           %ul#nav-list.pull-2.prepend-top
-            = show_link "Home", {:controller => 'home', :action => 'show'}, {:title => "Home", :class => 'rounded'}
-            = show_link "Groups", {:controller => 'groups', :action => 'index'}, {:title => "Groups", :class => 'rounded'}
-            - if controller.controller_name == 'grants'
-              %li.active= link_to "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
-            - else
-              = show_link "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
-            = show_link "Blitz", {:controller => 'blitzes', :action => 'index'}, {:title => "Blitz", :class => 'rounded'}
-            = show_link "Leaders", {:controller => 'leaders', :action => 'index'}, {:title => "Leaders", :class => 'rounded'}
-            - if current_user && (current_page?(:controller => 'account', :action => 'index') || current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}"))
-              %li.active<
-                = link_to "You",  profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
-            - else
-              - if current_user
-                %li.normal<
-                  = link_to "You", profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
+            %li.normal= link_to "Home", {:controller => 'home', :action => 'show'}, { :class => 'rounded'}
+            %li.normal= link_to "Groups", groups_path, {:class => 'rounded'}
+            -# if controller.controller_name == 'grants'
+              -#%li.active= link_to "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
+            -# else
+              -# next line
+            %li.normal= link_to "Grants", grants_path, {:class => 'rounded'}
+            %li.normal= link_to "Blitz", {:controller => 'blitzes', :action => 'index'}, { :class => 'rounded'}
+            %li.normal= link_to "Leaders", {:controller => 'leaders', :action => 'index'}, { :class => 'rounded'}
+            -# if current_user && (current_page?(:controller => 'account', :action => 'index') || current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}"))
+              -#%li.active<
+                -#= link_to "You",  profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
+            -# else
+              -# if current_user
+                -#%li.normal<
+                  -#= link_to "You", profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
+            - if current_user
+              %li.normal= link_to "You", profile_path(current_user.login), { :class=>'rounded'}
 
             -#= pluralize User.logged_in.count, "user" currently logged in
           .prepend-top.flr#login{:style => "position:relative; top: 4px"}
