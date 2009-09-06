@@ -41,11 +41,13 @@
         = will_paginate @list, :page_links => false, :param_name => :news, :previous_label => '&laquo; Prev'
 
 - else
-  .prepend-top.center
-    <object width="640" height="505"><param name="movie" value="http://www.youtube.com/v/H81npC19UD0&hl=en&fs=1&rel=0&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/H81npC19UD0&hl=en&fs=1&rel=0&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="505"></embed></object>
-  .prepend-top.center
-    %h2<
-      =link_to 'Log in', login_path
-      or
-      =link_to 'Sign up', new_user_path
+  .prepend-top.span-24
+    .span-16.prepend-1.append-1.last
+      <object width="640" height="505"><param name="movie" value="http://www.youtube.com/v/H81npC19UD0&hl=en&fs=1&rel=0&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/H81npC19UD0&hl=en&fs=1&rel=0&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="505"></embed></object>
+    .span-5.append-1.last
+      .large Welcome to Grantvote, a place to form groups based on shared interests.  By paying dues into a group, you may write grant requests and vote on other grant requests. Dues do not expire. You only pay dues again when you have won more than you've put in, per group.  Win the grant or blitz, and the money is yours, no strings attached!
+      %h3.prepend-top<
+        =link_to 'Log in', login_path
+        or
+        =link_to 'Sign up', new_user_path
 
