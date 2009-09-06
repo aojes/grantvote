@@ -12,6 +12,8 @@ class MembershipsController < ApplicationController
   def create
     @membership = Membership.new(params[:membership])
 
+    @membership.role = 'moderator' if @membership.group.voters_count.zero?
+
     respond_to do |format|
       if @membership.save
         flash[:notice] = 'Membership created.'

@@ -56,6 +56,9 @@ class Group < ActiveRecord::Base
     }
   }
 
+  def voters_count
+    memberships.voters.count
+  end
 
   def solvent?(grant)
     if grant.votes.count.zero?
@@ -73,8 +76,8 @@ class Group < ActiveRecord::Base
     creator = Membership.exists?(:role => 'creator', :user_id => user.id,
           :group_id => self.id)
     moderator = Membership.exists?(:role => 'moderator', :user_id => user.id,
-          :group_id => self.id, :interest => true)
-    (creator and funds == 0) or (moderator and funds == 0)
+          :group_id => self.id)
+    (creator and funds.zero?) or (moderator and funds.zero?)
   end
 
   def to_param
