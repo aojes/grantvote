@@ -29,11 +29,13 @@ class BlitzesController < ApplicationController
   def show
     @blitz = Blitz.find_by_permalink(params[:id])
     @page_title = @blitz.name + " on Blitzvote Blitz"
+    session[:group_id] = 0
   end
 
   def new
     @page_title = "New Blitz Grant"
     @blitz = Blitz.new
+    session[:group_id] = 0
   end
 
   def create
@@ -48,7 +50,7 @@ class BlitzesController < ApplicationController
     # @blitz.votes_win = 1 + @blitz.amount / Payment::AMOUNT
 
     @blitz.votes_win = Blitz.set_votes_win
-
+    session[:group_id] = 0
     if @blitz.save
       flash[:notice] =  "Created blitz grant "
       redirect_to blitz_path(@blitz)
@@ -61,11 +63,12 @@ class BlitzesController < ApplicationController
   def edit
     @blitz = Blitz.find_by_permalink(params[:id])
     @page_title = "Editing " + @blitz.name
+    session[:group_id] = 0
   end
 
   def update
     @blitz = Blitz.find_by_permalink(params[:id])
-
+    session[:group_id] = 0
     respond_to do |format|
       if @blitz.update_attributes(params[:blitz])
         flash[:notice] = 'Updated blitz grant '
@@ -79,7 +82,7 @@ class BlitzesController < ApplicationController
   def destroy
     @blitz = Blitz.find_by_permalink(params[:id])
     @blitz.destroy
-
+    session[:group_id] = 0
     respond_to do |format|
       flash[:notice] = 'Adios.'
       format.html { redirect_to blitzes_path }

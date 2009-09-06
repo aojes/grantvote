@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
       paginate(:page => params[:page], :per_page => 10)
     @comments = @group.comments.reverse.
                          paginate(:page => params[:comments], :per_page => 8)
-
+    session[:group_id] = @group.id
     respond_to do |format|
       format.html
     end
@@ -48,8 +48,8 @@ class GroupsController < ApplicationController
   def edit
     @group = Group.find_by_permalink(params[:id])
     @page_title = "Editing #{@group.name} "    # TODO safe call?
+    session[:group_id] = @group.id
     respond_to do |format|
-
       if @group.authorize_edit?(current_user)
         format.html
       else
