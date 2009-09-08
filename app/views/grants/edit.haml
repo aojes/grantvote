@@ -1,15 +1,27 @@
-= render 'groups/header', :group => @grant.group
-- if @grant.votes.count.zero?
-  .prepend-5
-    %div.rounded-box.rounded-box-medium
+.prepend-4.prepend-top
+  %div.rounded-box.rounded-box-medium2
+    %div
       %div
-        %div
-          %div.rounded-box-largefont
+        %div.rounded-box-largefont
+          %div(style="position: relative; top: 8px; left: 48px")
+            = link_to user_defined_image(@group, :large, :alt => "group photo"), group_grants_path(@group)
+          %div(style="position: relative; left: 180px; bottom: 82px; width: 340px;")
+            %h3(style="color: #609e17;")=link_to(h(@group.name), group_path(@group), :class => "group_header")
+            %h4=h @group.purpose
+            Group Funds
+            %span(style="color: #609e17;")==#{number_to_currency(@group.funds.floor, :precision => 0)}
+          .clear(style="position: relative; bottom: 62px;")
             - form_for @grant, :html => { :multipart => true } do |f|
-              = render 'form', :object => f
-              .prepend-4
-                %br
+              = f.error_messages
+              .form_row
+                = f.label :name
+                = f.text_field :name, :style => "width: 406px"
+              .form_row(style="position: relative; left: 423px; bottom: 50px")
+                = f.label :amount
+                = f.text_field :amount, :style => "width: 60px"
+              %div(style="position: relative; bottom: 48px;")<
+                = f.text_area :proposal, :style => "width: 475px"
+              %br
+              %div(style="position: relative; bottom: 50px;")<
                 = submit_button "Preview"
-                %br
-                %br
- 
+

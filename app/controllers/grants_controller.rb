@@ -71,6 +71,7 @@ class GrantsController < ApplicationController
 
   def edit
     @grant = Grant.find_by_permalink(params[:id])
+    @group = @grant.group
     @page_title = "Editing " + @grant.name
   end
 
