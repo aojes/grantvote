@@ -8,21 +8,21 @@
   .span-6.last
     = user_cred_images(grant.user, :small, true)
   .span-15
-    .span-3
-      = link_to user_defined_image(grant.group, :medium, :alt => h(grant.group.name), :title => h(grant.group.name)), group_path(grant.group)
-      .span-2.prepend-top.last
-        &nbsp;
-    .span-11.last{:style => "text-align:justify"}
-      - if not grant.media.blank?
-        = simple_format grant.media
-        .large= simple_format h(grant.proposal), :style => "line-height: 1.8; margin-right: -40px;"
-      - else
-        .large= simple_format h(grant.proposal), :style => "line-height: 2"
-      - if grant.votes.count.zero?
-        = button_to "Edit", edit_group_grant_path(grant.group, grant), :method => :get
-      %br{:style => "clear: both"}
-      %br
-      %br
+    .span-14.last
+      .fll(style="padding: 0 30px 0 0")<
+        = link_to user_defined_image(grant.group, :medium, :alt => h(grant.group.name), :title => h(grant.group.name)), group_path(grant.group)
+
+      %span(style="position: relative; top: -5px; text-align:justify")
+        - if not grant.media.blank?
+          = simple_format grant.media
+          .large= simple_format h(grant.proposal), :style => "line-height: 1.8; margin-right: -40px;"
+        - else
+          .large= simple_format h(grant.proposal), :style => "line-height: 2"
+        - if grant.votes.count.zero?
+          = button_to "Edit", edit_group_grant_path(grant.group, grant), :method => :get
+        %br(clear="both")
+        %br
+
   .span-5.last
     == <img alt="#{group_accessible_tally(grant)}" title="#{group_accessible_tally(grant)}" src="#{session_bar_chart_url(grant)}" />
     .quiet
@@ -35,6 +35,6 @@
           == &nbsp; Denied #{grant.updated_at.strftime("%B %d, %Y")}
           %br
           == &nbsp; after #{distance_of_time_in_words(grant.votes.first.created_at, grant.votes.last.created_at)} in session
-      - if current_user and not grant.user == current_user and voted?(grant)
+      - if current_user and voted?(grant)
         %h4.prepend-top.center.quiet Thank you for voting!
 
