@@ -36,13 +36,12 @@ class Blitz < ActiveRecord::Base
 
   def self.set_votes_win
     current_voter_count = User.count(:conditions => {:blitz_interest => true})
-    tally = (current_voter_count / DIVISOR).to_i
-    tally < 3 ? 3 : tally
+    (current_voter_count / DIVISOR).ceil
   end
 
   def finalizable?
     votes.yea.count == votes_win or
-    votes.nay.count == (votes_win * DIVISOR).ceil.to_i - votes_win
+    votes.nay.count == (votes_win * DIVISOR).floor.to_i - votes_win
   end
 
   def passes?

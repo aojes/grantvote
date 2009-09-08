@@ -208,14 +208,9 @@ module ApplicationHelper
 
     session_voting_pool = (blitz.votes_win * Blitz::DIVISOR).ceil.to_f
 
-    # Remove later!!
-    if !session_voting_pool.zero?
-      green = (votes_yea / session_voting_pool).round(2) * 100
-        red = (votes_nay / session_voting_pool).round(2) * 100
-    else
-      green = 33.33
-        red = 33.33
-    end
+    green = (votes_yea / session_voting_pool).round(2) * 100
+      red = (votes_nay / session_voting_pool).round(2) * 100
+
     scale = 100
      blue = scale - green - red
     chart_url = 'http://chart.apis.google.com/chart?cht=bhs' +
