@@ -9,6 +9,9 @@
     = f.hidden_field :group_id, :value => find_group_id(params[:group_id])
     = f.hidden_field :grant_id, :value => grant.id
     = f.hidden_field :blitz_id, :value => 0
+- elsif current_user
+  %span(style="position:relative; left: 4px;")<
+    = link_to image_tag('/images/amazon_pay_now.gif'), :controller => :payments, :action => :new
 - else
   .prepend-top
     &nbsp; &nbsp;
