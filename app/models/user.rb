@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
 
   named_scope :blitz_voters, :conditions => { :blitz_interest => true }
 
-  #after_create :add_admin_friendships
+  after_create :add_admin_friendships
 
   def add_admin_friendships
     if Rails.env.production?

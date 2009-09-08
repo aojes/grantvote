@@ -20,22 +20,16 @@
     .span-6.last
       = user_cred_images(@blitz.user, :small, true)
     .span-15
-      .span-3
-        = image_tag('/images/icons/blitz_75.png')
-        .span-2.prepend-top.last
-          &nbsp;
-      .span-11.last{:style => "text-align:justify"}
-        - if @blitz.media.blank?
-          .large= simple_format h(@blitz.proposal), :style => "line-height: 2"
-        - else
-          = simple_format @blitz.media
-          .large= simple_format h(@blitz.proposal), :style => "line-height: 1.8; margin-right: -40px;"
-        - if @blitz.votes.count.zero?
-          = button_to "Edit", edit_blitz_path(@blitz), :method => :get
-          .prepend-top.prepend-4= link_to 'delete', @blitz, :method => :delete, :confirm => 'Delete blitz?'
-        %br(clear="both")
-        %br
-        %br
+      .span-14.last
+        .fll(style="padding: 0 30px 0 0")<
+          = image_tag('/images/icons/blitz_75.png')
+        %span(style="position: relative; top: -5px; text-align:justify")
+          .large= simple_format h(@blitz.proposal), :style => "line-height: 2;"
+          - if @blitz.votes.count.zero?
+            = button_to "Edit", edit_blitz_path(@blitz), :method => :get
+          %br(clear="both")
+          %br
+          %br
     .span-5
       = session_bar_chart_image @blitz
       .quiet
@@ -100,22 +94,16 @@
     .span-6.last
       = user_cred_images(@blitz.user, :small, true)
     .span-15
-      .span-3
-        = image_tag('/images/icons/blitz_75.png')
-        .span-2.prepend-top.last
-          &nbsp;
-      .span-11.last{:style => "text-align:justify"}
-        - if @blitz.media.blank?
-          .large= simple_format h(@blitz.proposal), :style => "line-height: 2"
-        - else
-          = simple_format @blitz.media
-          .large= simple_format h(@blitz.proposal), :style => "line-height: 1.8; margin-right: -40px;"
-        - if @blitz.votes.count.zero?
-          = button_to "Edit", edit_blitz_path(@blitz), :method => :get
-          .prepend-top.prepend-4= link_to 'delete', @blitz, :method => :delete, :confirm => 'Delete blitz?'
-        %br(clear="both")
-        %br
-        %br
+      .span-14.last
+        .fll(style="padding: 0 30px 0 0")<
+          = image_tag('/images/icons/blitz_75.png')
+        %span(style="position: relative; top: -5px; text-align:justify")
+          .large= simple_format h(@blitz.proposal), :style => "line-height: 2;"
+          - if @blitz.votes.count.zero?
+            = button_to "Edit", edit_blitz_path(@blitz), :method => :get
+          %br(clear="both")
+          %br
+          %br
     .span-5
       = session_bar_chart_image @blitz
       .quiet
