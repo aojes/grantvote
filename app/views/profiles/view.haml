@@ -17,7 +17,7 @@
       %h6.quiet= h @user.profile.location
       -# TODO write helper method for links and breadcrumbs ...
     - unless @user.profile.link.blank? or @user.profile.link == "http://"
-      %h6.quiet= link_to h(@user.profile.link), h(@user.profile.link) if @user.profile.link.include?("http://")
+      %h6.quiet= link_to(h(@user.profile.link), h(@user.profile.link), :target => "_blank") if @user.profile.link.include?("http://")
     %h5.quiet=h @user.profile.detail if @user.profile.detail
 
     %h5= link_to 'Settings', edit_account_path if current_user == @user
