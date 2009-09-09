@@ -226,7 +226,7 @@ module ApplicationHelper
     votes_yea = "#{yeas} Yea, "
     votes_nay = nays > 0 ? "#{nays} Nay, " : ''
     votes = votes_yea + votes_nay
-    awaiting = (session_voting_pool - yeas - nays).to_i
+    awaiting = (session_voting_pool - yeas - nays - 1).to_i
     status = blitz.final   ?
              blitz.awarded ?
                  'Awarded' : 'Denied' : "Awaiting #{awaiting}"
