@@ -25,14 +25,14 @@ class Payment < ActiveRecord::Base
           user.update_attributes!(
             :blitz_interest => true,
             :points => user.points + 1,
-            :blitz_contributes => user.blitz_contributes + AMOUNT
+            :blitz_contributes => user.blitz_contributes + DIVIDEND
           )
           user.credit.update_attributes!(
             :points  => ( user.credit.points  + 1),
             :pebbles => ( user.credit.pebbles + 1)
           )
 
-          blitz_fund = BlitzFund.find_or_create_by_dues(AMOUNT)
+          blitz_fund = BlitzFund.find_or_create_by_dues(DIVIDEND)
           blitz_fund.update_attributes!(
             :general_pool => blitz_fund.general_pool + DIVIDEND)
 
@@ -42,7 +42,7 @@ class Payment < ActiveRecord::Base
             user.memberships.create!(
               :group_id    => group_id,
               :interest    => true,
-              :contributes => AMOUNT,
+              :contributes => DIVIDEND,
               :rewards     => 0
             )
             user.update_attributes!(:points => user.points + 1)
@@ -56,7 +56,7 @@ class Payment < ActiveRecord::Base
           else
             membership.update_attributes!(
               :interest    => true,
-              :contributes => membership.contributes + AMOUNT
+              :contributes => membership.contributes + DIVIDEND
             )
             membership.group.update_attributes!(
               :funds => membership.group.funds + DIVIDEND

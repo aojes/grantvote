@@ -42,7 +42,7 @@ class BlitzesController < ApplicationController
     @blitz = current_user.blitzes.build(params[:blitz])
 
     # TODO refactor to model & protect blitz votes
-    blitz_fund = BlitzFund.find_by_dues(Payment::AMOUNT)
+    blitz_fund = BlitzFund.find_by_dues(Payment::DIVIDEND)
     @blitz.blitz_fund_id = blitz_fund.id
 
     ##
