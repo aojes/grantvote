@@ -33,15 +33,15 @@
           %h1.logo= link_to "Grantvote", root_path
         .span-10.append-2.prepend-top.nav.last
           %ul#nav-list.pull-2.prepend-top
-            %li.normal= link_to "Home", {:controller => 'home', :action => 'show'}, { :class => 'rounded'}
-            %li.normal= link_to "Groups", groups_path, {:class => 'rounded'}
+            %li= link_to "Home", {:controller => 'home', :action => 'show'}, { :class => 'rounded'}
+            %li= link_to "Groups", groups_path, {:class => 'rounded'}
             -# if controller.controller_name == 'grants'
               -#%li.active= link_to "Grants", grants_path, {:title => "Grants", :class => 'rounded'}
             -# else
               -# next line
-            %li.normal= link_to "Grants", grants_path, {:class => 'rounded'}
-            %li.normal= link_to "Blitz", {:controller => 'blitzes', :action => 'index'}, { :class => 'rounded'}
-            %li.normal= link_to "Leaders", {:controller => 'leaders', :action => 'index'}, { :class => 'rounded'}
+            %li= link_to "Grants", grants_path, {:class => 'rounded'}
+            %li= link_to "Blitz", {:controller => 'blitzes', :action => 'index'}, { :class => 'rounded'}
+            %li= link_to "Leaders", {:controller => 'leaders', :action => 'index'}, { :class => 'rounded'}
             -# if current_user && (current_page?(:controller => 'account', :action => 'index') || current_page?(:controller => 'profiles', :action => 'view', :permalink => "#{h current_user.login}"))
               -#%li.active<
                 -#= link_to "You",  profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
@@ -50,7 +50,7 @@
                 -#%li.normal<
                   -#= link_to "You", profile_path(current_user.login), {:title => "Your account", :class=>'rounded'}
             - if current_user
-              %li.normal= link_to "You", profile_path(current_user.login), { :class=>'rounded'}
+              %li= link_to "You", profile_path(current_user.login), { :class=>'rounded'}
 
             -#= pluralize User.logged_in.count, "user" currently logged in
           .prepend-top.flr#login{:style => "position:relative; top: 4px"}
