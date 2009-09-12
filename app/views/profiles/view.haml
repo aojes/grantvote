@@ -99,7 +99,7 @@
         - else
           = image_tag '/images/icons/silk/magnifier.png', :alt => 'Watching', :title => 'Watching', :style => "position: relative; bottom: 36px; right: 54px"
 
-    - if !@awards.count.zero?
+    - if !@awards.length.zero?
       %h3.prepend-top.profile_verify<
         Awards
         %hr
@@ -109,7 +109,7 @@
         - else
           = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image'
 
-    - if !@session.count.zero?
+    - if !@session.length.zero?
       %h3.prepend-top.profile_verify<
         Sessions
         %hr
@@ -120,7 +120,7 @@
           = link_to user_defined_image(g.group, :small, :alt => "#{h g.group.name} : #{h g.name}", :title => "#{h g.group.name} : #{h g.name}", :style => "position: relative; margin-right: 16px"), group_grant_path(g.group, g), :class => 'user-image'
 
     - if current_user == @user
-      - if !@writeboard.count.zero?
+      - if !@writeboard.length.zero?
         %h3.prepend-top.profile_verify<
           .flr{:style => "font-size: 12px; color: #888; position: relative; top: 4px;"} (private view)
           Writeboard
