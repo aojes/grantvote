@@ -16,8 +16,7 @@
             .span-11
               = link_to c.user.login, profile_path(c.user.login), :class => 'homepage userlink'
               = hreffer(h c.content)
-              %br
-              .time_ago= distance_of_time_in_words_to_now(c.created_at) + ' ago'
+              .time_ago.clear= distance_of_time_in_words_to_now(c.created_at) + ' ago'
             .span-1.last
             - if c.user == current_user
               = link_to image_tag('/images/icons/blue_arrows.png', :class => 'delete'), c, :method => :delete, :confirm => 'Delete comment?'
@@ -26,17 +25,16 @@
         = will_paginate @communications, :page_links => false, :previous_label => '&laquo; Prev'
     .span-8.last
       .span-7.append-1
+        %br
         - activities(current_user).each do |a| # activities() returns @list
-          .span-7.last
-            %p
-              .span-1<
-                = link_to user_defined_image(a.user, :thumb, :alt => a.user.login), profile_path(a.user.login)
-              .span-1<
-                = activity_link(a, :photo => true)
-              .span-5.last<
-                = link_to a.user.login, profile_path(a.user.login)
-                = group_message(a) || grant_message(a)
-                = activity_link(a)
+          .span-7.last.activity            .span-1<
+              = link_to user_defined_image(a.user, :thumb, :alt => a.user.login), profile_path(a.user.login)
+            .span-1<
+              = activity_link(a, :photo => true)
+            .span-5.last<
+              = link_to a.user.login, profile_path(a.user.login)
+              = group_message(a) || grant_message(a)
+              = activity_link(a)
       .span-7.append-1.last(style="position:relative; bottom: 24px")<
         = will_paginate @list, :page_links => false, :param_name => :news, :previous_label => '&laquo; Prev'
 
