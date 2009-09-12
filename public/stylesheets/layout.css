@@ -36,8 +36,8 @@ a.rounded, div.pagination a {
   border: none;
   white-space: nowrap;
   vertical-align: middle;
-  display: -moz-inline-box;
   display: inline-block;
+  display: -moz-inline-box;
   overflow: visible; }
 
 .nav {
@@ -114,12 +114,6 @@ a.rounded, div.pagination a {
     background-color: white;
     border-bottom: 1px dashed #bdbdbd;
     padding-top: 4px; }
-
-.rounded {
-  -webkit-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px; }
 
 .border-test {
   border: 1px solid #999;
