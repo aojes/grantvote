@@ -31,9 +31,9 @@
             = link_to user_defined_image(v, :thumb, :alt => h(v.login), :title => h(v.login)), "/#{h(v.login)}"
       %br
       %br
-    .span-6.prepend-1.last(style='position:relative; top:-3em;')
-      .flr= socialite(:url => group_url(@group), :title => "Grantvote &raquo; #{h @group.name}")
-    .span-7.last#comments(style='position:relative; top:-1.5em;')
+    /.span-6.prepend-1.last(style='position:relative; top:-3em;')
+    /==.flr= socialite(:url => group_url(@group), :title => "Grantvote &raquo; #{h @group.name}")
+    .span-7.last#comments(style='position:relative; top:-2.5em;')
       - if current_user
         - if voter?(params[:id])
           .flr= link_to "Add Comment", new_group_comment_path(@group)
