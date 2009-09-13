@@ -24,11 +24,10 @@ When /^I make a payment of (.+)$/ do |payment|
 end
 
 Then /^I should have a blitz interest of (.+)$/ do |blitz_interest|
-  # Baffled... FIXME
-  @user.blitz_interest.to_s.should == blitz_interest
+  @payment.user.blitz_interest.to_s.should == blitz_interest
 end
 
 Then /^I should have a new total blitz contribution of (.+)$/ do |new_total|
-  @user.blitz_rewards.should == new_total.to_i
+  @payment.user.blitz_contributes.should == new_total.to_f
 end
 

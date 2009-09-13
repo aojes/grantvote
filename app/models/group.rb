@@ -47,12 +47,15 @@ class Group < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => MAX_FILE_SIZE
   validates_attachment_content_type :photo,
                       :content_type => ['image/jpeg', 'image/png', 'image/gif']
+  
+  
   ## defer
   # validates_attachment_presence :photo SET EDIT BEFORE PUBLIC
 
   named_scope :name_or_purpose_like, lambda { |*args|
     {
-      :conditions => ["name LIKE ? OR purpose LIKE ?", "#{args[0]}%", "#{args[0]}%"]
+      :conditions => ["name LIKE ? OR purpose LIKE ?", 
+                                              "#{args[0]}%", "#{args[0]}%"]
     }
   }
 

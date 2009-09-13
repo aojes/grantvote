@@ -1,17 +1,16 @@
 Before('@login') do
   # This will only run before scenarios tagged above
 
-  Invitation.create!(:email=>'foo@grantvote.com',
-    :news => true, :sender_id => 1, :sent_at => Time.now)
+#  Invitation.create!(:email=>'foo@grantvote.com',
+#    :news => true, :sender_id => 1, :sent_at => Time.now)
   User.create!(:login => "foo", :email => "foo@grantvote.com",
     :points => 0, :password => "pass", :password_confirmation => "pass",
-    :invitation_id => Invitation.first.id, :invitation_limit => 5,
     :blitz_interest => false, :blitz_contributes => 0, :blitz_rewards => 0 )
   Profile.create!(:user_id => User.find_by_login('foo').id, :login => "foo")
   Credit.create!(:user_id => User.find_by_login('foo').id)
 
   visit '/login'
-  fill_in('Username', :with => "foo")
+  fill_in('Login', :with => "foo")
   fill_in('Password', :with => "pass")
   click_button
 
@@ -21,11 +20,10 @@ end
 Before('@friend') do
   # This will only run before scenarios tagged above
 
-  Invitation.create!(:email => 'bar@grantvote.com',
-    :news => true, :sender_id => 37, :sent_at => Time.now)
+#  Invitation.create!(:email => 'bar@grantvote.com',
+#    :news => true, :sender_id => 37, :sent_at => Time.now)
   User.create!(:login => "bar", :email => "bar@grantvote.com",
     :points => 0, :password => "pass", :password_confirmation => "pass",
-    :invitation_id => Invitation.last.id, :invitation_limit => 5,
     :blitz_interest => false, :blitz_contributes => 0, :blitz_rewards => 0 )
   Profile.create!(:user_id => User.find_by_login('bar').id, :login => "bar")
   Credit.create!(:user_id => User.find_by_login('bar').id)
@@ -37,11 +35,10 @@ Before('@friend') do
 end
 
 Before('@user') do
-  Invitation.create!(:email=>'bar@grantvote.com',
-    :news => true, :sender_id => 37, :sent_at => Time.now)
+#  Invitation.create!(:email=>'bar@grantvote.com',
+#    :news => true, :sender_id => 37, :sent_at => Time.now)
   User.create!(:login => "foo", :email => "bar@grantvote.com",
     :points => 0, :password => "pass", :password_confirmation => "pass",
-    :invitation_id => Invitation.first.id, :invitation_limit => 5,
     :blitz_interest => false, :blitz_contributes => 0, :blitz_rewards => 0 )
   Profile.create!(:user_id => User.find_by_login('bar').id, :login => "bar")
   Credit.create!(:user_id => User.find_by_login('bar').id)
