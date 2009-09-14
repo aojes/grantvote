@@ -4,5 +4,6 @@ class Communication < ActiveRecord::Base
   validates_presence_of :content
   validates_length_of :content, :in => 1..210
 
+  attr_accessible :content
 end
 

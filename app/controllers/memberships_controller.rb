@@ -10,9 +10,14 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    @membership = Membership.new(params[:membership])
-
-    @membership.role = 'moderator' if @membership.group.voters_count.zero?
+    @group = Group.find_by_permalink(params[:group_id])
+    @membership = Membership.new
+    @membership.user_id  = current_user.id
+    @membership.group_id = @group.id
+    @membership.interest = false
+    @membership.role = @group.memberships.count.zero? ?
+                       @group.voters_count.zero?      ? 
+                                            'creator' : 'moderator' : 'basic'
 
     respond_to do |format|
       if @membership.save

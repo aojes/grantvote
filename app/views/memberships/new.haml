@@ -14,20 +14,8 @@
         %h3 Watch Group Activity
         %p
           - form_for :membership, :url => { :controller => :memberships, :action => :create } do |f|
-            = f.hidden_field :user_id, :value => current_user.id
-            = f.hidden_field :group_id, :value => params[:group_id].nil? ? params[:payment][:group_id] : find_group_id(params[:group_id])
-            = f.hidden_field :interest, :value => "false"
             = submit_button "Watch Group", :lite => true
   .span-22.prepend-1.last{:style => "margin-bottom: 3em"}
     =# render 'shared/payment'
 
-  -#
-    .span-5
-      %h3 Full Membership
-      %p
-        - form_for :membership, :url => { :controller => :memberships, :action => :create } do |f|
-          = f.hidden_field :user_id, :value => current_user.id
-          = f.hidden_field :group_id, :value =>  params[:group_id].nil? ? params[:payment][:group_id] : find_group_id(params[:group_id])
-          = f.hidden_field :interest, :value => "true"
-          = f.submit "Dues Paid"
 

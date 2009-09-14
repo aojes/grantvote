@@ -1,9 +1,7 @@
 class Credit < ActiveRecord::Base
   belongs_to :user
   validates_uniqueness_of :user_id
-
-  before_update :conversions
-
+  
   VALUES = {
     :pebble =>  1,
     :bead   =>  3,
@@ -40,6 +38,28 @@ class Credit < ActiveRecord::Base
 
   named_scope :leaders, :order => "points DESC", :limit => 100
 
+  def self.give!(giver, receiver, cred, time_now)
+    transaction do
+      case cred
+        when :bead
+          giver.credit.beads    -= 1
+          giver.credit.shells   += 1
+          receiver.credit.beads += 1
+        when :pearl
+          giver.credit.buttons    += 1
+          receiver.credit.buttons -= 1
+          receiver.credit.pearls  += 1
+      end
+      
+      giver.credit.last_exchange_at = time_now
+      receiver.credit.last_exchange_at = time_now
+      
+      (giver.credit.save && giver.credit.conversions  && 
+       receiver.credit.save && receiver.credit.conversions ) or 
+         raise ActiveRecord::Rollback
+    end
+  end
+
   def conversions
 
     if (self.pebbles % 3).zero? && !self.pebbles.zero?
@@ -47,7 +67,7 @@ class Credit < ActiveRecord::Base
       self.pebbles -= 3
     end
 
-    if (self.beads   % 3).zero? && !self.beads.zero?
+    if (self.beads % 3).zero? && !self.beads.zero?
       self.buttons += 1
       self.beads   -= 3
     end
@@ -57,19 +77,19 @@ class Credit < ActiveRecord::Base
       self.buttons -= 3
     end
 
-    if (self.pens    % 3).zero? && !self.pens.zero?
+    if (self.pens % 3).zero? && !self.pens.zero?
       self.ribbons += 1
       self.pearls  += 1
       self.shells  += 1
       self.pens     = 1
     end
 
-    if (self.shells  % 3).zero? && !self.shells.zero?
-      self.pearls  += 1
-      self.shells  -= 3
+    if (self.shells % 3).zero? && !self.shells.zero?
+      pearls  += 1
+      shells  -= 3
     end
 
-    if (self.pearls  % 3).zero? && !self.pearls.zero?
+    if (self.pearls % 3).zero? && !self.pearls.zero?
       self.ribbons += 1
       self.pearls  -= 3
     end
@@ -78,7 +98,7 @@ class Credit < ActiveRecord::Base
       self.laurels += 1
       self.ribbons -= 3
     end
-
+    self.save    
   end
 
 end

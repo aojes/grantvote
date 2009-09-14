@@ -48,6 +48,7 @@ class Group < ActiveRecord::Base
   validates_attachment_content_type :photo,
                       :content_type => ['image/jpeg', 'image/png', 'image/gif']
   
+  attr_accessible :name, :purpose, :photo
   
   ## defer
   # validates_attachment_presence :photo SET EDIT BEFORE PUBLIC

@@ -1,4 +1,6 @@
-set attr_accessible by Cucumber Testing
+set attr_accessible
+
+failsafe payment received if error
 
 terms of service
 
@@ -12,13 +14,12 @@ defer
 
   normal workflow
 
-    make hunch topic (grantvote fundable pledgie donorschoose)
     fix a img to get rid of yellow highlight on transparent udf images
     review blitz#index layout (for use with smaller blitz icon than on the profile)
     'view session' shows up when only writeboard grants exist
     use flash.now where appropriate
     safeguard against double posting comments
-    limit comments on group page, maybe use ajax show more
+    allow change blitz icon from sports icon set on blitz#new
     add group rss feeds
     make surveys
     group moderation (allow edit photo & purpose if funds == 0)
@@ -27,7 +28,7 @@ defer
     adapt blitz for variable dues
     sort friends recent first (?)
     can promote general-purpose, company group with free voting membership on reg
-    various hideousness in Opera browser
+    various hideousnesses in Opera browser (profile group tags)
     add 'mark as spam' or flag as inappropriate link on comments, etc.
     show "Group Awards" (?)
     monitor searching / trending
@@ -35,7 +36,7 @@ defer
     make following/followers collapsible & set default
     user location map via google maps (see www.obsidianportal.com/map)
     user can choose a default avatar (historical or archetypal figures)
-
+    make hunch topic (grantvote fundable pledgie donorschoose)
 
 _________________
 business
@@ -47,8 +48,7 @@ notes
 
   how might developing an API benefit us?
   500 error on /users for staging
-  media sample:
-    <object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9QtR0D-VK-M&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
 
-  look at other video sites.. streakr, blip.tv, 12seconds
+  look at video sites, maybe allow one.. streakr, blip.tv, 12seconds,
+                                         youtube, viddler, vimeo
 

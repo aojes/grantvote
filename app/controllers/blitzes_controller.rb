@@ -45,10 +45,6 @@ class BlitzesController < ApplicationController
     blitz_fund = BlitzFund.find_by_dues(Payment::DIVIDEND)
     @blitz.blitz_fund_id = blitz_fund.id
 
-    ##
-    # Loses!
-    # @blitz.votes_win = 1 + @blitz.amount / Payment::AMOUNT
-
     @blitz.votes_win = Blitz.set_votes_win
     session[:group_id] = 0
     if @blitz.save

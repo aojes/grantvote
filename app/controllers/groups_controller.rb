@@ -62,7 +62,6 @@ class GroupsController < ApplicationController
     @group = Group.new(params[:group])
     @group.memberships.build(:user => current_user, :interest => false,
                                                     :role => "creator")
-    # TODO assign pebble on dues paid
     respond_to do |format|
       if @group.save
         flash[:notice] = 'Created group. '

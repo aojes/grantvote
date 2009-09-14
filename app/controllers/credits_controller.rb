@@ -1,32 +1,11 @@
 class CreditsController < ApplicationController
   before_filter :require_user
-  before_filter :verify_authenticity_token
-
-  def create
-    @credit = Credit.new(params[:credit])
-
-  end
 
   def update
-    @receiver = Credit.new(params[:credit])
-    if (   params[:credit][:pebbles]                                          &&
-           current_user.credit.update_attributes(
-             :buttons => (current_user.credit.buttons   + 1),
-             :last_exchange_at => Time.now )                                  &&
-           @receiver.user.credit.update_attributes(
-             :pearls  => (@receiver.user.credit.pearls  + 1),
-             :buttons => (@receiver.user.credit.buttons - 1),
-             :last_exchange_at => Time.now                    )
-        )  ||  (
-           current_user.credit.update_attributes(
-             :beads   => (current_user.credit.beads   - 1),
-             :shells  => (current_user.credit.shells  + 1),
-             :last_exchange_at => Time.now      )                             &&
-           @receiver.user.credit.update_attributes(
-             :beads   => (@receiver.user.credit.beads + 1),
-             :last_exchange_at => Time.now        )
-        )
-
+    receiver = User.find(params[:credit][:user_id].to_i)
+    give = params[:credit][:give_bead] == '1' ? :bead : :pearl
+    
+    if receiver && Credit.give!(current_user, receiver, give, Time.now)
       flash[:notice] = 'Success! Helping your fellow Grantvoter.'
       redirect_back_or_default :back
     else

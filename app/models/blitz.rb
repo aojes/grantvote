@@ -27,7 +27,9 @@ class Blitz < ActiveRecord::Base
   validates_numericality_of :amount, :only_integer => true,
     :greater_than_or_equal_to => MIN_AWARD,
     :message => "can be an integer value, upwards from #{MIN_AWARD}"
-
+  
+  attr_accessible :name, :proposal, :amount
+  
   named_scope :awarded,  :conditions => {:awarded => true}
   named_scope :denied, :conditions => {:final => true, :awarded => false}
   named_scope :session,  :conditions => {:final => false, :session => true}

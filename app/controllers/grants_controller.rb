@@ -60,7 +60,10 @@ class GrantsController < ApplicationController
 
   def create
     @grant = current_user.grants.build(params[:grant])
+    @grant.user_id = current_user
     @group = Group.find_by_permalink(params[:group_id])
+    @grant.group_id = @group.id
+
     if @grant.save
       flash[:notice] =  "Grant created. "
       redirect_to group_grant_path(@grant.group, @grant)
