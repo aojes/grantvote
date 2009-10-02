@@ -37,4 +37,13 @@ config.gem "cwninja-inaction_mailer",
 #  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
 #  
 #end
+config.after_initialize do
+  Bullet.enable = true 
+  Bullet.alert = true
+  Bullet.bullet_logger = true  
+  Bullet.console = true
+ # Bullet.growl = true
+  Bullet.rails_logger = true
+  Bullet.disable_browser_cache = true
+end
 

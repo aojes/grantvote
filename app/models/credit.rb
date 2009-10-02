@@ -81,7 +81,7 @@ class Credit < ActiveRecord::Base
       self.ribbons += 1
       self.pearls  += 1
       self.shells  += 1
-      self.pens     = 1
+      self.pens     = 1 # TODO correct?
     end
 
     if (self.shells % 3).zero? && !self.shells.zero?

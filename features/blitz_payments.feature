@@ -15,4 +15,6 @@ Feature: Blitz payments
   Scenarios: successful payments
     | interest | contributes | rewards | payment | blitz_interest | new_total |
     | false    | 0           | 0       | 5.00    | true           | 5.00      |
+
+
  

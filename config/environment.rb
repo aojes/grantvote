@@ -38,7 +38,8 @@ Rails::Initializer.run do |config|
   config.gem "giraffesoft-resource_controller",
     :lib => "resource_controller",
     :version => "~> 0.6.5"
-
+  config.gem 'flyerhzm-bullet', :lib => 'bullet', 
+    :source => 'http://gems.github.com'
   config.gem "haml"
   # config.gem "hpricot"
   # config.gem "activemerchant", :lib => "active_merchant"
